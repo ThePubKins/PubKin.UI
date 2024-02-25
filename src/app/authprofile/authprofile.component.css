@@ -1,0 +1,152 @@
+.pcard { 
+    width: 665px;
+    height: 519px;
+    border: 0px;
+    border-radius: 108px;
+    background: #FFF;
+}
+
+.prohead {
+    color: #000;
+    font-family: League Spartan;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    margin-top: 20px;
+}
+
+.probtn{ 
+    display: inline-flex;
+    padding: 12px;
+    justify-content: center;
+    gap: 10px;
+    border: 0px solid #A426D1;
+    border-radius: 7px;
+    background: #A426D1;
+    color: #FFF;
+    font-family: League Spartan;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.com { 
+    color: #787878;
+font-family: League Spartan;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 27px; /* 150% */
+text-align: center;
+margin-top: 18px;
+}
+
+.prodes{
+    color: #ABABAB;
+    text-align: center;
+    font-family: League Spartan;
+    font-size: 18px;
+    font-style: normal;
+    margin-top: 15px;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+.pimg {
+    margin-top: 44px;
+}
+
+.pgrss { 
+    padding: 0px;
+    width: 63%;
+    margin-left: 35px;
+    height: 9px;
+  
+}
+
+.pgrssbar { 
+    background-color: #151718;
+}
+
+.line { 
+    width: 3px;
+    height: 470.007px;
+    background: #CFCFCF;
+    margin-top: 25px;
+}
+
+.close { 
+    float: right;
+    margin-right: 18px;
+    margin-top: 20px;
+}
+
+.procont { 
+    color: #1C1C1C;
+    font-family: League Spartan;
+    font-size: 19px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.prodesc { 
+    color: #6C6C6C;
+    font-family: League Spartan;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 7px;
+}
+
+.circ { 
+    width: 15px;
+    height: 15px;
+}
+
+.navarrow { 
+    float: right;
+    margin-top: 8px;
+    height: 15px;
+
+}
+
+.prode { 
+    margin-left: -30px;
+}
+
+.prohead1 { 
+    color: #1C1C1C;
+    font-family: League Spartan;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 40px;
+    margin-left: -20px;
+}
+
+.prodes1 { 
+    color: #6C6C6C;
+    font-family: League Spartan;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-left: -17px;
+}
+
+.mrt { 
+    margin-top: 25px;
+}
+
+.procont1 { 
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.pimg{
+    width: 101px;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0px 10px 10px rgba(123, 119, 121, 0.31) );
+}

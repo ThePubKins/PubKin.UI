@@ -1,0 +1,568 @@
+.back { 
+    width: 881px;
+height: 559px;
+border-radius: 24px;
+border: 2px solid #E6E6E6;
+position: absolute;
+top:20%;
+left:20%;
+
+padding: 69px 90px 47px 129px;
+}
+
+
+.errormsg { 
+    color: #A426D1;
+font-family: League Spartan;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 36px; /* 150% */
+}
+.kkrdbtn1{
+    display: flex;
+    margin-left: -37px;
+    justify-content: center;
+}
+
+.kkhead{ 
+    color: #1C1C1C;
+    font-family: "League Spartan",sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    padding: 23px 5px 1px 0px;
+    text-align: center;
+}
+.head{ 
+    color: #1C1C1C;
+    font-family: "League Spartan",sans-serif;
+    font-size: 39px;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 55px;
+    text-align: center;
+}
+.selected {
+    width: 632px;
+    height: 66px;
+    flex-shrink: 0;
+    padding: 6px 8px;
+    border-radius: 70px;
+border: 2px solid #A426D1;
+  }
+
+.check { 
+    margin-top: 47px;
+}
+
+
+.cont { 
+    color: #1C1C1C;
+    font-family: "League Spartan",sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.bt1 {
+    display: inline-flex;
+    padding: 12px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: #FFF;
+    font-family: "League Spartan",sans-serif;
+    font-size: 20px;
+font-style: normal;
+font-weight: 500;
+margin-top: 35px;
+line-height: normal;
+border-radius: 4px;
+background: #A426D1;
+border: 1px solid #A426D1;
+}
+
+.meme { 
+    color: #545454;
+    font-family: "League Spartan",sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 14px;
+    text-align: center;
+    line-height: normal;
+
+}
+
+.log{ 
+    color: #A426D1;
+    font-family: "League Spartan",sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    margin-left: 8px;
+    cursor: pointer;
+    line-height: normal;
+    text-decoration-line: underline;
+}
+
+.mdc-radio {
+    display: inline-block;
+    position: relative;
+    flex: 0 0 auto;
+    box-sizing: content-box;
+    width: 20px;
+    color: blue;
+    height: 20px;
+    cursor: pointer;
+    will-change: opacity,transform,border-color,color;
+}
+
+/* /second/ */
+
+.back1 {
+    width: 434px;
+    height: 208px;
+    margin-top: 38px;
+    border-radius: 20px;
+    border: 1px solid #E6E6E6;
+    box-shadow: 7px 7px 4px 0px rgba(165, 165, 165, 0.25);
+    padding: 54px 38px 39px 38px;
+}
+
+.radio1 { 
+    margin-left: 20px;
+}
+
+.flx { 
+    display: flex;
+    justify-content: center ;
+}
+
+.role {
+    color: #A426D1;
+    text-align: center;
+    font-family: "League Spartan",sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.rolebox {
+    border-radius: 35px;
+    background: #F4E5F9;
+    height: 38px;
+    padding-top: 8px;
+}
+
+.google { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 430px;
+    margin-top: 94px;
+    border-radius: 8px;
+    border: 3px solid #A426D1;
+    background: rgba(255, 255, 255, 0.10);
+}
+
+.google1 { 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 430px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 3px solid #A426D1;
+    background: rgba(255, 255, 255, 0.10);
+
+    
+}
+
+.btnfr1 { 
+    display: flex;
+    width: 430px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #FFF;
+    font-family: "League Spartan",sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 26px;
+    line-height: normal;
+    height: 54px;
+    border-radius: 8px;
+    border: 3px solid #A426D1;
+    background: #A426D1;
+    
+}
+.btnfr1:active{
+    font-family: "League Spartan",sans-serif;
+    font-size: 25px;
+    -webkit-box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+}
+.check34 { 
+    margin-left: -305px;
+    margin-top: 11px;
+}
+
+.che3 { 
+    color: #9F9F9F;
+    font-family: League Spartan;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px; /* 150% */
+}
+.mat-mdc-radio-button.mat-primary {
+    --mdc-radio-selected-hover-icon-color: #A426D1;
+    --mdc-radio-selected-icon-color: #A426D1;
+    --mdc-radio-selected-pressed-icon-color: #A426D1;
+  }
+
+  .meme1 { 
+    color: #9F9F9F;
+    font-family: "League Spartan",sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 21px;
+
+}
+
+  .goo { 
+    color: #1C1C1C;
+    font-family: "League Spartan",sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 16px;
+
+  }
+
+.create { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 3px solid #A426D1;
+    background: #A426D1;
+    -webkit-box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+}
+
+
+.create1{ 
+    left:35%;
+    margin-top: 64px;
+    width: 356px;
+}
+.cre {
+    color: #FFF;
+    font-family: "League Spartan",sans-serif;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+margin-top: 20px;
+line-height: normal;
+}
+
+
+/* /Third/ */
+
+.int {
+    display: inline-flex;
+    padding: 15px 29px 12px 20px;
+    align-items: center;
+    border-radius: 4px;
+    border: 2px solid #CBCBCB;
+    color: #000000;
+    font-family: "League Spartan",sans-serif;
+    font-size: 16px;
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+.intla{ 
+     margin-left: 30px;
+}
+
+.intem { 
+    width: 481px;
+}
+
+.head1 { 
+    margin-top: 105px;
+}
+
+.meme2 { 
+    font-size: 17px;
+    margin-left: 10px;
+}
+
+.log2 {
+     font-size: 18px;
+}
+
+.check3  { 
+    width: 20px;
+    height: 20px;
+}
+
+.check123 { 
+    --mdc-checkbox-selected-checkmark-color: white;
+    --mdc-checkbox-selected-focus-icon-color: blueviolet;
+    --mdc-checkbox-selected-hover-icon-color: blueviolet;
+    --mdc-checkbox-selected-icon-color: blueviolet;
+    --mdc-checkbox-selected-pressed-icon-color: blueviolet;
+    --mdc-checkbox-selected-focus-state-layer-color: white;
+    --mdc-checkbox-selected-hover-state-layer-color: white;
+    --mdc-checkbox-selected-pressed-state-layer-color: white;
+    --mdc-checkbox-unselected-focus-state-layer-color: blueviolet;
+    --mdc-checkbox-unselected-hover-state-layer-color: blueviolet;
+    --mdc-checkbox-unselected-pressed-state-layer-color: blueviolet;
+}
+
+
+.redirect {  
+    width: 655px;
+height: 60px;
+flex-shrink: 0;
+border-radius: 12px;
+background: #F9E7FF;
+padding: 20px;
+left: 25%;
+margin-top: 129px;
+color: #1C1C1C;
+font-family: "League Spartan",sans-serif;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.regif { 
+    width: 197px;
+    margin-top: 58px;
+height: 197px;
+flex-shrink: 0;
+}
+
+.regif1 { 
+    margin-top: 0px;
+}
+
+.rimg  { 
+    margin-top: -7px;
+}
+
+.icon { 
+    margin-left: 35px;
+}
+
+
+/* /fourth/ */
+
+.ecard  {
+    width: 596px;
+    height: 506px;
+    border-radius: 16px;
+    margin-top: 84px;
+    border: 1px solid #CBCBCB;
+    -webkit-box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+}
+
+.mail { 
+    margin-top: 41px;
+}
+
+.mailint { 
+    color: #353333;
+    text-align: center;
+    font-family: League Spartan;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-top: 11px;
+    border-radius: 6px;
+    border: 2px solid #CBCBCB;
+    display: inline-flex;
+    padding: 14px 14px 14px 25px;
+    justify-content: center;
+    width: 421px;
+    align-items: center;
+    box-shadow: 7px 7px 4px 0px rgba(165, 165, 165, 0.25);
+}
+
+.otp { 
+    color: #000;
+    text-align: left;
+    font-family: League Spartan;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 28.5px;
+    margin-top: 32px;
+    margin-bottom: -6px;
+    text-align: center;
+}
+
+.mhead{  
+    color: #1C1C1C;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-family: "League Spartan",sans-serif;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 25px;
+} 
+
+.mhead1 { 
+    margin-top: 71px;
+}
+
+.mcont { 
+    color: #6A6A6A;
+    font-family: "League Spartan",sans-serif;
+text-align: center;
+font-size: 19px;
+font-style: normal;
+font-weight: 400;
+line-height: 28.5px; /* 150% */
+margin-top: 18px;
+}
+
+.cemail { 
+    color: #A426D1;
+    font-family: "League Spartan",sans-serif;
+    font-size: 20px;
+font-style: normal;
+text-decoration: none;
+font-weight: 600;
+cursor: pointer;
+line-height: normal;
+}
+
+.cemailbtn  {
+    display: inline-flex;
+    padding: 14px 24px 14px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: #A426D1;
+    color: #FFF;
+    font-family: League Spartan;
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+    border: 0px solid;
+    -webkit-box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+    margin-top: 30px;
+}
+
+.cemail1 { 
+    margin-top: 63px;
+}
+
+.cele { 
+    width: 248px;
+    height: 198px;
+    position: absolute;
+    margin-left: -125px;
+}
+
+.btnfr { 
+        width: 356px;
+        gap: 8px;
+        cursor: pointer;
+        color: #FFF;
+        font-family: "League Spartan",sans-serif;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        margin-top: 4px;
+        line-height: normal;
+        height: 54px;
+        border-radius: 8px;
+        border: 3px solid #A426D1;
+        background: #A426D1;
+}
+
+.btnfr::placeholder { 
+    color: #FFF;
+
+}
+.kkndahead{
+    font-family: "League Spartan",sans-serif;
+    color: #1C1C1C;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.kkhead2tx{
+    font-family: "League Spartan",sans-serif;
+    color: #1C1C1C;
+    font-size: 20px;
+    font-weight: 500;
+}
+.kkhead1tx{
+    font-family: "League Spartan",sans-serif;
+    color: #1C1C1C;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+    .check123 { 
+    --mdc-checkbox-selected-checkmark-color: white;
+    --mdc-checkbox-selected-focus-icon-color: blueviolet;
+    --mdc-checkbox-selected-hover-icon-color: blueviolet;
+    --mdc-checkbox-selected-icon-color: blueviolet;
+    --mdc-checkbox-selected-pressed-icon-color: blueviolet;
+    --mdc-checkbox-selected-focus-state-layer-color: white;
+    --mdc-checkbox-selected-hover-state-layer-color: white;
+    --mdc-checkbox-selected-pressed-state-layer-color: white;
+    --mdc-checkbox-unselected-focus-state-layer-color: blueviolet;
+    --mdc-checkbox-unselected-hover-state-layer-color: blueviolet;
+    --mdc-checkbox-unselected-pressed-state-layer-color: blueviolet;
+    }
+
+input[type=text]:focus {
+    outline: none;  
+    border-color:#A426D1;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+    }
+    input[type=email]:focus {
+        outline: none;  
+        border-color:#A426D1;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+        }
+        input[type=password]:focus {
+            outline: none;  
+            border-color:#A426D1;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+            }
+    textarea:focus {
+    outline: none;  
+    border-color:#A426D1;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+    }
+    select:focus {
+    outline: none;  
+    border-color:#A426D1;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+    }

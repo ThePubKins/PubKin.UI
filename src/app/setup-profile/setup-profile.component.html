@@ -1,0 +1,219 @@
+<div class="pcview">
+  <div class="container">
+    <div *ngIf="contentName === 'billing-&-payment'">
+      <p class="kksetsidhd">Billig and Payments</p>
+
+      <div class="bilbox1">
+        <div class="row">
+          <div class="col-4"><p class="paytext">Payments</p></div>
+          <div class="col-8"><button class="btn chngbut ">Change Method</button>
+          <button class="btn withbut ">Withdraw Payment</button></div>
+        </div>
+        <div class="row">
+          <div class="col-5"><p class="amnum">$ 45.02</p></div>
+          <div class="col-7"><p class="crenum">Payment will be credited to * * <span class="crenum2"> 3657</span></p></div>  </div>
+        </div>
+      <div class="card kkbpaycrd">
+        <div class="card-body" style="    padding-top: 35px;">
+          <p class="kkbpytg1">Manage Billing Methods<span><button class="btn kkbpybtn1" data-bs-toggle="modal" data-bs-target="#exampleModal">Add a New Billing
+                Method</button></span></p>
+          <p class="kkbpytg2">Add, update or remove your billing method</p>
+
+          <p class="kkbpytg3">Primary</p>
+          <p class="kkbpytg2">Your Primary methods is used for recurring payments</p>
+          <hr>
+          <p class="kksvitg1"> <img src="../assets/visadpt.png">&nbsp;&nbsp;Visa card ending in <span
+              class="kksvitg2">3567</span></p>
+          <div class="kkedittg">
+            <p class="kkbpayed">Edit&nbsp;&nbsp; <img style="margin-top: -6px; " src="../assets/dele.png"></p>
+          </div>
+        </div>
+      </div>
+
+
+      
+<div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+      <div class="modal-content kkmodelbill">
+          <div class="container">
+              <div class="row kkbillr3">
+                  <div class="col-2">
+                      <span data-bs-dismiss="modal" aria-label="Close" class="material-symbols-outlined kkiconbill">
+                          arrow_back_ios
+                      </span>
+                  </div>
+                  <div class="col-8"></div>
+                  <div class="col-2">
+                    <img  data-bs-dismiss="modal" aria-label="Close" src="../assets/x letter.png" alt="">
+                  </div>
+              </div>
+          </div>
+          <p class="kkbnktx6">Add Withdrawal Option</p>
+<!-- 
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img src="./assets/upi.png"></span>UPI</div>
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img src="./assets/creditcard.png"></span>Credit Or Debit Card</div> -->
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img src="./assets/bank.png"></span>Add Bank Account</div>
+          <button class="btn kkbillbtnlst">Confirm Payment Method</button>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="modal  fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+      <div class="modal-content kkmodelbill">
+          <div class="container">
+              <div class="row kkbillr3">
+                  <div class="col-2">
+                      <span  data-bs-toggle="modal" data-bs-target="#exampleModal" class="material-symbols-outlined kkiconbill">
+                          arrow_back_ios
+                      </span>
+                  </div>
+                  <div class="col-8"></div>
+                  <div class="col-2">
+                    <img  data-bs-dismiss="modal" aria-label="Close" src="../assets/x letter.png" alt="">
+                  </div>
+              </div>
+          </div>
+          <p class="kkbnktx6">Add Bank Details</p>
+          <form #form = "ngForm">
+          <input type="text" placeholder="Account Number" class="kkbilinput1" ngModel name="AccountNumber" #AccountNumber="ngModel" minlength="3" maxlength="10" required pattern="[0-9]+$">  
+          <input type="text" placeholder="IFSC Code" class="kkbilinput1">
+          <input type="text" placeholder="Account Holder Name" class="kkbilinput1">
+          <div class="container kkreadiobil">
+          <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
+              Make Default Payment
+          </label> 
+          </div>
+          <div class="kkbiladcd">
+<button class="btn kkbiladcd1" [disabled]="form.invalid">Confirm Details</button>
+          </div>
+          </form>
+      </div>
+  </div>
+</div>
+    </div>
+
+
+    <div *ngIf="contentName === 'identify-verification'">
+      <p class="kkidverhd">Identity verification</p>
+
+      <div class="card kkidverbx">
+        <div class="card-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-8">
+                <br>
+                <p class="kkidvertg1">1.&nbsp;ID Document Verification</p>
+                <p class="kkidvertg11"><br>Upload an official government ID to verify.<br> Your Id information will not
+                  be shared</p>
+              </div>
+              <div class="col-4">
+                <br><br>
+                <span><button class="btn kkidverbtn1">Add Document</button></span>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="container">
+            <div class="row">
+              <div class="col-8">
+                <p class="kkidvertg1">2.&nbsp;Visual Verification</p>
+                <p class="kkidvertg22"><br>Upload an official government ID to verify.<br> Your Id information will not
+                  be shared</p>
+              </div>
+              <div class="col-4">
+                <span><button class="btn kkidverbtn1">Add image</button></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="contentName === 'account-info'">
+      <p class="kkacinf">Account Info</p>
+      <div class="card kkadrsbx">
+        <div class="card-body">
+          <div class="container kkacinfhd">
+            <p class="kkactg1">Account</p><img src="../assets/writeic.png">
+          </div>
+          <div class="container" *ngIf="UserData && UserData.length > 0">
+            <p class="kkhdptag1">Name</p>
+            <p class="kkhdptag2">{{UserData[0].firstName}} {{UserData[0].lastName}}</p>
+            <p class="kkhdptag1">Email</p>
+            <p class="kkhdptag2">{{UserData[0].email}}</p>
+            <p class="kkhdptag1">phone</p>
+            <p class="kkhdptag2">+91 {{UserData[0].phoneNumber}}</p>
+            <p class="kkhdptag1">Address</p>
+            <p class="kkhdptag2">{{UserData[0].country}}
+              Whitefield, Bangalore<br><br>
+              Karnataka - 600 0001</p>
+          </div>
+          <p class="kkclsacnt">Close Pubkin Account</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="contentName === 'password-&-security'">
+      <p class="kkpwhd1">Password and Security</p>
+      <div class="card kkpwbx">
+        <div class="card-body">
+          <div class="container kkpwdiv">
+            <p class="kkpwtg1">Change Password<span class="kkpwtg2"><br>Choose a unique password with at least 8
+                characters long </span></p><img style="width: 48px; height: 50px;" src="../assets/writeic.png">
+          </div>
+          <br><br><br>
+          <div class="container kkpwdiv">
+            <p class="kkpwtg1">Enable-Two Step Authentication<span class="kkpwtg2"><br>You will receive a six-digit code
+                by text and email</span></p>
+            <div class="form-check form-switch adproadsad4">
+              <input class="form-check-input" style="    height: 26px;
+        width: 52px;" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="contentName === 'wallet'">
+      <div class="container">
+        <p class="wallettext">Wallet</p>
+        <div class="walletbox">
+          <div class="row">
+            <br>
+            <div class="col-10">
+              <p class="acchead">Account Balance </p>
+              <p class="accsubhead">Add, update or remove your billing method </p>
+
+            </div>
+            <div class="col-2">
+              <p class="numbvv">$0.00</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <button type="button" class="btn  withdrwvv">Withdraw Money</button>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn btn-outline statemtvv ">View Statements</button>
+            </div>
+            <div class="col-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+<div class="mobileview d-flex justify-content-center" >
+  <img src="../assets/mbview.png"  class="img-fluid" alt="">
+</div>

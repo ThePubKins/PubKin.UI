@@ -1,0 +1,47 @@
+ <app-authornav></app-authornav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div style="position: relative;">
+                    <input type="text" class="search" placeholder="Search Job posting">
+                    <img class="srch" src="../assets/search.png" alt="pubkin Start a career now">
+                    <button class="btn kkfrnavse all dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        All
+                    </button>
+                    <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item ddis">Today</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+            </div>
+        </div>
+        <hr class="hrmain">
+    </div>
+
+    <div class="container" *ngFor="let Post of JobPosts; ">
+        <div *ngIf=" Post.userId === UserData[0].userId">
+        <div [routerLink]="['/authors/accept-a-request/pick-now', Post.jobId]" >
+        <div class="row" >
+            <div class="col-8 phead" >
+               {{Post.jobTitle}}
+            </div>
+            <div class="col-3"></div>
+            <div class="col-1">
+                <img class="show12" src="../assets/show more.png" alt="Pubkin Its yours">
+            </div>
+        </div>
+        <p class="posted">Posted 1 day ago</p>
+        <!-- <button><a target="_blank"  [routerLink]="['/authors/accept-a-request/pick-now', Post.jobId]" class="text-decoration-none">ramasamy</a></button> -->
+
+        <p class="prop"><img class="cicr" src="../assets/Ellipse 40.png" alt="Ellipse">New Proposals: 0<span
+                class="tot">Total Proposal: 0</span></p>
+        <hr class="sub">
+        </div>
+    </div>
+</div>
+
+  
+    

@@ -1,0 +1,136 @@
+.kkfrnavbar{
+    margin-top: 20px;
+}
+.kkfrnavbar1{
+    align-items: baseline;
+    justify-content: space-around;
+    gap: 13px;
+}
+
+.bell  { 
+    float: right;
+    position: relative;
+    top: 10px;
+}
+.kkfrnavse{
+    border: 0;
+    color: #0F0F0F;
+font-family: 'League Spartan', sans-serif;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+cursor: pointer;
+}
+.kkfrnavse:active{
+    color: #A426D1;
+}
+.ddis { 
+    color: #0F0F0F;
+    font-family: League Spartan;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding: 4px 16px 4px 16px;
+}
+
+
+.listd { 
+    padding: 15px;
+    --bs-dropdown-link-active-bg: #c7cdd3;
+}
+
+/* search box */
+
+.search { 
+    border-radius: 8px;
+border: 2px solid #C1C1C1;
+width: 96%;
+height: 54px;
+flex-shrink: 0;
+color: #2A2A2A;
+font-family: League Spartan;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+margin-top: 51px;
+line-height: normal;
+padding-left: 50px;
+padding-right: 83px;
+}
+
+.search::placeholder {
+    color: #2A2A2A;
+    font-family: League Spartan;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.srch { 
+    position: absolute;
+    left: 14px;
+    top: 66px;
+}
+
+.all{ 
+    position: absolute;
+    top: 64px;
+    right: 39px;
+}
+
+
+.hrmain { 
+    margin-top: 44px;
+    border: 1px solid;
+}
+
+.phead{ 
+    color: #000;
+    font-family: League Spartan;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 31px;
+    line-height: 36px;
+}
+
+.show12{ 
+    margin-top: 37px;
+}
+
+.cicr { 
+    padding-right: 15px;
+    margin-top: -5px
+}
+
+.posted { 
+    color: #535353;
+font-family: League Spartan;
+font-size: 24px;
+font-style: normal;
+font-weight: 500;
+line-height: 36px; /* 150% */
+margin-top: 28px;
+}
+
+.prop { 
+    color: #000;
+    font-family: League Spartan;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 26px;
+    line-height: 36px;
+}
+
+.tot { 
+    margin-left: 40px;
+}
+
+.sub { 
+    margin-top: 44px;
+    border: 1px solid;
+}

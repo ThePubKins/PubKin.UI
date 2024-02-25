@@ -1,0 +1,313 @@
+<app-freelancernav></app-freelancernav>
+<div class="all-success" *ngIf="!success">
+    <div class="successmsg">
+        <p class="successhead">Success! Your Proposal was Sent</p>
+        <img class="whopee" src="../assets/Success.gif" alt="Success">
+        <p class="redirecte">Redirecting now...</p>
+        <img class="successtick" src="../assets/Lottie gif.gif" alt="Pubkin-success">
+    </div>
+</div>
+<div class="container" *ngIf="JobPost && success">
+    <form #applyForm="ngForm" (ngSubmit)="submitForm()" novalidate>
+        <input type="hidden" id="applyId" name="applyId" [(ngModel)]="jobpostData.applyId">
+        <input type="hidden" id="jobId" name="jobId" [(ngModel)]="jobpostData.jobId">
+        <input type="hidden" id="userId" name="userId" [(ngModel)]="jobpostData.userId">
+        <input type="hidden" id="createDate" name="createDate" [(ngModel)]="jobpostData.createDate">
+        <input type="hidden" id="postBy" name="postBy" [(ngModel)]="jobpostData.postBy">
+        <input type="hidden" id="jobTitle" name="jobTitle" [(ngModel)]="jobpostData.jobTitle">
+        <input type="hidden" id="jobDescription" name="jobDescription" [(ngModel)]="jobpostData.jobDescription">
+        <input type="hidden" id="rate" name="rate" [(ngModel)]="jobpostData.rate">
+        <input type="hidden" id="status" name="status" [(ngModel)]="jobpostData.status">
+        <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobpostData.userEmail">
+        <input type="hidden" id="skillSet" name="skillSet" [(ngModel)]="UserData[0].description">
+        <input type="hidden" id="FileUrl" name="FileUrl" [(ngModel)]="jobpostData.FileUrl">
+        <input type="hidden" id="AttachFile" name="AttachFile" [(ngModel)]="jobpostData.AttachFile">
+        <p class="phead">Submit a Proposal</p>
+        <div class="apbox">
+            <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <p class="phead1 phead2">Job Details</p>
+                        <p class="phead1"> {{JobPost.jobUniqueId}} - {{JobPost.jobTitle}} </p>
+                        <p class="pcont"> {{JobPost.description | slice:0:200 }}...</p>
+                        <div class="row">
+                            <div class="col-4" *ngFor="let skill of JobPost.skillSet">
+                                <div class="skill"> {{ skill }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="line">
+                            <div class="icons"><img class="ico" src="../assets/clock.png" alt="Pubkin"><span
+                                    style="margin-left: -4px;"> {{JobPost.projectEndDate}}
+                                    {{JobPost.durationOfProject}}</span>
+                            </div>
+                            <div class="icons"><img class="ico" src="../assets/money.png" alt="pubkin">
+                                <p class="alignvv"> <span *ngIf="JobPost.currency === 'INR'">₹</span>
+                                    <span *ngIf="JobPost.currency === 'USD'">$</span>
+                                    <span *ngIf="JobPost.currency === 'AED'">د.إ</span>
+                                    <span *ngIf="JobPost.currency === 'ANG'">ƒ</span>
+                                    <span *ngIf="JobPost.currency === 'AOA'">Kz</span>
+                                    <span *ngIf="JobPost.currency === 'ARS  '">$</span>
+                                    <span *ngIf="JobPost.currency === 'OMR'">ر.ع.</span>
+                                    <span *ngIf="JobPost.currency === 'SAR'">.س</span>
+                                    {{JobPost.fromBudget}} - {{JobPost.toBudget}}<br>/{{JobPost.rateBasis}}
+                                </p>
+                            </div>
+                            <div class="icons"> <img class="ico" src="../assets/on _Report_.png" alt="Pubkin">
+                                <span style="margin-left: -4px;"> {{JobPost.experience}}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="lin1"></div>
+
+            <p class="phead2">Cover Letter</p>
+
+            <textarea [(ngModel)]="inputText" (input)="onInputChange()" [disabled]="isTextareaDisabled()"
+                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter"
+                #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="jobpostData.applyCoverLetter" required
+                class="covcont">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea>
+            <div class="row">
+                <div class="col-8"></div>
+                <div class="col-3">
+                    <p class="remain1" [ngClass]="getCharacterCountClass()">{{ charactersLeft }} Character remaining
+                    </p>
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <p class="phead2">Attachments</p>
+ 
+                <label class="up">
+                    <!-- <input  class="d-none" type="file" (change)="onFileSelected($event)"/> -->
+                    <input #fileInput type="file" class="d-none" id="file" name="file" (change)="onFileSelected($event)"
+                        required>
+                    <span *ngIf="!uploadedFileName"> Drag or&nbsp;</span> <span class="upl">{{ uploadedFileName ?
+                        uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
+                </label>
+            <p class="atta">You may attach upto 25 mb of file. </p>
+            <div class="lin1"></div>
+            <p class="phead2">Terms</p>
+
+
+
+            <p class="crate">Client rate: <span *ngIf="JobPost.currency === 'INR'">₹</span>
+                <span *ngIf="JobPost.currency === 'USD'">$</span>
+                <span *ngIf="JobPost.currency === 'AED'">د.إ</span>
+                <span *ngIf="JobPost.currency === 'ANG'">ƒ</span>
+                <span *ngIf="JobPost.currency === 'AOA'">Kz</span>
+                <span *ngIf="JobPost.currency === 'ARS'">$</span>
+                <span *ngIf="JobPost.currency === 'OMR'">ر.ع.</span>
+                <span *ngIf="JobPost.currency === 'SAR'">.س</span> {{JobPost.toBudget}}/{{JobPost.rateBasis}}
+            </p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="rate1">Add Your Rate</p>
+                        <p class="cont1">Lorem Ipsum Dolor</p>
+                    </div>
+                    <div class="col-5"></div>
+                    <div class="col-2">
+                        <div class="position-relative">
+                            <div class="position-absolute">
+                                <span *ngIf="JobPost.currency === 'INR'" class="moneysymbol">₹</span>
+                                <span *ngIf="JobPost.currency === 'USD'" class="moneysymbol">$</span>
+                                <span *ngIf="JobPost.currency === 'AED'" class="moneysymbol">د.إ</span>
+                                <span *ngIf="JobPost.currency === 'ANG'" class="moneysymbol">ƒ</span>
+                                <span *ngIf="JobPost.currency === 'AOA'" class="moneysymbol">Kz</span>
+                                <span *ngIf="JobPost.currency === 'ARS'" class="moneysymbol">$</span>
+                                <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
+                                <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
+                            </div>
+                            <input type="text" class="int" id="actualValue" name="actualValue"
+                                [(ngModel)]="formData.actualValue" (input)="calculateResult()">
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p class="hr">/{{JobPost.rateBasis}}</p>
+                    </div>
+
+                </div>
+                <hr style="border:1px solid #1C1C1C">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="rate1">2% Platform Fee</p>
+                        <p class="cont1">Lorem Ipsum Dolor</p>
+                    </div>
+                    <div class="col-5"></div>
+                    <div class="col-2">
+                        <div class="position-relative">
+                            <div class="position-absolute">
+                                <span *ngIf="JobPost.currency === 'INR'" class="moneysymbol">₹</span>
+                                <span *ngIf="JobPost.currency === 'USD'" class="moneysymbol">$</span>
+                                <span *ngIf="JobPost.currency === 'AED'" class="moneysymbol">د.إ</span>
+                                <span *ngIf="JobPost.currency === 'ANG'" class="moneysymbol">ƒ</span>
+                                <span *ngIf="JobPost.currency === 'AOA'" class="moneysymbol">Kz</span>
+                                <span *ngIf="JobPost.currency === 'ARS'" class="moneysymbol">$</span>
+                                <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
+                                <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
+                            </div>
+                            <input type="text" class="int" readonly id="subtractValue" name="subtractValue"
+                                [value]="formData.displaySubtractValue">
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p class="hr">/{{JobPost.rateBasis}}</p>
+                    </div>
+
+                </div>
+                <hr style="border:1px solid #1C1C1C">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="rate1">Payment You’ll get after tax</p>
+                        <p class="cont1">Lorem Ipsum Dolor</p>
+                    </div>
+                    <div class="col-5"></div>
+                    <div class="col-2">
+                        <div class="position-relative">
+                            <div class="position-absolute">
+                                <span *ngIf="JobPost.currency === 'INR'" class="moneysymbol">₹</span>
+                                <span *ngIf="JobPost.currency === 'USD'" class="moneysymbol">$</span>
+                                <span *ngIf="JobPost.currency === 'AED'" class="moneysymbol">د.إ</span>
+                                <span *ngIf="JobPost.currency === 'ANG'" class="moneysymbol">ƒ</span>
+                                <span *ngIf="JobPost.currency === 'AOA'" class="moneysymbol">Kz</span>
+                                <span *ngIf="JobPost.currency === 'ARS'" class="moneysymbol">$</span>
+                                <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
+                                <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
+                            </div>
+                            <input type="text" class="int" placeholder="400" name="biddingRate" #biddingRate="ngModel"
+                                id="biddingRate" [(ngModel)]="jobpostData.biddingRate" required>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p class="hr">/{{JobPost.rateBasis}}</p>
+                    </div>
+
+                </div>
+                <hr style="border:1px solid #1C1C1C">
+
+            </div>
+        </div>
+        <mat-checkbox class="example-margin check123 mt-3"></mat-checkbox><span class="pcont terms">I accept and agree
+            to the <span class="text-decoration-underline termsand" data-bs-toggle="modal" data-bs-target="#myModal">Terms of
+                Use.</span> </span><br>
+        <!-- <div *ngFor="let user of users"> -->
+        <!-- <div class="kklisuser" *ngIf="user.email === JobPost.userEmail"> -->
+        <button class="aplbtn" type="submit">Apply Now</button>
+        <button class="sabtn">Save as Draft</button>
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- (click)="SuccessModal()" -->
+    </form>
+</div>
+<!-- (click)="sendFriendRequest(user); "
+                    [disabled]="Freelancers[0].ProfilePercentage <= 79" -->
+
+
+
+<!-- The Modal -->
+<div class="modal " id="myModal">
+    <div class="modal-dialog p-5 modal-dialog-scrollable modalterms">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <p class="modal-title kkhead ">Non-Disclosure Agreement (NDA) between Author and Freelancer using PubKin
+                </p>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <ul class="list-unstyled float-end px-5 text-end h5">
+                    <li>Pubkin</li>
+                    <li>Address</li>
+                    <li>Chennai - 6300001, <br>TamiNadu</li>
+                    <li>{{currentDate | date}}</li>
+                </ul>
+                <ul class="list-unstyled float-end px-5 text-start h5">
+                    <li>{{UserData[0].firstName}} {{UserData[0].lastName}}</li>
+                    <li>{{UserData[0].country}}</li>
+                    <!-- <li>[City, State, ZIP Code]</li><br> -->
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Purpose:</li>
+                    <li class=" liscontentvv">The Parties desire to explore the possibility of collaboration on
+                        publishing services through PubKin (the "Platform").
+                        In connection with this collaboration, the Disclosing Party may disclose certain confidential
+                        information to the Receiving Party.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Confidential Information:</li>
+                    <li class=" liscontentvv">Confidential Information shall include any data or information, oral or
+                        written, disclosed by the Disclosing Party to the Receiving Party related to the publishing
+                        services on PubKin.
+                        This includes but is not limited to manuscripts, creative works, proprietary information,
+                        business strategies,
+                        and any other information deemed confidential by the Disclosing Party.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Obligations</li>
+                    <li class=" liscontentvv">The Receiving Party agrees to:</li>
+                    <li class=" liscontentvv">Maintain the confidentiality of all Confidential Information.</li>
+                    <li class=" liscontentvv">Use the Confidential Information solely for the purpose of collaboration
+                        on PubKin publishing services.
+                        Not disclose, reproduce, or distribute the Confidential Information to any third party without
+                        prior written consent from the Disclosing Party.
+                    </li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Exceptions:</li>
+                    <li class=" liscontentvv">The obligations set forth in this Agreement shall not apply to information
+                        that:</li>
+                    <li class=" liscontentvv">Is or becomes publicly available without breach of this Agreement.
+                        Is independently developed by the Receiving Party without reference to the Confidential
+                        Information.
+                        Is rightfully received by the Receiving Party from a third party without restriction.
+                    </li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Payment Terms:</li>
+                    <li class=" liscontentvv">All payment terms and arrangements between the Author and Freelancer shall
+                        be agreed upon separately and are not covered by this Agreement.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Service Level Agreement (SLA):</li>
+                    <li class=" liscontentvv">The Parties agree to abide by the SLA provided by PubKin for the
+                        publishing services.
+                        Any disputes or concerns regarding the SLA shall be addressed in accordance with PubKin's
+                        policies and procedures.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Duration:</li>
+                    <li class=" liscontentvv">This Agreement shall commence on the Effective Date and shall remain in
+                        effect for
+                       <span style="color: #A426D1;">{{JobPost.projectEndDate}} {{JobPost.durationOfProject}}</span> unless terminated earlier by mutual written agreement of the Parties.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Termination:</li>
+                    <li class=" liscontentvv">Either Party may terminate this Agreement upon written notice if the other
+                        Party breaches any material provision of this Agreement.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline">Governing Law:</li>
+                    <li class=" liscontentvv">This Agreement shall be governed by and construed in accordance with the
+                        laws of <span style="color: #A426D1;">{{UserData[0].country}}</span>.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline" class="text-decoration-underline">
+                        Entire Agreement:</li>
+                    <li class=" liscontentvv">This Agreement constitutes the entire understanding between the Parties
+                        and supersedes all prior discussions, negotiations, and agreements, whether oral or written.<br>
+                        IN WITNESS WHEREOF, the Parties hereto have executed this Non-Disclosure Agreement as of the
+                        Effective Date.</li>
+                    <br>
+                    <li style="font-weight: 500;color: #A426D1;" class="text-decoration-underline float-end text-start"> Freelancer:
+                    </li><br>
+                    <li class=" liscontentvv" class="float-end text-start">{{UserData[0].firstName}} {{UserData[0].lastName}}</li><br>
+                    <!-- <li class=" liscontentvv" class="float-end text-start">{{UserData[0].firstName}} {{UserData[0].lastName}}</li><br> -->
+                    <li class=" liscontentvv" class="float-end text-start">{{currentDate | date}}</li><br>
+                </ul>
+            </div>
+            <div class="border border-light"></div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btnfr" data-bs-dismiss="modal"
+                >Agree</button>
+            </div>
+
+        </div>
+    </div>
+</div>

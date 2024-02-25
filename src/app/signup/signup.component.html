@@ -1,0 +1,481 @@
+<!-- <div id="google-btn"></div>  
+  {{name}}<br><img src="{{userProfile}}" alt=""><br>{{Email}} -->
+<div *ngIf="action === 'all'">
+    <div *ngIf="GoNext === 'button1'">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-3">
+                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                </div>
+                <div class="col-9">
+
+                </div>
+            </div>
+        </div>
+
+        <p class="head">
+            Signup and Start working
+        </p>
+        <div class="text-center flx">
+            <div class="back1 ">
+                <div class="rolebox ">
+                    <p class="role">Please select your role</p>
+                </div><br>
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedRole">
+                    <mat-radio-button color="primary" value="freelancer" (click)="googlehide()"><span
+                            class="cont">Freelancer</span></mat-radio-button>
+                    <mat-radio-button color="primary" class="radio1" value="author" (click)="googlehide()"><span
+                            class="cont">Author</span></mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <div *ngIf="googledown">
+                    <div class="flx">
+                        <div class="google">
+                            <img src="../assets/google_.png" alt="pubkin_google">
+                            <p class="goo">Signup with Google</p>
+                            <div id="google-btn"></div>
+                        </div>
+                    </div>
+                    <p class="meme1">Or</p>
+                    <div class="create" (click)="GoNextBtn('button2');role()">
+                        <p class="cre">Create Account</p>
+                    </div>
+                    <p class="meme mt-4"> Are you a pubkin member?<span class="log" (click)="GoNextBtn('login')">Log
+                            in</span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--User Create An Account-->
+<form novalidate autocomplete="off" #form="ngForm">
+    <div *ngIf="GoNext === 'button2'">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-3">
+                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                </div>
+                <div class="col-9">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center form">
+            <p class="head head1">
+                Signup and Start working
+            </p>
+            <div>
+                <span class="errormsg" *ngIf="!firstName.valid && (firstName.touched || firstName.dirty)">
+                    <span *ngIf="firstName.errors?.['pattern']">
+                        Only Characters are Allowed
+                    </span>
+                    <span class="errormsg" *ngIf="firstName.errors?.['required']">
+                        Firstname is required<br>
+                    </span>
+                </span>
+                <span class="errormsg" *ngIf="!lastName.valid && (lastName.touched || lastName.dirty)">
+                    <span *ngIf="lastName.errors?.['pattern']">
+                        Only Characters are Allowed
+                    </span>
+                    <span class="errormsg" *ngIf="lastName.errors?.['required']">
+                        Lastname is required
+                    </span>
+                </span>
+            </div>
+            <input type="text"  class="int " placeholder="First Name" ngModel name="firstName"
+                #firstName="ngModel" [(ngModel)]="usercredential.firstName" required pattern='^[a-zA-Z\s]+$'>
+
+            <input type="text" class="int intla" placeholder="Last Name" ngModel name="lastName" #lastName="ngModel"
+                [(ngModel)]="usercredential.lastName" required pattern='^[a-zA-Z\s]+$'><br>
+            <input type="email" id="email" class="int intem" placeholder="Email" ngModel name="email" #email="ngModel"
+                [(ngModel)]="usercredential.email" [class.invalid]="email.invalid && email.touched" required
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+               <span *ngFor="let useremail of emails">
+                <div class="errormsg" *ngIf="useremail.email===usercredential.email">
+                    * Email already exists
+                </div>
+                </span>
+            <div *ngIf="!email.valid && email.touched">
+                <span class="errormsg" *ngIf="email.errors?.['required']">
+                    Email is required
+                </span>
+                <span class="errormsg" *ngIf="email.errors?.['minlength']">
+                    Email must be at least {{ email.errors?.['minlength'].requiredLength }} characters long
+                </span>
+                <span class="errormsg" *ngIf="email.errors?.['pattern']">
+                    Please enter a valid email address
+                </span>
+                <span *ngIf="form.controls['email'].hasError('emailExists')" class="errormsg">
+                    Email already exists
+                </span>
+            </div> <br>
+            <input type="password" class="int intem" placeholder="Password" ngModel name="password" #password="ngModel"
+                [(ngModel)]="usercredential.password" required><br>
+            <div style="    width: 99%;margin-top: 18px;">
+                <mat-checkbox class="example-margin check123"></mat-checkbox>
+                <span class="meme meme2">I have
+                    read and accept pubkin’s</span> <span class="log log2" data-bs-toggle="modal"
+                    data-bs-target="#myModal">User Agreement
+                    Terms & <br><span style="text-decoration: underline;"> Privacy Policy</span></span>
+            </div>
+
+            <!-- <div  > -->
+            <br><br>
+            <button class="btn btnfr" (click)="popuphide(); GoNextBtn('button3')" [disabled]="form.invalid"> Create
+                Account</button>
+        </div>
+
+        <p class="meme mt-4"> Are you a pubkin member?<span class="log" (click)="GoNextBtn('login')">Log in</span></p>
+        <!-- </div> -->
+    </div>
+
+
+    <div *ngIf="GoNext === 'button3'">
+        <div *ngIf="otppopup">
+            <app-otp-popup></app-otp-popup>
+        </div>
+
+        <!--Fourth-->
+        <div *ngIf="!otppopup">
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    </div>
+                    <div class="col-9">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="text-center flx">
+                <div class="ecard otpverify">
+                    <img class="mail" src="../assets/Group 2.png" alt="Mail In PUbkin">
+                    <p class="mhead">Please Verify your email</p>
+
+                    <input type="email" class="mailint" id="email" value={{usercredential.email}}> <button 
+                        class="cemailbtn" (click)="sendOTP();firebaseSignup()">Confirm</button><br>
+                    <p class="otp">Enter OTP</p>
+                    <input type="text" class="mailint " id="otp_inp" ngModel required name="otpInput"
+                        #otpInput="ngModel">
+                        <button  class="cemailbtn btn" type="submit" (click)="verifyOTP();fireSignupButton();roleButton()"
+                        [disabled]="form.invalid">verify</button><br>
+                    <div class="cemail1">
+                        <a class="cemail" (click)="GoNextBtn('button2')">Edit Email</a>&nbsp;&nbsp;&nbsp;<a class="cemail">Resend
+                            OTP</a><br>
+                        <br>
+                    </div>
+                </div>
+            </div> -->
+            <div class="text-center flx">
+                <div class="ecard otpverify">
+                    <img class="mail" src="../assets/Group 2.png" alt="Mail In PUbkin">
+                    <div *ngIf="!verify" class="text-center">
+                        <p class="mhead">Please Verify your email</p>
+
+                        <input type="email" class="mailint" id="email" value={{usercredential.email}}><br> <button
+                            class="cemailbtn btn" (click)="sendOTP();firebaseSignup();verfy()">Confirm</button><br>
+                    </div>
+                    <div *ngIf="verify" class="text-center">
+                        <p class="otp">Enter OTP</p>
+                        <input type="text" class="mailint " id="otp_inp" ngModel required name="otpInput"
+                            #otpInput="ngModel"><br>
+                        <button class="cemailbtn btn" type="submit"
+                            (click)="verifyOTP();fireSignupButton();roleButton()"
+                            [disabled]="form.invalid">verify</button><br>
+                    </div>
+                    <div class="cemail1">
+                        <a class="cemail" *ngIf="!verify" (click)="GoNextBtn('button2')">Edit
+                            Email</a>&nbsp;&nbsp;&nbsp;<a *ngIf="verify" class="cemail" (click)="sendOTP()">Resend
+                            OTP</a><br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<!--Login For Users-->
+<div *ngIf="GoNext === 'login'">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3">
+                <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+            </div>
+            <div class="col-9">
+
+            </div>
+        </div>
+    </div>
+    <form>
+
+        <div class="text-center flx">
+            <div class="ecard" style="    height: 532px;">
+                <p class="head" style="margin-top: 32px;">
+                    Sign in
+                </p>
+                <input type="email" class="int " style="width:430px" placeholder="Email" id="email" name="email"
+                    [(ngModel)]="email" required><br>
+                <input type="password" class="int " style="width:430px" placeholder="Password" ngModel id="password"
+                    name="password" [(ngModel)]="password" required><br>
+                <mat-checkbox class="check34 check123"><span class="che3">Remember me</span></mat-checkbox>
+                <p *ngIf="errorMessage !== ''" class="error-message" style="color:#A426D1;">{{"*"+ errorMessage }}</p>
+                <div class="flx">
+                    <button class="btnfr1" type="submit"
+                        (click)="loginButton();Userlogin();OnAuthlogin()"><span>Login</span></button>
+                </div>
+                <p class="meme1">Or</p>
+                <div class="flx">
+                    <div class="google1">
+                        <img src="../assets/google_.png" alt="">
+                        <p class="goo">Signup with Google</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="GoNext === 'button5'">
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-3">
+                <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+            </div>
+            <div class="col-9">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center flx">
+        <div class="ecard" style="    height: 534px;">
+            <img class="cele" src="../assets/cele.gif" alt="">
+            <div class="now">
+
+                <p class="mhead mhead1">Whoopee! your email is verified.</p>
+                <p class="mcont">Redirecting Now...</p>
+                <img class="regif regif1" src="../assets/redirect.gif" alt="Pubkin Now">
+                <br>
+
+                <img class="fb" routerLink="/freelancers" src="../assets/icon _facebook icon_.png"
+                    alt="Pubkin facebook">
+                <img class="icon" routerLink="/authors" src="../assets/icon _instagram icon_.png" alt="Pubkin facebook">
+                <img class="icon" src="../assets/icon _linkedin_.png" alt="Pubkin facebook">
+                <img class="icon" src="../assets/icon _youtube_.png" alt="Pubkin facebook">
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<form (ngSubmit)="onAuthSubmit()" #authForm="ngForm">
+    <input type="hidden" id="email" name="email" [(ngModel)]="email">
+    <input type="hidden" id="password" name="password" [(ngModel)]="password">
+    <input type="hidden" name="firstname" [(ngModel)]="firstName">
+    <input type="hidden" name="Lastname" [(ngModel)]="lastName">
+    <button type="submit" class="d-none" #firebutton>Signup</button>
+</form>
+
+<form (ngSubmit)="OnAuthlogin()" #authForm="ngForm">
+    <input type="hidden" name="email" [(ngModel)]="email">
+    <input type="hidden" name="password" [(ngModel)]="password">
+    <button type="submit" class="d-none" #loginbutton>Signup</button>
+</form>
+
+
+  <div *ngIf="action === 'freelancer'">
+    <div *ngIf="GoNext === 'button1'">
+        <div id="google-btn"></div>  
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-3">
+                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                </div>
+                <div class="col-9">
+                </div>
+            </div>
+        </div>
+        <p class="head">
+            Freelancers Login & Signup
+        </p>
+        <div class="text-center flx">
+            <div class="back1 " style="height: 315px;">
+            
+                <div style=" margin-top: -84px;">
+                    <div class="flx" >
+                       <div class="google" >
+                            <img src="../assets/google_.png" alt="pubkin_google">
+                            <p class="goo">Signup with Google</p>    
+                   
+                        </div>                    
+                    </div>
+                    <p class="meme1">Or</p>
+                    <div class="create"  (click)="GoNextBtn('button2'); freelancerrole()">
+                        <p class="cre" >Create Account</p>
+                    </div>
+                    <p class="meme mt-4"> Are you a pubkin member?<span class="log" (click)="GoNextBtn('login')">Log in</span></p>
+                </div>
+       
+            </div>
+        </div>
+    </div></div>
+
+  <div *ngIf="action === 'author'">
+    <div *ngIf="GoNext === 'button1'">
+        <div id="google-btn"></div>  
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-3">
+                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                </div>
+                <div class="col-9">
+                </div>
+            </div>
+        </div>
+        <p class="head">
+            Authors Login & Signup
+        </p>
+        <div class="text-center flx">
+            <div class="back1 " style="height: 315px;">
+            
+                <div style=" margin-top: -84px;">
+                    <div class="flx" >
+                       <div class="google" >
+                            <img src="../assets/google_.png" alt="pubkin_google">
+                            <p class="goo">Signup with Google</p>    
+                   
+                        </div>                    
+                    </div>
+                    <p class="meme1">Or</p>
+                    <div class="create" (click)="GoNextBtn('button2'); authorrole()" >
+                        <p class="cre">Create Account</p>
+                    </div>
+                    <p class="meme mt-4"> Are you a pubkin member?<span class="log" (click)="GoNextBtn('login')">Log in</span></p>
+                </div>
+       
+            </div>
+        </div>
+    </div></div>
+
+
+<form novalidate autocomplete="off" #registerForm="ngForm" (ngSubmit)="UserRegister(registerForm, usercredential)">
+    <input type="hidden" name="userId" id="userId" ngModel [(ngModel)]="userservice.userData.userId">
+    <input type="hidden" id="firstName" name="firstName" ngModel [(ngModel)]="usercredential.firstName">
+    <input type="hidden" id="role" name="role" ngModel [(ngModel)]="usercredential.role">
+    <input type="hidden" id="lastName" name="lastName" ngModel [(ngModel)]="usercredential.lastName"><br>
+    <input type="hidden" id="email" name="email" [(ngModel)]="usercredential.email">
+    <input type="hidden" id="password" name="password" [(ngModel)]="usercredential.password">
+    <button class="d-none" #submitbutton type="submit">Submit</button>
+</form>
+
+
+<form novalidate autocomplete="off" #roleForm="ngForm" (ngSubmit)="onSubmitRole(roleForm)">
+    <input type="hidden" name="roleId" id="roleId" ngModel [(ngModel)]="roleService.formData.roleId">
+    <input type="hidden" id="roleName" name="roleName" ngModel [(ngModel)]="roleService.formData.roleName">
+    <button class="d-none" #rolebutton type="submit">Submit</button>
+</form>
+
+<form (ngSubmit)="Userlogin()">
+    <input type="hidden" id="email" name="email" [(ngModel)]="email">
+    <input type="hidden" id="password" name="password" [(ngModel)]="password">
+    <button type="submit" class="d-none" #loginbutton>Submit</button>
+</form>
+
+
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title kkhead ">User Agreement Terms &
+                    Privacy Policy
+                </h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p class="kkndahead">These Terms and Conditions ("Terms") govern the use of the PubKin platform
+                    ("Platform") by authors,
+                    freelancers, and service providers ("Authors"). By accessing or using the Platform, Authors agree to
+                    be
+                    bound by these Terms. If Authors do not agree to these Terms, they should not use the Platform.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">1. Account Registration:</span> Authors must create an
+                    account on the Platform to access its features. Authors
+                    are responsible for maintaining the confidentiality of their account information and are liable for
+                    any
+                    activities that occur under their account.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">2. Content Submission:</span> Authors may submit, upload,
+                    or share their literary works, manuscripts, and
+                    related materials ("Content") on the Platform. Authors retain the copyright to their Content.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">3. Collaboration and Services:</span> PubKin facilitates
+                    collaboration between Authors, freelancers, and
+                    service providers for various publishing services. Authors may engage with service providers on the
+                    Platform for editing, cover design, marketing, and other publishing-related services.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">4. Refund Policy:</span> a. Refunds for services are
+                    subject to the terms agreed upon between the Author and
+                    the respective service provider. b. PubKin is not responsible for refunds or disputes arising
+                    between
+                    Authors and service providers. Authors should address concerns directly with the involved parties.
+                </p>
+                <p class="kkhead1tx"><span class="kkhead2tx">5. Payment and Fees:</span> a. Authors agree to pay any
+                    fees associated with the services they engage in
+                    through the Platform. b. PubKin may charge transaction fees or other applicable charges, the details
+                    of
+                    which will be communicated to Authors.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">6. Conduct:</span> Authors agree not to engage in any
+                    conduct that may violate these Terms, infringe on the
+                    rights of others, or harm the reputation of PubKin.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">7. Intellectual Property:</span> a. Authors grant PubKin a
+                    non-exclusive, worldwide license to use, reproduce,
+                    and distribute their Content for the purpose of providing and promoting the Platform. b. Authors
+                    confirm
+                    they have the right to submit the Content and it does not violate the intellectual property rights
+                    of
+                    any third party.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">8. Termination:</span> PubKin reserves the right to
+                    terminate an Author's account or access to the Platform if
+                    they violate these Terms or engage in inappropriate conduct.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">9. Limitation of Liability:</span> PubKin is not liable for
+                    any indirect, incidental, special, consequential,
+                    or punitive damages arising out of or related to the use of the Platform.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">10. Governing Law:</span> These Terms shall be governed by
+                    and construed in accordance with the laws of
+                    [Jurisdiction], without regard to its conflict of law principles.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">11. Amendments:</span> PubKin may update these Terms from
+                    time to time. Authors will be notified of any
+                    changes, and continued use of the Platform after modifications constitutes acceptance of the updated
+                    Terms.</p>
+                <p class="kkhead1tx"><span class="kkhead2tx">12. Referral Program:</span> a. Authors may participate in
+                    the PubKin referral program, subject to separate
+                    terms and conditions provided.
+                    By using the PubKin platform, Authors acknowledge that they have read, understood, and agree to
+                    these
+                    Terms and Conditions. PubKin reserves the right to modify or terminate the Platform at any time
+                    without
+                    notice.</p>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <mat-checkbox type="checkbox" id="checked" [(ngModel)]="checkbox2" (change)="toggleCheckboxes()" class="example-margin check123"></mat-checkbox>
+                <button type="button" style="    width: 100px;
+        height: 50px;" class="btn btnfr" data-bs-dismiss="modal">Agree</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+   <!-- <mat-checkbox class="example-margin check123" type="checkbox"[(ngModel)]="checkbox1"   [disabled]="!checkbox2" (change)="toggleCheckboxes()"></mat-checkbox> -->

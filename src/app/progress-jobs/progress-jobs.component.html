@@ -1,0 +1,55 @@
+<app-freelancernav></app-freelancernav>
+<div class="container">
+  <p class="applyhead">Pending Offers</p>
+  <div class="row ">
+    <div class="col-12">
+      <div class="appliedborder">
+        <div *ngFor="let JobPost of  Applies;">
+          <div class="row" style="margin-top: 17px;" *ngIf="JobPost.status === 'offer'">
+            <div class="col-8">
+              <p class="jobtitle">{{JobPost.jobTitle}}</p>
+              <p class="jobDesc">{{JobPost.jobDescription | slice:0:220 }}</p>
+            </div>
+            <div class="col-4">
+              <button class="rejectbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Reject</button>
+              <button class="viewJobbtn">Accept Offer</button>
+            </div>
+            <div class="row">
+              <div class="col-8">
+                <p class="aboutjob">Rate: ₹<span style="color: black;font-weight: 700;">{{JobPost.rate}}</span></p>
+              </div>
+              <div class="col-4">
+                <p class="postedname">Request by<span style="color: #A426D1;"> {{JobPost.postBy}}</span></p>
+              </div>
+            </div>
+            <hr class="applyhr">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content " style="padding-bottom: 27px;">
+      <div class="modal-header " style="border-bottom: none;">
+        <button type="button" class="btn closemo" data-bs-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M22 2L2 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M2 2L22 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="rejecttxt">Do you want to reject offer?</p>
+        <div class="text-center" style="margin-top: 26px;">
+          <button class="rejectcancel" >Cancel</button>
+          <button class="rejectconfirm">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

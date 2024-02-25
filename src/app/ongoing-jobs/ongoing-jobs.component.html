@@ -1,0 +1,31 @@
+<app-freelancernav></app-freelancernav>
+<br><br>
+<div>
+  <div class="container">
+    <p class="applyhead">Ongoing Jobs</p>
+    <div class="row ">
+      <div class="col-12">
+        <div class="appliedborder">
+          <!-- *ngIf="Apply.isAppliedJobs === true" -->
+          <div *ngFor="let Apply of  Applies;">
+            <div class="row" style="margin-top: 17px;" >
+              <div class="col-8">
+                <p class="jobtitle">{{Apply.jobTitle}}</p>
+              </div>
+              <div class="col-4">
+                <p class="aboutjob">Rate: <span style="color: black;">₹ 2000</span></p>
+              </div>
+              <div class="col-8">
+                <p class="postedname">posted by <span style="color: #A426D1;">{{Apply.postBy}}</span></p>
+              </div>
+              <div class="col-4">
+                <button class="viewJobbtn" (click)="showJobDetails(Apply.jobId)">View</button>
+              </div>
+              <hr class="applyhr">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

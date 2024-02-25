@@ -1,0 +1,42 @@
+.flx { 
+    display: flex;
+    justify-content: center ;
+}
+
+
+
+.redirect {  
+    width: 655px;
+height: 60px;
+flex-shrink: 0;
+border-radius: 12px;
+background: #F9E7FF;
+padding: 20px;
+left: 25%;
+margin-top: 129px;
+color: #1C1C1C;
+font-family: "League Spartan",sans-serif;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.regif { 
+    width: 197px;
+    margin-top: 58px;
+height: 197px;
+flex-shrink: 0;
+}
+
+.regif1 { 
+    margin-top: 0px;
+}
+
+.rimg  { 
+    margin-top: -7px;
+}
+
+.icon { 
+    margin-left: 35px;
+}

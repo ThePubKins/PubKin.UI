@@ -1,0 +1,170 @@
+.pcard { 
+    width: 730px;
+    height: 679px;
+    border: 0px;
+    border-radius: 108px;
+    background: #FFF;
+}
+
+.prohead {
+    color: #000;
+    font-family: League Spartan;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px;
+    margin-top: 16px;
+}
+
+.probtn{ 
+    display: inline-flex;
+    padding: 12px;
+    justify-content: center;
+    gap: 10px;
+    border: 0px solid #A426D1;
+    border-radius: 7px;
+background: #A426D1;
+color: #FFF;
+font-family: League Spartan;
+font-size: 18px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+-webkit-box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+}
+
+.com { 
+    color: #787878;
+font-family: League Spartan;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 27px; /* 150% */
+text-align: center;
+margin-top: 18px;
+}
+
+.prodes{
+    color: #ABABAB;
+    text-align: center;
+    font-family: League Spartan;
+    font-size: 17px;
+    font-style: normal;
+    margin-top: 15px;
+    font-weight: 500;
+    line-height: 27px; 
+}
+
+.pimg {
+    margin-top: 124px;
+}
+
+.pgrss { 
+    padding: 0px;
+    width: 69%;
+    margin-left: 35px;
+    height: 9px;
+  
+}
+
+.pgrssbar { 
+    background-color: #151718;
+}
+
+.line { 
+    margin-top: 25px;
+    width: 3px;
+    height: 629.007px;
+    background: #CFCFCF;
+}
+
+.close { 
+    float: right;
+    margin-right: 18px;
+    margin-top: 20px;
+}
+
+.procont { 
+    color: #1C1C1C;
+    font-family: League Spartan;
+    font-size: 19px;
+}
+
+.prodesc { 
+    color: #6C6C6C;
+    font-family: League Spartan;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+.circ { 
+    width: 15px;
+    height: 15px;
+}
+
+.navarrow { 
+    float: right;
+    margin-top: 8px;
+    height: 15px;
+
+}
+
+.prode { 
+    margin-left: -30px;
+}
+
+.prohead1 { 
+    color: #1C1C1C;
+    font-family: League Spartan;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 39px;
+    margin-left: -20px;
+}
+
+.prodes1 { 
+    color: #6C6C6C;
+    font-family: League Spartan;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: normal;
+    line-height: 17px;
+    margin-left: -18px;
+}
+
+.mrt { 
+    margin-top: 25px;
+}
+
+.procont1 { 
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.pimg{
+    width: 101px;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0px 10px 10px rgba(123, 119, 121, 0.31) );
+}
+
+input[type=text]:focus {
+    outline: none;  
+    border-color:#A426D1;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+    }
+    textarea:focus {
+    outline: none;  
+    border-color:#A426D1;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+    }
+    select:focus {
+    outline: none;  
+    border-color:#A426D1;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
+    }

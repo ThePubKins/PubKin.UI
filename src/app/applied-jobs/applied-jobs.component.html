@@ -1,0 +1,57 @@
+<app-freelancernav></app-freelancernav>
+
+<br><br>
+<div *ngIf="Applies && Applies.length > 0">
+  <div class="container kkjobsrc">
+    <p class="applyhead1">Applied Jobs</p>
+    <div class="row kkjbbrow">
+      <div class="col-12 kkjbbx">
+        <!-- <div class="container" *ngFor="let JobPost of filteredJobPosts | jobsearch : searchTerm "  (click)="showJobDetails(JobPost.JobUniqueId)"> -->
+        <div class="container " *ngFor="let Apply of  Applies;">
+          <div class="row" *ngIf="Apply.status === 'applied'">
+            <div class="col-12 position-relative">
+              <div class="row">
+                <div class="col-9">
+                  <p class="kkjbtxtline1">{{Apply.jobTitle}} </p>
+                  <p class="jobDesc23">{{Apply.jobDescription | slice:0:220}}...</p>
+                  <p class="kkjbtxtline2">Rate: ₹{{Apply.rate}} - Applied {{ getPostStatus(Apply.createDate)}} </p>
+                </div>
+                <div class="col-3">
+                  <!-- <span><img src="../assets/tag.png"
+                    class="kkjbimg1"><img src="../assets/3icon.png" class="kkjbimg2"></span>  -->
+                  <button class="viewapply" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="openModal(Apply)">View Application</button>
+                  <p class="kkjbtxtline3">posted by <span class="PostBy">{{Apply.postBy}}</span></p>
+                </div>
+                <!-- (click)="showJobDetails(Apply.JobUniqueId)" -->
+              </div>
+              <hr style="border: 1.2px solid; margin-top: 19px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cover Letter -->
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog dia12">
+    <div class="modal-content kkde">
+      <div class="modal-header " style="border-bottom: 0px;">
+        <button type="button" class="btn closemo" data-bs-dismiss="modal" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M22 2L2 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M2 2L22 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="selectedrequest">
+        <div class="covel">Cover Letter</div>
+        <div class="covcont">
+          {{selectedrequest.applyCoverLetter}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

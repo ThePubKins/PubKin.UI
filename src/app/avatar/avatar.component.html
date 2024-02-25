@@ -1,0 +1,33 @@
+<!-- 
+     
+ 
+  <div>
+    <div class=" modalalign1">
+      <div class="">
+  
+        <div class=" headborderbot1">
+          <button type="button" class="btn-close" mat-dialog-close></button>
+        </div>
+  
+        <div class="">
+                <p class="modalbodyalign1">Choose Image</p>
+                <input  type="text" [value]="selectedImage2 ? selectedImage2 : '/assets/selectionavd.png'">
+                <div class="modalbodyalign1">
+                    <img [src]="selectedImage ? selectedImage : '/assets/selectionavd.png'"  class="btnimg1"   >
+                </div> 
+                <div class="container">
+                       <div class="row">
+                            <div class="col-4 " *ngFor="let image of images">
+                                  <div class="modalbodyalign1 mt-5">
+                                        <img src="{{image.img_url}}" class="btnimg1" (click)="selectImage(image)">
+                                  </div>
+                            </div>
+                       </div>
+                </div>
+                <div class="container mt-5 savebtnalign1">
+                     <button class=" btn  savevv" (click)="saveChanges()" mat-dialog-close>save</button>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div> -->

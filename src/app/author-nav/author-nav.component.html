@@ -1,0 +1,84 @@
+<div class="container" style="margin-top: 20px;">
+    <div class="row">
+      <div class="col-2">
+        <img routerLink="/authors" src="./assets/logo.png" class="rrpublogoimg1">
+      </div>
+      <div class="col-5">
+        <div class="rrheadalign1">
+          <div class="dropdown">
+            <button class="btn kkfrnavse dropdown-toggle " type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Jobs
+            </button>
+            <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item ddis">Post a New Job</a></li><br>
+              <li><a class="dropdown-item ddis" routerLink="/authors/accept-a-request">Job Postings</a></li><br>
+              <li><a class="dropdown-item ddis" routerLink="/authors/on-going-jobs">Ongoing Job</a></li><br>
+              <li><a class="dropdown-item ddis">Completed Job</a></li><br>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="btn kkfrnavse dropdown-toggle " type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              My Jobs
+            </button>
+            <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item ddis">Post a New Job</a></li><br>
+              <li><a class="dropdown-item ddis" routerLink="/authors/accept-a-request">Job Postings</a></li><br>
+              <li><a class="dropdown-item ddis">Contracts</a></li><br>
+              <li><a class="dropdown-item ddis">Project Dashboard</a></li><br>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="btn kkfrnavse dropdown-toggle " type="button" id="dropdownMenuButton1"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Reports
+            </button>
+            <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item ddis">Post a New Job</a></li><br>
+              <li><a class="dropdown-item ddis" routerLink="/authors/accept-a-request">Job Postings</a></li><br>
+              <li><a class="dropdown-item ddis">Contracts</a></li><br>
+              <li><a class="dropdown-item ddis">Project Dashboard</a></li><br>
+            </ul>
+          </div>
+          <!-- <a class="kkfrnavse rrmessalign1">Message</a> -->
+        </div>
+      </div>
+      <div class="col-3">
+
+      </div>
+      <div class="col-2">
+        <div class=" rriconalign1">
+          <img src="./assets/bell.png" class="rrbellimg1">
+          <img src="./assets/peerson.png" (click)="hidden()" class="rrpersonimg1">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+<div class="container position-relative">
+  <div class="prset " *ngIf="hide">
+  <div class="kkcrd12">
+    <div class="kkcrd text-center">
+        <div class="kkprimg">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" class="rounded-circle kkprimg img-responsive">
+        </div>
+        <div class="kkpname">
+            <p class="kkprname">Sathish Kumar</p>
+            <p class="kkprname1">Author</p>
+            <p class="kkprbtn1" routerLink="/setting/wallet"><span class="material-symbols-outlined">
+              account_balance_wallet
+              </span>Wallet</p>
+              <p class="kkprbtn1" routerLink="/setting/billing-&-payment"><span class="material-symbols-outlined">
+                settings
+                </span>Settings</p>
+            <button type="button"class="btn kkprbtn2">Logout <span class="material-symbols-outlined">
+                logout
+                </span></button>
+        </div>
+  </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+.rrpublogoimg1{
+    width: 139px;
+    height: 69px;
+}
+.rrcomcenalign1{
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+}
+.rrcomendalign1{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.rrheadalign1{
+    display:flex;
+    align-items: center;
+    height:80px;
+}
+.kkfrnavse{
+    color: #0F0F0F;
+    font-family: 'League Spartan', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+    margin-right: 30px;
+}
+.rrmessalign1{
+    text-decoration: none; 
+}
+
+
+.rriconalign1{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    height:80px;
+}
+.rrcomposrelalign1{
+    position: relative;
+}
+
+.rrbellimg1{
+    width: 24px;
+    height: 29px;
+    margin-right: 30px;
+}
+.rrpersonimg1{
+   width:42px;
+   height:42px;
+}
+
+.ddis {  
+    color: #0F0F0F;
+font-family: "League Spartan";
+font-size: 20px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+.ddis:active{
+    background-color:  #A426D1;
+    }
+
+    
+
+
+    .kkcrd{
+        margin-top: 62px;
+        /* margin-left: 100px; */
+        width: 146%;
+        height: auto;
+        z-index: 111;
+        flex-shrink: 0;
+        padding-bottom: 24px;
+        border-radius: 16px;
+        background: #FFF;
+        box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04), -1px 6px 15px 0px rgba(118, 27, 153, 0.43);
+      }
+    
+      .kkprimg{
+        width: 117px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -30px;
+        filter: drop-shadow(0px 10px 10px rgba(123, 119, 121, 0.31) );
+    
+      }
+    
+      .kkcrd12{
+    display: flex;
+      }
+    
+    .kkprname{
+        color: #000;
+        margin-top: 27px;
+        font-family: "League Spartan";
+        font-size: 23px;
+        font-style: normal;
+        text-align: center;
+        font-weight: 600;
+    }
+    
+    .kkprname1{
+        color: #787878;
+    font-family: "League Spartan";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    }
+    .kkprbtn1{
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      gap: 10px;
+      cursor: pointer;
+      font-family: "League Spartan";
+      margin-left: 70px;
+      color: black;
+    }
+    .kkprbtn1:active{
+      color: #A426D1;
+      font-size: 18px;
+      font-family: "League Spartan";
+    }
+    .kkprbtn2{
+      font-family: "League Spartan";
+      font-size: 18px;
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: #A426D1;
+      color: #FFF;
+        display: inline-flex;
+        padding: 9px 13px 8px 13px;
+    align-items: center;
+    gap: 12px;
+        -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    
+    }
+
+    .prset { 
+        position: absolute;
+right: 98px;
+    }

@@ -1,0 +1,43 @@
+<div class="pcview">
+  <app-freelancernav></app-freelancernav>
+  <hr>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-4 sidenav23">
+        <p class="kksethd1">Settings</p>
+        <button class="sidebtn" (click)="onButtonClick('button1')" [ngClass]="{'selected': selectedButton === 'button1'}"
+          routerLink="/setting/billing-&-payment"><span class="clr" [ngClass]="{'clr1': selectedButton === 'button1'}"></span>Billing & Payments</button><br>
+        <button class="sidebtn" (click)="onButtonClick('button2')" [ngClass]="{'selected': selectedButton === 'button2'}"
+        routerLink="/setting/wallet"><span class="clr" [ngClass]="{'clr1': selectedButton === 'button2'}"></span>Withdrawal</button><br>
+          <!-- <button class="sidebtn" (click)="onButtonClick('button10')" [ngClass]="{'selected': selectedButton === 'button10'}"
+          ><span class="clr" [ngClass]="{'clr1': selectedButton === 'button10'}"></span>Wallet</button><br> -->
+        <p class="kksethd1" style="    margin-top: 50px;">User Settings</p>
+        <!-- <button class="sidebtn" (click)="onButtonClick('button3')" [ngClass]="{'selected': selectedButton === 'button3'}"
+          routerLink="/freelancer"><span class="clr"  [ngClass]="{'clr1': selectedButton === 'button3'}"></span>Pro Membership</button><br> -->
+        <!-- <button class="sidebtn" (click)="onButtonClick('button4')" [ngClass]="{'selected': selectedButton === 'button4'}"
+          routerLink="/setting/account-info"><span class="clr" [ngClass]="{'clr1': selectedButton === 'button4'}"></span>Contact Info</button><br> -->
+        <button class="sidebtn" (click)="onButtonClick('button5')" [ngClass]="{'selected': selectedButton === 'button5'}"
+        routerLink="/setting/account-info"><span class="clr" [ngClass]="{'clr1': selectedButton === 'button5'}"></span>My Profile</button><br>
+        <button class="sidebtn" (click)="onButtonClick('button6')"
+           [ngClass]="{'selected': selectedButton === 'button6'}"><span class="clr"  [ngClass]="{'clr1': selectedButton === 'button6'}"></span>Profile Settings</button><br>
+        <button class="sidebtn" (click)="onButtonClick('button7')" [ngClass]="{'selected': selectedButton === 'button7'}"
+          routerLink="/setting/password-&-security"><span class="clr" [ngClass]="{'clr1': selectedButton === 'button7'}"></span>Password and Security</button><br>
+        <button class="sidebtn" (click)="onButtonClick('button8')" [ngClass]="{'selected': selectedButton === 'button8'}"
+          routerLink="/setting/identify-verification"><span class="clr" [ngClass]="{'clr1': selectedButton === 'button8'}"></span>Identity Verification</button><br>
+        <!-- <button class="sidebtn" (click)="onButtonClick('button9')"
+          [ngClass]="{'selected': selectedButton === 'button9'}"><span class="clr" [ngClass]="{'clr1': selectedButton === 'button9'}"></span>Notification
+          Settings</button><br> -->
+  
+      </div>
+      <div class="col-8  sidenav231">
+        <app-setup-profile></app-setup-profile>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="mobileview1 " >
+    <div class="d-flex justify-content-center mt-5" >
+    <img src="../assets/mbview .png"  class="img-fluid"  alt="...">
+    </div>
+  </div>

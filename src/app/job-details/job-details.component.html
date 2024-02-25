@@ -1,0 +1,71 @@
+<app-freelancernav></app-freelancernav>
+  <div style="height: auto;">              
+    <div class="container kkjbcon1">
+      <div class="row" style="padding-bottom: 36px;">
+        <p class="kkjbdls">Jobs Details</p>
+        <div class="col-8 kkjbdetli1" >
+          <div>
+            <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br>{{jobPost.description | slice:0:43 }}... </p>
+            <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.createDate)}}</p>
+            <hr class="kkline1">
+          </div>
+          <div class="kkjbdiv2">
+            <p class="kktxtjbdt1">{{jobPost.description}}</p>
+          </div>
+
+          <hr class="kkline1">
+          <div class="container ">
+            <div class="row kkjbdiv3">
+              <div class="col-4">
+                <p class="kktag"><img src="../assets/clock.png">&nbsp;&nbsp; {{jobPost.projectStartDate}}-{{jobPost.projectEndDate}}
+                  {{jobPost.durationOfProject}}</p>
+              </div>
+              <div class="col-4">
+                <p class="kktag"><img src="../assets/chart.png">&nbsp; {{jobPost.experience}}</p>
+              </div>
+              <div class="col-4">
+                <p class="kktag"><img src="../assets/money.png">&nbsp; <span *ngIf="jobPost.currency === 'INR'" >₹</span>
+                  <span *ngIf="jobPost.currency === 'USD'" >$</span>
+                  <span *ngIf="jobPost.currency === 'AED'" >د.إ</span>
+                  <span *ngIf="jobPost.currency === 'ANG'" >ƒ</span>
+                  <span *ngIf="jobPost.currency === 'AOA'" >Kz</span>
+                  <span *ngIf="jobPost.currency === 'ARS  '" >$</span>
+                  <span *ngIf="jobPost.currency === 'OMR'" >ر.ع.</span>
+                  <span *ngIf="jobPost.currency === 'SAR'" >.س</span> {{jobPost.fromBudget}}-{{jobPost.toBudget}}
+                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/{{jobPost.rateBasis}}</p>
+              </div>
+            </div>
+          </div>
+          <br>
+          <hr class="kkline1">
+          <div class="kkjbdiv4">
+            <p class="kkskilltxt">Skills Needed</p>
+            <div class="container kksilltagcn" *ngFor="let jobPost of jobPost">
+              <div class="kksilltag" *ngFor="let skill of jobPost.skillSet">{{skill}}</div>
+            </div>
+          </div>
+          <br>
+
+
+        </div>
+        <div class="col-4 kkjbdetlis1 text-center" >
+         <button class="btn kkjbdtbtn2">Save Job</button>
+         <button class="btn kkjbdtbtn1"  [disabled]="Freelancers[0].ProfilePercentage <= 79" (click)="showApplyNow(jobPost.jobUniqueId)">Apply Now</button>
+          <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
+          <hr class="kkline2">
+          <div class="container kkdivjbr2">
+            <p class="kkabtclt">About client</p>
+            <!-- <p class="rate"><img class="fivestar" src="../assets/5star.png">&nbsp;&nbsp;4.9/5(124 Ratings)</p> -->
+            <p class="pver"><img src="../assets/startick.png">&nbsp;Profile verified</p>
+            <p class="pver pver1"><img src="../assets/startick.png">&nbsp;Payment verified</p>
+            <!-- <p class="tver">200+ verified Payments</p> -->
+
+          </div>
+          <hr class="kkline3">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+

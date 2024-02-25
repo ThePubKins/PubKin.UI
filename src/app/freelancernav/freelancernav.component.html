@@ -1,0 +1,107 @@
+<div class="container kkfrnavbar">
+  <div class="row kkfrnavbar1">
+    <div class="col-2">
+      <img src="../assets/logo.png" class="">
+    </div>
+    <div class="col-3 disnoneele"></div>
+
+    <div class="col-1">
+      <div class="dropdown">
+        <button class="btn kkfrnavse dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Find Work
+        </button>
+        <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item ddis">Works in Publishing<br>
+              <p class="opth">Explore the world of publishing</p>
+            </a></li>
+          <!-- <li><a class="dropdown-item ddis">Get certified and start earning<br>
+              <p class="opth">We help to start your journey in publishing</p>
+            </a></li> -->
+          <li><a class="dropdown-item ddis">Need Help?<br>
+              <p class="opth">We will guide you through setting up profile</p>
+            </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="dropdown" style="margin-left: 9px;">
+        <button class="btn kkfrnavse dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          My Jobs
+        </button>
+        <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item ddis" routerLink="/freelancers/applied-jobs">My Applied Jobs<br>
+              <!-- <p class="opth">Explore the world of publishing</p> -->
+              <p class="opth"></p>
+            </a></li>
+          <li><a class="dropdown-item ddis" routerLink="/freelancers/progress">Accepted Jobs<br>
+              <!-- <p class="opth">We help to start your journey in publishing</p> -->
+              <p class="opth"></p>
+            </a></li>
+            <li><a class="dropdown-item ddis" routerLink="/freelancers/completed">Completed Jobs<br>
+              <!-- <p class="opth">We help to start your journey in publishing</p> -->
+              <p class="opth"></p>
+            </a></li>
+          <!-- <li><a class="dropdown-item ddis">Need Help?<br>
+              <p class="opth">We will guide you through setting up profile</p>
+            </a></li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="col-1">
+      <div class="dropdown" style="margin-left: 9px;">
+        <button class="btn kkfrnavse"  routerLink="/setting/billing-&-payment" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+Wallet          </button>
+        <!-- <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item ddis" routerLink="/freelancers/progress">In Progress<br> -->
+              <!-- <p class="opth">Explore the world of publishing</p> -->
+              <!-- <p></p>
+            </a></li> -->
+          <!-- <li><a class="dropdown-item ddis" routerLink="/freelancers/completed">Completed Reports<br> -->
+              <!-- <p class="opth">We help to start your journey in publishing</p> -->
+              <!-- <p class="opth"></p>
+            </a></li>
+          <li><a class="dropdown-item ddis">My Payments<br> -->
+              <!-- <p class="opth">We will guide you through setting up profile</p> -->
+              <!-- <p></p>
+            </a></li>
+        </ul> -->
+      </div>
+    </div>
+    <div class="col-1">
+      <a class="kkfrnavse" style="text-decoration: none;    margin-left: 21px;" routerLink="/chat-room">Message</a>
+    </div>
+    <div class="col-1">
+      <img class="bell" src="../assets/bell.png">
+    </div>
+    <div class="col-1">
+      <img (click)="hidden()" src="../assets/peerson.png">
+    </div>
+  </div>
+</div>
+<div class="container position-relative">
+  <div class="prset " *ngIf="hide">
+  <div class="kkcrd12">
+    <div class="kkcrd text-center">
+        <div class="kkprimg">
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" class="rounded-circle kkprimg img-responsive">
+        </div>
+        <div class="kkpname">
+            <p class="kkprname">RamKumar</p>
+            <p class="kkprname1">Freelancer</p>
+            <p class="kkprbtn1" routerLink="/setting/wallet"><span class="material-symbols-outlined">
+              account_balance_wallet
+              </span>Wallet</p>
+              <p class="kkprbtn1" routerLink="/setting/billing-&-payment"><span class="material-symbols-outlined">
+                settings
+                </span>Settings</p>
+            <button type="button"class="btn kkprbtn2">Logout <span class="material-symbols-outlined">
+                logout
+                </span></button>
+        </div>
+  </div>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,242 @@
+<app-freelancernav></app-freelancernav>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div style="position: relative;">
+        <input type="text" type="text" name="search" [(ngModel)]="searchTerm" (input)="onSearchChange($event)"
+          class="search" placeholder="Search Job posting">
+        <img class="srch" src="../assets/search.png" alt="pubkin Start a career now">
+        <button class="btn kkfrnavse all dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          All
+        </button>
+        <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item ddis">Today</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-6">
+
+    </div>
+  </div>
+</div>
+
+<br><br>
+<div>
+  <div class="container kkjobsrc">
+    <div class="row kkjbbrow">
+      <div class="col-8 ">
+        <div class="kkjbbx">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <p class="kkjobfutxt">Job for you</p>
+                <div *ngIf="!hide23" class="kkjobfutxt1" (click)="onFilterButtonClick(); hide1();">Skill Match</div>
+                <div *ngIf="hide23" class="kkjobfutxt1" (click)="onResetButtonClick(); hide1();">View All</div>
+                <div class="kkjobfutxt2">Viewed Recently</div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="container" *ngFor="let JobPost of filteredJobPosts | jobsearch : searchTerm "  (click)="showJobDetails(JobPost.JobUniqueId)"> -->
+          <!-- <div class="container" *ngFor="let JobPost of (isFilterApplied ? filteredJobPosts : JobPosts) | jobsearch : searchTerm "  > -->
+          <div class="container jobcontents" *ngFor="let jobPosts of paginatedDataList | jobsearch: searchTerm">
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-9">
+                    <p class="kkjbtxtline1">{{jobPosts.jobTitle}} - {{jobPosts.skillSet}}</p>
+                  </div>
+                  <div class="col-3">
+                    <!-- <span><img src="../assets/tag.png"
+                  class="kkjbimg1"><img src="../assets/3icon.png" class="kkjbimg2"></span> -->
+                    <button class="viewapply" (click)="showJobDetails(jobPosts.jobUniqueId)">View & Apply</button>
+                  </div>
+                </div>
+                <p class="kkjbtxtline2">Rate:
+                  <span *ngIf="jobPosts.currency === 'INR'">₹</span>
+                  <span *ngIf="jobPosts.currency === 'USD'">$</span>
+                  <span *ngIf="jobPosts.currency === 'AED'">د.إ</span>
+                  <span *ngIf="jobPosts.currency === 'ANG'">ƒ</span>
+                  <span *ngIf="jobPosts.currency === 'AOA'">Kz</span>
+                  <span *ngIf="jobPosts.currency === 'ARS'">$</span>
+                  <span *ngIf="jobPosts.currency === 'OMR'">ر.ع.</span>
+                  <span *ngIf="jobPosts.currency === 'SAR'">.س</span>
+                  {{jobPosts.toBudget}} est. time : {{jobPosts.projectEndDate}} {{jobPosts.durationOfProject}} - Posted
+                  {{getPostStatus(jobPosts.createDate) }}
+                </p>
+                <p class="kkjbtxtline3"><span *ngIf="!showMore">{{jobPosts.description | slice:0:300}}....</span><span *ngIf="showMore">{{jobPosts.description}}</span><span (click)="ShowMoreLess()" class="text-decoration-underline">  More</span></p>
+
+                <div class="kkjbtxtline4"><img src="../assets/startick.png"> Profile verified</div>
+                <div class="kkjbtxtline5"><img src="../assets/startick.png"> Paymeny verified</div>
+                <div class="kkjbtxtline6">Tracking_ID : {{jobPosts.jobUniqueId}}</div>
+
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      <div class="col-4 kkjbbx1">
+        <div class="kkcrtalign">
+          <div class="card kkjbprcrd" style=" width: 257px;">
+            <img class="kkcrdimg" src="../assets/laptop.png">
+            <p class="kkfrname">{{UserData[0].firstName}}</p>
+
+
+
+            <p class="kkfrname1">Freelancers</p>
+            <div class="card-body kkcrdbdy">
+              <p class="kkfrname2">Profile Completeness:</p>
+              <!-- <p class="kkcplstus">{{Users[0].ProfilePercentage}}% complete</p> -->
+              <!-- <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow={{Freelancers[0].ProfilePercentage}} aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar pgrssbar" [ngStyle]="{'width': Freelancers[0].ProfilePercentage + '%',  'background-color': getProgressBarColor()}"></div>
+                </div> -->
+              <div class="kkindbx">
+                <p class="kkindbx1">Add Portfolio</p>
+                <p class="kkindbx2">Verify with Govt.ID</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row mt-3 ">
+    <div class="col-3">
+      <!-- <label for="colFormLabelSm" class="col-form-label col-form-label-sm c1">Jobs Per Page:</label> -->
+    </div>
+    <div class="col-1">
+      <!-- <select class="form-select" id="autoSizingSelect">
+<option selected>10</option>
+<option value="1">20</option>
+<option value="2">50</option>
+</select> -->
+    </div>
+    <div class="col-2"></div>
+    <div class="col-4">
+      <div class="pagination">
+        <div class="k2">
+          < </div>
+            <button class="btn btn-link k1" [disabled]="currentPage === 1"
+              (click)="onPageChange(currentPage - 1)">Previous</button>
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+              <ul class="pagination">
+                <li class="page-item"><a class="d5"><span class="circle">{{currentPage}}</span></a>
+                </li>
+              </ul>
+            </div>
+            <button class="btn btn-link k1" [disabled]="paginatedDataList.length < itemsPerPage"
+              (click)="onPageChange(currentPage + 1)">Next</button>
+            <div class="k2">></div>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</div>
+  <!-- 
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="display:none;"  data-bs-backdrop="false"  data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
+  <div class="modal-dialog rrmodalign2">
+      <div class="modal-content rrmodalign1">
+
+      <div class="modal-body">
+          <div class="container " >
+              <div class="row">
+                  <div class="col-4 text-center">
+                      <img class="pimg"  [src]="selectedImage2 ? selectedImage2 : '/assets/avd1.png'" class="btnimg" >
+                      <p class="prohead">Profile Image</p>
+      <button class="probtn" data-bs-toggle="modal" data-bs-target="#myModal" data-bs-backdrop="false"> 
+           <img src="../assets/upload share_.png" alt="Upload" > 
+           Choose Your Avatar
+        </button> 
+        <input  type="hidden" [value]="selectedImage2 ? selectedImage2 : '/assets/selectionavd.png'">
+        
+        <input type="file" #fileInput style="display:none">
+                      <p class="com">{{Freelancers[0].ProfilePercentage}}% complete</p>
+                      <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow={{Freelancers[0].ProfilePercentage}} aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar pgrssbar" [ngStyle]="{'width': Freelancers[0].ProfilePercentage + '%',  'background-color': getProgressBarColor()}"></div>
+                        </div>
+                      <p class="prodes">Completing your<br>
+                          profile will land you more jobs</p>
+                  </div>
+                  <div class="col-1">
+                      <div class="line"></div>
+                  </div>
+                  <div class="col-7">
+                     <img  (click)="onClose()"  data-bs-dismiss="modal" aria-label="Close" class="close" src="../assets/x letter_.png" alt="close">
+                     <br>
+                     <p class=" prohead1">Complete your Profile</p>
+                     <p class="prodes1">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse</p>
+                     <div class="mrt">
+                     <div class="container-fluid prode" style="cursor: pointer;">
+                      <div class="row">
+                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/portfolio" mat-dialog-close >                            
+                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Portfolio</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
+                                  <hr>
+                          </div>
+                      </div>
+                     </div>
+                     <div class="container-fluid prode"  style="cursor: pointer;">
+                      <div class="row">
+                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/education-details" mat-dialog-close>                            
+                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Education and Certifications</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Showcase your Degrees and Diplomas</p>
+                                  <hr>
+                          </div>
+                      </div>
+                     </div>
+                     <div class="container-fluid prode" style="cursor: pointer;">
+                      <div class="row">
+                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/employment-history" matDialogClose>                            
+                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Employment History</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your past job experience</p>
+                                  <hr>
+                          </div>
+                      </div>
+                     </div>
+                     <div class="container-fluid prode" style="cursor: pointer;">
+                      <div class="row">
+                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/freelancing-details" mat-dialog-close>                            
+                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Freelancing details</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
+                                  <hr>
+                          </div>
+                      </div>
+                     </div>
+                     <div class="container-fluid prode" style="cursor: pointer;">
+                      <div class="row">
+                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close"  routerLink="/profile/payment" matDialogClose>                            
+                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
+                                  <hr>
+                          </div>
+                      </div>
+                     </div>
+                     <div class="container-fluid prode" style="cursor: pointer;">
+                      <div class="row">
+                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/govtId-details" mat-dialog-close>                            
+                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Govt. ID Verification</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>
+                                  <hr>
+                          </div>
+                      </div>
+                     </div>
+                     
+                  </div>
+                  </div>
+              </div>
+          </div>
+      
+                  </div>
+   
+    </div>
+  </div>
+</div>
+
+
+ -->
