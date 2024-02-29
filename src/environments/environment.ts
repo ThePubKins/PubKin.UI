@@ -1,4 +1,9 @@
 export const environment = {
+    isProduction: true,
+    baseApiURL: 'https://localhost:7172/',
+
+
+    // remove below after all service file changes
     baseUrl: 'https://localhost:7062/api/Freelancer/generateToken',
     FreelancerUrl: 'https://localhost:7062/api/Freelancer',
     AuthUrl: 'https://localhost:7062/api/Authors',
@@ -8,5 +13,4 @@ export const environment = {
     //New Api
     userurl: 'https://localhost:7172/api/User',
     environmentUrl: 'https://localhost:7172/api',
-    baseApiURL: ''
 };
