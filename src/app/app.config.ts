@@ -1,9 +1,6 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter, withDebugTracing } from '@angular/router';
 
-import { routes } from './app.routes';
-import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
-import { HttpTokenInterceptor } from './core';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -11,6 +8,11 @@ import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getPerformance, providePerformance } from '@angular/fire/performance';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+
+import { routes } from './app.routes';
+import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpTokenInterceptor } from './core';
 
 const firebaseConfig = {
   // apiKey: "AIzaSyCnQbgNXDJT6sy1_f8gx3d74kM-3FY2uCw",
@@ -37,6 +39,7 @@ export const appConfig: ApplicationConfig = {
       withInterceptorsFromDi()
     ),
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
+    { provide: FIREBASE_OPTIONS, useValue: firebaseConfig },
     importProvidersFrom([
       provideFirebaseApp(() => initializeApp(firebaseConfig)),
       provideAuth(() => getAuth()),

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule, importProvidersFrom } from '@angular/core';
 
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
@@ -38,29 +38,6 @@ import { RoleComponent } from './role/role.component';
 import { OngoingJobsComponent } from './ongoing-jobs/ongoing-jobs.component';
 import { FootertagComponent } from './footertag/footertag.component';
 import { JobsearchPipe } from '../shared';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
-
-const firebaseConfig = {
-    // apiKey: "AIzaSyCnQbgNXDJT6sy1_f8gx3d74kM-3FY2uCw",
-    // authDomain: "pubkin-6efd2.firebaseapp.com",
-    // projectId: "pubkin-6efd2",
-    // storageBucket: "pubkin-6efd2.appspot.com",
-    // messagingSenderId: "1019249625237",
-    // appId: "1:1019249625237:web:73473b4f492538851a739c"
-    apiKey: "AIzaSyAdckeaaJ3jwqzIrpVmrm8Jw5-pGNKVlb0",
-    authDomain: "pubkin20.firebaseapp.com",
-    databaseURL: "https://pubkin20-default-rtdb.firebaseio.com",
-    projectId: "pubkin20",
-    storageBucket: "pubkin20.appspot.com",
-    messagingSenderId: "1074836594378",
-    appId: "1:1074836594378:web:d490abc4ff86b500689e33",
-    measurementId: "G-3WR3CTR306"
-};
-
 
 @NgModule({
     declarations: [
@@ -92,6 +69,7 @@ const firebaseConfig = {
         OngoingJobsComponent,
         FootertagComponent
     ],
+    providers: [],
     imports: [
         JobsearchPipe,
         CommonModule,
