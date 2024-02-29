@@ -1,18 +1,15 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FileuploadService } from './Service/fileupload.service';
-
+import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  providers:[],
+  imports: [CommonModule, RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-    
-  files : any;
-  
-  constructor(
-    public fileService: FileuploadService ) { }
-
-
+  title = 'pubkin.ui';
 }
