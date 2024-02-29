@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { CommentsService, FileuploadService, JobpostService, UserauthenticateService, comments, workfile } from '../../shared';
+import { CommentsService, JobpostService, UserauthenticateService, WorkfileService, comments, workfile } from '../../shared';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class CommentsComponent implements OnInit {
   imageUrl: string = 'https://localhost:7172';
 
   constructor(private route: ActivatedRoute, public datePipe: DatePipe, public userauthservice: UserauthenticateService,
-    public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: FileuploadService) { }
+    public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: WorkfileService) { }
 
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
 
@@ -50,7 +50,7 @@ export class CommentsComponent implements OnInit {
   getPosts() {
     this.route.params.subscribe((params) => {
       const jobId = params['id'];
-      this.jobservice.getJobDetails(jobId).subscribe(
+      this.jobservice.getJobPostById(jobId).subscribe(
         (details) => {
           this.jobPost = details;
           this.jobPost.forEach((jobPost: any) => {
@@ -65,13 +65,13 @@ export class CommentsComponent implements OnInit {
   }
 
   getCommentNow() {
-    this.commentservice.getcomment().subscribe(data => {
+    this.commentservice.getComments().subscribe(data => {
       this.comments = data;
     });
   }
 
   getWorkFiles() {
-    this.workfileservice.getFiles().subscribe(data => {
+    this.workfileservice.getfile().subscribe(data => {
       this.workFile = data;
     });
   }
@@ -89,14 +89,14 @@ export class CommentsComponent implements OnInit {
   }
   submitForm() {
     const formData = new FormData();
-    formData.append('JobId', this.commentData.JobId);
-    formData.append('Comments', this.commentData.Comments);
-    formData.append('CreatedBy', this.commentData.CreatedBy);
+    formData.append('id', this.commentData.id);
+    formData.append('comments', this.commentData.comments);
+    formData.append('createdBy', this.commentData.createdBy);
     if (this.commentData.File) {
       formData.append('File', this.commentData.File);
     }
 
-    this.commentservice.postComment(formData).subscribe(
+    this.commentservice.postComments(formData).subscribe(
       response => {
         console.log('Comment added successfully:', response);
         this.commentData = {} as comments;
@@ -109,7 +109,7 @@ export class CommentsComponent implements OnInit {
 
   submitform1() {
     const formData1 = new FormData();
-    formData1.append('FileId', this.workfileData.FileId);
+    formData1.append('Id', this.workfileData.id);
     formData1.append('FileName', this.workfileData.FileName);
     formData1.append('FileUrl', this.workfileData.FileUrl);
     formData1.append('JobId', this.workfileData.JobId);
@@ -119,7 +119,7 @@ export class CommentsComponent implements OnInit {
       formData1.append('File', this.workfileData.File);
     }
 
-    this.workfileservice.postFiles(formData1).subscribe(
+    this.workfileservice.postFile(formData1).subscribe(
       response => {
         console.log('Comment added successfully:', response);
         this.workfileData = {} as workfile;
@@ -159,9 +159,9 @@ export class CommentsComponent implements OnInit {
 
   showDetails() {
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
-    this.commentData.CreateDate = this.dateFormatted;
-    this.commentData.JobId = this.jobPost.jobId;
-    this.commentData.CreatedBy = 'KarthiKeyan';
+    this.commentData.dateCreated = this.dateFormatted;
+    this.commentData.jobId = this.jobPost.jobId;
+    this.commentData.createdBy = 'KarthiKeyan';
   }
 
   getPostStatus(postDate: string): string {

@@ -21,7 +21,7 @@ export class JobDetailsComponent implements OnInit {
   getPosts() {
     this.route.params.subscribe((params) => {
       const jobUniqueId = params['id'];
-      this.jobservice.getJobDetails(jobUniqueId).subscribe(
+      this.jobservice.getJobPostById(jobUniqueId).subscribe(
         (details) => {
           this.jobPost = details;
           this.jobPost.forEach((jobPost: any) => {

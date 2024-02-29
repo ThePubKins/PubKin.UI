@@ -9,10 +9,10 @@
 </div>
 <div class="container" *ngIf="JobPost && success">
     <form #applyForm="ngForm" (ngSubmit)="submitForm()" novalidate>
-        <input type="hidden" id="applyId" name="applyId" [(ngModel)]="jobpostData.applyId">
+        <input type="hidden" id="id" name="id" [(ngModel)]="jobpostData.id">
         <input type="hidden" id="jobId" name="jobId" [(ngModel)]="jobpostData.jobId">
         <input type="hidden" id="userId" name="userId" [(ngModel)]="jobpostData.userId">
-        <input type="hidden" id="createDate" name="createDate" [(ngModel)]="jobpostData.createDate">
+        <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobpostData.dateCreated">
         <input type="hidden" id="postBy" name="postBy" [(ngModel)]="jobpostData.postBy">
         <input type="hidden" id="jobTitle" name="jobTitle" [(ngModel)]="jobpostData.jobTitle">
         <input type="hidden" id="jobDescription" name="jobDescription" [(ngModel)]="jobpostData.jobDescription">
@@ -20,7 +20,7 @@
         <input type="hidden" id="status" name="status" [(ngModel)]="jobpostData.status">
         <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobpostData.userEmail">
         <input type="hidden" id="skillSet" name="skillSet" [(ngModel)]="UserData[0].description">
-        <input type="hidden" id="FileUrl" name="FileUrl" [(ngModel)]="jobpostData.FileUrl">
+        <input type="hidden" id="fileUrl" name="fileUrl" [(ngModel)]="jobpostData.fileUrl">
         <input type="hidden" id="AttachFile" name="AttachFile" [(ngModel)]="jobpostData.AttachFile">
         <p class="phead">Submit a Proposal</p>
         <div class="apbox">

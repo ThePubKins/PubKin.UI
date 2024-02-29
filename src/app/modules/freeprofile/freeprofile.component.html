@@ -2,18 +2,18 @@
     <div class="container">
         <div class="row">
             <div class="col-4 text-center">
-                <img class="pimg"  src="../assets/Frame 82.png" alt="Profile Completion in Pubkin">
+                <img class="pimg"  *ngIf="User[0].profileUrl"  src={{imageUrl}}{{User[0].profileUrl}}>
+                <img class="pimg"  *ngIf="!User[0].profileUrl"  src="../assets/Frame 82.png">
                 <p class="prohead">Profile Image</p>
-                
-<button class="probtn btn" (click)="openFileExplorer()">
-    <img src="../assets/upload share_.png" alt="Upload">Upload Image
-  </button>
-  
-  <input type="file" #fileInput style="display:none" (change)="onFileSelected($event)">
+
+                <button class="probtn btn" mat-dialog-close routerLink="/profile/choose-your-picutre-now">
+                    Choose Your Profile
+                </button>
                 <p class="com">10% complete</p>
-                <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10"
+                    aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar pgrssbar" style="width: 10%"></div>
-                  </div>
+                </div>
                 <p class="prodes">Completing your<br>
                     profile will land you more jobs</p>
             </div>
@@ -21,65 +21,78 @@
                 <div class="line"></div>
             </div>
             <div class="col-7">
-               <img mat-dialog-close class="close" src="../assets/x letter_.png" alt="close">
-               <br>
-               <p class=" prohead1">Complete your Profile</p>
-               <p class="prodes1">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse</p>
-               <div class="mrt">
-               <div class="container-fluid prode" style="cursor: pointer;">
-                <div class="row">
-                    <div class="col-12" routerLink="/profile/portfolio" mat-dialog-close >                            
-                            <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Portfolio</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                            <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
-                            <hr>
+                <img mat-dialog-close class="close" src="../assets/x letter_.png" alt="close">
+                <br>
+                <p class=" prohead1">Complete your Profile</p>
+                <p class="prodes1">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse</p>
+                <div class="mrt">
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-12" routerLink="/profile/portfolio" mat-dialog-close>
+                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Portfolio</span> <img
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-12" routerLink="/profile/education-details" mat-dialog-close>
+                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Education and
+                                        Certifications</span> <img class="navarrow" src="../assets/nav arrow down_.png"
+                                        alt="Nav"></p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Showcase your Degrees and Diplomas</p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-12" routerLink="/profile/employment-history" matDialogClose>
+                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Employment History</span> <img
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your past job experience</p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-12" routerLink="/profile/payment" matDialogClose>
+                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-12" routerLink="/profile/govtId-details" mat-dialog-close>
+                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Govt. ID Verification</span> <img
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-12" routerLink="/profile/freelancing-details" mat-dialog-close>
+                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Freelancing details</span> <img
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-               </div>
-               <div class="container-fluid prode"  style="cursor: pointer;">
-                <div class="row">
-                    <div class="col-12" routerLink="/profile/education-details" mat-dialog-close>                            
-                            <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Education and Certifications</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                            <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Showcase your Degrees and Diplomas</p>
-                            <hr>
-                    </div>
-                </div>
-               </div>
-               <div class="container-fluid prode" style="cursor: pointer;">
-                <div class="row">
-                    <div class="col-12" routerLink="/profile/employment-history" matDialogClose>                            
-                            <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Employment History</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                            <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your past job experience</p>
-                            <hr>
-                    </div>
-                </div>
-               </div>
-               <div class="container-fluid prode" style="cursor: pointer;">
-                <div class="row">
-                    <div class="col-12"  routerLink="/profile/payment" matDialogClose>                            
-                            <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                            <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
-                            <hr>
-                    </div>
-                </div>
-               </div>
-               <div class="container-fluid prode" style="cursor: pointer;">
-                <div class="row">
-                    <div class="col-12" routerLink="/profile/govtId-details" mat-dialog-close>                            
-                            <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Govt. ID Verification</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                            <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>
-                            <hr>
-                    </div>
-                </div>
-               </div>
-               <div class="container-fluid prode" style="cursor: pointer;">
-                <div class="row">
-                    <div class="col-12" routerLink="/profile/freelancing-details" mat-dialog-close>                            
-                            <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Freelancing details</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                            <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
-                    </div>
-                </div>
-               </div>
-            </div>
             </div>
         </div>
     </div>

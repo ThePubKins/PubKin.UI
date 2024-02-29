@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { bankDetails } from '../models';
+import { ApiService } from '../../core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BankDetailsService {
 
-  constructor(public http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
-  private bankDetailsUrl = environment.environmentUrl;
-  bankformData: bankDetails = {} as bankDetails;
+  bankData: bankDetails = {} as bankDetails;
   list: bankDetails[] = [];
 
-  postBankDetails(bankformData: any): Observable<any> {
-    return this.http.post(`${this.bankDetailsUrl}/BankDetails`, bankformData);
+  getBankDetails(): Observable<bankDetails[]> {
+    return this.apiService.get(`BankDetails`);
   }
 
-  getBankDetails(): Observable<bankDetails[]> {
-    return this.http.get<bankDetails[]>(`${this.bankDetailsUrl}/BankDetails`)
+  postBankDetails(bankData: any) {
+    return this.apiService.post(`$BankDetails`, bankData)
   }
 }

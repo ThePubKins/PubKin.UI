@@ -1,7 +1,9 @@
-export interface JobPost {
-  createDate: string;
+export interface jobPost {
+  id: string;
   createdBy: string;
-  jobId: string;
+  dateCreated: string;
+  lastModifiedBy: string;
+  dateLastModified: string;
   jobUniqueId : string;
   userId: string;
   jobTitle: string;

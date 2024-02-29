@@ -2,8 +2,39 @@
 
   <div class="container">
     <img src="./assets/Artboard 1 1.png" alt="Pubkin" class="rrpublogoimg1">
-  </div>
 
+    <img *ngIf="hideprofileclose && User[0].role === 'author'" src="./assets/_x letter_.png" alt="Pubkin"
+      class="float-end mt-5" routerLink="/authors">
+    <img *ngIf="hideprofileclose && User[0].role === 'freelancer'" src="./assets/_x letter_.png" alt="Pubkin"
+      class="float-end mt-5" routerLink="/freelancers">
+
+  </div>
+  <!--Profile Picture -->
+  <div *ngIf="contentName === 'choose-your-picutre-now'" class="ubbbhb">
+    <div class="container">
+      <p class="kkemphus">Choose Your Profile Now</p>
+      <form #profileForm="ngForm" (ngSubmit)="onSubmitProfile(profileForm)">
+        <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+        <input type="hidden" [value]="selectedImage2 ? selectedImage2 : '/assets/animoji.png'" id="profileUrl"
+          name="profileUrl" [(ngModel)]="userservice.userData.ProfileUrl">
+        <div class="text-center">
+          <img [src]="selectedImage ? selectedImage : 'assets/animoji.png'" class="profileimg">
+        </div>
+        <div class="container text-center mt-5">
+          <div class="row">
+            <div class="col-2 " *ngFor="let image of images">
+              <div class="modalbodyalign1 mt-4">
+                <img src="{{image.img_url}}" class="showProfiles" (click)="selectImage(image)" (click)="saveChanges()">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container mt-5 savebtnalign1">
+          <button class=" btn  savevv " type="submit" (click)="closeProfile();">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <!-- Employment History -->
   <div *ngIf="contentName === 'employment-history'">
     <div>
@@ -60,20 +91,13 @@
               </button>
             </div>
             <div class="modal-body">
-              <form #workdetailsform="ngForm" novalidate autocomplete="off" (ngSubmit)="onSubmitWork(workdetailsform);onSubmitpercentage(workdetailsform)">
-                <input type="text" id="userId" name="userId" [(ngModel)]="User[0].userId">
-                <input type="text" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
-                <input type="text" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails" [(ngModel)]="User[0].govtIdDetails">
-                <input type="text" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails" [(ngModel)]="User[0].portfolioDetails">
-                <input type="text" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails" [(ngModel)]="User[0].educationDetails">
-                <input type="text" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails" [(ngModel)]="User[0].workingDetails">
-                <input type="text" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails" [(ngModel)]="User[0].bankingDetails">
+              <form #workdetailsform="ngForm" novalidate autocomplete="off" (ngSubmit)="onSubmitWork(workdetailsform)">
                 <input type="hidden" id="UserId" name="UserId" [(ngModel)]="User[0].userId">
-                <input type="hidden" id="WorkId" name="WorkId" [(ngModel)]="workservice.formData.workId">
+                <input type="hidden" id="id" name="id" [(ngModel)]="workservice.workData.id">
                 <div>
                   <p class="kkeduhdtg kkeduhdtg1">Job Title*</p>
                   <input class="kkin1" type="text" placeholder="eg: Job Title" ngModel id="JobTitle" name="JobTitle"
-                    minlength="0" maxlength="35" [(ngModel)]="workservice.formData.jobTitle" #jobTitle="ngModel" 
+                    minlength="0" maxlength="35" [(ngModel)]="workservice.workData.jobTitle" #jobTitle="ngModel"
                     required pattern='^[a-zA-Z\s]+$'>
                   <span *ngIf="!jobTitle.valid && (jobTitle.touched || jobTitle.dirty)">
                     <span class="errormsg" *ngIf="jobTitle.errors?.['required']">
@@ -85,8 +109,8 @@
                   </span>
                   <p class="kkeduhdtg kkeduhdtg1">Company*</p>
                   <input class="kkin1" type="text" placeholder="eg: ABC solution" ngModel name="companyName"
-                    #companyName="ngModel" id="companyName" name="companyName" 
-                    [(ngModel)]="workservice.formData.companyName" minlength="0" maxlength="35" required
+                    #companyName="ngModel" id="companyName" name="companyName"
+                    [(ngModel)]="workservice.workData.companyName" minlength="0" maxlength="35" required
                     pattern='^[a-zA-Z\s]+$'>
                   <span *ngIf="!companyName.valid && (companyName.touched || companyName.dirty)">
                     <span class="errormsg" *ngIf="companyName.errors?.['required']">
@@ -97,9 +121,9 @@
                     </span>
                   </span>
                   <p class="kkeduhdtg kkeduhdtg1">Location</p>
-                  <input class="kkin1" type="year" placeholder="eg: Bangalore" id="companyLocation"
-                    #companyLocation="ngModel" name="companyLocation" [(ngModel)]="workservice.formData.companyLocation"
-                    required minlength="0" maxlength="45" (click)="increseWorkpercentage()">
+                  <input class="kkin1" type="text" placeholder="eg: Bangalore" id="companyLocation"
+                    #companyLocation="ngModel" name="companyLocation" [(ngModel)]="workservice.workData.companyLocation"
+                    required minlength="0" maxlength="45">
                   <span *ngIf="!companyLocation.valid && (companyLocation.touched || companyLocation.dirty)">
                     <span class="errormsg" *ngIf="companyLocation.errors?.['required']">
                       Company Location is Required
@@ -125,7 +149,7 @@
                   <div class="container kkyrflx1">
                     <div class="kkrow1">
                       <select class="kkin12" id="joiningMonth" name="joiningMonth" #joiningMonth="ngModel"
-                        [(ngModel)]="workservice.formData.joiningMonth" required>
+                        [(ngModel)]="workservice.workData.joiningMonth" required>
                         <option selected>Jan</option>
                         <option selected>Feb</option>
                         <option selected>Mar</option>
@@ -141,7 +165,7 @@
                       </select>
 
                       <select class="kkin12" ngModel name="joiningYear" id="joiningYear" name="joiningYear"
-                        [(ngModel)]="workservice.formData.joiningYear" required>
+                        [(ngModel)]="workservice.workData.joiningYear" required>
                         <option selected>2011</option>
                         <option selected>2012</option>
                         <option selected>2013</option>
@@ -160,7 +184,7 @@
                     </div>
                     <div class="kkrow2">
                       <select class="kkin12" id="completedMonth" name="completedMonth"
-                        [(ngModel)]="workservice.formData.completedMonth" required>
+                        [(ngModel)]="workservice.workData.completedMonth" required>
                         <option selected>Jan</option>
                         <option selected>Feb</option>
                         <option selected>Mar</option>
@@ -175,7 +199,7 @@
                         <option selected>Dec</option>
                       </select>
                       <select class="kkin12" ngModel name="completedyear" #completedyear="ngModel" id="completedyear"
-                        [(ngModel)]="workservice.formData.completedYear" required>
+                        [(ngModel)]="workservice.workData.completedYear" required>
                         <option selected>2011</option>
                         <option selected>2012</option>
                         <option selected>2013</option>
@@ -200,7 +224,7 @@
                   <p class="kkeduhdtg kkeduhdtg1">Description</p>
                   <textarea class="kkin1" style="  height: 104px;" cols="30" rows="5" minlength="0" maxlength="100"
                     placeholder="Describe your study, awards, recognistion" ngModel id="Description" name="Description"
-                    [(ngModel)]="workservice.formData.description" #description="ngModel" required></textarea>
+                    [(ngModel)]="workservice.workData.description" #description="ngModel" required></textarea>
                   <span *ngIf="!description.valid && description.touched">
                     <span class="errormsg float-start" *ngIf="description.errors?.['required']">
                       Description is required
@@ -208,7 +232,7 @@
                   </span>
                 </div>
                 <button type="submit" class="btn kkedubt" [disabled]="workdetailsform.invalid" data-bs-dismiss="modal"
-                  aria-label="Close" (click)="increseWorkpercentage()">Save</button>
+                  aria-label="Close">Save</button>
               </form>
             </div>
           </div>
@@ -218,7 +242,7 @@
     </div>
   </div>
 
-
+  <!-- PortFolio Details  -->
   <div *ngIf="contentName === 'portfolio'">
     <div class="container">
       <p class="kkemphus">Add your Portfolio</p>
@@ -232,18 +256,17 @@
           <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <img src="./assets/_add circle_.png" class="rraddcirimg1">
             <p class="rraddexptxt1">Add Projects,links
-            <p>
+            </p>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-4" *ngFor="let portfolio of portfolios">
           <div class="rrpubcomcenalign1">
-            <div class="kkempcrd">
-
+            <div class="kkempcrd" *ngIf="portfolio.userId == User[0].userId">
+              <div class=" text02">{{portfolio.projectTitle}}</div>
+              <div class=" text03">{{portfolio.projectLink}}</div>
+              <div class=" text05">{{portfolio.description | slice:0:170}}</div>
             </div>
           </div>
-        </div>
-        <div class="col-4">
-
         </div>
       </div>
     </div>
@@ -252,76 +275,78 @@
       <button class="btn kkempbtn2" routerLink="/profile/education-details">Save Details</button>
     </div>
 
-
-
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg  modal-dialog-centered">
-        <div class="modal-content kkcmodel">
-
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <p class="modal-title portfoltitlevv "> Add Portfolio Project</p>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label projtitlevv">Project Title*</label>
-              <input type="email" class="form-control placvv" id="exampleFormControlInput1"
-                placeholder="Name of your Project">
+        <form #portfolioForm="ngForm" (ngSubmit)="onSubmitPortfolio(portfolioForm)">
+          <div class="modal-content kkcmodel">
+            <input type="text" id="id" name="id"
+              [(ngModel)]="portfolioService.portfolioFormData.id">
+            <input type="text" id="dateCreated" name="dateCreated"
+              [(ngModel)]="portfolioService.portfolioFormData.dateCreated">
+            <input type="text" id="userId" name="userId" [(ngModel)]="portfolioService.portfolioFormData.userId">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <p class="modal-title portfoltitlevv "> Add Portfolio Project</p>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label projtitlevv">Description*</label>
-              <textarea class="form-control placvv" id="exampleFormControlTextarea1"
-                placeholder="Brief explanation of your project in 350 word" rows="3"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label projtitlevv ">Web Link (if available)</label>
-              <input type="email" class="form-control placvv" id="exampleFormControlInput1"
-                placeholder="www.portfolio.com">
-            </div>
-            <div class="container">
-              <div class="row">
-                <div class="col-6">
-                  <p class="imghead">Add image</p>
-                  <div class="imageinputvv ">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-3"><img class="uploimvv" src="./assets/uploadvv.png"></div>
-                        <div class="col-9">
-                          <p class="upltext">Upload image</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <p class="imghead">Add Support Files</p>
-                  <div class="imageinputvv ">
-                    <div class="container">
-                      <div class="row">
-                        <div class="col-3"><img class="uploimvv" src="./assets/uploadvv.png"></div>
-                        <div class="col-9">
-                          <p class="upltext">Upload files(.doc, .pdf)</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label projtitlevv">Project Title*</label>
+                <input type="text" class="form-control placvv" id="projectTitle" name="projectTitle" (click)="FetchDetails()"
+                  [(ngModel)]="portfolioService.portfolioFormData.projectTitle" placeholder="Name of your Project">
               </div>
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label projtitlevv">Description*</label>
+                <textarea class="form-control placvv" id="description" name="description"
+                  [(ngModel)]="portfolioService.portfolioFormData.description"
+                  placeholder="Brief explanation of your project in 350 word" rows="3"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label projtitlevv ">Web Link (if available)</label>
+                <input type="text" class="form-control placvv" id="projectLink" name="projectLink"
+                  [(ngModel)]="portfolioService.portfolioFormData.projectLink" placeholder="www.portfolio.com">
+              </div>
+
+              <!-- <div class="container">
+                <div class="row">
+                  <div class="col-6">
+                    <p class="imghead">Add image</p>
+                    <div class="imageinputvv ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-3"><img class="uploimvv" src="./assets/uploadvv.png"></div>
+                          <div class="col-9">
+                            <p class="upltext">Upload image</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <p class="imghead">Add Support Files</p>
+                    <div class="imageinputvv ">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-3"><img class="uploimvv" src="./assets/uploadvv.png"></div>
+                          <div class="col-9">
+                            <p class="upltext">Upload files(.doc, .pdf)</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <button type="submit" class="btn savevv" data-bs-dismiss="modal"> Save</button>
             </div>
-            <button type="button" class="btn savevv "> Save</button>
-
           </div>
-        </div>
-
+        </form>
       </div>
     </div>
 
   </div>
-
 
   <!-- Education Details  -->
   <div *ngIf="contentName === 'education-details'">
@@ -330,7 +355,7 @@
       <p class="kkemphus1">Lorem Ipsum Dolor</p>
     </div>
     <div class="container">
-      <div class="row" >
+      <div class="row">
         <div class="col-4">
           <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="./assets/_add circle_.png" class="rraddcirimg1">
@@ -338,8 +363,8 @@
             </p>
           </div>
         </div>
-        <div class="col-4"  *ngFor="let educationDetails of educationDetail">
-          <div class="rrpubcomcenalign1" >
+        <div class="col-4" *ngFor="let educationDetails of educationDetail">
+          <div class="rrpubcomcenalign1">
             <div class="kkempcrd" *ngIf="educationDetails.usersId == User[0].userId">
               <div class=" text02">{{educationDetails.department}}</div>
               <div class=" text03">{{educationDetails.instituteName}} {{educationDetails.courseName}}</div>
@@ -367,24 +392,17 @@
             </button>
           </div>
           <div class="modal-body">
-            <form autocomplete="off" #educationForm="ngForm" (ngSubmit)="onSubmitEducation(educationForm);onSubmitpercentage(educationForm)">
+            <form autocomplete="off" #educationForm="ngForm" (ngSubmit)="onSubmitEducation(educationForm)">
               <div>
-                <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
-                <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
-                <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails" [(ngModel)]="User[0].govtIdDetails">
-                <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails" [(ngModel)]="User[0].portfolioDetails">
-                <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails" [(ngModel)]="User[0].educationDetails">
-                <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails" [(ngModel)]="User[0].workingDetails">
-                <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails" [(ngModel)]="User[0].bankingDetails">
-                <input type="hidden" id="educationId" name="educationId"
-                  [(ngModel)]="educationservice.formData.educationId">
-                <input type="text" id="usersId" name="usersId" [(ngModel)]="User[0].userId">
+                <input type="hidden" id="id" name="id"
+                  [(ngModel)]="educationservice.educationData.id">
+                <input type="hidden" id="usersId" name="usersId" [(ngModel)]="User[0].userId">
                 <input type="hidden" id="boardUniversity" name="boardUniversity"
-                  [(ngModel)]="educationservice.formData.boardUniversity">
+                  [(ngModel)]="educationservice.educationData.boardUniversity">
                 <div class="kkeduhdtg">&nbsp;&nbsp;School/College Name*<div>
                     <input class="kkin1" type="text" placeholder="eg: ABC University" ngModel name="instituteName"
                       minlength="0" maxlength="35" #instituteName="ngModel" id="instituteName"
-                      [(ngModel)]="educationservice.formData.instituteName" required>
+                      [(ngModel)]="educationservice.educationData.instituteName" required>
                     <span *ngIf="!instituteName.valid && instituteName.touched">
                       <span class="errormsg" *ngIf="instituteName.errors?.['required']">
                         College Name is required
@@ -393,7 +411,7 @@
                     <div class="kkeduhdtg">Degree</div>
                     <input class="kkin1" type="text" placeholder="eg: Bachelors" ngModel name="department" minlength="0"
                       maxlength="35" #department="ngModel" id="department"
-                      [(ngModel)]="educationservice.formData.department" required>
+                      [(ngModel)]="educationservice.educationData.department" required>
                     <span *ngIf="!department.valid && department.touched">
                       <span class="errormsg " *ngIf="department.errors?.['required']">
                         Degree is required
@@ -402,7 +420,7 @@
                     <div class="kkeduhdtg">Field of Study</div>
                     <input class="kkin1" type="text" placeholder="eg: Arts" ngModel name="courseName" minlength="0"
                       maxlength="35" #courseName="ngModel" id="courseName"
-                      [(ngModel)]="educationservice.formData.courseName" required>
+                      [(ngModel)]="educationservice.educationData.courseName" required>
                     <span *ngIf="!courseName.valid && courseName.touched">
                       <span class="errormsg " *ngIf="courseName.errors?.['required']">
                         Field of Study is required
@@ -414,7 +432,7 @@
                         <div class="col-6">
                           <input class="kkyrbtn1" type="text" ngModel name="yearOfJoining" #yearOfJoining="ngModel"
                             id="yearOfJoining" pattern='^[0-9]+$' minlength="0" maxlength="4"
-                            [(ngModel)]="educationservice.formData.yearOfJoining" required>
+                            [(ngModel)]="educationservice.educationData.yearOfJoining" required>
                           <span *ngIf="!yearOfJoining.valid && yearOfJoining.touched">
                             <span class="errormsg " *ngIf="yearOfJoining.errors?.['required']">
                               Year of Joining is required
@@ -427,7 +445,7 @@
                         <div class="col-6">
                           <input class="kkyrbtn1" type="text" ngModel name="yearOfCompletion"
                             #yearOfCompletion="ngModel" pattern='^[0-9]+$' minlength="0" maxlength="4"
-                            id="yearOfCompletion" [(ngModel)]="educationservice.formData.yearOfCompletion" required>
+                            id="yearOfCompletion" [(ngModel)]="educationservice.educationData.yearOfCompletion" required>
                           <span *ngIf="!yearOfCompletion.valid && yearOfCompletion.touched">
                             <span class="errormsg " *ngIf="yearOfCompletion.errors?.['required']">
                               Year of Completion is required
@@ -440,10 +458,10 @@
                       </div>
                     </div>
                     <p class="kkeduhdtg">Description</p>
-                    <textarea (click)="increseEducationpercentage()" class="kkin1" style=" height: 127px;" cols="30" rows="10"
+                    <textarea class="kkin1" style=" height: 127px;" cols="30" rows="10"
                       placeholder="Describe your study, awards, recognistion" ngModel name="description" minlength="0"
                       maxlength="100" #description="ngModel" id="description"
-                      [(ngModel)]="educationservice.formData.description" required></textarea>
+                      [(ngModel)]="educationservice.educationData.description" required></textarea>
                     <span *ngIf="!description.valid && description.touched">
                       <span class="errormsg float-start" *ngIf="description.errors?.['required']">
                         Description is required
@@ -452,7 +470,7 @@
                   </div>
                 </div>
                 <button class="btn kkedubt" type="submit" data-bs-dismiss="modal" aria-label="Close"
-                  [disabled]="educationForm.invalid" >Save</button>
+                  [disabled]="educationForm.invalid">Save</button>
               </div>
             </form>
           </div>
@@ -463,14 +481,8 @@
 
   <!-- Freelancing-details -->
   <div class="container" *ngIf="contentName === 'freelancing-details'">
-    <form #experienceForm="ngForm" (ngSubmit)="onSubmitExperienceDetails(experienceForm);onSubmitpercentage(experienceForm)">
+    <form #experienceForm="ngForm" (ngSubmit)="onSubmitExperienceDetails(experienceForm)">
       <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
-      <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
-      <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails" [(ngModel)]="User[0].govtIdDetails">
-      <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails" [(ngModel)]="User[0].portfolioDetails">
-      <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails" [(ngModel)]="User[0].educationDetails">
-      <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails" [(ngModel)]="User[0].workingDetails">
-      <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails" [(ngModel)]="User[0].bankingDetails">
       <input type="hidden" id="hides1 " [(ngModel)]="hides1" [value]="hides1" name="Experience" #Experience="ngModel"
         [(ngModel)]="User[0].Experience">
       <input type="hidden" id="description" [(ngModel)]="User[0].description" [value]="User[0].description"
@@ -566,7 +578,7 @@
               <p class="rrlinkedinifl1">Upload your Resume</p>
             </div>
             <div class="circlin rrpubcomcenalign1" (click)="GoNextBtn('button3');">
-              <p class="rrlinkedinifl1" (click)="incresedetailspercentage()">Fill out the details manually</p>
+              <p class="rrlinkedinifl1">Fill out the details manually</p>
             </div>
           </div>
           <div class="col-4">
@@ -583,7 +595,7 @@
       <div class="container ">
         <button class="btn kkempbtn1" (click)="GoNextBtn('button1')"> Back</button>
         <button class="btn skip">Skip for now</button>
-        <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button3');incresedetailspercentage()">Next</button>
+        <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button3');">Next</button>
       </div>
     </div>
 
@@ -599,7 +611,7 @@
       <div class="container rrpubaligntop1">
         <p class="rrgonextbtn3txt1">I am a</p>
         <input type="text" class="serv" placeholder="Service 1 | Service 2 | Service 3" ngModel name="description"
-          #description="ngModel" id="description" [(ngModel)]="User[0].description" required >
+          #description="ngModel" id="description" [(ngModel)]="User[0].description" required>
       </div>
 
 
@@ -616,7 +628,7 @@
 
   </div>
 
-  <!-- Payment rates for freelancer-->
+  <!-- Payment rates for Author -->
   <div *ngIf="contentName === 'payment'">
     <div class="container">
       <p class="kkemphus">Add your payment rates</p>
@@ -658,7 +670,7 @@
 
 
 
-    <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm);onSubmitpercentage(priceForm)">
+    <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)">
       <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog dia12">
           <div class="modal-content kkadedudt">
@@ -669,19 +681,13 @@
               </button>
             </div>
             <div class="modal-body">
-              <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
-      <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails" [(ngModel)]="User[0].govtIdDetails">
-      <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails" [(ngModel)]="User[0].portfolioDetails">
-      <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails" [(ngModel)]="User[0].educationDetails">
-      <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails" [(ngModel)]="User[0].workingDetails">
-      <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails" [(ngModel)]="User[0].bankingDetails">
               <input type="hidden" id="UserId" name="UserId" [(ngModel)]="User[0].userId">
-              <input type="hidden" id="skillId" name="skillId" [(ngModel)]="priceService.SkillData.skillId">
+              <input type="hidden" id="skillId" name="skillId" [(ngModel)]="priceService.pricingSkillData.skillId">
               <div>
 
                 <div class="kkeduhdtg">&nbsp;&nbsp;Your skill<div>
                     <select class="kkin1" placeholder="eg: Compositor" ngModel name="skillSet" #skillSet="ngModel"
-                      id="skillSet" [(ngModel)]="priceService.SkillData.skillSet" required>
+                      id="skillSet" [(ngModel)]="priceService.pricingSkillData.skillSet" required>
                       <option class="kkin1" selected> Compositor</option>
                       <option class="kkin1"> Graphics Artist</option>
                       <option class="kkin1"> Template Design</option>
@@ -697,7 +703,7 @@
                     <!-- (click)="hideRates()" -->
                     <div class="kkeduhdtg">How do you like to set pricing?</div>
                     <select class="kkin1" placeholder="eg: Compositor" ngModel name="uom" #uom="ngModel" id="uom"
-                      [(ngModel)]="priceService.SkillData.uom" required (click)="incresebankingpercentage()">
+                      [(ngModel)]="priceService.pricingSkillData.uom" required>
                       <option class="kkin1" selected> per hour</option>
                       <option class="kkin1">word count</option>
                       <option class="kkin1"> per book</option>
@@ -712,7 +718,7 @@
                             <p class="prateh" style="margin-left: 3px;">Simple</p>
                             <textarea class="ratecard" ngModel name="simpleDescription" #simpleDescription="ngModel"
                               id="simpleDescription" placeholder="Description"
-                              [(ngModel)]="priceService.SkillData.simpleDescription" required></textarea>
+                              [(ngModel)]="priceService.pricingSkillData.simpleDescription" required></textarea>
                             <span *ngIf="!simpleDescription.valid && simpleDescription.touched">
                               <span class="errormsg" *ngIf="simpleDescription.errors?.['required']">
                                 Description is required
@@ -723,7 +729,7 @@
                             <p class="prateh" style="margin-left: 3px;">Medium </p>
                             <textarea class="ratecard" ngModel name="mediumDescription" #mediumDescription="ngModel"
                               id="mediumDescription" placeholder="Description"
-                              [(ngModel)]="priceService.SkillData.mediumDescription" required></textarea>
+                              [(ngModel)]="priceService.pricingSkillData.mediumDescription" required></textarea>
                             <span *ngIf="!mediumDescription.valid && mediumDescription.touched">
                               <span class="errormsg" *ngIf="mediumDescription.errors?.['required']">
                                 Description is required
@@ -734,7 +740,7 @@
                             <p class="prateh" style="margin-left: 3px;">Complex</p>
                             <textarea class="ratecard" ngModel name="complexDescription" #complexDescription="ngModel"
                               id="complexDescription" placeholder="Description"
-                              [(ngModel)]="priceService.SkillData.complexDescription" required></textarea>
+                              [(ngModel)]="priceService.pricingSkillData.complexDescription" required></textarea>
                             <span *ngIf="!complexDescription.valid && complexDescription.touched">
                               <span class="errormsg" *ngIf="complexDescription.errors?.['required']">
                                 Description is required
@@ -749,7 +755,7 @@
                           <div class="col-4">
                             <input class="kkin2" type="text" placeholder=" ₹" ngModel name="simplePrice" maxlength="7"
                               minlength="0" #simplePrice="ngModel" id="simplePrice" required pattern='^[0-9]+$'
-                              [(ngModel)]="priceService.SkillData.simplePrice">
+                              [(ngModel)]="priceService.pricingSkillData.simplePrice">
                             <span *ngIf="!simplePrice.valid && simplePrice.touched">
                               <span class="errormsg" *ngIf="simplePrice.errors?.['required']">
                                 Price is required
@@ -762,12 +768,12 @@
                           <div class="col-4">
                             <input class="kkin2" type="text" placeholder=" ₹" ngModel name="mediumPrice" required
                               pattern='^[0-9]+$' #mediumPrice="ngModel" id="mediumPrice"
-                              [(ngModel)]="priceService.SkillData.mediumPrice" required>
+                              [(ngModel)]="priceService.pricingSkillData.mediumPrice" required>
                           </div>
                           <div class="col-4">
                             <input class="kkin2" type="text" placeholder=" ₹" ngModel name="complexPrice" required
                               pattern='^[0-9]+$' #complexPrice="ngModel" id="complexPrice"
-                              [(ngModel)]="priceService.SkillData.complexPrice" required>
+                              [(ngModel)]="priceService.pricingSkillData.complexPrice" required>
 
                           </div>
                         </div>
@@ -784,7 +790,7 @@
                         <button class="skip1">Add skill</button>
                       </div>
                       <div class="col-3">
-                        <button class="btn skip2" data-bs-dismiss="modal" type="submit" (click)="incresebankingpercentage()">Save</button>
+                        <button class="btn skip2" data-bs-dismiss="modal" type="submit">Save</button>
                       </div>
                     </div>
                   </div>
@@ -807,18 +813,12 @@
     </div>
 
 
-    <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm);onSubmitpercentage(govtIdForm)">
+    <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)">
       <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
-      <input type="text" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
-      <input type="text" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails" [(ngModel)]="User[0].govtIdDetails">
-      <input type="text" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails" [(ngModel)]="User[0].portfolioDetails">
-      <input type="text" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails" [(ngModel)]="User[0].educationDetails">
-      <input type="text" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails" [(ngModel)]="User[0].workingDetails">
-      <input type="text" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails" [(ngModel)]="User[0].bankingDetails">
       <input type="hidden" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
       <input type="hidden" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country">
       <input type="hidden" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
-      <button type="submit" class="d-none" #idbutton  >Submit</button>
+      <button type="submit" class="d-none" #idbutton>Submit</button>
     </form>
 
     <div class="container rrpubaligntop1">
@@ -846,7 +846,7 @@
                 </span>
               </div>
               <select class="countrySelect govtselect rrcontopalign2" ngModel name="country" #country="ngModel"
-                id="country" [(ngModel)]="User[0].country" (click)="increseGovtIdpercentage();">
+                id="country" [(ngModel)]="User[0].country">
                 <option selected value="India" style="padding: 20px;">India</option>
                 <option value="USA">USA</option>
                 <option value="Australia">Australia</option>
@@ -900,12 +900,26 @@
           Almost done! We need <br> some more details.
         </div>
         <div class="col-6">
-          <!-- <form #form="ngForm" (submit)="onSubmitAuthoProfile(form)">
-            <input type="hidden" id="ProfilePercentage" name="ProfilePercentage"
-              [(ngModel)]="Author[0].ProfilePercentage">
-            <input type="hidden" id="AuthorsId" name="AuthorsId" [(ngModel)]="Author[0].AuthorsId">
-            <input type="hidden" [value]="selectedSkills.join(', ')" ngModel name="SkillSet" #SkillSet="ngModel"
-              [(ngModel)]="services.formData.SkillSet" /> -->
+          <form #personalForm="ngForm" (ngSubmit)="onSubmitPersonal(personalForm);onSubmitpercentage(personalForm)">
+            <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+            <input type="hidden" ngModel name="firstName" #firstName="ngModel" id="firstName"
+              [(ngModel)]="User[0].firstName ">
+            <input type="hidden" ngModel name="lastName" #lastName="ngModel" id="lastName"
+              [(ngModel)]="User[0].lastName  ">
+            <input type="hidden" ngModel name="email" #email="ngModel" id="email" [(ngModel)]="User[0].email ">
+            <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
+            <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+              [(ngModel)]="User[0].govtIdDetails">
+            <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+              [(ngModel)]="User[0].portfolioDetails">
+            <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+              [(ngModel)]="User[0].educationDetails">
+            <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails"
+              [(ngModel)]="User[0].workingDetails">
+            <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+              [(ngModel)]="User[0].bankingDetails">
+            <input type="hidden" [value]="selectedSkills.join(', ')" ngModel name="description" #description="ngModel"
+              [(ngModel)]="User[0].description" />
             <p class="whatskilled">What are the skills you are looking for?</p>
             <div style="position: relative;"> <input type="text" class="intsearchauth" placeholder="Enter the skillset">
               <img src="../assets/auth_search outline_.png" class="authsearchimg" alt="authsearchimg">
@@ -927,7 +941,7 @@
             <div class="row">
               <p class="popskill">popular skill </p>
               <div class="col-4 mt-3" *ngFor="let skill of skills; let i = index">
-                <div class="addsk" (click)="addSkill(skill); hiddentext()">
+                <div class="addsk" (click)="addSkill(skill); hiddentext();increseDetailsPercentage();">
                   {{skill}} &nbsp; <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
                     fill="none">
                     <path d="M7 1V13" stroke="black" stroke-width="2" stroke-linecap="round" />
@@ -937,14 +951,15 @@
               </div>
             </div>
             <p class="phoneNumberAuth">Your Phone Number</p>
-            <input type="text" class="intPhoneAuth" placeholder="Phone Number" id="PhoneNumber" required
-              name="PhoneNumber" #PhoneNumber="ngModel" [(ngModel)]="Author[0].PhoneNumber">
+            <input type="text" class="intPhoneAuth" placeholder="Phone Number" id="phoneNumber" name="phoneNumber"
+              #phoneNumber="ngModel" [(ngModel)]="User[0].phoneNumber" required>
             <p class="disclaimer">*We will not share your contact information to anyone.</p>
             <p class="LocationAuth">Location</p>
-            <input type="text" class="intLocAuth" placeholder="Location" id="Location" required name="Location"
-              #Location="ngModel" [(ngModel)]="Author[0].Location">
-            <button class="btn mat-button saveauth" type="submit" routerLink="/authors">Save</button>
-          <!-- </form> -->
+            <input type="text" class="intLocAuth" placeholder="Location " id="nationality" required name="nationality"
+              #nationality="ngModel" [(ngModel)]="User[0].nationality">
+            <p class="disclaimer">*We will not share your information to anyone.</p>
+            <button class="btn mat-button saveauth" type="submit" [disabled]="personalForm.invalid">Save</button>
+          </form>
         </div>
       </div>
       <!-- <splide [options]="{ type: 'loop', perPage: 1, keyboard: false }">
@@ -964,9 +979,8 @@
     </div>
 
     <div class="container rrpubaligntop1">
-      <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm);onSubmitpercentage(govtIdForm)">
+      <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)">
         <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
-        <input type="hidden" ngModel name="GovtIdDetails" #GovtIdDetails="ngModel" id="GovtIdDetails" [(ngModel)]="User[0].GovtIdDetails">
         <input type="hidden" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
         <input type="hidden" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country">
         <input type="hidden" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
@@ -1000,7 +1014,7 @@
                   </span>
                 </div>
                 <select class="countrySelect govtselect rrcontopalign2" id="country" required name="country"
-                  #country="ngModel" [(ngModel)]="User[0].country" (click)="increseGovtIdpercentage();">
+                  #country="ngModel" [(ngModel)]="User[0].country">
                   <option selected value="India" style="padding: 20px;">India</option>
                   <option value="USA">USA</option>
                   <option value="Australia">Australia</option>
@@ -1041,7 +1055,7 @@
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/authors">Back</button>
       <button class="btn kkempbtn2" type="submit" [disabled]="govtIdForm.invalid" routerLink="/authors"
-        (click)="govtsubmit();"  >Save Details</button>
+        (click)="govtsubmit();">Save Details</button>
     </div>
   </div>
 
@@ -1067,16 +1081,15 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-8"*ngFor="let bank of bankDetails" >
-          
-          <div class="kkbillingcon" *ngIf="bank.userId === User[0].userId">
+        <div class="col-8">
+          <div class="kkbillingcon">
             <p class="kkbnktx1">Default Billing Option</p>
             <p class="kkbnktx2">Add, update or remove your billing method</p>
             <div class="container">
               <div class="row kkbillr1">
-                <div class="col-8">    
-                  <div ><img src="./assets/visadpt.png"><span class="kkbnktx3"> &nbsp;&nbsp;&nbsp;visa card
-                      ending in <span class="kkbnktx4">{{bank.cardNumber |slice:12:16}}</span></span></div>
+                <div class="col-8">
+                  <div><img src="./assets/visadpt.png"><span class="kkbnktx3"> &nbsp;&nbsp;&nbsp;visa card
+                      ending in <span class="kkbnktx4">3457</span></span></div>
                 </div>
                 <div class="col-4">
                   <p class="kkbnktx5">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
@@ -1160,11 +1173,11 @@
           </div>
           <p class="kkbnktx6">Add Card Details</p>
           <form #bankDetailsform="ngForm" (ngSubmit)="onSubmitBankDetails(bankDetailsform)">
-            <input type="hidden" id="bankDetailsId" name="bankDetailsId"
-              [(ngModel)]="bankservice.bankformData.bankDetailsId">
+            <input type="hidden" id="id" name="id"
+              [(ngModel)]="bankservice.bankData.id">
             <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
             <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
-              maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankformData.cardNumber"
+              maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankData.cardNumber"
               required pattern="[0-9\s]+$" />
             <span *ngIf="!cardNumber.valid && cardNumber.touched">
               <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
@@ -1176,7 +1189,7 @@
             </span>
             <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
               minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
-              [(ngModel)]="bankservice.bankformData.nameoftheCard" required pattern="[a-zA-z\s]+$">
+              [(ngModel)]="bankservice.bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
             <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
               <span class="errormsg" *ngIf="nameoftheCard.errors?.['required']">
                 Card Name is required
@@ -1188,9 +1201,9 @@
             <div class="kbiladcrd1">
               <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
                 #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
-                [(ngModel)]="bankservice.bankformData.expiryDate" required pattern="[0-9]+$">
+                [(ngModel)]="bankservice.bankData.expiryDate" required pattern="[0-9]+$">
               <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
-                minlength="1" maxlength="3" [(ngModel)]="bankservice.bankformData.cvv" required pattern="[0-9]+$">
+                minlength="1" maxlength="3" [(ngModel)]="bankservice.bankData.cvv" required pattern="[0-9]+$">
             </div>
             <span *ngIf="!expiryDate.valid && expiryDate.touched">
               <span class="errormsg" *ngIf="expiryDate.errors?.['required']">
@@ -1215,7 +1228,7 @@
               </label>
             </div>
             <div class="kkbiladcd">
-              <button class="btn kkbiladcd1" type="submit" [disabled]="bankDetailsform.invalid" data-bs-dismiss="modal">Add Card</button>
+              <button class="btn kkbiladcd1" type="submit" [disabled]="bankDetailsform.invalid">Add Card</button>
             </div>
           </form>
         </div>

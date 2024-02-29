@@ -367,7 +367,7 @@
 
 
 <form novalidate autocomplete="off" #registerForm="ngForm" (ngSubmit)="UserRegister(registerForm, usercredential)">
-    <input type="hidden" name="userId" id="userId" ngModel [(ngModel)]="userservice.userData.userId">
+    <input type="hidden" name="id" id="id" ngModel [(ngModel)]="userservice.userData.id">
     <input type="hidden" id="firstName" name="firstName" ngModel [(ngModel)]="usercredential.firstName">
     <input type="hidden" id="role" name="role" ngModel [(ngModel)]="usercredential.role">
     <input type="hidden" id="lastName" name="lastName" ngModel [(ngModel)]="usercredential.lastName"><br>
@@ -378,8 +378,8 @@
 
 
 <form novalidate autocomplete="off" #roleForm="ngForm" (ngSubmit)="onSubmitRole(roleForm)">
-    <input type="hidden" name="roleId" id="roleId" ngModel [(ngModel)]="roleService.formData.roleId">
-    <input type="hidden" id="roleName" name="roleName" ngModel [(ngModel)]="roleService.formData.roleName">
+    <input type="hidden" name="roleId" id="roleId" ngModel [(ngModel)]="roleService.roleData.id">
+    <input type="hidden" id="roleName" name="roleName" ngModel [(ngModel)]="roleService.roleData.roleName">
     <button class="d-none" #rolebutton type="submit">Submit</button>
 </form>
 

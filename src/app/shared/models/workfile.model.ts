@@ -1,5 +1,9 @@
 export interface workfile {
-  FileId: string;
+  id: string;
+  createdBy: string;
+  dateCreated: string;
+  lastModifiedBy: string;
+  dateLastModified: string;
   FileName: string;
   FileUrl: string;
   JobId: string;

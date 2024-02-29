@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-freeprofile',
@@ -8,46 +9,25 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 export class FreeprofileComponent implements OnInit {
   Freelancers: any;
   Author: any;
+  User : any;
+  imageUrl: string = 'https://localhost:7172';
 
-
-  images=[
-  
-    {img_url:'/assets/avd1.png'},
-    {img_url:'/assets/avd2.png'},
-    {img_url:'/assets/avd3.png'},
-    {img_url:'/assets/avd4.png'},
-    {img_url:'/assets/avd5.png'},
-    {img_url:'/assets/avd6.png'},
-    {img_url:'/assets/avd7.png'},
-    {img_url:'/assets/avd8.png'}
-  ]
-
-  
-  selectedImage: string | null = null;
-  
-  selectImage(image: any) {
-    this.selectedImage = image.img_url;
-  }
-  
-  selectedImage2: string | null = null;
-  saveChanges(){
-   this.selectedImage2 = this.selectedImage
-
-  }
-
+  constructor(public userauthservice:UserauthenticateService) {}
   ngOnInit(): void {
-
-  }
-  @ViewChild('fileInput')
-  fileInput!: ElementRef;
-
-  openFileExplorer() {
-    this.fileInput.nativeElement.click();
+   this.getUserData();
   }
 
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    console.log('Selected File:', selectedFile);
+  //get the Current User Details
+  getUserData() {
+    const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
+    if (Email) {
+      this.userauthservice.getUserData().subscribe({
+        next: (data) => {
+          this.User = data?.filter((User: any) => User.email === Email);
+        },
+      });
+    } else {
+    }
   }
 
   getProgressBarColor(): string {
@@ -67,5 +47,4 @@ export class FreeprofileComponent implements OnInit {
   GoNextBtn(GoBtnName: string): void {
     this.GoNext = GoBtnName;
   }
- 
 }

@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { role } from '../models';
-
+import { Observable } from 'rxjs';
+import { ApiService } from '../../core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleService {
 
-  constructor(public http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
-  private roleUrl = environment.environmentUrl;
-  formData: role = {} as role;
+  roleData: role = {} as role;
   list: role[] = [];
 
-  postRole(formData: any): Observable<any> {
-    return this.http.post(`${this.roleUrl}/Role`, formData);
+  postRole(roleData: any): Observable<any> {
+    return this.apiService.post(`Role`, roleData);
   }
-
+  
   getRole(): Observable<role[]> {
-    return this.http.get<role[]>(`${this.roleUrl}/Role`)
+    return this.apiService.get(`Role`);
   }
 }

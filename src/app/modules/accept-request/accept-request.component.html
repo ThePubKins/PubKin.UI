@@ -237,11 +237,11 @@
         </div>
         <p class="kkbnktx6">Add Card Details</p>
         <form #bankDetailsform="ngForm" (ngSubmit)="onSubmitBankDetails(bankDetailsform)">
-          <input type="hidden" id="bankDetailsId" name="bankDetailsId"
-            [(ngModel)]="bankservice.bankformData.bankDetailsId">
+          <input type="hidden" id="id" name="id"
+            [(ngModel)]="bankservice.bankData.id">
           <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
           <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
-            maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankformData.cardNumber"
+            maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankData.cardNumber"
             required pattern="[0-9\s]+$" />
           <span *ngIf="!cardNumber.valid && cardNumber.touched">
             <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
@@ -253,7 +253,7 @@
           </span>
           <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
             minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
-            [(ngModel)]="bankservice.bankformData.nameoftheCard" required pattern="[a-zA-z\s]+$">
+            [(ngModel)]="bankservice.bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
           <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
             <span class="errormsg" *ngIf="nameoftheCard.errors?.['required']">
               Card Name is required
@@ -265,9 +265,9 @@
           <div class="kbiladcrd1">
             <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
               #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
-              [(ngModel)]="bankservice.bankformData.expiryDate" required pattern="[0-9]+$">
+              [(ngModel)]="bankservice.bankData.expiryDate" required pattern="[0-9]+$">
             <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
-              minlength="1" maxlength="3" [(ngModel)]="bankservice.bankformData.cvv" required pattern="[0-9]+$">
+              minlength="1" maxlength="3" [(ngModel)]="bankservice.bankData.cvv" required pattern="[0-9]+$">
           </div>
           <span *ngIf="!expiryDate.valid && expiryDate.touched">
             <span class="errormsg" *ngIf="expiryDate.errors?.['required']">

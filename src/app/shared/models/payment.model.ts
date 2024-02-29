@@ -1,4 +1,10 @@
 export interface pricingSkillDetails {
+  id: string;
+  createdBy: string;
+  dateCreated: string;
+  lastModifiedBy: string;
+  dateLastModified: string;
+  userId: string;
   skillId: string;
   skillSet: string;
   uom: string;
@@ -8,6 +14,4 @@ export interface pricingSkillDetails {
   simpleDescription: string;
   mediumDescription: string;
   complexDescription: string;
-  userId: string;
-  createDate: string;
 }

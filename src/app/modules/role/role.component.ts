@@ -26,7 +26,6 @@ export class RoleComponent {
           this.UserData = data?.filter((UserData: any) => UserData.email === Email);
           console.log(this.UserData)
           this.navigateBasedOnRole();
-
         },
         error: (err) => {
           console.error('Error fetching data:', err);

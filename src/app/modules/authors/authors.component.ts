@@ -26,7 +26,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   getAllPosts() { 
-    this.jobService.getJobPosts().subscribe(data => {  
+    this.jobService.getJobPost().subscribe(data => {  
       this.Posts = data;
     })
   }
