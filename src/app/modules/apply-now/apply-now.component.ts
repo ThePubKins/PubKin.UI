@@ -1,19 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { FirebaseAuthService } from '../Service/firebaseauth.service';
-import { UserService } from '../Service/messgaeuser.service';
 import { DatePipe } from '@angular/common';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { AppliedUserService } from '../Service/applied-user.service';
-import { JobpostService } from '../Service/jobpost.service';
-import { CommentsService } from '../Service/comments.service';
-import { comments } from '../Service/comments.model';
-import { applied_user } from '../Service/applied-user.model';
+
+import { AppliedUserService, CommentsService, FirebaseAuthService, JobpostService, MessageUserService, UserauthenticateService, applied_user } from '../../shared';
+
+
 @Component({
   selector: 'app-apply-now',
   templateUrl: './apply-now.component.html',
-  styleUrls: ['./apply-now.component.css']
+  styleUrls: ['./apply-now.component.scss']
 })
 export class ApplyNowComponent {
   authors: any;
@@ -28,14 +24,14 @@ export class ApplyNowComponent {
   currentDate: any = new Date();
   //new
   UserData: any;
-  dateFormatted :any;
-  success : boolean =true;
+  dateFormatted: any;
+  success: boolean = true;
 
-  jobpostData = new applied_user;
-  filesdetails : any;
-  constructor(public datePipe: DatePipe, private userService: UserService, private route: ActivatedRoute,
-    public authService: FirebaseAuthService, public userservice: UserauthenticateService,public commentservice: CommentsService,
-    public appliedservice: AppliedUserService, public jobservice : JobpostService) {this.calculateCharactersLeft(); }
+  jobpostData: applied_user = {} as applied_user;
+  filesdetails: any;
+  constructor(public datePipe: DatePipe, private route: ActivatedRoute, private messageUserService: MessageUserService,
+    public authService: FirebaseAuthService, public userservice: UserauthenticateService, public commentservice: CommentsService,
+    public appliedservice: AppliedUserService, public jobservice: JobpostService) { this.calculateCharactersLeft(); }
 
   ngOnInit(): void {
     this.getPosts(); this.getUserData();
@@ -65,11 +61,11 @@ export class ApplyNowComponent {
     this.appliedservice.postApply(formData).subscribe(
       response => {
         console.log('Comment added successfully:', response);
-        this.jobpostData = new applied_user();
+        this.jobpostData = {} as applied_user;
       }
     );
   }
-  uploadedFileName: string = ''; 
+  uploadedFileName: string = '';
   selectedFiles: string[] = [];
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
@@ -77,12 +73,12 @@ export class ApplyNowComponent {
     this.jobpostData.AttachFile = selectedFile;
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
-    this.uploadedFileName = file ? file.name : ''; 
+    this.uploadedFileName = file ? file.name : '';
   }
 
-  SuccessModal() { 
-     this.success = false;
-     setTimeout(() => {
+  SuccessModal() {
+    this.success = false;
+    setTimeout(() => {
       this.success = false;
     }, 3000);
   }
@@ -103,10 +99,10 @@ export class ApplyNowComponent {
     }
   }
 
-  AppliedJobs() {  
-    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');  
+  AppliedJobs() {
+    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
     this.jobpostData.createDate = this.dateFormatted;
-    this.jobpostData.status= 'applied';
+    this.jobpostData.status = 'applied';
     this.jobpostData.jobTitle = this.JobPost.jobTitle;
     this.jobpostData.userId = this.UserData[0].userId;
     this.jobpostData.userEmail = this.UserData[0].firstName;
@@ -183,11 +179,11 @@ export class ApplyNowComponent {
     const senderId = this.user.uid;
     console.log(senderId);
     const receiverId = targetUser.uid;
-    this.userService.sendFriendRequest(senderId, receiverId)
+    this.messageUserService.sendFriendRequest(senderId, receiverId)
       .then(() => {
         console.log('Friend request sent successfully');
       })
-      .catch(error => {
+      .catch((error: any) => {
         console.error('Error sending friend request:', error);
       });
   }

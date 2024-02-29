@@ -3,12 +3,12 @@ import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot }
     from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { map, take } from 'rxjs/operators';
-import { UserAuthService } from '../services';
+import { take } from 'rxjs/operators';
+import { AppAuthService } from '../services';
 
 @Injectable({ providedIn: 'root' })
 export class PermissionsService {
-    constructor(private userAuthService: UserAuthService) { }
+    constructor(private userAuthService: AppAuthService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
         return this.userAuthService.isAuthenticated.pipe(take(1));

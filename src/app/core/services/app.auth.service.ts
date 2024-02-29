@@ -7,7 +7,7 @@ import { CurrentUser } from '../models';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
-export class UserAuthService {
+export class AppAuthService {
 
     private currentUserSubject = new BehaviorSubject<CurrentUser>({} as CurrentUser);
     private isAuthenticatedSubject = new ReplaySubject<boolean>(1);

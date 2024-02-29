@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { AppliedUserService } from '../Service/applied-user.service';
+import { AppliedUserService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-completed',
   templateUrl: './completed.component.html',
-  styleUrls: ['./completed.component.css']
+  styleUrls: ['./completed.component.scss']
 })
 export class CompletedComponent {
 

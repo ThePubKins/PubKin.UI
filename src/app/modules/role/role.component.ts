@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
+import { UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
-  styleUrls: ['./role.component.css']
+  styleUrls: ['./role.component.scss']
 })
 export class RoleComponent {
 

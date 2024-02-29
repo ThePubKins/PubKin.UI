@@ -4,7 +4,7 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 @Component({
   selector: 'app-authprofile',
   templateUrl: './authprofile.component.html',
-  styleUrls: ['./authprofile.component.css']
+  styleUrls: ['./authprofile.component.scss']
 })
 export class AuthprofileComponent implements OnInit {
   Author: any;

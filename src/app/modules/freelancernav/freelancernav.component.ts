@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-freelancernav',
   templateUrl: './freelancernav.component.html',
-  styleUrls: ['./freelancernav.component.css']
+  styleUrls: ['./freelancernav.component.scss']
 })
 export class FreelancernavComponent {
 hide: any;

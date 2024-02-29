@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-footertag',
   templateUrl: './footertag.component.html',
-  styleUrls: ['./footertag.component.css']
+  styleUrls: ['./footertag.component.scss']
 })
 export class FootertagComponent implements OnInit {
   heading: string;

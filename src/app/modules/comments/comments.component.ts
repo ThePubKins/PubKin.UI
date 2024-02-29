@@ -1,18 +1,13 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JobpostService } from '../Service/jobpost.service';
-import { NgForm } from '@angular/forms';
-import { CommentsService } from '../Service/comments.service';
 import { DatePipe } from '@angular/common';
-import { comments } from '../Service/comments.model';
-import { workfile } from '../Service/workfile.model';
-import { WorkfileService } from '../Service/workfile.service';
-import { FileuploadService } from '../Service/fileupload.service';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
+import { CommentsService, FileuploadService, JobpostService, UserauthenticateService, comments, workfile } from '../../shared';
+
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.css']
+  styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
 
@@ -20,19 +15,19 @@ export class CommentsComponent implements OnInit {
   Freelancers: any;
   currentDate: Date = new Date();
   dateFormatted: any;
-  commentData = new comments();
-  workfileData = new workfile();
-  workFile : any;
+  commentData: comments = {} as comments;
+  workfileData: workfile = {} as workfile;
+  workFile: any;
   comments: any;
   hideFolderIcon: boolean = false;
   viewwork: boolean = false;
   submitwork: boolean = false;
-  selectedFiles: string[] =[ ];
+  selectedFiles: string[] = [];
   selectedFiles1: string[] = [];
-  User :any;
+  User: any;
   imageUrl: string = 'https://localhost:7172';
-  
-  constructor(private route: ActivatedRoute, public datePipe: DatePipe, public userauthservice :UserauthenticateService,
+
+  constructor(private route: ActivatedRoute, public datePipe: DatePipe, public userauthservice: UserauthenticateService,
     public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: FileuploadService) { }
 
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
@@ -104,7 +99,7 @@ export class CommentsComponent implements OnInit {
     this.commentservice.postComment(formData).subscribe(
       response => {
         console.log('Comment added successfully:', response);
-        this.commentData = new comments();
+        this.commentData = {} as comments;
       },
       error => {
         console.error('Error adding comment:', error);
@@ -127,14 +122,14 @@ export class CommentsComponent implements OnInit {
     this.workfileservice.postFiles(formData1).subscribe(
       response => {
         console.log('Comment added successfully:', response);
-        this.workfileData = new workfile();
+        this.workfileData = {} as workfile;
       },
       error => {
         console.error('Error adding comment:', error);
       }
     );
   }
-  
+
 
 
   openFileUploadDialog() {
@@ -144,9 +139,9 @@ export class CommentsComponent implements OnInit {
     const selectedFile = event.target.files[0];
     this.selectedFiles.push(selectedFile.name);
     this.commentData.File = selectedFile;
-    this.workfileData.FileName =  selectedFile.name;
+    this.workfileData.FileName = selectedFile.name;
   }
-  
+
   onFileSelected1(event: any) {
     const selectedFile = event.target.files[0];
     this.selectedFiles1.push(selectedFile.name);

@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { AppliedUserService } from '../Service/applied-user.service';
+import { AppliedUserService, UserauthenticateService } from '../../shared';
 
 
 @Component({
   selector: 'app-applied-jobs',
   templateUrl: './applied-jobs.component.html',
-  styleUrls: ['./applied-jobs.component.css']
+  styleUrls: ['./applied-jobs.component.scss']
 })
 export class AppliedJobsComponent {
 
@@ -15,14 +14,14 @@ export class AppliedJobsComponent {
   hide = false;
   searchTerm: string;
   currentUser: any;
-  Applies:any;
+  Applies: any;
   selectedrequest: any;
 
 
   constructor(
     public userService: UserauthenticateService,
     public appliedService: AppliedUserService,
-    ) { }
+  ) { }
 
 
   onSearchChange(event: any) {
@@ -65,10 +64,10 @@ export class AppliedJobsComponent {
 
   logout(): void { }
 
-  getPostStatus(postDate:string) {  
+  getPostStatus(postDate: string) {
     const today = new Date();
     const parts = postDate.split('-');
-    const post = new Date(+parts[2], +parts[1] - 1, +parts[0]) ;
+    const post = new Date(+parts[2], +parts[1] - 1, +parts[0]);
     const diffTime = today.getTime() - post.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1);
     const diffMonths = (today.getFullYear() - post.getFullYear()) * 12 + (today.getMonth() - post.getMonth());
@@ -95,7 +94,7 @@ export class AppliedJobsComponent {
       return diffYears + ' years ago';
     }
   }
-  
+
   openModal(Apply: any) {
     this.selectedrequest = Apply;
   }

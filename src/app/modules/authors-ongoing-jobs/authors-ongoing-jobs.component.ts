@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { JobpostService } from '../Service/jobpost.service';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
+import { JobpostService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-authors-ongoing-jobs',
   templateUrl: './authors-ongoing-jobs.component.html',
-  styleUrls: ['./authors-ongoing-jobs.component.css']
+  styleUrls: ['./authors-ongoing-jobs.component.scss']
 })
 export class AuthorsOngoingJobsComponent implements OnInit {
 
-  constructor(public jobService: JobpostService, public userService : UserauthenticateService,) {}
+  constructor(public jobService: JobpostService, public userService : UserauthenticateService) {}
   
   ngOnInit(): void {
     this.getAllPosts();

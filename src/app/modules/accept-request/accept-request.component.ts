@@ -1,31 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
-import { UserAuthService } from '../../core';
-import { UserService } from '../../shared/services/user.service';
+import { AppliedUserService, BankDetailsService, MessageUserService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-accept-request',
   templateUrl: './accept-request.component.html',
-  styleUrls: ['./accept-request.component.css']
+  styleUrls: ['./accept-request.component.scss']
 })
 export class AcceptRequestComponent implements OnInit {
-  Applies: any[];
+  Applies: any[] = [];
   Hire: any;
-  selectedJobPostId: string | null;
+  selectedJobPostId: string | null = null;
   user: any;
   users: any[] = [];
   chatTarget: any;
-  payment: number;
+  payment: number = 0;
   selectedJobPost: any;
-  selectedhire: any ; 
+  selectedhire: any;
   selectedrequest: any;
   User: any;
   imageUrl: string = 'https://localhost:7172';
 
-  constructor(private route: ActivatedRoute,     public userauthservice: UserAuthService,    public bankservice: BankDetailsService,
-     public applyService : AppliedUserService, public userService: UserService) {}
+  constructor(private route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
+    public applyService: AppliedUserService, public userService: MessageUserService) { }
 
   loadUsers(): void {
     this.userService.getAllUsers().subscribe(users => {
@@ -46,7 +44,7 @@ export class AcceptRequestComponent implements OnInit {
     } else {
     }
   }
-  
+
   onChatTargetClick(targetUser: any): void {
     this.chatTarget = targetUser;
   }
@@ -64,7 +62,7 @@ export class AcceptRequestComponent implements OnInit {
 
   getApplies(jobId: string): void {
     this.applyService.getAppliedUserById(jobId).subscribe({
-     next: (result: any) => {
+      next: (result: any) => {
         this.Applies = result;
         console.log(this.Applies);
       },
@@ -72,7 +70,7 @@ export class AcceptRequestComponent implements OnInit {
         console.error('Error fetching applied users:', err);
       }
     });
-}
+  }
 
   acceptFriendRequest(senderId: string): void {
     const userId = this.user.uid;
@@ -86,12 +84,12 @@ export class AcceptRequestComponent implements OnInit {
       });
   }
 
-    //Banking Details Submit to Post Function
-    onSubmitBankDetails(form: NgForm) {
-      if (form.valid && this.bankservice.bankformData) {
-        this.bankservice.postBankDetails(form.value).subscribe();
-      }
+  //Banking Details Submit to Post Function
+  onSubmitBankDetails(form: NgForm) {
+    if (form.valid && this.bankservice.bankformData) {
+      this.bankservice.postBankDetails(form.value).subscribe();
     }
+  }
 
   // showthedetails() { 
   //   this.service.formData.ApplyId = this.selectedhire.ApplyId;
@@ -131,10 +129,10 @@ export class AcceptRequestComponent implements OnInit {
 }
 
 
- interface Proposal {
+interface Proposal {
   id: string;
   name: string;
   date: Date;
 }
- 
+
 

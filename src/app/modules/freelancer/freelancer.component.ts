@@ -2,14 +2,13 @@ import {  Component, OnInit } from '@angular/core';
 import { FreeprofileComponent } from '../freeprofile/freeprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { JobpostService } from '../Service/jobpost.service';
+import { JobpostService, UserauthenticateService } from '../../shared';
 
 declare var bootstrap: any;
 @Component({
   selector: 'app-freelancer',
   templateUrl: './freelancer.component.html',
-  styleUrls: ['./freelancer.component.css']
+  styleUrls: ['./freelancer.component.scss']
 })
 export class FreelancerComponent implements OnInit {
   filteredJobPosts: any[] = [];

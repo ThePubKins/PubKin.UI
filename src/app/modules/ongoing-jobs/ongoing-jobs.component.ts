@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { AppliedUserService } from '../Service/applied-user.service';
+import { AppliedUserService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-ongoing-jobs',
   templateUrl: './ongoing-jobs.component.html',
-  styleUrls: ['./ongoing-jobs.component.css']
+  styleUrls: ['./ongoing-jobs.component.scss']
 })
 export class OngoingJobsComponent {
 

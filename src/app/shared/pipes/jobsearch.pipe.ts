@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'jobsearch'
+  name: 'jobsearch',
+  standalone: true
 })
 export class JobsearchPipe implements PipeTransform {
 
@@ -19,8 +20,5 @@ export class JobsearchPipe implements PipeTransform {
     });
   }
 
-}
-
-
-  
+}  
   

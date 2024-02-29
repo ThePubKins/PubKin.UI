@@ -2,22 +2,18 @@ import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core'
 import { MatDialog } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { UserService } from '../Service/user.service';
-import { FirebaseAuthService } from '../Service/firebaseauth.service';
-import { RoleService } from '../Service/role.service';
-import { Users } from '../Service/user.model';
+import { FirebaseAuthService, RoleService, UserService, UserauthenticateService } from '../../shared';
 
 declare var Email: any;
 declare var google: any;
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.scss']
 })
-
 export class SignupComponent implements OnInit {
-  usercredential = { email: '', password: '', firstName: '', lastName: '', role :'' };
+  usercredential = { email: '', password: '', firstName: '', lastName: '', role: '' };
   email: string = '';
   isSignUp: boolean = true;
   displayName: string = '';
@@ -36,14 +32,14 @@ export class SignupComponent implements OnInit {
   GoNext: string = "button1";
   otppopup = false;
   googledown: boolean;
-  selectedRole : string;
-  verify:boolean=false;
+  selectedRole: string;
+  verify: boolean = false;
   errorMessage: string = '';
-  emails:any;
+  emails: any;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, public userservice: UserService, public roleService: RoleService,
-    public userregister: UserauthenticateService, private router: Router, public fireauthservice: FirebaseAuthService ) { }
+    public userregister: UserauthenticateService, private router: Router, public fireauthservice: FirebaseAuthService) { }
 
- @ViewChild('rolebutton') rolebutton: ElementRef;
+  @ViewChild('rolebutton') rolebutton: ElementRef;
   @ViewChild('submitbutton') submitbutton: ElementRef;
   @ViewChild('firebutton') firebutton: ElementRef;
   @ViewChild('loginbutton') loginbutton: ElementRef;
@@ -54,31 +50,31 @@ export class SignupComponent implements OnInit {
   fireSignupButton() {
     this.firebutton.nativeElement.click();
   }
-  
-  verfy(){
-    this.verify=true;
+
+  verfy() {
+    this.verify = true;
   }
-  roleButton() { 
+  roleButton() {
     this.rolebutton.nativeElement.click();
   }
-getemail(){
-  this.userservice.getmail().subscribe(data => {
-    this.emails = data;
-  });
-}
+  getemail() {
+    this.userservice.getmail().subscribe(data => {
+      this.emails = data;
+    });
+  }
 
-getWorkFiles() {
-  
-}
+  getWorkFiles() {
+
+  }
   //Data will be load on the Firebase form
-  firebaseSignup() { 
+  firebaseSignup() {
     this.email = this.usercredential.email;
     this.password = this.usercredential.password;
     this.firstName = this.usercredential.firstName;
     this.lastName = this.usercredential.lastName
   }
 
-  role() { 
+  role() {
     this.usercredential.role = this.selectedRole;
     this.roleService.formData.roleName = this.selectedRole;
   }
@@ -86,27 +82,27 @@ getWorkFiles() {
   // loginButton() {
   //   this.loginbutton.nativeElement.click();
   // }
-//   loginButton() {
-//     const loginFailed = true;
-//     if (loginFailed) {
-//         this.errorMessage = 'Incorrect email or password.';
-//     } else {
-//         this.errorMessage = '';
-//     }
-//     this.loginbutton.nativeElement.click();
-// }
+  //   loginButton() {
+  //     const loginFailed = true;
+  //     if (loginFailed) {
+  //         this.errorMessage = 'Incorrect email or password.';
+  //     } else {
+  //         this.errorMessage = '';
+  //     }
+  //     this.loginbutton.nativeElement.click();
+  // }
 
-loginButton() {
-  const loginFailed = true; 
-  if (loginFailed) {
+  loginButton() {
+    const loginFailed = true;
+    if (loginFailed) {
       this.errorMessage = 'Incorrect email or password.';
-  } else {
-      this.errorMessage = ''; 
-  }
-  if (loginFailed) {
+    } else {
+      this.errorMessage = '';
+    }
+    if (loginFailed) {
       this.loginbutton.nativeElement.click();
+    }
   }
-}
 
   //Firebase Signup function
   onAuthSubmit() {
@@ -137,7 +133,8 @@ loginButton() {
   //Submit to the Role
   onSubmitRole(form: NgForm) {
     if (form.valid && this.roleService.formData) {
-      this.roleService.postRole(form.value).subscribe(); }
+      this.roleService.postRole(form.value).subscribe();
+    }
   }
 
 
@@ -200,12 +197,12 @@ loginButton() {
           },
           error: (err) => {
             if (err.status === 409) {
-                form.controls['email'].setErrors({ 'emailExists': true });
+              form.controls['email'].setErrors({ 'emailExists': true });
             } else {
-                console.error('Registration failed:', err);
+              console.error('Registration failed:', err);
             }
-        },
-    });
+          },
+        });
     }
   }
 
@@ -272,7 +269,7 @@ loginButton() {
   //  name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
   //  userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
   //  Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
- 
+
   checkbox1: boolean = false;
   checkbox2: boolean = false;
 
@@ -285,12 +282,12 @@ loginButton() {
   }
 
   //Role Include the input
-  freelancerrole(){
+  freelancerrole() {
     this.usercredential.role = 'freelancer';
     this.roleService.formData.roleName = 'freelancer';
   }
 
-  authorrole(){
+  authorrole() {
     this.usercredential.role = 'author';
     this.roleService.formData.roleName = 'author';
   }

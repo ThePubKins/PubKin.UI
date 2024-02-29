@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 import { Errors } from '../../../core';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule],
   selector: 'app-list-errors',
   templateUrl: './list-errors.component.html'
 })

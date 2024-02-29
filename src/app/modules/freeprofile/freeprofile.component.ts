@@ -3,7 +3,7 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 @Component({
   selector: 'app-freeprofile',
   templateUrl: './freeprofile.component.html',
-  styleUrls: ['./freeprofile.component.css']
+  styleUrls: ['./freeprofile.component.scss']
 })
 export class FreeprofileComponent implements OnInit {
   Freelancers: any;

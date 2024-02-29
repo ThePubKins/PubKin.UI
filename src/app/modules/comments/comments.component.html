@@ -8,7 +8,8 @@
           <p class="kkjbdls">Jobs Details</p>
           <div class="col-8 kkjbdetli1">
             <div>
-              <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br>{{jobPost.description | slice:0:43 }}...
+              <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br>{{jobPost.description | slice:0:43
+                }}...
               </p>
               <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.createDate)}}</p>
               <hr class="kkline1">
@@ -55,15 +56,15 @@
 
 
           </div>
-          <div class="col-4 kkjbdetlis1 text-center"   >
+          <div class="col-4 kkjbdetlis1 text-center">
             <span *ngIf="User[0].role == 'author'" class="examplerework">
-            <button class="btn kkjbdtbtn2" (click)="submitworks();">Submit Work</button>
-            <button class="btn kkjbdtbtn1" data-bs-toggle="modal" data-bs-target="#exampleModal">Comments</button>
+              <button class="btn kkjbdtbtn2" (click)="submitworks();">Submit Work</button>
+              <button class="btn kkjbdtbtn1" data-bs-toggle="modal" data-bs-target="#exampleModal">Comments</button>
             </span>
-            <span  *ngIf="User[0].role == 'freelancer'" class="examplerework">
+            <span *ngIf="User[0].role == 'freelancer'" class="examplerework">
               <button class="btn kkjbdtbtn2" (click)="showViewedWork()">Rework Needed</button>
-            <button class="btn kkjbdtbtn1" data-bs-toggle="modal" data-bs-target="#exampleModal">Comments</button>
-          </span>
+              <button class="btn kkjbdtbtn1" data-bs-toggle="modal" data-bs-target="#exampleModal">Comments</button>
+            </span>
             <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
           </div>
 

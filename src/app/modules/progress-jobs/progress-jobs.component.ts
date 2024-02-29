@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { AppliedUserService } from '../Service/applied-user.service';
+import { AppliedUserService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-progress-jobs',
   templateUrl: './progress-jobs.component.html',
-  styleUrls: ['./progress-jobs.component.css']
+  styleUrls: ['./progress-jobs.component.scss']
 })
 export class ProgressJobsComponent {
 

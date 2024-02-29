@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JobpostService } from '../Service/jobpost.service';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
+import { JobpostService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-view-freelancers',
   templateUrl: './view-freelancers.component.html',
-  styleUrls: ['./view-freelancers.component.css']
+  styleUrls: ['./view-freelancers.component.scss']
 })
 export class ViewFreelancersComponent implements OnInit{
   texct:string='2';

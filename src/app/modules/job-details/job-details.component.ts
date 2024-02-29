@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JobpostService } from '../Service/jobpost.service';
+import { JobpostService } from '../../shared';
 
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
-  styleUrls: ['./job-details.component.css']
+  styleUrls: ['./job-details.component.scss']
 })
 
 export class JobDetailsComponent implements OnInit {

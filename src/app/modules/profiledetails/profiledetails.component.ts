@@ -2,17 +2,12 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { WorkdetailsService } from '../Service/workdetails.service';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { EducationService } from '../Service/education.service';
-import { PaymentService } from '../Service/payment.service';
-import { BankDetailsService } from '../Service/bank-details.service';
-import { UserService } from '../Service/user.service';
+import { BankDetailsService, EducationService, PaymentService, UserService, UserauthenticateService, WorkdetailsService } from '../../shared';
 
 @Component({
   selector: 'app-profiledetails',
   templateUrl: './profiledetails.component.html',
-  styleUrls: ['./profiledetails.component.css']
+  styleUrls: ['./profiledetails.component.scss']
 })
 export class ProfiledetailsComponent implements OnInit {
 

@@ -1,14 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { JobpostService } from '../Service/jobpost.service';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { JobPost } from '../Service/jobpost.model';
+import { JobPost, JobpostService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-job-post',
   templateUrl: './job-post.component.html',
-  styleUrls: ['./job-post.component.css']
+  styleUrls: ['./job-post.component.scss']
 })
 export class JobPostComponent implements OnInit {
   form: any;
@@ -37,7 +35,7 @@ export class JobPostComponent implements OnInit {
   selectedRate: string = 'Hourly';
   Rate: string = 'INR';
   User = [{ firstName: '', lastName: '', email :'', userId: '' }];
-  jobpostingData = new JobPost();
+  jobpostingData : JobPost= {} as JobPost;
   selectedOption: string  = this.jobpostingData.complexity;
   ngOnInit(): void {
     this.getUserData();
@@ -45,7 +43,7 @@ export class JobPostComponent implements OnInit {
 
   constructor(   public fb: FormBuilder,public datePipe: DatePipe,
     public jobservice:JobpostService,
-    public userservice:UserauthenticateService ) {
+    public userservice:UserauthenticateService) {
       this.calculateCharactersLeft();
   }
 
@@ -241,7 +239,7 @@ export class JobPostComponent implements OnInit {
     this.jobservice.postJobPost(formData).subscribe(
       response => {
         console.log('Comment added successfully:', response);
-        this.jobpostingData = new JobPost();
+        this.jobpostingData = {} as JobPost;
       },
       error => {
         console.error('Error adding comment:', error);

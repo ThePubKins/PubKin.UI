@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
+import { UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-setup-profile',
   templateUrl: './setup-profile.component.html',
-  styleUrls: ['./setup-profile.component.css']
+  styleUrls: ['./setup-profile.component.scss']
 })
 export class SetupProfileComponent {
   contentName: string | null = null;

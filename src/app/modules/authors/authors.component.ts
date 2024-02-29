@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthprofileComponent } from '../authprofile/authprofile.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UserauthenticateService } from '../Service/userauthenticate.service';
-import { JobpostService } from '../Service/jobpost.service';
+import { JobpostService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-authors',
   templateUrl: './authors.component.html',
-  styleUrls: ['./authors.component.css']
+  styleUrls: ['./authors.component.scss']
 })
 export class AuthorsComponent implements OnInit {
   Author: any;
