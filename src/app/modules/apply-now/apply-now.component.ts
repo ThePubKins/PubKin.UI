@@ -65,6 +65,7 @@ export class ApplyNowComponent {
       }
     );
   }
+  
   uploadedFileName: string = '';
   selectedFiles: string[] = [];
   onFileSelected(event: any) {

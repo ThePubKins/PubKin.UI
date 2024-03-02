@@ -90,7 +90,7 @@ export class CommentsComponent implements OnInit {
   submitForm() {
     const formData = new FormData();
     formData.append('id', this.commentData.id);
-    formData.append('comments', this.commentData.comments);
+    formData.append('Comments', this.commentData.Comments);
     formData.append('createdBy', this.commentData.createdBy);
     if (this.commentData.File) {
       formData.append('File', this.commentData.File);

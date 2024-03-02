@@ -18,6 +18,7 @@ import { CommentsComponent } from './modules/comments/comments.component';
 import { ProgressJobsComponent } from './modules/progress-jobs/progress-jobs.component';
 import { FootertagComponent } from './modules/footertag/footertag.component';
 
+
 export const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'signup/:action', component: SignupComponent },
@@ -28,7 +29,7 @@ export const routes: Routes = [
   { path: 'freelancers/job-details/:id', component: JobDetailsComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'authors/on-going-jobs', component: AuthorsOngoingJobsComponent },
-  { path: 'post-a-job', component: JobPostComponent },
+  {path: "post-a-job",component:JobPostComponent},
   { path: 'freelancers/apply-now/:id', component: ApplyNowComponent },
   { path: "setting", component: ProfilesettingComponent },
   { path: 'authors/accept-a-request', component: ViewFreelancersComponent },
@@ -39,3 +40,4 @@ export const routes: Routes = [
   { path: 'freelancers/progress', component: ProgressJobsComponent },
   { path: 'WhatisPubKin?', component: FootertagComponent }
 ];
+
