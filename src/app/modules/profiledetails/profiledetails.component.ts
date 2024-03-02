@@ -145,9 +145,8 @@ export class ProfiledetailsComponent implements OnInit {
   }
 
   FetchDetails() {
-    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
-    this.portfolioService.portfolioFormData.dateCreated = this.dateFormatted;
-    this.portfolioService.portfolioFormData.userId = this.User[0].userId;
+    this.portfolioService.portfolioFormData.userId = this.User[0].id;
+    this.portfolioService.portfolioFormData.createdBy = this.User[0].firstName;
   }
 
   //Pricing and Skillset Details Submit to Post Function

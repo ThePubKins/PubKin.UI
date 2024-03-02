@@ -18,7 +18,7 @@ export class AppliedUserService {
   }
 
   postApply(applyData: any) {
-    return this.apiService.post(`$AppliedUser`, applyData)
+    return this.apiService.post(`AppliedUser`, applyData)
   }
 
   getAppliedUserById(applyuserId: string): Observable<any> {

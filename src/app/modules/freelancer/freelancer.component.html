@@ -39,7 +39,7 @@
           </div>
           <!-- <div class="container" *ngFor="let JobPost of filteredJobPosts | jobsearch : searchTerm "  (click)="showJobDetails(JobPost.JobUniqueId)"> -->
           <!-- <div class="container" *ngFor="let JobPost of (isFilterApplied ? filteredJobPosts : JobPosts) | jobsearch : searchTerm "  > -->
-          <div class="container jobcontents" *ngFor="let jobPosts of paginatedDataList | jobsearch: searchTerm">
+          <div class="container jobcontents" *ngFor="let jobPosts of jobPosts | jobsearch: searchTerm">
             <div class="row">
               <div class="col-12">
                 <div class="row">

@@ -17,9 +17,10 @@ export class JobpostService {
     return this.apiService.get(`JobPost`);
   }
 
-  postJob(jobData: any) {
-    return this.apiService.post(`$JobPost`, jobData)
+  postJobPost(jobData: any): Observable<any> {
+    return this.apiService.post(`JobPost`, jobData);
   }
+  
 
   getJobPostById(jobId: string): Observable<any> {
     return this.apiService.get(`JobPost/${jobId}`);

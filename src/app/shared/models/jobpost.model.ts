@@ -7,6 +7,7 @@ export interface jobPost {
   jobUniqueId : string;
   userId: string;
   jobTitle: string;
+  status : string;
   description: string;
   skillSet: string;
   complexity: string;
@@ -21,5 +22,5 @@ export interface jobPost {
   userEmail :	string;
   service: string;
   attachUrl:string;
-  attachFile:string;
+  attachFile:File;
 }

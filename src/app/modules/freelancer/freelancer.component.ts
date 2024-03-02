@@ -19,8 +19,8 @@ export class FreelancerComponent implements OnInit {
   itemsPerPage: number = 10;
   currentPage: number = 1;
   UserData : any;
-  jobPosts : any;
   showMore : boolean = false;
+  jobPosts: import("d:/Sathish Software/ThePubkins/ThePubkins-UI/src/app/shared/index").jobPost[];
 
   constructor(public dialog: MatDialog,
     public userservice : UserauthenticateService,
