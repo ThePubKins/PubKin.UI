@@ -1,12 +1,12 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule, importProvidersFrom } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 
+import { HomeComponent } from './home';
 import { SignupComponent } from './signup/signup.component';
-import { HomeComponent } from './home/home.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms'
 import { NgxSplideModule } from 'ngx-splide';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
@@ -37,7 +37,8 @@ import { AuthorsOngoingJobsComponent } from './authors-ongoing-jobs/authors-ongo
 import { RoleComponent } from './role/role.component';
 import { OngoingJobsComponent } from './ongoing-jobs/ongoing-jobs.component';
 import { FootertagComponent } from './footertag/footertag.component';
-import { JobsearchPipe } from '../shared';
+import { FileSizePipe, JobsearchPipe, LinkifyPipe, TruncatePipe } from '../shared';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -69,10 +70,16 @@ import { JobsearchPipe } from '../shared';
         OngoingJobsComponent,
         FootertagComponent
     ],
-    providers: [],
+    providers: [DatePipe],
     imports: [
+        CommonModule, 
+        RouterLink, 
+        RouterLinkActive, 
+        RouterOutlet,
+        LinkifyPipe,
         JobsearchPipe,
-        CommonModule,
+        TruncatePipe,
+        FileSizePipe,
         SocialLoginModule,
         ReactiveFormsModule,
         NgxSplideModule,
