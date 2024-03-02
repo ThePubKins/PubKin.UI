@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthprofileComponent } from '../authprofile/authprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { JobpostService, UserauthenticateService } from '../../shared';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authors',
@@ -17,8 +18,10 @@ export class AuthorsComponent implements OnInit {
 
   constructor(
     public jobService:JobpostService, public userService : UserauthenticateService,
-    public dialog: MatDialog) { }
-
+    public dialog: MatDialog,public router: Router) { }
+    navigateToProfile(action: string): void {
+      this.router.navigate(['/post-a-job', action]);
+    }
   ngOnInit(): void {
     this.getUserData();
     this.openDeliveryDialog();
@@ -26,7 +29,7 @@ export class AuthorsComponent implements OnInit {
   }
 
   getAllPosts() { 
-    this.jobService.getJobPosts().subscribe(data => {  
+    this.jobService.getJobPost().subscribe(data => {  
       this.Posts = data;
     })
   }

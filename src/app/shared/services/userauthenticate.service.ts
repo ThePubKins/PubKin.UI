@@ -1,28 +1,26 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-declare var google: any;
+import { ApiService } from '../../core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserauthenticateService {
 
-  private registerUrl = environment.userurl;
+  constructor(private apiService: ApiService,private router: Router) {
+    this.currentUser = this.userSource.asObservable();
+   }
+
   private userEmail: string | null = null;
   currentUser: Observable<any>
   private userSource = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.currentUser = this.userSource.asObservable();
-  }
 
   login(email: string, password: string): Observable<any> {
     const credentials = { email, password };
-    return this.http.post<any>(`${this.registerUrl}/generateToken`, credentials).pipe(
+    return this.apiService.post(`User/login`, credentials).pipe(
       tap((response) => {
         this.userEmail = email;
         sessionStorage.setItem('email', email);
@@ -34,7 +32,7 @@ export class UserauthenticateService {
 
   userregister(firstName: string, lastName: string, email: string, password: string, role: string): Observable<any> {
     const credentials = { firstName, lastName, email, password, role };
-    return this.http.post<any>(`${this.registerUrl}/register`, credentials).pipe(
+    return this.apiService.post(`User/register`, credentials).pipe(
       tap((response) => {
         this.userEmail = email;
         sessionStorage.setItem('email', email);
@@ -45,7 +43,7 @@ export class UserauthenticateService {
   }
 
   getUserData(): Observable<any> {
-    return this.http.get<any>(`${this.registerUrl}`)
+    return this.apiService.get(`User`);
   }
 
   setUser(user: any): void {
@@ -78,7 +76,6 @@ export class UserauthenticateService {
   }
 
   signOut() {
-    google.accounts.id.disableAutoSelect();
     this.router.navigate(['/']);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { UserauthenticateService } from '../../shared/services/userauthenticate.service';
 
 
 @Component({
@@ -8,34 +9,37 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 })
 export class AuthprofileComponent implements OnInit {
   Author: any;
-  
+  User: any;
+  imageUrl: string = 'https://localhost:7172';
+  constructor(public userauthservice:UserauthenticateService) {}
   ngOnInit(): void {
-  }
-
-  @ViewChild('fileInput')
-  fileInput!: ElementRef;
-
-  openFileExplorer() {
-    this.fileInput.nativeElement.click();
-  }
-
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    console.log('Selected File:', selectedFile);
-  }
-
-  getProgressBarColor(): string {
-    const progress = this.Author[0].ProfilePercentage;
-
-    if (progress < 40) {
-      return '#666666'; 
-    } else if (progress < 80) {
-      return '#333333'; 
-    } 
-    else {
-      return '#000000';
-    }
-  }
-
+    this.getUserData();
+   }
+ 
+   //get the Current User Details
+   getUserData() {
+     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
+     if (Email) {
+       this.userauthservice.getUserData().subscribe({
+         next: (data) => {
+           this.User = data?.filter((User: any) => User.email === Email);
+         },
+       });
+     } else {
+     }
+   }
+ 
+   getProgressBarColor(): string {
+     const progress = this.User[0].ProfilePercentage;
+ 
+     if (progress < 40) {
+       return '#666666'; 
+     } else if (progress < 80) {
+       return '#333333'; 
+     } 
+     else {
+       return '#000000';
+     }
+   }
 
 }

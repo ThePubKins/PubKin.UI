@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AppliedUserService, BankDetailsService, MessageUserService, UserauthenticateService } from '../../shared';
+import { AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-accept-request',
@@ -23,15 +23,7 @@ export class AcceptRequestComponent implements OnInit {
   imageUrl: string = 'https://localhost:7172';
 
   constructor(private route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
-    public applyService: AppliedUserService, public userService: MessageUserService) { }
-
-  loadUsers(): void {
-    this.userService.getAllUsers().subscribe(users => {
-      this.users = users.filter(u => u.uid !== this.user?.uid);
-      console.log(this.users)
-    });
-  }
-
+    public applyService: AppliedUserService) { }
 
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
@@ -72,21 +64,9 @@ export class AcceptRequestComponent implements OnInit {
     });
   }
 
-  acceptFriendRequest(senderId: string): void {
-    const userId = this.user.uid;
-    this.userService.acceptFriendRequest(userId, senderId)
-      .then(() => {
-        console.log('Friend request accepted successfully');
-        this.loadUsers();
-      })
-      .catch(error => {
-        console.error('Error accepting friend request:', error);
-      });
-  }
-
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
-    if (form.valid && this.bankservice.bankformData) {
+    if (form.valid && this.bankservice.bankData) {
       this.bankservice.postBankDetails(form.value).subscribe();
     }
   }

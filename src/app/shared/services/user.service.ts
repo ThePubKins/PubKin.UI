@@ -1,32 +1,39 @@
 import { Injectable } from '@angular/core';
-import { Users } from '../models/user.model';
-import { HttpClient } from '@angular/common/http';
+import { Users, role } from '../models';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { ApiService } from '../../core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(public http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
-  readonly Userurl = environment.userurl;
   userData: Users = {} as Users;
-  users: Users[] = [];
+  list: Users[] = [];
 
-  postGovtDetails(formData: any): Observable<any> {
-    return this.http.post(`${this.Userurl}/Govt-Id-Details`, formData);
+  putGovtDetails(userData: any): Observable<any> {
+    return this.apiService.put(`User/govt-id-details`, userData);
   }
 
-  postExperienceDetails(formData: any): Observable<any> {
-    return this.http.post(`${this.Userurl}/Experience-Details`, formData);
+  putPersonalData(userData: any): Observable<any> {
+    return this.apiService.put(`User/personalData`, userData);
   }
+
+  putFreelancingDetails(userData: any): Observable<any> {
+    return this.apiService.put(`User/freelancing`, userData);
+  }
+
+  putProfile(userData: any): Observable<any> {
+    return this.apiService.put(`User/profilepicture`, userData);
+  }
+
+  putProfilePercentage(formData: any): Observable<any> {
+    return this.apiService.put(`User/profilepercentage`, formData);
+  }
+
   getmail(): Observable<Users[]> {
-    return this.http.get<Users[]>(`${this.Userurl}/emails`)
-  }
-
-  percentage(formData: any): Observable<any> {
-    return this.http.post(`${this.Userurl}/profilepercentage`, formData);
+    return this.apiService.get(`User/emails`);
   }
 }

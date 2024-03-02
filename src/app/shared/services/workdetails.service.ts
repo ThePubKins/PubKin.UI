@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
-import  { Observable , of} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { workdetails } from '../models';
+import  { workdetails } from '../models';
+import { Observable } from 'rxjs';
+import { ApiService } from '../../core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WorkdetailsService {
 
-  constructor(public http:HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
-  private workDetailsUrl = environment.environmentUrl;
-  formData : workdetails = {} as workdetails;
-  list : workdetails[] = [];
+  workData: workdetails = {} as workdetails;
+  list: workdetails[] = [];
 
-  postWorkDetails(formData: any): Observable<any> {
-    return this.http.post(`${this.workDetailsUrl}/WorkDetails`, formData);
+  postWorkDetails(workData: any): Observable<any> {
+    return this.apiService.post(`WorkDetails`, workData);
   }
 
   getWorkDetails() : Observable<workdetails[]> { 
-    return this.http.get<workdetails[]>(`${this.workDetailsUrl}/WorkDetails`)
+    return this.apiService.get(`WorkDetails`)
   }
 }

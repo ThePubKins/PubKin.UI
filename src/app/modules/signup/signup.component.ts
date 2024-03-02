@@ -76,7 +76,7 @@ export class SignupComponent implements OnInit {
 
   role() {
     this.usercredential.role = this.selectedRole;
-    this.roleService.formData.roleName = this.selectedRole;
+    this.roleService.roleData.roleName = this.selectedRole;
   }
 
   // loginButton() {
@@ -132,7 +132,7 @@ export class SignupComponent implements OnInit {
 
   //Submit to the Role
   onSubmitRole(form: NgForm) {
-    if (form.valid && this.roleService.formData) {
+    if (form.valid && this.roleService.roleData) {
       this.roleService.postRole(form.value).subscribe();
     }
   }
@@ -284,11 +284,11 @@ export class SignupComponent implements OnInit {
   //Role Include the input
   freelancerrole() {
     this.usercredential.role = 'freelancer';
-    this.roleService.formData.roleName = 'freelancer';
+    this.roleService.roleData.roleName = 'freelancer';
   }
 
   authorrole() {
     this.usercredential.role = 'author';
-    this.roleService.formData.roleName = 'author';
+    this.roleService.roleData.roleName = 'author';
   }
 }

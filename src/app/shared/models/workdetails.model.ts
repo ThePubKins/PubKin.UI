@@ -1,5 +1,10 @@
 export interface workdetails  { 
-  workId : string;
+  id: string;
+  createdBy: string;
+  dateCreated: string;
+  lastModifiedBy: string;
+  dateLastModified: string;
+  UserId : string ;
   jobTitle:  string;
   companyName : string;
   companyLocation : string;
@@ -8,5 +13,4 @@ export interface workdetails  {
   completedMonth : string;
   completedYear : string;
   description: string;  
-  UserId : string ;
 }

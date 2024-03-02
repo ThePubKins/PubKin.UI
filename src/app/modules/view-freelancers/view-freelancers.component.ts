@@ -41,7 +41,7 @@ export class ViewFreelancersComponent implements OnInit{
   }
 
   getJobPosts() {
-    this.jobService.getJobPosts().subscribe((result: any) => {
+    this.jobService.getJobPost().subscribe((result: any) => {
       this.JobPosts = result;
     });
   }

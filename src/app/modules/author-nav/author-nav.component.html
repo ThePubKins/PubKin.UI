@@ -50,7 +50,8 @@
       <div class="col-2">
         <div class=" rriconalign1">
           <img src="./assets/bell.png" class="rrbellimg1">
-          <img src="./assets/peerson.png" (click)="hidden()" class="rrpersonimg1">
+          <img (click)="hidden()" style="width: 51px;"  *ngIf="!User[0].profileUrl"  src="../assets/peerson.png">
+          <img (click)="hidden()"  style="width: 51px;"  *ngIf="User[0].profileUrl"  src={{User[0].profileUrl}}>
         </div>
       </div>
     </div>
@@ -62,11 +63,14 @@
   <div class="prset " *ngIf="hide">
   <div class="kkcrd12">
     <div class="kkcrd text-center">
-        <div class="kkprimg">
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" class="rounded-circle kkprimg img-responsive">
-        </div>
+      <div class="kkprimg" *ngIf="User[0].profileUrl">
+        <img src="{{  User[0].profileUrl }}" class="rounded-circle kkprimg img-responsive">
+    </div>
+    <div class="kkprimg" *ngIf="!User[0].profileUrl">
+        <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
+    </div>
         <div class="kkpname">
-            <p class="kkprname">Sathish Kumar</p>
+            <p class="kkprname">{{User[0].firstName}} {{User[0].lastName}}</p>
             <p class="kkprname1">Author</p>
             <p class="kkprbtn1" routerLink="/setting/wallet"><span class="material-symbols-outlined">
               account_balance_wallet
@@ -74,7 +78,7 @@
               <p class="kkprbtn1" routerLink="/setting/billing-&-payment"><span class="material-symbols-outlined">
                 settings
                 </span>Settings</p>
-            <button type="button"class="btn kkprbtn2">Logout <span class="material-symbols-outlined">
+            <button type="button"class="btn kkprbtn2" routerLink="/home">Logout <span class="material-symbols-outlined">
                 logout
                 </span></button>
         </div>

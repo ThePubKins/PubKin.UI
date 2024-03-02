@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { JobPost, JobpostService, UserauthenticateService } from '../../shared';
+import { jobPost, JobpostService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-job-post',
@@ -35,7 +35,7 @@ export class JobPostComponent implements OnInit {
   selectedRate: string = 'Hourly';
   Rate: string = 'INR';
   User = [{ firstName: '', lastName: '', email :'', userId: '' }];
-  jobpostingData : JobPost= {} as JobPost;
+  jobpostingData : jobPost= {} as jobPost;
   selectedOption: string  = this.jobpostingData.complexity;
   ngOnInit(): void {
     this.getUserData();
@@ -50,7 +50,7 @@ export class JobPostComponent implements OnInit {
    //Submit to Job Post  Function
    onSubmitJob(form: NgForm) {
     if (form.valid && this.jobpostingData) {
-      this.jobservice.postJobPost(form.value).subscribe();
+      this.jobservice.postJob(form.value).subscribe();
     }
   }
 
@@ -203,7 +203,7 @@ export class JobPostComponent implements OnInit {
 
   fetchdetails() { 
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');  
-    this.jobpostingData.createDate = this.dateFormatted;
+    this.jobpostingData.dateCreated = this.dateFormatted;
     this.jobpostingData.userEmail= this.User[0].email;
     this.jobpostingData.userId= this.User[0].userId;
     this.jobpostingData.createdBy = `${this.User[0].firstName} ${this.User[0].lastName}`;
@@ -213,9 +213,9 @@ export class JobPostComponent implements OnInit {
   }
   submitForm() {
     const formData = new FormData();
-    formData.append('CreateDate', this.jobpostingData.createDate);
+    formData.append('CreateDate', this.jobpostingData.dateCreated);
     formData.append('createdBy', this.jobpostingData.createdBy);
-    formData.append('jobId', this.jobpostingData.jobId);
+    formData.append('jobId', this.jobpostingData.id);
     formData.append('jobUniqueId', this.jobpostingData.jobUniqueId);
     formData.append('userId', this.jobpostingData.userId);
     formData.append('jobTitle', this.jobpostingData.jobTitle);
@@ -236,10 +236,10 @@ export class JobPostComponent implements OnInit {
       formData.append('attachFile', this.jobpostingData.attachFile);
     }
 
-    this.jobservice.postJobPost(formData).subscribe(
+    this.jobservice.postJob(formData).subscribe(
       response => {
         console.log('Comment added successfully:', response);
-        this.jobpostingData = {} as JobPost;
+        this.jobpostingData = {} as jobPost;
       },
       error => {
         console.error('Error adding comment:', error);

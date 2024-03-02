@@ -1,29 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { jobPost } from '../models';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { JobPost } from '../models';
+import { ApiService } from '../../core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobpostService {
 
-  constructor(private http: HttpClient) { }
-  readonly jobUrl = environment.environmentUrl;
-  jobData: JobPost = {} as JobPost;
-  list: JobPost[] = [];
+  constructor(private apiService: ApiService) { }
 
-  getJobPosts(): Observable<JobPost[]> {
-    return this.http.get<JobPost[]>(`${this.jobUrl}/JobPost`);
+  jobData: jobPost = {} as jobPost;
+  list: jobPost[] = [];
+
+  getJobPost(): Observable<jobPost[]> {
+    return this.apiService.get(`JobPost`);
   }
 
-  postJobPost(jobData: any) {
-    return this.http.post(`${this.jobUrl}/JobPost`, jobData)
+  postJob(jobData: any) {
+    return this.apiService.post(`$JobPost`, jobData)
   }
 
-  getJobDetails(jobUniqueId: string): Observable<any> {
-    return this.http.get<any>(`${this.jobUrl}/JobPost/${jobUniqueId}`);
+  getJobPostById(jobId: string): Observable<any> {
+    return this.apiService.get(`JobPost/${jobId}`);
   }
-
 }

@@ -1,9 +1,11 @@
-export interface comments{
-  CommentId: string;
-  JobId: string;
+export interface comments {
+  id: string;
+  createdBy: string;
+  dateCreated: string;
+  lastModifiedBy: string;
+  dateLastModified: string;
+  jobId: string;
   Comments: string;
-  CreateDate: string;
-  CreatedBy: string;
-  FileUrl: string;
-  File : string;
+  fileUrl: string;
+  File: string;
 }

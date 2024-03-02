@@ -14,15 +14,14 @@ export class AppliedUserService {
   list: applied_user[] = [];
 
   getAppliedUsers(): Observable<applied_user[]> {
-    return this.apiService.get(`api/AppliedFreelancer/AppliedUser`);
+    return this.apiService.get(`AppliedUser`);
   }
 
   postApply(applyData: any) {
-    return this.apiService.post(`$api/AppliedFreelancer/AppliedUser`, applyData)
+    return this.apiService.post(`$AppliedUser`, applyData)
   }
 
-  getAppliedUserById(jobId: string): Observable<any> {
-    return this.apiService.get(`api/AppliedFreelancer/AppliedUser/${jobId}`);
+  getAppliedUserById(applyuserId: string): Observable<any> {
+    return this.apiService.get(`AppliedUser/${applyuserId}`);
   }
-
 }

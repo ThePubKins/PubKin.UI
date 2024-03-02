@@ -32,6 +32,4 @@ export class SetupProfileComponent {
     } else {
     }
   }
-
-
 }

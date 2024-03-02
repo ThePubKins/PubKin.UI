@@ -17,26 +17,27 @@ import { OngoingJobsComponent } from './modules/ongoing-jobs/ongoing-jobs.compon
 import { CommentsComponent } from './modules/comments/comments.component';
 import { ProgressJobsComponent } from './modules/progress-jobs/progress-jobs.component';
 import { FootertagComponent } from './modules/footertag/footertag.component';
-import { AuthGuard } from './core';
+
 
 export const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'signup/: action', component: SignupComponent },
+  { path: 'signup/:action', component: SignupComponent },
   { path: 'freelancers', component: FreelancerComponent },
   { path: 'role', component: RoleComponent },
-  { path: 'profile/: contentName', component: ProfiledetailsComponent },
-  { path: 'setting/: name', component: ProfilesettingComponent },
-  { path: 'freelancers/job-details/: id', component: JobDetailsComponent },
+  { path: 'profile/:contentName', component: ProfiledetailsComponent },
+  { path: 'setting/:name', component: ProfilesettingComponent },
+  { path: 'freelancers/job-details/:id', component: JobDetailsComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'authors/on-going-jobs', component: AuthorsOngoingJobsComponent },
-  { path: 'post-a-job', component: JobPostComponent },
-  { path: 'freelancers/apply-now/: id', component: ApplyNowComponent },
+  {path: "post-a-job",component:JobPostComponent},
+  { path: 'freelancers/apply-now/:id', component: ApplyNowComponent },
   { path: "setting", component: ProfilesettingComponent },
   { path: 'authors/accept-a-request', component: ViewFreelancersComponent },
-  { path: 'authors/accept-a-request/pick-now/: JobId', component: AcceptRequestComponent },
+  { path: 'authors/accept-a-request/pick-now/:JobId', component: AcceptRequestComponent },
   { path: 'freelancers/applied-jobs', component: AppliedJobsComponent },
   { path: 'freelancers/completed', component: OngoingJobsComponent },
-  { path: 'comments/: id', component: CommentsComponent },
+  { path: 'comments/:id', component: CommentsComponent },
   { path: 'freelancers/progress', component: ProgressJobsComponent },
   { path: 'WhatisPubKin?', component: FootertagComponent }
 ];
+

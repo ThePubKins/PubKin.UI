@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { comments } from '../models';
+import { ApiService } from '../../core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
 
-  constructor(public http: HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
-  private commentUrl = environment.environmentUrl;
-  commentformData: comments = {} as comments;
+  commentData: comments = {} as comments;
   list: comments[] = [];
 
-  postComment(commentformData: any): Observable<any> {
-    return this.http.post(`${this.commentUrl}/Comment`, commentformData);
+  getComments(): Observable<comments[]> {
+    return this.apiService.get(`Comment`); 
   }
 
-  getcomment(): Observable<comments[]> {
-    return this.http.get<comments[]>(`${this.commentUrl}/Comment`)
+  postComments(commentData: any) {
+    return this.apiService.post(`$Comment`, commentData)
   }
 }

@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
-import  { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { pricingSkillDetails } from '../models';
+import { Observable } from 'rxjs';
+import { ApiService } from '../../core';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  constructor(public http:HttpClient) { }
+  constructor(private apiService: ApiService) { }
 
-  private pricingSkillUrl = environment.environmentUrl;
-  SkillData : pricingSkillDetails = {} as pricingSkillDetails;
-  list : pricingSkillDetails[] = [];
+  pricingSkillData: pricingSkillDetails = {} as pricingSkillDetails;
+  list: pricingSkillDetails[] = [];
 
-  postPricingSkill(SkillData: any): Observable<any> {
-    return this.http.post(`${this.pricingSkillUrl}/PricingSkill`, SkillData);
+  postSkillPricing(pricingSkillData: any): Observable<any> {
+    return this.apiService.post(`PricingSkill`, pricingSkillData);
   }
-
-  getPricingSkill() : Observable<pricingSkillDetails[]> { 
-    return this.http.get<pricingSkillDetails[]>(`${this.pricingSkillUrl}/PricingSkill`)
+  
+  getSkillPricing(): Observable<pricingSkillDetails[]> {
+    return this.apiService.get(`PricingSkill`);
   }
 }

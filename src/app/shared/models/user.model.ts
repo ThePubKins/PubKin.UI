@@ -1,5 +1,10 @@
 export interface Users  {
-   userId : string;
+   id: string;
+   createdBy: string;
+   dateCreated: string;
+   lastModifiedBy: string;
+   dateLastModified: string;
+   userName : string;
    firstName : string;
    lastName:string; 
    email : string;
@@ -12,6 +17,7 @@ export interface Users  {
    attachment : string;
    phoneNumber : string;
    role : string;
+   roleId : string;
    experience : string;
    description : string;
    Details:string;

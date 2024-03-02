@@ -14,7 +14,8 @@ export class LinkifyPipe implements PipeTransform {
   }
 }
 @Pipe({
-  name: 'truncate'
+  name: 'truncate',
+  standalone: true
 })
 export class TruncatePipe implements PipeTransform {
   transform(value: string, limit: number): string {
@@ -25,7 +26,8 @@ export class TruncatePipe implements PipeTransform {
   }
 }
 @Pipe({
-  name: 'fileSize'
+  name: 'fileSize',
+  standalone: true
 })
 export class FileSizePipe implements PipeTransform {
   transform(size: number): string {

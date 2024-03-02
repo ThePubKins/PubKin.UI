@@ -150,7 +150,7 @@ export class FreelancerComponent implements OnInit {
 
   //Get the all Job Posts
   getAllJobPosts() {
-    this.jobService.getJobPosts().subscribe((posts) => {
+    this.jobService.getJobPost().subscribe((posts) => {
       this.jobPosts = posts;
     });
   }

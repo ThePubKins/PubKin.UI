@@ -152,7 +152,7 @@
                 </svg>
               </div>
             </div>
-            <input type="text" id="FileId" name="FileId" [(ngModel)]="workfileData.FileId">
+            <input type="text" id="id" name="id" [(ngModel)]="workfileData.id">
             <input type="text" id="FileUrl" name="FileUrl" [(ngModel)]="workfileData.FileUrl" ngModel #ngModel=""
               required>
             <input type="text" id="fileName" name="fileName" [(ngModel)]="workfileData.FileName">
@@ -208,10 +208,10 @@
       <form novalidate autocomplete="off" (ngSubmit)="submitForm()">
         <div class="pad1">
           <div class="modal-hed">
-            <input type="hidden" id="createDate" name="createDate" [(ngModel)]="commentData.CreateDate">
-            <input type="hidden" id="commentId" name="commentId" [(ngModel)]="commentData.CommentId">
-            <input type="hidden" id="userID" name="userID" [(ngModel)]="commentData.CreatedBy">
-            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="commentData.JobId">
+            <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="commentData.dateCreated">
+            <input type="hidden" id="id" name="id" [(ngModel)]="commentData.id">
+            <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="commentData.createdBy">
+            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="commentData.jobId">
             <p class="c2" id="exampleModalLabel"><b>Please add the reason of rework</b></p>
           </div>
           <textarea (click)="showDetails();" class="form-control h1" aria-label="With textarea" name="comments"

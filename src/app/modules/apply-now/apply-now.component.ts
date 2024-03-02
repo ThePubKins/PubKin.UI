@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import { AppliedUserService, CommentsService, FirebaseAuthService, JobpostService, MessageUserService, UserauthenticateService, applied_user } from '../../shared';
+import { AppliedUserService, CommentsService, FirebaseAuthService, JobpostService, UserauthenticateService, applied_user } from '../../shared';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class ApplyNowComponent {
 
   jobpostData: applied_user = {} as applied_user;
   filesdetails: any;
-  constructor(public datePipe: DatePipe, private route: ActivatedRoute, private messageUserService: MessageUserService,
+  constructor(public datePipe: DatePipe, private route: ActivatedRoute,
     public authService: FirebaseAuthService, public userservice: UserauthenticateService, public commentservice: CommentsService,
     public appliedservice: AppliedUserService, public jobservice: JobpostService) { this.calculateCharactersLeft(); }
 
@@ -40,7 +40,7 @@ export class ApplyNowComponent {
   }
   submitForm() {
     const formData = new FormData();
-    formData.append('createDate', this.jobpostData.createDate);
+    formData.append('dateCreated', this.jobpostData.dateCreated);
     formData.append('userId', this.jobpostData.userId);
     formData.append('jobId', this.jobpostData.jobId);
     formData.append('skillSet', this.jobpostData.skillSet);
@@ -48,12 +48,12 @@ export class ApplyNowComponent {
     formData.append('biddingRate', this.jobpostData.biddingRate.toString());
     formData.append('userEmail', this.jobpostData.userEmail);
     formData.append('status', this.jobpostData.status);
-    formData.append('applyId', this.jobpostData.applyId);
+    formData.append('id', this.jobpostData.id);
     formData.append('jobTitle', this.jobpostData.jobTitle);
     formData.append('jobDescription', this.jobpostData.jobDescription);
     formData.append('rate', this.jobpostData.rate);
     formData.append('postBy', this.jobpostData.postBy);
-    formData.append('FileUrl', this.jobpostData.FileUrl);
+    formData.append('fileUrl', this.jobpostData.fileUrl);
     if (this.jobpostData.AttachFile) {
       formData.append('AttachFile', this.jobpostData.AttachFile);
     }
@@ -65,6 +65,7 @@ export class ApplyNowComponent {
       }
     );
   }
+  
   uploadedFileName: string = '';
   selectedFiles: string[] = [];
   onFileSelected(event: any) {
@@ -101,7 +102,7 @@ export class ApplyNowComponent {
 
   AppliedJobs() {
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
-    this.jobpostData.createDate = this.dateFormatted;
+    this.jobpostData.dateCreated = this.dateFormatted;
     this.jobpostData.status = 'applied';
     this.jobpostData.jobTitle = this.JobPost.jobTitle;
     this.jobpostData.userId = this.UserData[0].userId;
@@ -158,10 +159,10 @@ export class ApplyNowComponent {
   getPosts() {
     this.route.params.subscribe((params) => {
       const jobUniqueId = params['id'];
-      this.jobservice.getJobDetails(jobUniqueId).subscribe(
+      this.jobservice.getJobPostById(jobUniqueId).subscribe(
         (details) => {
           this.JobPost = details;
-          this.jobservice.jobData.jobId = this.JobPost[0].jobUniqueId;
+          this.jobservice.jobData.id = this.JobPost[0].jobUniqueId;
           this.JobPost.forEach((JobPost: any) => {
             if (JobPost.skillSet) {
               JobPost.skillSet = JobPost.skillSet.split(',');
@@ -174,20 +175,6 @@ export class ApplyNowComponent {
   onChatTargetClick(targetUser: any): void {
     this.chatTarget = targetUser;
   }
-
-  sendFriendRequest(targetUser: any): void {
-    const senderId = this.user.uid;
-    console.log(senderId);
-    const receiverId = targetUser.uid;
-    this.messageUserService.sendFriendRequest(senderId, receiverId)
-      .then(() => {
-        console.log('Friend request sent successfully');
-      })
-      .catch((error: any) => {
-        console.error('Error sending friend request:', error);
-      });
-  }
-
 
   checkbox1: boolean = false;
   checkbox2: boolean = false;

@@ -1,11 +1,15 @@
-export interface educationdetails {  
-    usersId : string;
-    educationId : string;
-    courseName : string;
-    boardUniversity : string;
-    yearOfCompletion : string;
-    yearOfJoining:	string;
-    department : string;
-    instituteName : string;
-    description : string;
+export interface educationdetails {
+    id: string;
+    createdBy: string;
+    dateCreated: string;
+    lastModifiedBy: string;
+    dateLastModified: string;
+    usersId: string;
+    courseName: string;
+    boardUniversity: string;
+    yearOfCompletion: string;
+    yearOfJoining: string;
+    department: string;
+    instituteName: string;
+    description: string;
 }

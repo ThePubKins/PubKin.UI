@@ -1,8 +1,8 @@
 <!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
     <form novalidate autocomplete="off" #jobPostfrom="ngForm" (ngSubmit)="submitForm()" >
-    <input type="hidden" id="createDate" name="createDate" [value]="currentDate"
-    [(ngModel)]="jobpostingData.createDate">
-    <input type="hidden" id="jobId" name="jobId"  [(ngModel)]="jobpostingData.jobId">
+    <input type="hidden" id="dateCreated" name="dateCreated" [value]="currentDate"
+    [(ngModel)]="jobpostingData.dateCreated">
+    <input type="hidden" id="id" name="id"  [(ngModel)]="jobpostingData.id">
     <input type="hidden" id="userId" name="userId" [(ngModel)]="jobpostingData.userId">
     <input type="hidden" id="JobUniqueId" name="JobUniqueId" [(ngModel)]="jobpostingData.jobUniqueId">
     <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobpostingData.createdBy">

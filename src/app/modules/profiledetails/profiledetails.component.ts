@@ -2,7 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { BankDetailsService, EducationService, PaymentService, UserService, UserauthenticateService, WorkdetailsService } from '../../shared';
+import { BankDetailsService, EducationService, PortfolioService, PaymentService, UserService, UserauthenticateService, WorkdetailsService, portfolio } from '../../shared';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profiledetails',
@@ -10,7 +11,6 @@ import { BankDetailsService, EducationService, PaymentService, UserService, User
   styleUrls: ['./profiledetails.component.scss']
 })
 export class ProfiledetailsComponent implements OnInit {
-
   contentName: string;
   selectedRate: string = 'Hourly';
   currentUser: Observable<any>;
@@ -18,7 +18,7 @@ export class ProfiledetailsComponent implements OnInit {
   freelancers: any;
   authors: any;
   Freelancers: any[] = [
-    { SimpleDesc: '', MediumDesc: '', ComplexDesc: '' } // Initialize as needed
+    { SimpleDesc: '', MediumDesc: '', ComplexDesc: '' } 
   ];
   Freelancer: any;
   GoNext: string = "button1";
@@ -33,17 +33,26 @@ export class ProfiledetailsComponent implements OnInit {
   charactersLeft1: number;
   SkillSet: string = '';
   hidetext = false;
+  //new
   User: any;
   workDetail: any;
   educationDetail: any;
   priceSkills: any;
   bankDetails: any;
+  portfolios: any
+  uploadedFileName: string = '';
+  selectedFiles: string[] = [];
+  dateFormatted: any;
+  hideprofileclose: boolean = false;
+  currentDate: any = new Date();
 
   constructor(private route: ActivatedRoute,
     public userauthservice: UserauthenticateService,
     public userservice: UserService,
+    public portfolioService: PortfolioService,
     public educationservice: EducationService,
     public workservice: WorkdetailsService,
+    public datePipe: DatePipe,
     public priceService: PaymentService,
     public bankservice: BankDetailsService) {
     this.calculateCharactersLeft('SimpleDesc');
@@ -56,7 +65,7 @@ export class ProfiledetailsComponent implements OnInit {
       this.contentName = params['contentName'];
     });
     this.getUserData(); this.getWorkingDetails(); this.getBankDetails();
-    this.getEducationDetails(); this.getPaymentDetails();
+    this.getEducationDetails(); this.getPaymentDetails(); this.getPortfolioDetails();
   }
 
   @ViewChild('submitbutton') submitbutton: ElementRef;
@@ -69,60 +78,118 @@ export class ProfiledetailsComponent implements OnInit {
     this.idbutton.nativeElement.click();
   }
 
+  //Avatar for profile
+  images = [
+    { img_url: '/assets/animoji.png' },
+    { img_url: '/assets/animoji-13.png' },
+    { img_url: '/assets/animoji-14.png' },
+    { img_url: '/assets/animoji-15.png' },
+    { img_url: '/assets/animoji-16.png' },
+    { img_url: '/assets/animoji-19.png' },
+    { img_url: '/assets/animoji-20.png' },
+    { img_url: '/assets/animoji-21.png' },
+    { img_url: '/assets/animoji-22.png' },
+    { img_url: '/assets/animoji-23.png' },
+    { img_url: '/assets/animoji-24.png' },
+    { img_url: '/assets/animoji-25.png' },
+    { img_url: '/assets/animoji-1.png' },
+    { img_url: '/assets/animoji-2.png' },
+    { img_url: '/assets/animoji-3.png' },
+    { img_url: '/assets/animoji-4.png' },
+    { img_url: '/assets/animoji-5.png' },
+    { img_url: '/assets/animoji-6.png' },
+    { img_url: '/assets/animoji-9.png' },
+    { img_url: '/assets/animoji-10.png' },
+    { img_url: '/assets/animoji-11.png' },
+    { img_url: '/assets/animoji-12.png' },
+    { img_url: '/assets/animoji-17.png' },
+    { img_url: '/assets/animoji-18.png' }
+  ]
+
+  closeProfile() {
+    this.hideprofileclose = true
+  }
+
+  selectedImage: string;
+
+  selectImage(image: any) {
+    this.selectedImage = image.img_url;
+  }
+
+  selectedImage2: string;
+  saveChanges() {
+    this.selectedImage2 = this.selectedImage
+    this.userservice.userData.ProfileUrl = this.selectedImage2;
+
+  }
+
   //Work Submit to Post Function
   onSubmitWork(form: NgForm) {
-    if (form.valid && this.workservice.formData) {
+    if (form.valid && this.workservice.workData) {
       this.workservice.postWorkDetails(form.value).subscribe();
     }
   }
-  
-  onSubmitpercentage(form: NgForm) {
-    if (form.valid && this.userservice.userData) {
-      this.userservice.percentage(form.value).subscribe();
-    }
-  }
-
-  increseGovtIdpercentage(){
-    this.User[0].govtIdDetails ="Added";
-  }
-
-  increseWorkpercentage(){
-    this.User[0].workingDetails = "Added";  
-  }
-
-  incresePortpercentage(){
-    this.User[0].portfolioDetails = "Added";  
-  }
-  increseEducationpercentage(){
-    this.User[0].educationDetails = "Added";  
-  }
-
-  incresedetailspercentage(){
-    this.User[0].details = "Added";  
-  }
-  incresebankingpercentage(){
-    this.User[0].bankingDetails = "Added";  
-  }
-
 
   //Education Details Submit to Post Function
   onSubmitEducation(form: NgForm) {
-    if (form.valid && this.educationservice.formData) {
+    if (form.valid && this.educationservice.educationData) {
       this.educationservice.postEducation(form.value).subscribe();
     }
   }
 
+  //PortFolio Details Submit to Post Function
+  onSubmitPortfolio(form: NgForm) {
+    if (form.valid && this.portfolioService.portfolioFormData) {
+      this.portfolioService.postPortfolios(form.value).subscribe();
+    }
+  }
+
+  FetchDetails() {
+    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
+    this.portfolioService.portfolioFormData.dateCreated = this.dateFormatted;
+    this.portfolioService.portfolioFormData.userId = this.User[0].userId;
+  }
 
   //Pricing and Skillset Details Submit to Post Function
   onSubmitPrice(form: NgForm) {
-    if (form.valid && this.priceService.SkillData) {
-      this.priceService.postPricingSkill(form.value).subscribe();
+    if (form.valid && this.priceService.pricingSkillData) {
+      this.priceService.postSkillPricing(form.value).subscribe();
     }
+  }
+
+  // Profile Percentage Submit to Post Function
+  onSubmitpercentage(form: NgForm) {
+    if (form.valid && this.userservice.userData) {
+      this.userservice.putProfilePercentage(form.value).subscribe();
+    }
+  }
+
+  increaseGovtPercentage() {
+    this.User[0].govtIdDetails = "Added";
+  }
+
+  increseWorkPercentage() {
+    this.User[0].workingDetails = "Added";
+  }
+
+  incresePortfolioPercentage() {
+    this.User[0].portfolioDetails = "Added";
+  }
+  increseEducationPercentage() {
+    this.User[0].educationDetails = "Added";
+  }
+
+  increseDetailsPercentage() {
+    this.User[0].details = "Added";
+  }
+
+  increseBankPercentage() {
+    this.User[0].bankingDetails = "Added";
   }
 
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
-    if (form.valid && this.bankservice.bankformData) {
+    if (form.valid && this.bankservice.bankData) {
       this.bankservice.postBankDetails(form.value).subscribe();
     }
   }
@@ -130,14 +197,28 @@ export class ProfiledetailsComponent implements OnInit {
   //GovtID Details Submit to Post Function
   onSubmitGovtIdDetails(form: NgForm) {
     if (form.valid && this.userservice.userData) {
-      this.userservice.postGovtDetails(form.value).subscribe();
+      this.userservice.putGovtDetails(form.value).subscribe();
     }
   }
 
+  //Profile  Details Submit to Post Function
+  onSubmitProfile(form: NgForm) {
+    if (form.valid && this.userservice.userData) {
+      this.userservice.putProfile(form.value).subscribe();
+    }
+  }
+
+    //PersonalData Details Submit to Post Function
+    onSubmitPersonal(form: NgForm) {
+      if (form.valid && this.userservice.userData) {
+        this.userservice.putPersonalData(form.value).subscribe();
+      }
+    }
+    
   //Experience Details Submit to Post Function
   onSubmitExperienceDetails(form: NgForm) {
     if (form.valid && this.userservice.userData) {
-      this.userservice.postExperienceDetails(form.value).subscribe();
+      this.userservice.putFreelancingDetails(form.value).subscribe();
     }
   }
 
@@ -168,9 +249,16 @@ export class ProfiledetailsComponent implements OnInit {
     })
   }
 
+  //get the Current User Portfolio details
+  getPortfolioDetails() {
+    this.portfolioService.getPortfolios().subscribe(data => {
+      this.portfolios = data;
+    })
+  }
+
   //Get the Current User Payment details
   getPaymentDetails() {
-    this.priceService.getPricingSkill().subscribe(data => {
+    this.priceService.getSkillPricing().subscribe(data => {
       this.priceSkills = data;
     })
   }
@@ -229,13 +317,15 @@ export class ProfiledetailsComponent implements OnInit {
   addSkill(skill: string): void {
     if (!this.selectedSkills.includes(skill)) {
       this.selectedSkills.push(skill);
-      // this.services.formData.SkillSet = this.selectedSkills.join(', ');
+      this.User[0].skillSet = this.selectedSkills.join(', ');
     }
   }
 
   removeSkill(index: number): void {
     this.selectedSkills.splice(index, 1);
   }
+
+
   Rates: boolean = false
 
   hideRates() {

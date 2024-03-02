@@ -2,14 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-4 text-center">
-                <img class="pimg"  src="../assets/Frame 82.png" alt="Profile Completion in Pubkin">
+                <img class="pimg"  *ngIf="User[0].profileUrl"  src={{imageUrl}}{{User[0].profileUrl}}>
+                <img class="pimg"  *ngIf="!User[0].profileUrl"  src="../assets/Frame 82.png">
                 <p class="prohead">Profile Image</p>
                 
-<button class="probtn btn" (click)="openFileExplorer()">
+                <button class="probtn btn" mat-dialog-close routerLink="/profile/choose-your-picutre-now">
     <img src="../assets/upload share_.png" alt="Upload">Upload Image
   </button>
-  
-  <input type="file" #fileInput style="display:none" (change)="onFileSelected($event)">
                 <p class="com">10% complete</p>
                 <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar pgrssbar" style="width: 10%"></div>
