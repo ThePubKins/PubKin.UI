@@ -71,6 +71,7 @@ export class ProfiledetailsComponent implements OnInit {
   @ViewChild('submitbutton') submitbutton: ElementRef;
   @ViewChild('idbutton') idbutton: ElementRef;
   @ViewChild('increasebutton') increasebutton: ElementRef;
+  
   profilesubmit() {
     this.submitbutton.nativeElement.click();
   }

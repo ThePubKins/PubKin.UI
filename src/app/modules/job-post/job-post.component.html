@@ -1,41 +1,41 @@
 <!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
-<form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="onSubmitJob(jobPostfrom)">
-    <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
-    <input type="text" id="createdBy" name="createdBy" [(ngModel)]="jobservice.jobData.createdBy">
-    <input type="text" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
-    <input type="text" id="userId" name="userId" [(ngModel)]="jobservice.jobData.userId">
-    <input type="text" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobservice.jobData.jobUniqueId">
-    <input type="text" id="createdBy" name="createdBy" [(ngModel)]="jobservice.jobData.createdBy">
-    <input type="text" id="userEmail" name="userEmail" [(ngModel)]="jobservice.jobData.userEmail">
-    <input type="text" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
+<form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
+    <input type="hidden" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
+    <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
+    <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobservice.jobData.createdBy">
+    <input type="hidden" id="userId" name="userId" [(ngModel)]="jobservice.jobData.userId">
+    <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobservice.jobData.jobUniqueId">
+    <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobservice.jobData.userEmail">
+    <input type="hidden" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
         [(ngModel)]="jobservice.jobData.service" required>
-    <input type="text" [value]="selectedSkills.join(', ')" ngModel name="skillSet" #skillSet="ngModel"
+    <input type="hidden" [value]="selectedSkills.join(', ')" ngModel name="skillSet" #skillSet="ngModel"
         [(ngModel)]="jobservice.jobData.skillSet" />
-    <input type="text" [(ngModel)]="selectedOption" [value]="selectedOption" required name="complexity"
+    <input type="hidden" [(ngModel)]="selectedOption" [value]="selectedOption" required name="complexity"
         #complexity="ngModel" [(ngModel)]="jobservice.jobData.complexity">
-    <input type="text" id="projectStartDate" name="projectStartDate" [(ngModel)]="jobservice.jobData.projectStartDate">
-    <input type="text" ngModel [value]="jobservice.jobData.projectEndDate" name="projectEndDate" #projectEndDate="ngModel"
+    <input type="hidden" id="projectStartDate" name="projectStartDate" [(ngModel)]="jobservice.jobData.projectStartDate">
+    <input type="hidden" ngModel [value]="jobservice.jobData.projectEndDate" name="projectEndDate" #projectEndDate="ngModel"
         [(ngModel)]="jobservice.jobData.projectEndDate">
-    <input type="text" [(ngModel)]="skillset" [value]="skillset" name="experience" #experience="ngModel"
+    <input type="hidden" [(ngModel)]="skillset" [value]="skillset" name="experience" #experience="ngModel"
         [(ngModel)]="jobservice.jobData.experience">
-    <input type="text" name="durationOfProject" [value]="jobservice.jobData.durationOfProject" #durationOfProject="ngModel"
+    <input type="hidden" name="durationOfProject" [value]="jobservice.jobData.durationOfProject" #durationOfProject="ngModel"
         [(ngModel)]="jobservice.jobData.durationOfProject">
-    <input type="text" name="fromBudget" [value]="jobservice.jobData.fromBudget" #fromBudget="ngModel"
+    <input type="hidden" name="fromBudget" [value]="jobservice.jobData.fromBudget" #fromBudget="ngModel"
         [(ngModel)]="jobservice.jobData.fromBudget">
-    <input type="text" name="currency" [value]="jobservice.jobData.currency" #currency="ngModel"
+    <input type="hidden" name="currency" [value]="jobservice.jobData.currency" #currency="ngModel"
         [(ngModel)]="jobservice.jobData.currency">
-    <input type="text" name="toBudget" [value]="jobservice.jobData.toBudget" #toBudget="ngModel"
+    <input type="hidden" name="toBudget" [value]="jobservice.jobData.toBudget" #toBudget="ngModel"
         [(ngModel)]="jobservice.jobData.toBudget">
-    <input type="text" name="rateBasis" [value]="jobservice.jobData.rateBasis" #rateBasis="ngModel"
+    <input type="hidden" name="rateBasis" [value]="jobservice.jobData.rateBasis" #rateBasis="ngModel"
         [(ngModel)]="jobservice.jobData.rateBasis">
-    <input type="text" name="jobTitle" [value]="jobservice.jobData.jobTitle" #jobTitle="ngModel"
+    <input type="hidden" name="jobTitle" [value]="jobservice.jobData.jobTitle" #jobTitle="ngModel"
         [(ngModel)]="jobservice.jobData.jobTitle">
-    <input type="text" name="description" [value]="jobservice.jobData.description" #description="ngModel"
+    <input type="hidden" name="description" [value]="jobservice.jobData.description" #description="ngModel"
         [(ngModel)]="jobservice.jobData.description">
-        <input type="text" id="status" name="status" [(ngModel)]="jobservice.jobData.status">
-    <!-- <input type="text" id="attachUrl" name="attachUrl" [(ngModel)]="jobservice.jobData.attachUrl">
-    <input type="text" id="attachFile" name="attachFile" [(ngModel)]="jobservice.jobData.attachFile"> -->
-    <button class="" #firstButton type="submit">Submit</button>
+        <input type="hidden" id="status" name="status" [(ngModel)]="jobservice.jobData.status">
+    <input type="hidden" id="attachUrl" name="attachUrl" [(ngModel)]="jobservice.jobData.attachUrl">
+    <input type="hidden" id="attachFile" name="attachFile" [(ngModel)]="jobservice.jobData.attachFile">
+    <input type="hidden" id="fileName" name="fileName" [(ngModel)]="jobservice.jobData.fileName">
+    <button class="d-none" #firstButton type="submit">Submit</button>
 </form>
 
 
@@ -357,7 +357,7 @@
         <p class="att">Add Attachment related to project (Optional)</p>
         <label class="up">
             <!-- <input  class="d-none" type="file" (change)="onFileSelected($event)"/> -->
-            <input #fileInput type="file" class="d-none" id="file" name="file" (change)="onFileSelected($event)"
+            <input #fileInput type="file" class="d-none" id="attachfile" name="attachfile" (change)="onFileSelected($event)"
                 required>
             <span *ngIf="!uploadedFileName"> Drag or&nbsp;</span> <span class="up1">{{ uploadedFileName ?
                 uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
@@ -580,7 +580,7 @@
             <div class="col-5">
                 <button class="next" (click)="goodbye();" routerLink="/authors">Post a Job</button>
             </div>
-            <div class="col-1">
+            <div class="col-1"> 
             </div>
         </div>
     </div>

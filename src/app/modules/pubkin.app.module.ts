@@ -37,6 +37,7 @@ import { AuthorsOngoingJobsComponent } from './authors-ongoing-jobs/authors-ongo
 import { RoleComponent } from './role/role.component';
 import { OngoingJobsComponent } from './ongoing-jobs/ongoing-jobs.component';
 import { FootertagComponent } from './footertag/footertag.component';
+import { PaymentComponent } from './payment/payment.component';
 import { FileSizePipe, JobsearchPipe, LinkifyPipe, TruncatePipe } from '../shared';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
@@ -46,6 +47,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
         HomeComponent,
         FreelancerComponent,
         FreeprofileComponent,
+        PaymentComponent,
         CommentsComponent,
         ProfiledetailsComponent,
         JobDetailsComponent,

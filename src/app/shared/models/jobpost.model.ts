@@ -1,4 +1,4 @@
-export interface jobPost {
+export interface jobpost {
   id: string;
   createdBy: string;
   dateCreated: string;
@@ -22,5 +22,6 @@ export interface jobPost {
   userEmail :	string;
   service: string;
   attachUrl:string;
-  attachFile:File;
+  attachFile:string;
+  fileName : string;
 }
