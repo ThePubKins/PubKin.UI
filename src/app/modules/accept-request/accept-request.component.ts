@@ -9,20 +9,19 @@ import { AppliedUserService, BankDetailsService, UserauthenticateService } from 
   styleUrls: ['./accept-request.component.scss']
 })
 export class AcceptRequestComponent implements OnInit {
-  Applies: any[] = [];
+  Applies: any;
   Hire: any;
-  selectedJobPostId: string | null = null;
+  selectedJobPostId: any;
   user: any;
   users: any[] = [];
   chatTarget: any;
   payment: number = 0;
-  selectedJobPost: any;
   selectedhire: any;
   selectedrequest: any;
   User: any;
   imageUrl: string = 'https://localhost:7172';
 
-  constructor(private route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
+  constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
     public applyService: AppliedUserService) { }
 
   getUserData() {
@@ -54,7 +53,7 @@ export class AcceptRequestComponent implements OnInit {
 
   getApplies(jobId: string): void {
     this.applyService.getAppliedUserById(jobId).subscribe({
-      next: (result: any) => {
+     next: (result: any) => {
         this.Applies = result;
         console.log(this.Applies);
       },
@@ -62,7 +61,16 @@ export class AcceptRequestComponent implements OnInit {
         console.error('Error fetching applied users:', err);
       }
     });
+
+}
+
   }
+  onSubmitStatus(form: NgForm) {
+    if (form.valid && this.applyService.applyData) {
+      this.applyService.PutStatus(form.value).subscribe();
+    }
+  }
+
 
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
@@ -70,14 +78,10 @@ export class AcceptRequestComponent implements OnInit {
       this.bankservice.postBankDetails(form.value).subscribe();
     }
   }
-
-  // showthedetails() { 
-  //   this.service.formData.ApplyId = this.selectedhire.ApplyId;
-  // }
-
-  // AcceptRequest() { 
-  //   this.service.formData.isProgressJobs = true;
-  // }
+  
+  ChangeStatus() { 
+    this.Applies.status = "offers"
+  }
 
   selectedButton: string = "button1";
 
@@ -92,8 +96,19 @@ export class AcceptRequestComponent implements OnInit {
   ApplyModal(Apply: any) {
     this.selectedhire = Apply;
   }
+  maranchupo=false;
 
-
+  thirumpivvaa(){
+    this.maranchupo = !this.maranchupo
+  }
+  // toggleIcons(Applies: any): void {
+  //   this.Applies.forEach((Applies: { showIcons: boolean; }) => {
+  //       if (Applies !== Applies) {
+  //         Applies.showIcons = false;
+  //       }
+  //   });
+  //   Applies.showIcons = !Applies.showIcons;
+  // }
   calculateFees() {
     const platformFeePercentage = 2;
     const taxesPercentage = 6;

@@ -18,10 +18,13 @@ export class AppliedUserService {
   }
 
   postApply(applyData: any) {
-    return this.apiService.post(`$AppliedUser`, applyData)
+    return this.apiService.post(`AppliedUser`, applyData)
   }
 
-  getAppliedUserById(applyuserId: string): Observable<any> {
-    return this.apiService.get(`AppliedUser/${applyuserId}`);
+  getAppliedUserById(jobId: string): Observable<any> {
+    return this.apiService.get(`AppliedUser/${jobId}`);
+  }
+  PutStatus(applyData: any): Observable<any> {
+    return this.apiService.put(`AppliedUser/status`,applyData);
   }
 }

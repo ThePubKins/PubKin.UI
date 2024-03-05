@@ -11,7 +11,7 @@
               Jobs
             </button>
             <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item ddis">Post a New Job</a></li><br>
+              <li><a class="dropdown-item ddis" routerLink="/post-a-job">Post a New Job</a></li><br>
               <li><a class="dropdown-item ddis" routerLink="/authors/accept-a-request">Job Postings</a></li><br>
               <li><a class="dropdown-item ddis" routerLink="/authors/on-going-jobs">Ongoing Job</a></li><br>
               <li><a class="dropdown-item ddis">Completed Job</a></li><br>
@@ -70,7 +70,7 @@
         <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
     </div>
         <div class="kkpname">
-            <p class="kkprname">{{User[0].firstName}} {{User[0].lastName}}</p>
+            <p class="kkprname">{{User[0].firstName}}</p>
             <p class="kkprname1">Author</p>
             <p class="kkprbtn1" routerLink="/setting/wallet"><span class="material-symbols-outlined">
               account_balance_wallet

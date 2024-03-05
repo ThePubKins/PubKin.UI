@@ -45,7 +45,23 @@ export class SignupComponent implements OnInit {
   @ViewChild('loginbutton') loginbutton: ElementRef;
 
 
+  hide1: boolean = true;
+  hidePassword: boolean = true;
 
+  togglePasswordVisibility(): void {
+    this.hide1 = !this.hide1; // Toggle visibility status
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    if (passwordInput) {
+      passwordInput.type = this.hide1 ? 'password' : 'text'; // Change input type based on visibility status
+    }
+  }
+  togglePasswordVisibility1(): void {
+    this.hidePassword = !this.hidePassword; // Toggle visibility status
+  }
+  // Function to change icon based on password visibility
+  getVisibilityIcon(): string {
+    return this.hide1 ? 'visibility_off' : 'visibility';
+  }
 
   fireSignupButton() {
     this.firebutton.nativeElement.click();
@@ -266,9 +282,9 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  //  name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
-  //  userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
-  //  Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
+   name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
+   userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
+   Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
 
   checkbox1: boolean = false;
   checkbox2: boolean = false;

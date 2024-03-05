@@ -6,7 +6,7 @@
         <div class="col-8 kkjbdetli1" >
           <div>
             <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br>{{jobPost.description | slice:0:43 }}... </p>
-            <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.createDate)}}</p>
+            <!-- <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.createDate)}}</p> -->
             <hr class="kkline1">
           </div>
           <div class="kkjbdiv2">
@@ -41,7 +41,8 @@
           <div class="kkjbdiv4">
             <p class="kkskilltxt">Skills Needed</p>
             <div class="container kksilltagcn" *ngFor="let jobPost of jobPost">
-              <div class="kksilltag" *ngFor="let skill of jobPost.skillSet">{{skill}}</div>
+              <div class="kksilltag" *ngFor="let skill of jobPost.skillSet">{{skill.trim()}}</div>
+       
             </div>
           </div>
           <br>

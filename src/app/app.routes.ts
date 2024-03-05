@@ -17,10 +17,12 @@ import { OngoingJobsComponent } from './modules/ongoing-jobs/ongoing-jobs.compon
 import { CommentsComponent } from './modules/comments/comments.component';
 import { ProgressJobsComponent } from './modules/progress-jobs/progress-jobs.component';
 import { FootertagComponent } from './modules/footertag/footertag.component';
+import { PaymentComponent } from './modules/payment/payment.component';
+import { CompletedComponent } from './modules/completed/completed.component';
 
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: '', component: HomeComponent },
   { path: 'signup/:action', component: SignupComponent },
   { path: 'freelancers', component: FreelancerComponent },
   { path: 'role', component: RoleComponent },
@@ -29,15 +31,17 @@ export const routes: Routes = [
   { path: 'freelancers/job-details/:id', component: JobDetailsComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'authors/on-going-jobs', component: AuthorsOngoingJobsComponent },
-  {path: "post-a-job",component:JobPostComponent},
+  { path: 'post-a-job', component: JobPostComponent },
   { path: 'freelancers/apply-now/:id', component: ApplyNowComponent },
   { path: "setting", component: ProfilesettingComponent },
   { path: 'authors/accept-a-request', component: ViewFreelancersComponent },
   { path: 'authors/accept-a-request/pick-now/:JobId', component: AcceptRequestComponent },
   { path: 'freelancers/applied-jobs', component: AppliedJobsComponent },
-  { path: 'freelancers/completed', component: OngoingJobsComponent },
+  { path: 'freelancers/completed', component: CompletedComponent },
   { path: 'comments/:id', component: CommentsComponent },
-  { path: 'freelancers/progress', component: ProgressJobsComponent },
-  { path: 'WhatisPubKin?', component: FootertagComponent }
+  { path: 'freelancers/job-offers', component: ProgressJobsComponent },
+  { path: 'freelancers/ongoing-jobs', component: OngoingJobsComponent },
+  { path: 'WhatisPubKin?', component: FootertagComponent },
+  { path: 'payment', component: PaymentComponent }
 ];
 

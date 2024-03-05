@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { CommentsService, JobpostService, UserauthenticateService, WorkfileService, comments, workfile } from '../../shared';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -87,24 +88,28 @@ export class CommentsComponent implements OnInit {
     } else {
     }
   }
-  submitForm() {
-    const formData = new FormData();
-    formData.append('id', this.commentData.id);
-    formData.append('Comments', this.commentData.Comments);
-    formData.append('createdBy', this.commentData.createdBy);
-    if (this.commentData.File) {
-      formData.append('File', this.commentData.File);
-    }
+  submitForm(form : NgForm) {
+    // const formData = new FormData();
+    // formData.append('id', this.commentData.id);
+    // formData.append('Comments', this.commentData.Comments);
+    // formData.append('createdBy', this.commentData.createdBy);
+    // if (this.commentData.File) {
+    //   formData.append('File', this.commentData.File);
+    // }
 
-    this.commentservice.postComments(formData).subscribe(
-      response => {
-        console.log('Comment added successfully:', response);
-        this.commentData = {} as comments;
-      },
-      error => {
-        console.error('Error adding comment:', error);
-      }
-    );
+    // this.commentservice.postComments(formData).subscribe(
+    //   response => {
+    //     console.log('Comment added successfully:', response);
+    //     this.commentData = {} as comments;
+    //   },
+    //   error => {
+    //     console.error('Error adding comment:', error);
+    //   }
+    // );
+
+    if (form.valid && this.commentservice.commentData) {
+      this.commentservice.postComments(form.value).subscribe();
+    }
   }
 
   submitform1() {
@@ -130,14 +135,14 @@ export class CommentsComponent implements OnInit {
     );
   }
 
-
-
   openFileUploadDialog() {
     this.fileInput.nativeElement.click();
   }
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
+    console.log('Selected file:', selectedFile);
     this.selectedFiles.push(selectedFile.name);
+    console.log('Selected files array:', this.selectedFiles);
     this.commentData.File = selectedFile;
     this.workfileData.FileName = selectedFile.name;
   }
@@ -158,9 +163,9 @@ export class CommentsComponent implements OnInit {
 
 
   showDetails() {
-    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
-    this.commentData.dateCreated = this.dateFormatted;
-    this.commentData.jobId = this.jobPost.jobId;
+    // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
+    // this.commentData.dateCreated = this.dateFormatted;
+    this.commentData.jobId = this.jobPost.id;
     this.commentData.createdBy = 'KarthiKeyan';
   }
 

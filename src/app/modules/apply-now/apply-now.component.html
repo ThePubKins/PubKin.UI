@@ -8,20 +8,21 @@
     </div>
 </div>
 <div class="container" *ngIf="JobPost && success">
-    <form #applyForm="ngForm" (ngSubmit)="submitForm()" novalidate>
-        <input type="hidden" id="id" name="id" [(ngModel)]="jobpostData.id">
-        <input type="hidden" id="jobId" name="jobId" [(ngModel)]="jobpostData.jobId">
-        <input type="hidden" id="userId" name="userId" [(ngModel)]="jobpostData.userId">
-        <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobpostData.dateCreated">
-        <input type="hidden" id="postBy" name="postBy" [(ngModel)]="jobpostData.postBy">
-        <input type="hidden" id="jobTitle" name="jobTitle" [(ngModel)]="jobpostData.jobTitle">
-        <input type="hidden" id="jobDescription" name="jobDescription" [(ngModel)]="jobpostData.jobDescription">
-        <input type="hidden" id="rate" name="rate" [(ngModel)]="jobpostData.rate">
-        <input type="hidden" id="status" name="status" [(ngModel)]="jobpostData.status">
-        <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobpostData.userEmail">
-        <input type="hidden" id="skillSet" name="skillSet" [(ngModel)]="UserData[0].description">
-        <input type="hidden" id="fileUrl" name="fileUrl" [(ngModel)]="jobpostData.fileUrl">
-        <input type="hidden" id="AttachFile" name="AttachFile" [(ngModel)]="jobpostData.AttachFile">
+    <form #applyForm="ngForm" (ngSubmit)="onSubmitApply(applyForm)" novalidate>
+        <input type="hidden" id="id" name="id" [(ngModel)]="appliedservice.applyData.id">
+        <input type="text" id="createdBy" name="createdBy" [(ngModel)]="appliedservice.applyData.createdBy">
+        <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="appliedservice.applyData.dateCreated">
+        <input type="text" id="jobId" name="jobId" [(ngModel)]="appliedservice.applyData.jobId">
+        <input type="text" id="userId" name="userId" [(ngModel)]="appliedservice.applyData.userId">
+        <input type="text" id="postBy" name="postBy" [(ngModel)]="appliedservice.applyData.postBy">
+        <input type="text" id="jobTitle" name="jobTitle" [(ngModel)]="appliedservice.applyData.jobTitle">
+        <input type="text" id="jobDescription" name="jobDescription" [(ngModel)]="appliedservice.applyData.jobDescription">
+        <input type="text" id="rate" name="rate" [(ngModel)]="appliedservice.applyData.rate">
+        <input type="text" id="status" name="status" [(ngModel)]="appliedservice.applyData.status">
+        <input type="text" id="userEmail" name="userEmail" [(ngModel)]="appliedservice.applyData.userEmail">
+        <input type="text" id="skillSet" name="skillSet" [(ngModel)]="UserData[0].description">
+        <input type="text" id="fileUrl" name="fileUrl" [(ngModel)]="appliedservice.applyData.fileUrl">
+        <input type="text" id="AttachFile" name="AttachFile" [(ngModel)]="appliedservice.applyData.AttachFile">
         <p class="phead">Submit a Proposal</p>
         <div class="apbox">
             <div class="container">
@@ -69,7 +70,7 @@
 
             <textarea [(ngModel)]="inputText" (input)="onInputChange()" [disabled]="isTextareaDisabled()"
                 (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter"
-                #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="jobpostData.applyCoverLetter" required
+                #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="appliedservice.applyData.applyCoverLetter" required
                 class="covcont">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea>
             <div class="row">
                 <div class="col-8"></div>
@@ -179,7 +180,7 @@
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
                             <input type="text" class="int" placeholder="400" name="biddingRate" #biddingRate="ngModel"
-                                id="biddingRate" [(ngModel)]="jobpostData.biddingRate" required>
+                                id="biddingRate" [(ngModel)]="appliedservice.applyData.biddingRate" required>
                         </div>
                     </div>
                     <div class="col-1">
@@ -307,7 +308,6 @@
                 <button type="button" class="btn btnfr" data-bs-dismiss="modal"
                 >Agree</button>
             </div>
-
         </div>
     </div>
 </div>

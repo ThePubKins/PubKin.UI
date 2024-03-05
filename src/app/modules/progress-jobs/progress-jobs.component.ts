@@ -40,6 +40,11 @@ export class ProgressJobsComponent {
     }
   }
 
+  
+  anyJobInProgress(): boolean {
+    return this.Applies.some((Apply: { status: string; }) => Apply.status === 'offers');
+  }
+
   getApplyPosts() {
     this.appliedService.getAppliedUsers().subscribe((posts) => {
       this.Applies = posts;

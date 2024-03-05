@@ -19,8 +19,8 @@ export class FreelancerComponent implements OnInit {
   itemsPerPage: number = 10;
   currentPage: number = 1;
   UserData : any;
-  jobPosts : any;
   showMore : boolean = false;
+  Posts: any;
 
   constructor(public dialog: MatDialog,
     public userservice : UserauthenticateService,
@@ -130,34 +130,34 @@ export class FreelancerComponent implements OnInit {
   }
 
   onResetButtonClick() {
-    this.filteredJobPosts = this.jobPosts;
+    this.filteredJobPosts = this.Posts;
     this.isFilterApplied = false;
   }
 
   //User filterJobs pending
   filterJobPosts() {
-    if (this.UserData && this.jobPosts.length > 0) {
+    if (this.UserData && this.  Posts.length > 0) {
       const currentUserSkills = this.UserData.description.split(',').map((description: string) => description.trim().toLowerCase());
-      this.filteredJobPosts = this.jobPosts.filter((jobPosts: { skillSet: string; }) => {
+      this.filteredJobPosts = this.Posts.filter((jobPosts: { skillSet: string; }) => {
         const jobPostSkills = jobPosts.skillSet.split(',').map((skill: string) => skill.trim().toLowerCase());
         const similarityThreshold = 0.5;
         return this.calculateSimilarity(currentUserSkills, jobPostSkills) >= similarityThreshold;
       });
     } else {
-      this.filteredJobPosts = this.jobPosts;
+      this.filteredJobPosts = this.Posts;
     }
   }
 
   //Get the all Job Posts
-  getAllJobPosts() {
-    this.jobService.getJobPost().subscribe((posts) => {
-      this.jobPosts = posts;
-    });
+  getAllJobPosts() { 
+    this.jobService.getJobPost().subscribe(data => {  
+      this.Posts = data;
+    })
   }
 
   //Pagination for JobPosts
   get paginatedDataList(): { value: string; date: string }[] {
-    const dataToPaginate = this.isFilterApplied ? this.filteredJobPosts : this.jobPosts;
+    const dataToPaginate = this.isFilterApplied ? this.filteredJobPosts : this.Posts;
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     return dataToPaginate.slice(startIndex, endIndex);
@@ -191,6 +191,10 @@ export class FreelancerComponent implements OnInit {
   hide1() { 
   this.hide23 = !this.hide23;
   }
+
+  toggleIcons(Posts: any) {
+    Posts.showIcons = !Posts.showIcons;
+}
   
 
   //Posted Timeline
@@ -224,7 +228,5 @@ export class FreelancerComponent implements OnInit {
       return diffYears + ' years ago';
     }
   }
-  
-
 } 
 
