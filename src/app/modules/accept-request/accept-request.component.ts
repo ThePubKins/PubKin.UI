@@ -9,20 +9,19 @@ import { AppliedUserService, BankDetailsService, UserauthenticateService } from 
   styleUrls: ['./accept-request.component.scss']
 })
 export class AcceptRequestComponent implements OnInit {
-  Applies: any[] = [];
+  Applies: any;
   Hire: any;
-  selectedJobPostId: string | null = null;
+  selectedJobPostId: any;
   user: any;
   users: any[] = [];
   chatTarget: any;
   payment: number = 0;
-  selectedJobPost: any;
   selectedhire: any;
   selectedrequest: any;
   User: any;
   imageUrl: string = 'https://localhost:7172';
 
-  constructor(private route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
+  constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
     public applyService: AppliedUserService) { }
 
   getUserData() {
@@ -63,6 +62,11 @@ export class AcceptRequestComponent implements OnInit {
       }
     });
   }
+  onSubmitStatus(form: NgForm) {
+    if (form.valid && this.applyService.applyData) {
+      this.applyService.PutStatus(form.value).subscribe();
+    }
+  }
 
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
@@ -70,14 +74,10 @@ export class AcceptRequestComponent implements OnInit {
       this.bankservice.postBankDetails(form.value).subscribe();
     }
   }
-
-  // showthedetails() { 
-  //   this.service.formData.ApplyId = this.selectedhire.ApplyId;
-  // }
-
-  // AcceptRequest() { 
-  //   this.service.formData.isProgressJobs = true;
-  // }
+  
+  ChangeStatus() { 
+    this.Applies.status = "offers"
+  }
 
   selectedButton: string = "button1";
 

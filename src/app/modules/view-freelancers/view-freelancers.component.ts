@@ -7,16 +7,16 @@ import { JobpostService, UserauthenticateService } from '../../shared';
   templateUrl: './view-freelancers.component.html',
   styleUrls: ['./view-freelancers.component.scss']
 })
-export class ViewFreelancersComponent implements OnInit{
-  texct:string='2';
+export class ViewFreelancersComponent implements OnInit {
+  texct: string = '2';
   Posts: any[];
   JobPostId: string | null;
   Author: any;
   JobPosts: any;
   UserData: any;
- 
-  constructor( public userservice : UserauthenticateService,
-     public jobService:JobpostService, private route: ActivatedRoute) {}
+
+  constructor(public userservice: UserauthenticateService,
+    public jobService: JobpostService, private route: ActivatedRoute) { }
 
   getUserData() {
     const email = this.userservice.getUserEmail() ?? sessionStorage.getItem('email');
@@ -32,17 +32,14 @@ export class ViewFreelancersComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.JobPostId = params.get('JobPostId');
-      this.getJobPosts();
-    });
+    this.getAllPosts();
     this.getUserData();
-  
+
   }
 
-  getJobPosts() {
-    this.jobService.getJobPost().subscribe((result: any) => {
-      this.JobPosts = result;
-    });
+  getAllPosts() { 
+    this.jobService.getJobPost().subscribe(data => {  
+      this.Posts = data;
+    })
   }
 }

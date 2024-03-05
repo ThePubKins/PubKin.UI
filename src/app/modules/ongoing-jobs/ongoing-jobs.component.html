@@ -6,9 +6,11 @@
     <div class="row ">
       <div class="col-12">
         <div class="appliedborder">
-          <!-- *ngIf="Apply.isAppliedJobs === true" -->
+          <div *ngIf="!anyJobInProgress()" class="jobtitle">
+            No jobs in progress are available for you!
+          </div>
           <div *ngFor="let Apply of  Applies;">
-            <div class="row" style="margin-top: 17px;" >
+            <div class="row" style="margin-top: 17px;" *ngIf="Apply.status === 'progress'">
               <div class="col-8">
                 <p class="jobtitle">{{Apply.jobTitle}}</p>
               </div>
@@ -19,7 +21,7 @@
                 <p class="postedname">posted by <span style="color: #A426D1;">{{Apply.postBy}}</span></p>
               </div>
               <div class="col-4">
-                <button class="viewJobbtn" (click)="showJobDetails(Apply.jobId)">View</button>
+                <button class="viewJobbtn" (click)="showJobDetails(Apply.skillSet)">View</button>
               </div>
               <hr class="applyhr">
             </div>

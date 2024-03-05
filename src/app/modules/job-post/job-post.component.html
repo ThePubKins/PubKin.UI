@@ -6,7 +6,7 @@
     <input type="hidden" id="userId" name="userId" [(ngModel)]="jobservice.jobData.userId">
     <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobservice.jobData.jobUniqueId">
     <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobservice.jobData.userEmail">
-    <input type="hidden" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
+    <input type="text" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
         [(ngModel)]="jobservice.jobData.service" required>
     <input type="hidden" [value]="selectedSkills.join(', ')" ngModel name="skillSet" #skillSet="ngModel"
         [(ngModel)]="jobservice.jobData.skillSet" />
