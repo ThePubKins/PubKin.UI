@@ -291,7 +291,19 @@ line-height: normal;
     font-style: normal;
     font-weight: 400;
 }
-
+.int1 {
+    display: inline-flex;
+    padding: 15px 106px 12px 20px;
+    align-items: center;
+    border-radius: 4px;
+    border: 2px solid #CBCBCB;
+    color: #000000;
+    font-family: "League Spartan",sans-serif;
+    font-size: 16px;
+    margin-top: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
 
 .intla{ 
      margin-left: 30px;
@@ -374,6 +386,7 @@ flex-shrink: 0;
 /* /fourth/ */
 
 .ecard  {
+    position: relative;
     width: 596px;
     height: 506px;
     border-radius: 16px;
@@ -455,7 +468,24 @@ font-weight: 600;
 cursor: pointer;
 line-height: normal;
 }
-
+.shhid1{
+    color: #A426D1;
+    font-family: "League Spartan", sans-serif;
+     position: absolute;
+    right: 0px;
+    display: flex;
+    margin-right: 83px;
+    margin-top: 10px;
+}
+.shhid2{
+    color: #A426D1;
+    font-family: "League Spartan", sans-serif;
+    position: absolute;
+    right: 0px;
+    display: flex;
+    margin-right: 530px;
+    margin-top: -36px;
+}
 .cemailbtn  {
     display: inline-flex;
     padding: 14px 24px 14px 24px;

@@ -30,6 +30,14 @@ export class ViewFreelancersComponent implements OnInit {
     } else {
     }
   }
+toggleIcons(post: any): void {
+  this.JobPosts.forEach((jobPost: { showIcons: boolean; }) => {
+      if (jobPost !== post) {
+          jobPost.showIcons = false;
+      }
+  });
+  post.showIcons = !post.showIcons;
+}
 
   ngOnInit() {
     this.getAllPosts();

@@ -1,3 +1,7 @@
+
+$pubmainfont:'League Spartan', sans-serif;
+$pumaincolor:#A426D1;
+
 .kkfrnavbar {
     margin-top: 20px;
 }
@@ -220,14 +224,14 @@
     margin-top: 29px;
     font-weight: 500;
     line-height: 36px;
-    /* 200% */
     float: right;
+    margin-right: 35px;
 }
 
 .sho1 {
     float: right;
     margin-top: 38px;
-    margin-right: 25px;
+    // margin-right: 25px;
 }
 
 .modal-header {
@@ -864,3 +868,71 @@ margin-left: 47px;
 }
 
 
+.EDITDEL{
+    margin-top: 17px;
+    margin-left: -27px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.kkkbtncn{
+    background-color: #A426D1;
+    border: none;
+    color: white;
+    width: 94px;
+    height: 37px;
+    text-align: center;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 18px;
+    padding-top: 8px;
+}
+
+.kkkbtnbk{
+    background-color: #E0E0E0;
+    border: none;
+    color: rgb(8, 8, 8);
+    width: 96px;
+    height: 37px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 32px;
+    padding-top: 8px;
+}
+.kksubbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    // padding-bottom: 25px;
+    margin-top: 20px;
+}
+.c22{
+    font-family: $pubmainfont;
+    font-size: 23px;
+    font-style: normal;
+    line-height: 22px;
+    margin-top: 8px;
+    text-align: center;
+    font-weight: 300;
+}
+
+
+.pad1{
+    padding: 13px 36px 47px 36px;
+}
+
+
+.e1{
+    margin-left: 455px;
+    margin-top: 22px;
+
+
+}
