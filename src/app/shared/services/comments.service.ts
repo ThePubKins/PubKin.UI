@@ -18,6 +18,6 @@ export class CommentsService {
   }
 
   postComments(commentData: any) {
-    return this.apiService.post(`$Comment`, commentData)
+    return this.apiService.post(`Comment`, commentData)
   }
 }

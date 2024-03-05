@@ -61,7 +61,16 @@ export class AcceptRequestComponent implements OnInit {
         console.error('Error fetching applied users:', err);
       }
     });
+
 }
+
+  }
+  onSubmitStatus(form: NgForm) {
+    if (form.valid && this.applyService.applyData) {
+      this.applyService.PutStatus(form.value).subscribe();
+    }
+  }
+
 
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
@@ -69,14 +78,10 @@ export class AcceptRequestComponent implements OnInit {
       this.bankservice.postBankDetails(form.value).subscribe();
     }
   }
-
-  // showthedetails() { 
-  //   this.service.formData.ApplyId = this.selectedhire.ApplyId;
-  // }
-
-  // AcceptRequest() { 
-  //   this.service.formData.isProgressJobs = true;
-  // }
+  
+  ChangeStatus() { 
+    this.Applies.status = "offers"
+  }
 
   selectedButton: string = "button1";
 

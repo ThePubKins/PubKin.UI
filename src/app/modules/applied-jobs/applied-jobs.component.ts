@@ -62,6 +62,10 @@ export class AppliedJobsComponent {
     });
   }
 
+  anyJobInProgress(): boolean {
+    return this.Applies.some((Apply: { status: string; }) => Apply.status === 'applied');
+  }
+
   logout(): void { }
 
   getPostStatus(postDate: string) {

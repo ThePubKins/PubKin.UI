@@ -282,9 +282,9 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  //  name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
-  //  userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
-  //  Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
+   name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
+   userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
+   Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
 
   checkbox1: boolean = false;
   checkbox2: boolean = false;

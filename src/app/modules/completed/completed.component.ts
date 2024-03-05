@@ -36,6 +36,10 @@ export class CompletedComponent {
     this.router.navigate(['/comments', jobUniqueId]);
   }
 
+  anyJobInProgress(): boolean {
+    return this.Applies.some((Apply: { status: string; }) => Apply.status === 'completed');
+  }
+
 
   ngOnInit() {
     this.getUserData(); this.getApplyPosts();
