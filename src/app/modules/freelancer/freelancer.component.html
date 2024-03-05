@@ -82,7 +82,8 @@
       <div class="col-4 kkjbbx1">
         <div class="kkcrtalign">
           <div class="card kkjbprcrd" style=" width: 257px;">
-            <img class="kkcrdimg" src="../assets/laptop.png">
+            <img class="kkcrdimg"  *ngIf="UserData[0].profileUrl"  src={{UserData[0].profileUrl}}>
+            <img class="kkcrdimg"  *ngIf="!UserData[0].profileUrl"  src="../assets/Frame 82.png">
             <p class="kkfrname">{{UserData[0].firstName}}</p>
             <p class="kkfrname1">Freelancers</p>
             <div class="card-body kkcrdbdy">

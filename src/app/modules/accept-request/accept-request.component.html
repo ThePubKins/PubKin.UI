@@ -18,32 +18,56 @@
                     [ngClass]="{'selected': selectedButton === 'button4'}">Messaged</button>
             </div>
         </div>
-
-        <div class="container " style="margin-top: 50px;" *ngIf="Applies && Applies.length > 0">
-            <div class="row deta" *ngFor="let Apply of Applies">
+        <div class="container " style="margin-top: 50px;">
+            <div class="row deta">
                 <div class="col-1">
                     <div class="elli"></div>
                 </div>
                 <div class="col-5">
-                    <p class="fname">{{Apply.userEmail}}</p>
-                    <p class="fsub">{{Apply.skillSet}}</p>
+                    <p class="fname">{{Applies.userEmail}}</p>
+                    <p class="fsub">{{Applies.skillSet}}</p>
                     <!-- <div class="fsub">4 years expierience <span style="margin-left: 26px;" class="fsub">12 jobs
                             completed</span></div> -->
                 </div>
                 <div class="col-2"></div>
                 <div class="col-3">
-                    <p class="bid">Bidding rate : <span class="rate">${{Apply.biddingRate}}/ hour</span></p>
+                    <p class="bid">Bidding rate : <span class="rate">${{Applies.biddingRate}}/ hour</span></p>
                     <button class="msg">Message</button><button  class="hire" data-bs-toggle="modal"
-                        data-bs-target="#hireModal" (click)="ApplyModal(Apply)">Hire</button>
-                    <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Apply)">View
+                        data-bs-target="#hireModal" (click)="ApplyModal(Applies)">Hire</button>
+                    <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Applies)">View
                         Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
                 </div>
                 <div class="col-1">
-                    <img class="sho1" src="../assets/show more.png" alt="">
+                   <div class="col-1">
+                    <img class="sho1"  (click)="thirumpivvaa()"  src="../assets/show more.png" alt="">
+                    <div class="EDITDEL" *ngIf="maranchupo">
+              
+                      <img class="p-2" src="./assets/shortlist.png">
+                      <img class="p-2" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
+          </div>'
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="modal fade" id="deletmodel1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="pad1" >
+        <div class="modal-hed">
+
+          <p class="c22" id="exampleModalLabel5"><b>Do you want delete this job Proposal ?</b></p>
+        </div>
+        <div class="kksubbtn">
+          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
+          <button type="button" class="btn kkkbtncn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!--Cover Letter Modal-->
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

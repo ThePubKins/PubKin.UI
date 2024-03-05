@@ -1,3 +1,5 @@
+$pubmainfont:'League Spartan', sans-serif;
+$pumaincolor:#A426D1;
 .kkfrnavbar{
     margin-top: 20px;
 }
@@ -133,4 +135,73 @@ margin-top: 28px;
 .sub { 
     margin-top: 44px;
     border: 1px solid;
+}
+
+.EDITDEL{
+    margin-top: 35px;
+    margin-left: -20px;
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+.kkkbtncn{
+    background-color: #A426D1;
+    border: none;
+    color: white;
+    width: 94px;
+    height: 37px;
+    text-align: center;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 18px;
+    padding-top: 8px;
+}
+
+.kkkbtnbk{
+    background-color: #E0E0E0;
+    border: none;
+    color: rgb(8, 8, 8);
+    width: 96px;
+    height: 37px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 32px;
+    padding-top: 8px;
+}
+.kksubbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    // padding-bottom: 25px;
+    margin-top: 20px;
+}
+.c22{
+    font-family: $pubmainfont;
+    font-size: 23px;
+    font-style: normal;
+    line-height: 22px;
+    margin-top: 8px;
+    text-align: center;
+    font-weight: 300;
+}
+
+
+.pad1{
+    padding: 13px 36px 47px 36px;
+}
+
+
+.e1{
+    margin-left: 455px;
+    margin-top: 22px;
+
+
 }

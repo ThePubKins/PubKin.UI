@@ -78,7 +78,7 @@ Wallet          </button>
     </div>
     <div class="col-1">
       <img (click)="hidden()" style="width: 51px;"  *ngIf="!User[0].profileUrl"  src="../assets/peerson.png">
-      <img (click)="hidden()"  style="width: 51px;"  *ngIf="User[0].profileUrl"  src={{imageUrl}}{{User[0].profileUrl}}>
+      <img (click)="hidden()"  style="width: 51px;"  *ngIf="User[0].profileUrl"  src={{User[0].profileUrl}}>
     </div>
   </div>
 </div>
@@ -87,13 +87,13 @@ Wallet          </button>
   <div class="kkcrd12">
     <div class="kkcrd text-center">
         <div class="kkprimg" *ngIf="User[0].profileUrl">
-          <img src="{{ imageUrl + User[0].profileUrl }}" class="rounded-circle kkprimg img-responsive">
+          <img src="{{User[0].profileUrl }}" class="rounded-circle kkprimg img-responsive">
       </div>
       <div class="kkprimg" *ngIf="!User[0].profileUrl">
           <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
       </div>
         <div class="kkpname">
-            <p class="kkprname">{{User[0].firstName}} {{User[0].lastName}}</p>
+            <p class="kkprname">{{User[0].firstName}}</p>
             <p class="kkprname1">Freelancer</p>
             <p class="kkprbtn1" routerLink="/setting/wallet" routerLinkActive="active"><span class="material-symbols-outlined">
               account_balance_wallet
