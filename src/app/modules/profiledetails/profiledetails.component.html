@@ -7,8 +7,8 @@
       class="float-end mt-5" routerLink="/authors">
     <img *ngIf="hideprofileclose && User[0].role === 'freelancer'" src="./assets/_x letter_.png" alt="Pubkin"
       class="float-end mt-5" routerLink="/freelancers">
-
   </div>
+
   <!--Profile Picture -->
   <div *ngIf="contentName === 'choose-your-picutre-now'" class="ubbbhb">
     <div class="container">
@@ -35,6 +35,8 @@
       </form>
     </div>
   </div>
+
+
   <!-- Employment History -->
   <div *ngIf="contentName === 'employment-history'">
     <div>
@@ -58,7 +60,7 @@
 
 
           <div class="col-4" *ngFor="let workDetails of workDetail">
-            <div class="rrpubcomcenalign1" *ngIf="workDetails.userId == User[0].userId">
+            <div class="rrpubcomcenalign1" *ngIf="workDetails.userId == User[0].id">
               <div class="kkempcrd">
 
                 <div class=" text02">{{workDetails.jobTitle }}</div>
@@ -92,8 +94,10 @@
             </div>
             <div class="modal-body">
               <form #workdetailsform="ngForm" novalidate autocomplete="off" (ngSubmit)="onSubmitWork(workdetailsform)">
-                <input type="hidden" id="UserId" name="UserId" [(ngModel)]="User[0].userId">
-                <input type="hidden" id="id" name="id" [(ngModel)]="workservice.workData.id">
+                <input type="text" id="id" name="id" [(ngModel)]="workservice.workData.id">
+                <input type="text" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
+                <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="workservice.workData.dateCreated">
+                <input type="text" id="UserId" name="UserId" [(ngModel)]="User[0].id">
                 <div>
                   <p class="kkeduhdtg kkeduhdtg1">Job Title*</p>
                   <input class="kkin1" type="text" placeholder="eg: Job Title" ngModel id="JobTitle" name="JobTitle"
@@ -261,7 +265,7 @@
         </div>
         <div class="col-4" *ngFor="let portfolio of portfolios">
           <div class="rrpubcomcenalign1">
-            <div class="kkempcrd" *ngIf="portfolio.userId == User[0].userId">
+            <div class="kkempcrd" *ngIf="portfolio.userId == User[0].id">
               <div class=" text02">{{portfolio.projectTitle}}</div>
               <div class=" text03">{{portfolio.projectLink}}</div>
               <div class=" text05">{{portfolio.description | slice:0:170}}</div>
@@ -280,22 +284,22 @@
       <div class="modal-dialog modal-lg  modal-dialog-centered">
         <form #portfolioForm="ngForm" (ngSubmit)="onSubmitPortfolio(portfolioForm)">
           <div class="modal-content kkcmodel">
-            <input type="text" id="id" name="id"
-              [(ngModel)]="portfolioService.portfolioFormData.id">
-            <input type="text" id="dateCreated" name="dateCreated"
+            <input type="hidden" id="id" name="id" [(ngModel)]="portfolioService.portfolioFormData.id">
+            <input type="hidden" id="createdBy" name="createdBy"
+              [(ngModel)]="portfolioService.portfolioFormData.createdBy">
+            <input type="hidden" id="dateCreated" name="dateCreated"
               [(ngModel)]="portfolioService.portfolioFormData.dateCreated">
-            <input type="text" id="userId" name="userId" [(ngModel)]="portfolioService.portfolioFormData.userId">
-            <!-- Modal Header -->
+            <input type="hidden" id="userId" name="userId" [(ngModel)]="portfolioService.portfolioFormData.userId">
             <div class="modal-header">
               <p class="modal-title portfoltitlevv "> Add Portfolio Project</p>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <!-- Modal body -->
             <div class="modal-body">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label projtitlevv">Project Title*</label>
-                <input type="text" class="form-control placvv" id="projectTitle" name="projectTitle" (click)="FetchDetails()"
-                  [(ngModel)]="portfolioService.portfolioFormData.projectTitle" placeholder="Name of your Project">
+                <input type="text" class="form-control placvv" id="projectTitle" name="projectTitle"
+                  (click)="FetchDetails()" [(ngModel)]="portfolioService.portfolioFormData.projectTitle"
+                  placeholder="Name of your Project">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label projtitlevv">Description*</label>
@@ -365,7 +369,7 @@
         </div>
         <div class="col-4" *ngFor="let educationDetails of educationDetail">
           <div class="rrpubcomcenalign1">
-            <div class="kkempcrd" *ngIf="educationDetails.usersId == User[0].userId">
+            <div class="kkempcrd" *ngIf="educationDetails.usersId == User[0].id">
               <div class=" text02">{{educationDetails.department}}</div>
               <div class=" text03">{{educationDetails.instituteName}} {{educationDetails.courseName}}</div>
               <div class=" text04">{{educationDetails.yearOfJoining}}- {{educationDetails.yearOfCompletion }}</div>
@@ -394,9 +398,11 @@
           <div class="modal-body">
             <form autocomplete="off" #educationForm="ngForm" (ngSubmit)="onSubmitEducation(educationForm)">
               <div>
-                <input type="hidden" id="id" name="id"
-                  [(ngModel)]="educationservice.educationData.id">
-                <input type="hidden" id="usersId" name="usersId" [(ngModel)]="User[0].userId">
+                <input type="hidden" id="id" name="id" [(ngModel)]="portfolioService.portfolioFormData.id">
+                <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
+                <input type="hidden" id="dateCreated" name="dateCreated"
+                  [(ngModel)]="educationservice.educationData.dateCreated">
+                <input type="hidden" id="usersId" name="usersId" [(ngModel)]="User[0].id">
                 <input type="hidden" id="boardUniversity" name="boardUniversity"
                   [(ngModel)]="educationservice.educationData.boardUniversity">
                 <div class="kkeduhdtg">&nbsp;&nbsp;School/College Name*<div>
@@ -410,7 +416,7 @@
                     </span>
                     <div class="kkeduhdtg">Degree</div>
                     <input class="kkin1" type="text" placeholder="eg: Bachelors" ngModel name="department" minlength="0"
-                      maxlength="35" #department="ngModel" id="department"
+                      maxlength="35" #department="ngModel" id="department" (click)="FetchDetails();"
                       [(ngModel)]="educationservice.educationData.department" required>
                     <span *ngIf="!department.valid && department.touched">
                       <span class="errormsg " *ngIf="department.errors?.['required']">
@@ -445,7 +451,8 @@
                         <div class="col-6">
                           <input class="kkyrbtn1" type="text" ngModel name="yearOfCompletion"
                             #yearOfCompletion="ngModel" pattern='^[0-9]+$' minlength="0" maxlength="4"
-                            id="yearOfCompletion" [(ngModel)]="educationservice.educationData.yearOfCompletion" required>
+                            id="yearOfCompletion" [(ngModel)]="educationservice.educationData.yearOfCompletion"
+                            required>
                           <span *ngIf="!yearOfCompletion.valid && yearOfCompletion.touched">
                             <span class="errormsg " *ngIf="yearOfCompletion.errors?.['required']">
                               Year of Completion is required
@@ -482,7 +489,9 @@
   <!-- Freelancing-details -->
   <div class="container" *ngIf="contentName === 'freelancing-details'">
     <form #experienceForm="ngForm" (ngSubmit)="onSubmitExperienceDetails(experienceForm)">
-      <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+      <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+      <input type="hidden" id="dateLastModified" name="dateLastModified" [(ngModel)]="User[0].dateLastModified">
+      <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
       <input type="hidden" id="hides1 " [(ngModel)]="hides1" [value]="hides1" name="Experience" #Experience="ngModel"
         [(ngModel)]="User[0].Experience">
       <input type="hidden" id="description" [(ngModel)]="User[0].description" [value]="User[0].description"
@@ -645,7 +654,7 @@
           </div>
         </div>
         <div class="col-4" *ngFor="let priceSkill of priceSkills">
-          <div class="rrpubcomcenalign1" *ngIf="priceSkill.userId == User[0].userId">
+          <div class="rrpubcomcenalign1" *ngIf="priceSkill.userId == User[0].id">
             <div class="kkempcrd">
               <div class=" text02">{{priceSkill.skillSet}}</div>
               <div class=" text03">{{priceSkill.uom}}</div>
@@ -681,10 +690,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <input type="hidden" id="UserId" name="UserId" [(ngModel)]="User[0].userId">
-              <input type="hidden" id="skillId" name="skillId" [(ngModel)]="priceService.pricingSkillData.skillId">
+              <input type="text" id="id" name="id" [(ngModel)]="priceService.pricingSkillData.id">
+              <input type="text" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
+              <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="priceService.pricingSkillData.dateCreated">
+              <input type="text" id="userId" name="userId" [(ngModel)]="User[0].id">
               <div>
-
                 <div class="kkeduhdtg">&nbsp;&nbsp;Your skill<div>
                     <select class="kkin1" placeholder="eg: Compositor" ngModel name="skillSet" #skillSet="ngModel"
                       id="skillSet" [(ngModel)]="priceService.pricingSkillData.skillSet" required>
@@ -814,7 +824,9 @@
 
 
     <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)">
-      <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+      <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+      <input type="hidden" id="dateLastModified" name="dateLastModified" [(ngModel)]="User[0].dateLastModified">
+      <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
       <input type="hidden" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
       <input type="hidden" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country">
       <input type="hidden" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
@@ -1173,8 +1185,7 @@
           </div>
           <p class="kkbnktx6">Add Card Details</p>
           <form #bankDetailsform="ngForm" (ngSubmit)="onSubmitBankDetails(bankDetailsform)">
-            <input type="hidden" id="id" name="id"
-              [(ngModel)]="bankservice.bankData.id">
+            <input type="hidden" id="id" name="id" [(ngModel)]="bankservice.bankData.id">
             <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
             <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
               maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankData.cardNumber"

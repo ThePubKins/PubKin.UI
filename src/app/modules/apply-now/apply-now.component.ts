@@ -38,6 +38,16 @@ export class ApplyNowComponent {
     const initialChatTarget = null;
     this.onChatTargetClick(initialChatTarget);
   }
+
+
+  onSubmitApply(form: NgForm) {
+    if (this.appliedservice.applyData) {
+      this.appliedservice.postApply(form.value).subscribe();
+    }
+  }
+
+
+
   submitForm() {
     const formData = new FormData();
     formData.append('dateCreated', this.jobpostData.dateCreated);
@@ -96,22 +106,23 @@ export class ApplyNowComponent {
       const afterTaxReport = (4 / 100) * this.formData.actualValue;
       this.formData.subtractValue = afterTaxReport;
       this.formData.displaySubtractValue = percentToSubtract.toFixed(2);
-      this.jobpostData.biddingRate = this.formData.actualValue - afterTaxReport;
+      this.appliedservice.applyData.biddingRate = this.formData.actualValue - afterTaxReport;
     }
   }
 
   AppliedJobs() {
-    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
-    this.jobpostData.dateCreated = this.dateFormatted;
-    this.jobpostData.status = 'applied';
-    this.jobpostData.jobTitle = this.JobPost.jobTitle;
-    this.jobpostData.userId = this.UserData[0].userId;
-    this.jobpostData.userEmail = this.UserData[0].firstName;
-    this.jobpostData.jobDescription = this.JobPost.description;
-    this.jobpostData.rate = this.JobPost.toBudget;
-    this.jobpostData.jobId = this.JobPost.jobId;
-    this.jobpostData.postBy = this.JobPost.createdBy;
-    this.jobpostData.skillSet = this.JobPost.skillSet;
+    // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
+    // this.jobpostData.dateCreated = this.dateFormatted;
+    this.appliedservice.applyData.status = 'applied';
+    this.appliedservice.applyData.jobTitle = this.JobPost.jobTitle;
+    this.appliedservice.applyData.userId = this.UserData[0].id;
+    this.appliedservice.applyData.userEmail = this.UserData[0].firstName;
+    this.appliedservice.applyData.createdBy = this.UserData[0].firstName;
+    this.appliedservice.applyData.jobDescription = this.JobPost.description;
+    this.appliedservice.applyData.rate = this.JobPost.toBudget;
+    this.appliedservice.applyData.jobId = this.JobPost.id;
+    this.appliedservice.applyData.postBy = this.JobPost.createdBy;
+    this.appliedservice.applyData.skillSet = this.JobPost.skillSet;
   }
 
 

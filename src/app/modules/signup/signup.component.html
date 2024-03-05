@@ -8,7 +8,6 @@
                     <img src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
-
                 </div>
             </div>
         </div>
@@ -93,7 +92,7 @@
                 [(ngModel)]="usercredential.email" [class.invalid]="email.invalid && email.touched" required
                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                <span *ngFor="let useremail of emails">
-                <div class="errormsg" *ngIf="useremail.email===usercredential.email">
+                <div class="errormsg" *ngIf="useremail.i===usercredential.email">
                     * Email already exists
                 </div>
                 </span>
@@ -107,7 +106,7 @@
                 <span class="errormsg" *ngIf="email.errors?.['pattern']">
                     Please enter a valid email address
                 </span>
-                <span *ngIf="form.controls['email'].hasError('emailExists')" class="errormsg">
+                <span *ngIf="" class="errormsg">
                     Email already exists
                 </span>
             </div> <br>

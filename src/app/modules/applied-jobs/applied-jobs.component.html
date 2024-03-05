@@ -14,7 +14,7 @@
                 <div class="col-9">
                   <p class="kkjbtxtline1">{{Apply.jobTitle}} </p>
                   <p class="jobDesc23">{{Apply.jobDescription | slice:0:220}}...</p>
-                  <p class="kkjbtxtline2">Rate: ₹{{Apply.rate}} - Applied {{ getPostStatus(Apply.createDate)}} </p>
+                  <p class="kkjbtxtline2">Rate: ₹{{Apply.rate}} - Applied {{ getPostStatus(Apply.dateCreated)}} </p>
                 </div>
                 <div class="col-3">
                   <!-- <span><img src="../assets/tag.png"

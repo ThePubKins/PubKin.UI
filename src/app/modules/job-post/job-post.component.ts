@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { jobPost, JobpostService, UserauthenticateService } from '../../shared';
+import { jobpost, JobpostService, UserauthenticateService } from '../../shared';
 
 @Component({
   selector: 'app-job-post',
@@ -34,9 +34,10 @@ export class JobPostComponent implements OnInit {
   end: string | null = null;
   selectedRate: string = 'Hourly';
   Rate: string = 'INR';
-  User = [{ firstName: '', lastName: '', email :'', userId: '' }];
-  jobpostingData : jobPost= {} as jobPost;
-  selectedOption: string  = this.jobpostingData.complexity;
+  User = [{ firstName: '', lastName: '', email :'', id: '' }];
+  jobData : jobpost= {} as jobpost;
+  selectedOption: string  = this.jobservice.jobData.complexity;
+
   ngOnInit(): void {
     this.getUserData();
   }
@@ -49,10 +50,12 @@ export class JobPostComponent implements OnInit {
 
    //Submit to Job Post  Function
    onSubmitJob(form: NgForm) {
-    if (form.valid && this.jobpostingData) {
-      this.jobservice.postJob(form.value).subscribe();
+    if (this.jobservice.jobData) {
+      this.jobservice.postJobPost(form.value).subscribe();
     }
   }
+
+
 
   //Character Left for the description
   onInputChange() {
@@ -162,7 +165,7 @@ export class JobPostComponent implements OnInit {
   addSkill(skill: string): void {
     if (!this.selectedSkills.includes(skill)) {
       this.selectedSkills.push(skill);
-      this.jobpostingData.skillSet = this.selectedSkills.join(', ');
+      this.jobservice.jobData.skillSet = this.selectedSkills.join(', ');
     }
   }
 
@@ -192,7 +195,7 @@ export class JobPostComponent implements OnInit {
 
     if (this.cards[index].selected) {
       this.selectedCardTitles.push(this.cards[index].title);
-      this.jobpostingData.service = this.selectedCardTitles.join(', ');
+      this.jobservice.jobData.service = this.selectedCardTitles.join(', ');
     } else {
       const titleIndex = this.selectedCardTitles.indexOf(this.cards[index].title);
       if (titleIndex !== -1) {
@@ -202,63 +205,67 @@ export class JobPostComponent implements OnInit {
   } 
 
   fetchdetails() { 
-    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');  
-    this.jobpostingData.dateCreated = this.dateFormatted;
-    this.jobpostingData.userEmail= this.User[0].email;
-    this.jobpostingData.userId= this.User[0].userId;
-    this.jobpostingData.createdBy = `${this.User[0].firstName} ${this.User[0].lastName}`;
+    this.jobservice.jobData.userEmail= this.User[0].email;
+    this.jobservice.jobData.status= 'Pending';
+    this.jobservice.jobData.userId= this.User[0].id;
+    this.jobservice.jobData.createdBy = `${this.User[0].firstName} ${this.User[0].lastName}`;
     this.firstName = (this.User[0].firstName || '').toUpperCase().slice(0, 1);
     this.lastName = (this.User[0].lastName || '').toUpperCase().slice(0, 2);
-    this.jobpostingData.jobUniqueId = `A${this.firstName}${this.lastName} - ${this._count}`
+    this.jobservice.jobData.jobUniqueId = `A${this.firstName}${this.lastName} - ${this._count}`
   }
-  submitForm() {
-    const formData = new FormData();
-    formData.append('CreateDate', this.jobpostingData.dateCreated);
-    formData.append('createdBy', this.jobpostingData.createdBy);
-    formData.append('jobId', this.jobpostingData.id);
-    formData.append('jobUniqueId', this.jobpostingData.jobUniqueId);
-    formData.append('userId', this.jobpostingData.userId);
-    formData.append('jobTitle', this.jobpostingData.jobTitle);
-    formData.append('description', this.jobpostingData.description);
-    formData.append('skillSet', this.jobpostingData.skillSet);
-    formData.append('complexity', this.jobpostingData.complexity);
-    formData.append('projectStartDate', this.jobpostingData.projectStartDate);
-    formData.append('experience', this.jobpostingData.experience);
-    formData.append('rateBasis', this.jobpostingData.rateBasis);
-    formData.append('fromBudget', this.jobpostingData.fromBudget);
-    formData.append('toBudget', this.jobpostingData.toBudget);
-    formData.append('currency', this.jobpostingData.currency);
-    formData.append('userEmail', this.jobpostingData.userEmail);
-    formData.append('service', this.jobpostingData.service);
-    formData.append('attachUrl', this.jobpostingData.attachUrl);
-
-    if (this.jobpostingData.attachFile) {
-      formData.append('attachFile', this.jobpostingData.attachFile);
-    }
-
-    this.jobservice.postJob(formData).subscribe(
-      response => {
-        console.log('Comment added successfully:', response);
-        this.jobpostingData = {} as jobPost;
-      },
-      error => {
-        console.error('Error adding comment:', error);
+  
+ submitPostJob(form: NgForm) {
+    if (this.jobservice.jobData) {
+      const formData = new FormData();
+      formData.append('dateCreated', this.jobservice.jobData.dateCreated);
+      formData.append('createdBy', this.jobservice.jobData.createdBy);
+      formData.append('id', this.jobservice.jobData.id);
+      formData.append('jobUniqueId', this.jobservice.jobData.jobUniqueId);
+      formData.append('userId', this.jobservice.jobData.userId);
+      formData.append('jobTitle', this.jobservice.jobData.jobTitle);
+      formData.append('description', this.jobservice.jobData.description);
+      formData.append('skillSet', this.jobservice.jobData.skillSet);
+      formData.append('complexity', this.jobservice.jobData.complexity);
+      formData.append('projectStartDate', this.jobservice.jobData.projectStartDate);
+      formData.append('experience', this.jobservice.jobData.experience);
+      formData.append('rateBasis', this.jobservice.jobData.rateBasis);
+      formData.append('fromBudget', this.jobservice.jobData.fromBudget);
+      formData.append('toBudget', this.jobservice.jobData.toBudget);
+      formData.append('currency', this.jobservice.jobData.currency);
+      formData.append('userEmail', this.jobservice.jobData.userEmail);
+      formData.append('service', this.jobservice.jobData.service);
+      formData.append('attachUrl', this.jobservice.jobData.attachUrl);
+      formData.append('fileName', this.jobservice.jobData.fileName);
+      formData.append('status', this.jobservice.jobData.status);
+  
+      if (this.jobservice.jobData.attachFile) {
+        formData.append('attachFile', this.jobservice.jobData.attachFile);
       }
-    );
+  
+      this.jobservice.postJobPost(form.value).subscribe(
+        response => {
+          console.log('Job posted successfully:', response);
+          this.jobData = new this.JobPost();
+        }
+      );
+    }
   }
+  
+  
 
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
     this.selectedFiles.push(selectedFile.name);
-    this.jobpostingData.attachFile=selectedFile;
+    this.jobservice.jobData.attachFile = selectedFile;
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.uploadedFileName = file ? file.name : ''; 
   }
-  
+
+
 }
 
-interface Card {
+interface Card {  
   title: string;
   selected: boolean;
 }

@@ -1,40 +1,40 @@
 <!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
-    <form novalidate autocomplete="off" #jobPostfrom="ngForm" (ngSubmit)="submitForm()" >
-    <input type="hidden" id="dateCreated" name="dateCreated" [value]="currentDate"
-    [(ngModel)]="jobpostingData.dateCreated">
-    <input type="hidden" id="id" name="id"  [(ngModel)]="jobpostingData.id">
-    <input type="hidden" id="userId" name="userId" [(ngModel)]="jobpostingData.userId">
-    <input type="hidden" id="JobUniqueId" name="JobUniqueId" [(ngModel)]="jobpostingData.jobUniqueId">
-    <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobpostingData.createdBy">
-    <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobpostingData.userEmail">
+<form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
+    <input type="hidden" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
+    <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
+    <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobservice.jobData.createdBy">
+    <input type="hidden" id="userId" name="userId" [(ngModel)]="jobservice.jobData.userId">
+    <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobservice.jobData.jobUniqueId">
+    <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobservice.jobData.userEmail">
     <input type="hidden" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
-    [(ngModel)]="jobpostingData.service" required>
+        [(ngModel)]="jobservice.jobData.service" required>
     <input type="hidden" [value]="selectedSkills.join(', ')" ngModel name="skillSet" #skillSet="ngModel"
-    [(ngModel)]="jobpostingData.skillSet" />
+        [(ngModel)]="jobservice.jobData.skillSet" />
     <input type="hidden" [(ngModel)]="selectedOption" [value]="selectedOption" required name="complexity"
-        #complexity="ngModel" [(ngModel)]="jobpostingData.complexity">
-    <input type="text" id="projectStartDate" name="projectStartDate"
-    [(ngModel)]="jobpostingData.projectStartDate">
-    <input type="text" ngModel [value]="jobpostingData.projectEndDate" name="projectEndDate"
-        #projectEndDate="ngModel" [(ngModel)]="jobpostingData.projectEndDate">
+        #complexity="ngModel" [(ngModel)]="jobservice.jobData.complexity">
+    <input type="hidden" id="projectStartDate" name="projectStartDate" [(ngModel)]="jobservice.jobData.projectStartDate">
+    <input type="hidden" ngModel [value]="jobservice.jobData.projectEndDate" name="projectEndDate" #projectEndDate="ngModel"
+        [(ngModel)]="jobservice.jobData.projectEndDate">
     <input type="hidden" [(ngModel)]="skillset" [value]="skillset" name="experience" #experience="ngModel"
-    [(ngModel)]="jobpostingData.experience">
-    <input type="text" name="durationOfProject" [value]="jobpostingData.durationOfProject"
-        #durationOfProject="ngModel" [(ngModel)]="jobpostingData.durationOfProject">
-    <input type="hidden" name="fromBudget" [value]="jobpostingData.fromBudget" #fromBudget="ngModel"
-    [(ngModel)]="jobpostingData.fromBudget">
-    <input type="hidden" name="currency" [value]="jobpostingData.currency" #currency="ngModel"
-    [(ngModel)]="jobpostingData.currency">
-    <input type="hidden" name="toBudget" [value]="jobpostingData.toBudget" #toBudget="ngModel"
-    [(ngModel)]="jobpostingData.toBudget">
-    <input type="hidden" name="rateBasis" [value]="jobpostingData.rateBasis" #rateBasis="ngModel"
-    [(ngModel)]="jobpostingData.rateBasis">
-    <input type="hidden" name="jobTitle" [value]="jobpostingData.jobTitle" #jobTitle="ngModel"
-    [(ngModel)]="jobpostingData.jobTitle">
-    <input type="hidden" name="description" [value]="jobpostingData.description" #description="ngModel"
-    [(ngModel)]="jobpostingData.description">
-    <input type="hidden" id="attachUrl" name="attachUrl" [(ngModel)]="jobpostingData.attachUrl">
-    <input type="hidden" id="attachFile" name="attachFile" [(ngModel)]="jobpostingData.attachFile">
+        [(ngModel)]="jobservice.jobData.experience">
+    <input type="hidden" name="durationOfProject" [value]="jobservice.jobData.durationOfProject" #durationOfProject="ngModel"
+        [(ngModel)]="jobservice.jobData.durationOfProject">
+    <input type="hidden" name="fromBudget" [value]="jobservice.jobData.fromBudget" #fromBudget="ngModel"
+        [(ngModel)]="jobservice.jobData.fromBudget">
+    <input type="hidden" name="currency" [value]="jobservice.jobData.currency" #currency="ngModel"
+        [(ngModel)]="jobservice.jobData.currency">
+    <input type="hidden" name="toBudget" [value]="jobservice.jobData.toBudget" #toBudget="ngModel"
+        [(ngModel)]="jobservice.jobData.toBudget">
+    <input type="hidden" name="rateBasis" [value]="jobservice.jobData.rateBasis" #rateBasis="ngModel"
+        [(ngModel)]="jobservice.jobData.rateBasis">
+    <input type="hidden" name="jobTitle" [value]="jobservice.jobData.jobTitle" #jobTitle="ngModel"
+        [(ngModel)]="jobservice.jobData.jobTitle">
+    <input type="hidden" name="description" [value]="jobservice.jobData.description" #description="ngModel"
+        [(ngModel)]="jobservice.jobData.description">
+        <input type="hidden" id="status" name="status" [(ngModel)]="jobservice.jobData.status">
+    <input type="hidden" id="attachUrl" name="attachUrl" [(ngModel)]="jobservice.jobData.attachUrl">
+    <input type="hidden" id="attachFile" name="attachFile" [(ngModel)]="jobservice.jobData.attachFile">
+    <input type="hidden" id="fileName" name="fileName" [(ngModel)]="jobservice.jobData.fileName">
     <button class="d-none" #firstButton type="submit">Submit</button>
 </form>
 
@@ -233,12 +233,11 @@
         <div class="que2" *ngIf="complex1 && !hide2">
             <p class="hr1">Project Duation</p>
             <input type="text" class="dur" ngModel name="projectStartDate" #projectStartDate="ngModel"
-                [(ngModel)]="jobpostingData.projectStartDate"><span
+                [(ngModel)]="jobservice.jobData.projectStartDate"><span
                 class="fr">&nbsp;&nbsp;&nbsp;to&nbsp;&nbsp;&nbsp;</span><input type="text" class="dur" ngModel
-                name="projectEndDate" #projectEndDate="ngModel" [(ngModel)]="jobpostingData.projectEndDate">
+                name="projectEndDate" #projectEndDate="ngModel" [(ngModel)]="jobservice.jobData.projectEndDate">
             <select required class="kkin1" style="margin-left: 24px;" placeholder="eg: Compositor" ngModel
-                name="durationOfProject" #durationOfProject="ngModel"
-                [(ngModel)]="jobpostingData.durationOfProject">
+                name="durationOfProject" #durationOfProject="ngModel" [(ngModel)]="jobservice.jobData.durationOfProject">
                 <option class="kkin1">Months</option>
                 <option class="kkin1">Weeks</option>
                 <option class="kkin1">Days</option>
@@ -251,8 +250,8 @@
         <div class="row que2" *ngIf="hide2">
             <div class="col-10">
                 <div class="com1">
-                    {{jobpostingData.projectStartDate}} to {{jobpostingData.projectEndDate}}
-                    {{jobpostingData.durationOfProject}}
+                    {{jobservice.jobData.projectStartDate}} to {{jobservice.jobData.projectEndDate}}
+                    {{jobservice.jobData.durationOfProject}}
                 </div>
             </div>
             <div class="col-2">
@@ -346,20 +345,22 @@
         <p class="cat">4/5, Description</p>
         <p class="head">Please describe, your needs about the project</p>
         <input class="ptitle" placeholder="Job A title" name="jobTitle" #jobTitle="ngModel"
-            [(ngModel)]="jobpostingData.jobTitle" minlength="10" maxlength="65">
+            [(ngModel)]="jobservice.jobData.jobTitle" minlength="10" maxlength="65">
         <span class="errormsg" *ngIf="jobTitle.value?.length === 65">
             Maximum Length is 65 Characters
         </span>
         <textarea (input)="onInputChange()" [disabled]="isTextareaDisabled()" [(ngModel)]="inputText"
             [ngClass]="getCharacterCountClass()" class="des" placeholder="Description" name="description"
-            #description="ngModel" [(ngModel)]="jobpostingData.description"></textarea>
+            #description="ngModel" [(ngModel)]="jobservice.jobData.description"></textarea>
         <p class="remain" [ngClass]="getCharacterCountClass()">{{ charactersLeft }} Characters remaining
         </p>
         <p class="att">Add Attachment related to project (Optional)</p>
         <label class="up">
             <!-- <input  class="d-none" type="file" (change)="onFileSelected($event)"/> -->
-            <input #fileInput type="file" class="d-none" id="file" name="file" (change)="onFileSelected($event)" required>
-            <span *ngIf="!uploadedFileName"> Drag or&nbsp;</span> <span class="up1">{{ uploadedFileName ? uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
+            <input #fileInput type="file" class="d-none" id="attachfile" name="attachfile" (change)="onFileSelected($event)"
+                required>
+            <span *ngIf="!uploadedFileName"> Drag or&nbsp;</span> <span class="up1">{{ uploadedFileName ?
+                uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
         </label>
         <p class="cat">You may attach upto 25 mb of file. </p>
     </div>
@@ -404,7 +405,7 @@
         <p class="head">Please add your budget</p>
         <p class="rate">Select the Rate Basis</p>
         <select required class="kkin1" [(ngModel)]="selectedRate" name="rateBasis" #rateBasis="ngModel"
-            [(ngModel)]="jobpostingData.rateBasis">
+            [(ngModel)]="jobservice.jobData.rateBasis">
             <option class="kkin1">Hourly</option>
             <option class="kkin1">Word count</option>
             <option class="kkin1" selected>Book</option>
@@ -412,7 +413,7 @@
             <option class="kkin1">Cover</option>
             <option class="kkin1">File</option>
         </select>
-        <select required class="currency" name="currency" #currency="ngModel" [(ngModel)]="jobpostingData.currency">
+        <select required class="currency" name="currency" #currency="ngModel" [(ngModel)]="jobservice.jobData.currency">
             <option class="currency1" selected>INR</option>
             <option class="currency">USD</option>
             <option class="currency">AED</option>
@@ -428,7 +429,7 @@
             <div class="col-3">
                 <p class="fr">From</p>
                 <input type="text" class="int" placeholder="$ 0.00" name="fromBudget" #fromBudget="ngModel"
-                    [(ngModel)]="jobpostingData.fromBudget">
+                    [(ngModel)]="jobservice.jobData.fromBudget">
                 <span *ngIf="selectedRate === 'Hourly'" class="hr">/hr</span>
                 <span *ngIf="selectedRate === 'Word count'" class="hr">/word</span>
                 <span *ngIf="selectedRate === 'Book'" class="hr">/Bk</span>
@@ -439,7 +440,7 @@
             <div class="col-3">
                 <p class="fr">To</p>
                 <input type="text" class="int" placeholder="$ 0.00" name="toBudget" #toBudget="ngModel"
-                    [(ngModel)]="jobpostingData.toBudget">
+                    [(ngModel)]="jobservice.jobData.toBudget">
                 <span *ngIf="selectedRate === 'Hourly'" class="hr">/hr</span>
                 <span *ngIf="selectedRate === 'Word count'" class="hr">/word</span>
                 <span *ngIf="selectedRate === 'Book'" class="hr">/Bk</span>
@@ -493,52 +494,74 @@
         <div class="row">
             <div class="col-9">
                 <div class="reviewjob">
-                    <p class="jobheadreview">{{jobpostingData.jobTitle}}</p>
-                   <p class="postreview">posted at 1 day ago</p>
-          
-                <hr>
-                <div class="reviewdesc">
-                    {{jobpostingData.description}}
-                </div>
-                <hr class="mt-3">
-                <div class="row" style="    padding: 27px 15px;">
-                <div class="col-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
-                        <path d="M15.4 2.80078H2.8C1.80589 2.80078 1 3.60667 1 4.60078V17.2008C1 18.1949 1.80589 19.0008 2.8 19.0008H15.4C16.3941 19.0008 17.2 18.1949 17.2 17.2008V4.60078C17.2 3.60667 16.3941 2.80078 15.4 2.80078Z" stroke="#A426D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M12.7002 1V4.6" stroke="#A426D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M5.5 1V4.6" stroke="#A426D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M1 8.20117H17.2" stroke="#A426D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg> <span class="ratereviewjob">{{jobpostingData.projectStartDate}} - {{jobpostingData.projectEndDate}} {{jobpostingData.durationOfProject}}</span>
-                </div>
-                <div class="col-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 4C11.7348 4 11.4804 4.10536 11.2929 4.29289C11.1054 4.48043 11 4.73478 11 5V20C11 20.2652 11.1054 20.5196 11.2929 20.7071C11.4804 20.8946 11.7348 21 12 21C12.2652 21 12.5196 20.8946 12.7071 20.7071C12.8946 20.5196 13 20.2652 13 20V5C13 4.73478 12.8946 4.48043 12.7071 4.29289C12.5196 4.10536 12.2652 4 12 4Z" fill="#A426D1"/>
-                        <path d="M19 12C18.7348 12 18.4804 12.1054 18.2929 12.2929C18.1054 12.4804 18 12.7348 18 13V20C18 20.2652 18.1054 20.5196 18.2929 20.7071C18.4804 20.8946 18.7348 21 19 21C19.2652 21 19.5196 20.8946 19.7071 20.7071C19.8946 20.5196 20 20.2652 20 20V13C20 12.7348 19.8946 12.4804 19.7071 12.2929C19.5196 12.1054 19.2652 12 19 12Z" fill="#A426D1"/>
-                        <path d="M5 8C4.73478 8 4.48043 8.10536 4.29289 8.29289C4.10536 8.48043 4 8.73478 4 9V20C4 20.2652 4.10536 20.5196 4.29289 20.7071C4.48043 20.8946 4.73478 21 5 21C5.26522 21 5.51957 20.8946 5.70711 20.7071C5.89464 20.5196 6 20.2652 6 20V9C6 8.73478 5.89464 8.48043 5.70711 8.29289C5.51957 8.10536 5.26522 8 5 8Z" fill="#A426D1"/>
-                    </svg><span class="ratereviewjob">{{jobpostingData.experience}}</span>
-                </div>
-                <div class="col-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="none">
-                        <path d="M13.6688 7.19957C13.6688 9.18778 12.1389 10.7995 10.2516 10.7995C8.36439 10.7995 6.83447 9.18778 6.83447 7.19957C6.83447 5.21137 8.36439 3.59961 10.2516 3.59961C12.1389 3.59961 13.6688 5.21137 13.6688 7.19957ZM11.9602 7.19957C11.9602 6.20548 11.1953 5.39959 10.2516 5.39959C9.30803 5.39959 8.54306 6.20548 8.54306 7.19957C8.54306 8.19367 9.30803 8.99956 10.2516 8.99956C11.1953 8.99956 11.9602 8.19367 11.9602 7.19957Z" fill="#A426D1"/>
-                        <path d="M0 2.24998C0 1.00734 0.956194 0 2.13573 0H18.3673C19.5469 0 20.5031 1.00734 20.5031 2.24998V12.1499C20.5031 13.3926 19.5469 14.3999 18.3673 14.3999H2.13573C0.956194 14.3999 0 13.3926 0 12.1499V2.24998ZM2.13573 1.79998C1.89983 1.79998 1.70859 2.00145 1.70859 2.24998V3.59996H2.56288C3.03469 3.59996 3.41718 3.19702 3.41718 2.69997V1.79998H2.13573ZM1.70859 12.1499C1.70859 12.3984 1.89983 12.5999 2.13573 12.5999H3.41718V11.6999C3.41718 11.2028 3.03469 10.7999 2.56288 10.7999H1.70859V12.1499ZM5.12576 11.6999V12.5999H15.3773V11.6999C15.3773 10.2087 16.5248 8.99991 17.9402 8.99991H18.7945V5.39995H17.9402C16.5248 5.39995 15.3773 4.19113 15.3773 2.69997V1.79998H5.12576V2.69997C5.12576 4.19113 3.97833 5.39995 2.56288 5.39995H1.70859V8.99991H2.56288C3.97833 8.99991 5.12576 10.2087 5.12576 11.6999ZM17.0859 12.5999H18.3673C18.6033 12.5999 18.7945 12.3984 18.7945 12.1499V10.7999H17.9402C17.4684 10.7999 17.0859 11.2028 17.0859 11.6999V12.5999ZM18.7945 3.59996V2.24998C18.7945 2.00145 18.6033 1.79998 18.3673 1.79998H17.0859V2.69997C17.0859 3.19702 17.4684 3.59996 17.9402 3.59996H18.7945Z" fill="#A426D1"/>
-                        <path d="M5.98008 18.0001C4.84113 18.0001 3.87571 17.2175 3.54199 16.1348C3.77906 16.1778 4.02279 16.2002 4.27149 16.2002H18.3673C20.4904 16.2002 22.2117 14.3869 22.2117 12.1502V3.75391C23.2071 4.12456 23.9202 5.12466 23.9202 6.30025V12.1502C23.9202 15.381 21.4341 18.0001 18.3673 18.0001H5.98008Z" fill="#A426D1"/>
-                      </svg><span class="ratereviewjob">{{jobpostingData.fromBudget}}-{{jobpostingData.toBudget}}/{{jobpostingData.rateBasis}}</span>
-                </div>
-                </div>
-                <hr class="mt-3">
-                <p class="reviewskill">Skills Needed</p>
-                <div class="container" >
-                    <div class="row">
-                    <div class="col-4 mt-4" *ngFor="let selectedSkill of selectedSkills; let i = index">
-                    <div class="reviewskilljob"> {{selectedSkill}}    </div>
+                    <p class="jobheadreview">{{jobservice.jobData.jobTitle}}</p>
+                    <p class="postreview">posted at 1 day ago</p>
+
+                    <hr>
+                    <div class="reviewdesc">
+                        {{jobservice.jobData.description}}
                     </div>
+                    <hr class="mt-3">
+                    <div class="row" style="    padding: 27px 15px;">
+                        <div class="col-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20"
+                                fill="none">
+                                <path
+                                    d="M15.4 2.80078H2.8C1.80589 2.80078 1 3.60667 1 4.60078V17.2008C1 18.1949 1.80589 19.0008 2.8 19.0008H15.4C16.3941 19.0008 17.2 18.1949 17.2 17.2008V4.60078C17.2 3.60667 16.3941 2.80078 15.4 2.80078Z"
+                                    stroke="#A426D1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12.7002 1V4.6" stroke="#A426D1" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M5.5 1V4.6" stroke="#A426D1" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M1 8.20117H17.2" stroke="#A426D1" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg> <span class="ratereviewjob">{{jobservice.jobData.projectStartDate}} -
+                                {{jobservice.jobData.projectEndDate}} {{jobservice.jobData.durationOfProject}}</span>
+                        </div>
+                        <div class="col-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M12 4C11.7348 4 11.4804 4.10536 11.2929 4.29289C11.1054 4.48043 11 4.73478 11 5V20C11 20.2652 11.1054 20.5196 11.2929 20.7071C11.4804 20.8946 11.7348 21 12 21C12.2652 21 12.5196 20.8946 12.7071 20.7071C12.8946 20.5196 13 20.2652 13 20V5C13 4.73478 12.8946 4.48043 12.7071 4.29289C12.5196 4.10536 12.2652 4 12 4Z"
+                                    fill="#A426D1" />
+                                <path
+                                    d="M19 12C18.7348 12 18.4804 12.1054 18.2929 12.2929C18.1054 12.4804 18 12.7348 18 13V20C18 20.2652 18.1054 20.5196 18.2929 20.7071C18.4804 20.8946 18.7348 21 19 21C19.2652 21 19.5196 20.8946 19.7071 20.7071C19.8946 20.5196 20 20.2652 20 20V13C20 12.7348 19.8946 12.4804 19.7071 12.2929C19.5196 12.1054 19.2652 12 19 12Z"
+                                    fill="#A426D1" />
+                                <path
+                                    d="M5 8C4.73478 8 4.48043 8.10536 4.29289 8.29289C4.10536 8.48043 4 8.73478 4 9V20C4 20.2652 4.10536 20.5196 4.29289 20.7071C4.48043 20.8946 4.73478 21 5 21C5.26522 21 5.51957 20.8946 5.70711 20.7071C5.89464 20.5196 6 20.2652 6 20V9C6 8.73478 5.89464 8.48043 5.70711 8.29289C5.51957 8.10536 5.26522 8 5 8Z"
+                                    fill="#A426D1" />
+                            </svg><span class="ratereviewjob">{{jobservice.jobData.experience}}</span>
+                        </div>
+                        <div class="col-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18"
+                                fill="none">
+                                <path
+                                    d="M13.6688 7.19957C13.6688 9.18778 12.1389 10.7995 10.2516 10.7995C8.36439 10.7995 6.83447 9.18778 6.83447 7.19957C6.83447 5.21137 8.36439 3.59961 10.2516 3.59961C12.1389 3.59961 13.6688 5.21137 13.6688 7.19957ZM11.9602 7.19957C11.9602 6.20548 11.1953 5.39959 10.2516 5.39959C9.30803 5.39959 8.54306 6.20548 8.54306 7.19957C8.54306 8.19367 9.30803 8.99956 10.2516 8.99956C11.1953 8.99956 11.9602 8.19367 11.9602 7.19957Z"
+                                    fill="#A426D1" />
+                                <path
+                                    d="M0 2.24998C0 1.00734 0.956194 0 2.13573 0H18.3673C19.5469 0 20.5031 1.00734 20.5031 2.24998V12.1499C20.5031 13.3926 19.5469 14.3999 18.3673 14.3999H2.13573C0.956194 14.3999 0 13.3926 0 12.1499V2.24998ZM2.13573 1.79998C1.89983 1.79998 1.70859 2.00145 1.70859 2.24998V3.59996H2.56288C3.03469 3.59996 3.41718 3.19702 3.41718 2.69997V1.79998H2.13573ZM1.70859 12.1499C1.70859 12.3984 1.89983 12.5999 2.13573 12.5999H3.41718V11.6999C3.41718 11.2028 3.03469 10.7999 2.56288 10.7999H1.70859V12.1499ZM5.12576 11.6999V12.5999H15.3773V11.6999C15.3773 10.2087 16.5248 8.99991 17.9402 8.99991H18.7945V5.39995H17.9402C16.5248 5.39995 15.3773 4.19113 15.3773 2.69997V1.79998H5.12576V2.69997C5.12576 4.19113 3.97833 5.39995 2.56288 5.39995H1.70859V8.99991H2.56288C3.97833 8.99991 5.12576 10.2087 5.12576 11.6999ZM17.0859 12.5999H18.3673C18.6033 12.5999 18.7945 12.3984 18.7945 12.1499V10.7999H17.9402C17.4684 10.7999 17.0859 11.2028 17.0859 11.6999V12.5999ZM18.7945 3.59996V2.24998C18.7945 2.00145 18.6033 1.79998 18.3673 1.79998H17.0859V2.69997C17.0859 3.19702 17.4684 3.59996 17.9402 3.59996H18.7945Z"
+                                    fill="#A426D1" />
+                                <path
+                                    d="M5.98008 18.0001C4.84113 18.0001 3.87571 17.2175 3.54199 16.1348C3.77906 16.1778 4.02279 16.2002 4.27149 16.2002H18.3673C20.4904 16.2002 22.2117 14.3869 22.2117 12.1502V3.75391C23.2071 4.12456 23.9202 5.12466 23.9202 6.30025V12.1502C23.9202 15.381 21.4341 18.0001 18.3673 18.0001H5.98008Z"
+                                    fill="#A426D1" />
+                            </svg><span
+                                class="ratereviewjob">{{jobservice.jobData.fromBudget}}-{{jobservice.jobData.toBudget}}/{{jobservice.jobData.rateBasis}}</span>
+                        </div>
+                    </div>
+                    <hr class="mt-3">
+                    <p class="reviewskill">Skills Needed</p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4 mt-4" *ngFor="let selectedSkill of selectedSkills; let i = index">
+                                <div class="reviewskilljob"> {{selectedSkill}} </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>  
             </div>
             <div class="col-3"></div>
         </div>
- 
+
     </div>
     <div class="container-fluid">
         <div class=" progress pgrss pgrss1" role="progressbar" aria-label="Basic example" aria-valuenow="10"
@@ -555,42 +578,10 @@
                 <button class="back" (click)="GoNextBtn('button5')">Back</button>
             </div>
             <div class="col-5">
-                <button class="next"  (click)="goodbye();" routerLink="/authors">Post a Job</button>
+                <button class="next" (click)="goodbye();" routerLink="/authors">Post a Job</button>
             </div>
-            <div class="col-1">
+            <div class="col-1"> 
             </div>
         </div>
     </div>
 </div>
-
-
-
-<!-- 
-<form novalidate autocomplete="off" (submit)="submitForm()" >
-    <input type="hidden" id="createDate" name="createDate" [(ngModel)]="jobpostingData.createDate">
-    <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobpostingData.createdBy">
-    <input type="hidden" id="jobId" name="jobId" [(ngModel)]="jobpostingData.jobId">
-    <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobpostingData.jobUniqueId">
-    <input type="hidden" id="userId" name="userId" [(ngModel)]="jobpostingData.userId">
-    <input type="hidden" id="jobTitle" name="jobTitle" [(ngModel)]="jobpostingData.jobTitle">
-    <input type="hidden" id="description" name="description" [(ngModel)]="jobpostingData.description">
-    <input type="hidden" id="skillSet" name="skillSet" [(ngModel)]="jobpostingData.skillSet">
-    <input type="hidden" id="complexity" name="complexity" [(ngModel)]="jobpostingData.complexity">
-    <input type="hidden" id="projectStartDate" name="projectStartDate" [(ngModel)]="jobpostingData.projectStartDate">
-    <input type="hidden" id="durationOfProject" name="durationOfProject" [(ngModel)]="jobpostingData.durationOfProject">
-    <input type="hidden" id="experience" name="experience" [(ngModel)]="jobpostingData.experience">
-    <input type="hidden" id="rateBasis" name="rateBasis" [(ngModel)]="jobpostingData.rateBasis">
-    <input type="hidden" id="fromBudget" name="fromBudget" [(ngModel)]="jobpostingData.fromBudget">
-    <input type="hidden" id="toBudget" name="toBudget" [(ngModel)]="jobpostingData.toBudget">
-    <input type="hidden" id="currency" name="currency" [(ngModel)]="jobpostingData.currency">
-    <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobpostingData.userEmail">
-    <input type="hidden" id="service" name="service" [(ngModel)]="jobpostingData.service">
-    <input type="hidden" id="attachUrl" name="attachUrl" [(ngModel)]="jobpostingData.attachUrl">
-    <input type="hidden" id="attachFile" name="attachFile" [(ngModel)]="jobpostingData.attachFile">
-<label class="up">
-    <input #fileInput type="file" class="d-none" id="file" name="file" (change)="onFileSelected($event)" required>
-    <span *ngIf="!uploadedFileName"> Drag or&nbsp;</span> <span class="up1">{{ uploadedFileName ? uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
-</label>
-<p class="cat">You may attach upto 25 mb of file. </p>
-<button type="submit">sent</button>
-</form> -->

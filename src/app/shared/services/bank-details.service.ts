@@ -18,6 +18,6 @@ export class BankDetailsService {
   }
 
   postBankDetails(bankData: any) {
-    return this.apiService.post(`$BankDetails`, bankData)
+    return this.apiService.post(`BankDetails`, bankData)
   }
 }

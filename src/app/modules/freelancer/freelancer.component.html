@@ -39,36 +39,40 @@
           </div>
           <!-- <div class="container" *ngFor="let JobPost of filteredJobPosts | jobsearch : searchTerm "  (click)="showJobDetails(JobPost.JobUniqueId)"> -->
           <!-- <div class="container" *ngFor="let JobPost of (isFilterApplied ? filteredJobPosts : JobPosts) | jobsearch : searchTerm "  > -->
-          <div class="container jobcontents" *ngFor="let jobPosts of paginatedDataList | jobsearch: searchTerm">
-            <div class="row">
+       
+    
+       
+            <div class="container jobcontents" *ngFor="let JobPost of Posts">
+       
+              <div class="row" >
               <div class="col-12">
                 <div class="row">
                   <div class="col-9">
-                    <p class="kkjbtxtline1">{{jobPosts.jobTitle}} - {{jobPosts.skillSet}}</p>
+                    <p class="kkjbtxtline1">{{JobPost.jobTitle}} - {{JobPost.skillSet}}</p>
                   </div>
                   <div class="col-3">
                     <!-- <span><img src="../assets/tag.png"
                   class="kkjbimg1"><img src="../assets/3icon.png" class="kkjbimg2"></span> -->
-                    <button class="viewapply" (click)="showJobDetails(jobPosts.jobUniqueId)">View & Apply</button>
+                    <button class="viewapply" (click)="showJobDetails(JobPost.jobUniqueId)">View & Apply</button>
                   </div>
                 </div>
                 <p class="kkjbtxtline2">Rate:
-                  <span *ngIf="jobPosts.currency === 'INR'">₹</span>
-                  <span *ngIf="jobPosts.currency === 'USD'">$</span>
-                  <span *ngIf="jobPosts.currency === 'AED'">د.إ</span>
-                  <span *ngIf="jobPosts.currency === 'ANG'">ƒ</span>
-                  <span *ngIf="jobPosts.currency === 'AOA'">Kz</span>
-                  <span *ngIf="jobPosts.currency === 'ARS'">$</span>
-                  <span *ngIf="jobPosts.currency === 'OMR'">ر.ع.</span>
-                  <span *ngIf="jobPosts.currency === 'SAR'">.س</span>
-                  {{jobPosts.toBudget}} est. time : {{jobPosts.projectEndDate}} {{jobPosts.durationOfProject}} - Posted
-                  {{getPostStatus(jobPosts.createDate) }}
+                  <span *ngIf="JobPost.currency === 'INR'">₹</span>
+                  <span *ngIf="JobPost.currency === 'USD'">$</span>
+                  <span *ngIf="JobPost.currency === 'AED'">د.إ</span>
+                  <span *ngIf="JobPost.currency === 'ANG'">ƒ</span>
+                  <span *ngIf="JobPost.currency === 'AOA'">Kz</span>
+                  <span *ngIf="JobPost.currency === 'ARS'">$</span>
+                  <span *ngIf="JobPost.currency === 'OMR'">ر.ع.</span>
+                  <span *ngIf="JobPost.currency === 'SAR'">.س</span>
+                  {{JobPost.toBudget}} est. time : {{JobPost.projectEndDate}} {{JobPost.durationOfProject}} - Posted
+                  <!-- {{getPostStatus(JobPost.createDate) }} -->
                 </p>
-                <p class="kkjbtxtline3"><span *ngIf="!showMore">{{jobPosts.description | slice:0:300}}....</span><span *ngIf="showMore">{{jobPosts.description}}</span><span (click)="ShowMoreLess()" class="text-decoration-underline">  More</span></p>
+                <p class="kkjbtxtline3"><span *ngIf="!showMore">{{JobPost.description | slice:0:300}}....</span><span *ngIf="showMore">{{JobPost.description}}</span><span (click)="ShowMoreLess()" class="text-decoration-underline">  More</span></p>
 
                 <div class="kkjbtxtline4"><img src="../assets/startick.png"> Profile verified</div>
                 <div class="kkjbtxtline5"><img src="../assets/startick.png"> Paymeny verified</div>
-                <div class="kkjbtxtline6">Tracking_ID : {{jobPosts.jobUniqueId}}</div>
+                <div class="kkjbtxtline6">Tracking_ID : {{JobPost.jobUniqueId}}</div>
 
               </div>
             </div>
@@ -80,9 +84,6 @@
           <div class="card kkjbprcrd" style=" width: 257px;">
             <img class="kkcrdimg" src="../assets/laptop.png">
             <p class="kkfrname">{{UserData[0].firstName}}</p>
-
-
-
             <p class="kkfrname1">Freelancers</p>
             <div class="card-body kkcrdbdy">
               <p class="kkfrname2">Profile Completeness:</p>
