@@ -172,6 +172,8 @@ export class SignupComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.router.navigate(['/role']);
     }, 3000);
+      this.submitbutton.nativeElement.click();
+
     } else {
       alert("Invalid OTP");
     }
@@ -242,6 +244,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       sessionStorage.setItem("loggedInUser", JSON.stringify(payload));
     }
   }
+
   checkbox1: boolean = false;
   checkbox2: boolean = false;
 

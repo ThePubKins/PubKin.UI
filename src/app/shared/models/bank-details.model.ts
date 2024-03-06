@@ -9,4 +9,9 @@ export interface bankDetails {
   nameoftheCard: string;
   expiryDate: string;
   cvv: string;
+  upi: string;
+  upiUrl: string;
+  accountNumber: string;
+  ifscCode: string;
+  holderName: string;
 }

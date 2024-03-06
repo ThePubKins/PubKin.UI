@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { BankDetailsService, EducationService, PortfolioService, PaymentService, UserService, UserauthenticateService, WorkdetailsService, portfolio } from '../../shared';
+import { BankDetailsService, EducationService, PortfolioService, UserService, UserauthenticateService, WorkdetailsService, portfolio, PricingSkillService } from '../../shared';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -18,7 +18,7 @@ export class ProfiledetailsComponent implements OnInit {
   freelancers: any;
   authors: any;
   Freelancers: any[] = [
-    { SimpleDesc: '', MediumDesc: '', ComplexDesc: '' } 
+    { SimpleDesc: '', MediumDesc: '', ComplexDesc: '' }
   ];
   Freelancer: any;
   GoNext: string = "button1";
@@ -42,6 +42,7 @@ export class ProfiledetailsComponent implements OnInit {
   portfolios: any
   uploadedFileName: string = '';
   selectedFiles: string[] = [];
+  combinedSkills: string[] = [];
   dateFormatted: any;
   hideprofileclose: boolean = false;
   currentDate: any = new Date();
@@ -53,7 +54,7 @@ export class ProfiledetailsComponent implements OnInit {
     public educationservice: EducationService,
     public workservice: WorkdetailsService,
     public datePipe: DatePipe,
-    public priceService: PaymentService,
+    public priceService: PricingSkillService,
     public bankservice: BankDetailsService) {
     this.calculateCharactersLeft('SimpleDesc');
     this.calculateCharactersLeft('MediumDesc');
@@ -64,14 +65,14 @@ export class ProfiledetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.contentName = params['contentName'];
     });
-    this.getUserData(); this.getWorkingDetails(); this.getBankDetails();
+    this.getUserData(); this.getWorkingDetails(); this.getBankDetails(); this.updateCombinedSkills();
     this.getEducationDetails(); this.getPaymentDetails(); this.getPortfolioDetails();
   }
 
   @ViewChild('submitbutton') submitbutton: ElementRef;
   @ViewChild('idbutton') idbutton: ElementRef;
   @ViewChild('increasebutton') increasebutton: ElementRef;
-  
+
   profilesubmit() {
     this.submitbutton.nativeElement.click();
   }
@@ -120,7 +121,7 @@ export class ProfiledetailsComponent implements OnInit {
   selectedImage2: string;
   saveChanges() {
     this.selectedImage2 = this.selectedImage
-    this.userservice.userData.ProfileUrl = this.selectedImage2;
+    this.userservice.userData.profileUrl = this.selectedImage2;
 
   }
 
@@ -165,7 +166,7 @@ export class ProfiledetailsComponent implements OnInit {
   }
 
   increaseGovtPercentage() {
-    this.User[0].govtIdDetails = "Added";
+    this.User[0].govtIdDetails = "35";
   }
 
   increseWorkPercentage() {
@@ -180,17 +181,36 @@ export class ProfiledetailsComponent implements OnInit {
   }
 
   increseDetailsPercentage() {
-    this.User[0].details = "Added";
+    this.User[0].details = "30";
   }
 
   increseBankPercentage() {
-    this.User[0].bankingDetails = "Added";
+    this.User[0].bankingDetails = "35";
+    this.User[0].paymentVerify = "Added";
   }
 
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.postBankDetails(form.value).subscribe();
+    }
+  }
+
+  onSubmitBankingDetails(form: NgForm) {
+    if (form.valid && this.bankservice.bankData) {
+      this.bankservice.putBankDetails(form.value).subscribe();
+    }
+  }
+
+  onSubmitCardDetails(form: NgForm) {
+    if (form.valid && this.bankservice.bankData) {
+      this.bankservice.putCardDetails(form.value).subscribe();
+    }
+  }
+
+  onSubmitUpiDetails(form: NgForm) {
+    if (form.valid && this.bankservice.bankData) {
+      this.bankservice.putUpiDetails(form.value).subscribe();
     }
   }
 
@@ -208,13 +228,13 @@ export class ProfiledetailsComponent implements OnInit {
     }
   }
 
-    //PersonalData Details Submit to Post Function
-    onSubmitPersonal(form: NgForm) {
-      if (form.valid && this.userservice.userData) {
-        this.userservice.putPersonalData(form.value).subscribe();
-      }
+  //PersonalData Details Submit to Post Function
+  onSubmitPersonal(form: NgForm) {
+    if (form.valid && this.userservice.userData) {
+      this.userservice.putPersonalData(form.value).subscribe();
     }
-    
+  }
+
   //Experience Details Submit to Post Function
   onSubmitExperienceDetails(form: NgForm) {
     if (form.valid && this.userservice.userData) {
@@ -313,6 +333,22 @@ export class ProfiledetailsComponent implements OnInit {
     'Lorem Ipsum 7',
     'Lorem Ipsum 8',
   ];
+
+  updateCombinedSkills(): void {
+    this.combinedSkills = [...this.selectedSkills, ...this.skills];
+  }
+
+
+  toggleSkill(skill: string): void {
+    const index = this.selectedSkills.indexOf(skill);
+    if (index !== -1) {
+      this.selectedSkills.splice(index, 1);
+    } else {
+      this.selectedSkills.push(skill);
+    }
+    this.updateCombinedSkills();
+  }
+
 
   addSkill(skill: string): void {
     if (!this.selectedSkills.includes(skill)) {

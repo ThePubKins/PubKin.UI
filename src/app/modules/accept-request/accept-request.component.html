@@ -179,11 +179,10 @@
 
                                     <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
                                       <input type="hidden" id="id" name="id" [(ngModel)]="Applies.id">
-                                      <input type="text" id="status" name="status" [(ngModel)]="Applies.status" >                                    
+                                      <input type="hidden" id="status" name="status" [(ngModel)]="Applies.status" >                                    
                             <button class="cpay"  data-bs-toggle="modal" data-bs-target="#saveModal" (click)="ChangeStatus();">Confirm & Pay</button>
                           </form>
                             <p class="disclaimer">*This payment will be add on your wallet</p>
-                           
                         </div>
                     </div>
                 </div>
