@@ -1,5 +1,5 @@
- <div id="google-btn"></div>  
-  {{name}}<br><img src="{{userProfile}}" alt=""><br>{{Email}}
+ <!-- <div id="google-btn"></div>  
+  {{name}}<br><img src="{{userProfile}}" alt=""><br>{{Email}} -->
 <div *ngIf="action === 'all'">
     <div *ngIf="GoNext === 'button1'">
         <div class="container mt-3">
@@ -30,9 +30,9 @@
                 <div *ngIf="googledown">
                     <div class="flx">
                         <div class="google">
-                            <img src="../assets/google_.png" alt="pubkin_google">
-                            <p class="goo">Signup with Google</p>
-                            <div id="google-btn"></div>
+                          
+                            <p class="goo"> <app-googlesignin (loginWithGoogle)="googleSignin($event)"></app-googlesignin></p>
+                         
                         </div>
                     </div>
                     <p class="meme1">Or</p>
@@ -181,7 +181,7 @@
                         <p class="mhead">Please Verify your email</p>
 
                         <input type="email" class="mailint" id="email" value={{usercredential.email}}><br> <button
-                            class="cemailbtn btn" (click)="sendOTP();firebaseSignup();verfy()">Confirm</button><br>
+                            class="cemailbtn btn" (click)="sendOTP();verfy()">Confirm</button><br>
                     </div>
                     <div *ngIf="verify" class="text-center">
                         <p class="otp">Enter OTP</p>
@@ -253,19 +253,21 @@
                 <mat-checkbox class="check34 check123"><span class="che3">Remember me</span></mat-checkbox>
                 <p *ngIf="errorMessage !== ''" class="error-message" style="color:#A426D1;">{{"*"+ errorMessage }}</p>
                 <div class="flx">
-                    <button class="btnfr1" type="submit" (click)="loginButton();Userlogin();OnAuthlogin()"><span>Login</span></button>
+                    <button class="btnfr1" type="submit" (click)="loginButton();Userlogin()"><span>Login</span></button>
                 </div>
                 <p class="meme1">Or</p>
                 <div class="flx">
-                    <div class="google1">
-                        <img src="../assets/google_.png" alt="">
-                        <p class="goo">Signup with Google</p>
-                    </div>
+                    <app-googlelogin (loginWithGoogle)="googleSignin($event)"></app-googlelogin>
                 </div>
             </div>
         </div>
         
     </form>
+    <div *ngIf="userEmail !== '' && userName !== ''">
+        <p>User Email: {{ userEmail }}</p>
+        <p>User Name: {{ userName }}</p>
+      </div>
+      
 </div>
 
 <div *ngIf="GoNext === 'button5'">
@@ -301,22 +303,8 @@
 
         </div>
 
-    </div>
 </div>
-
-<form (ngSubmit)="onAuthSubmit()" #authForm="ngForm">
-    <input type="hidden" id="email" name="email" [(ngModel)]="email">
-    <input type="hidden" id="password" name="password" [(ngModel)]="password">
-    <input type="hidden" name="firstname" [(ngModel)]="firstName">
-    <input type="hidden" name="Lastname" [(ngModel)]="lastName">
-    <button type="submit" class="d-none" #firebutton>Signup</button>
-</form>
-
-<form (ngSubmit)="OnAuthlogin()" #authForm="ngForm">
-    <input type="hidden" name="email" [(ngModel)]="email">
-    <input type="hidden" name="password" [(ngModel)]="password">
-    <button type="submit" class="d-none" #loginbutton>Signup</button>
-</form>
+</div>
 
 
   <div *ngIf="action === 'freelancer'">

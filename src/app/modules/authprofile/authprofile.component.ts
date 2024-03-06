@@ -28,17 +28,32 @@ export class AuthprofileComponent implements OnInit {
      } else {
      }
    }
+
+
+   calculateTotal(): number {
+    const num1 = parseInt(this.User[0].details);
+    const num2 = parseInt(this.User[0].govtIdDetails);
+    const num3 = parseInt(this.User[0].bankingDetails);
+
+    const total = num1 + num2 + num3;
+    return total;
+}
  
    getProgressBarColor(): string {
-     const progress = this.User[0].ProfilePercentage;
+     const personalprogress = this.User[0].details;
+     const govtIdprogress = this.User[0].govtIdDetails;
+     const bankprogress = this.User[0].bankingDetails;
  
-     if (progress < 40) {
+     if (personalprogress === 30) {
        return '#666666'; 
-     } else if (progress < 80) {
+     } else if (govtIdprogress === 35) {
        return '#333333'; 
      } 
-     else {
-       return '#000000';
+     else if(bankprogress === 35 ) {
+       return '#FFFFFF';
+     }
+     else  { 
+      return '#000';
      }
    }
 

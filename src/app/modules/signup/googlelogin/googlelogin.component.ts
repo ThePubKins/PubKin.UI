@@ -1,15 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-declare global {
-  interface Window {
-    google: any;
-  }
-}
+
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+  selector: 'app-googlelogin',
+  templateUrl: './googlelogin.component.html',
+  styleUrls: ['./googlelogin.component.scss']
 })
-export class PaymentComponent {
+export class GoogleloginComponent {
   @Output() loginWithGoogle: EventEmitter<any> = new EventEmitter<any>();
 
   createFakeGoogleWrapper = () => {
@@ -18,8 +14,11 @@ export class PaymentComponent {
     googleLoginWrapper.classList.add('custom-google-button');
     document.body.appendChild(googleLoginWrapper);
     window.google.accounts.id.renderButton(googleLoginWrapper, {
-      type: 'icon',
-      width: '200',
+      type:'standard',
+      shape:'pill',
+      theme:'filled_blue',
+      text:'signin_with',
+      size:'medium',
     });
 
     const googleLoginWrapperButton = googleLoginWrapper.querySelector(
@@ -38,3 +37,5 @@ export class PaymentComponent {
   }
 
 }
+
+

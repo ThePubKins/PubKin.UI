@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { pricingSkillDetails } from '../models';
+import { payment } from '../models';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../core';
-
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +10,14 @@ export class PaymentService {
 
   constructor(private apiService: ApiService) { }
 
-  pricingSkillData: pricingSkillDetails = {} as pricingSkillDetails;
-  list: pricingSkillDetails[] = [];
+  paymentData: payment = {} as payment;
+  list: payment[] = [];
 
-  postSkillPricing(pricingSkillData: any): Observable<any> {
-    return this.apiService.post(`PricingSkill`, pricingSkillData);
+  postPayment(paymentData: any): Observable<any> {
+    return this.apiService.post(`Payment`, paymentData);
   }
   
-  getSkillPricing(): Observable<pricingSkillDetails[]> {
-    return this.apiService.get(`PricingSkill`);
+  getPayment(): Observable<payment[]> {
+    return this.apiService.get(`Payment`);
   }
 }

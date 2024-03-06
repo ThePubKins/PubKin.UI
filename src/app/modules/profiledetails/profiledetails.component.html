@@ -10,13 +10,15 @@
   </div>
 
   <!--Profile Picture -->
-  <div *ngIf="contentName === 'choose-your-picutre-now'" class="ubbbhb">
+  <div *ngIf="contentName === 'choose-your-picutre-now'">
     <div class="container">
-      <p class="kkemphus">Choose Your Profile Now</p>
-      <form #profileForm="ngForm" (ngSubmit)="onSubmitProfile(profileForm)">
-        <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+
+      <p class="kkemphusprof">Choose Your Profile Now</p>
+      <form #profileForm="ngForm" (ngSubmit)="onSubmitProfile(profileForm); onSubmitBankDetails(profileForm)">
+
+        <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
         <input type="hidden" [value]="selectedImage2 ? selectedImage2 : '/assets/animoji.png'" id="profileUrl"
-          name="profileUrl" [(ngModel)]="userservice.userData.ProfileUrl">
+          name="profileUrl" [(ngModel)]="userservice.userData.profileUrl">
         <div class="text-center">
           <img [src]="selectedImage ? selectedImage : 'assets/animoji.png'" class="profileimg">
         </div>
@@ -35,7 +37,6 @@
       </form>
     </div>
   </div>
-
 
   <!-- Employment History -->
   <div *ngIf="contentName === 'employment-history'">
@@ -692,7 +693,8 @@
             <div class="modal-body">
               <input type="text" id="id" name="id" [(ngModel)]="priceService.pricingSkillData.id">
               <input type="text" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
-              <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="priceService.pricingSkillData.dateCreated">
+              <input type="text" id="dateCreated" name="dateCreated"
+                [(ngModel)]="priceService.pricingSkillData.dateCreated">
               <input type="text" id="userId" name="userId" [(ngModel)]="User[0].id">
               <div>
                 <div class="kkeduhdtg">&nbsp;&nbsp;Your skill<div>
@@ -913,7 +915,7 @@
         </div>
         <div class="col-6">
           <form #personalForm="ngForm" (ngSubmit)="onSubmitPersonal(personalForm);onSubmitpercentage(personalForm)">
-            <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+            <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
             <input type="hidden" ngModel name="firstName" #firstName="ngModel" id="firstName"
               [(ngModel)]="User[0].firstName ">
             <input type="hidden" ngModel name="lastName" #lastName="ngModel" id="lastName"
@@ -930,6 +932,8 @@
               [(ngModel)]="User[0].workingDetails">
             <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
               [(ngModel)]="User[0].bankingDetails">
+            <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+              [(ngModel)]="User[0].paymentVerify">
             <input type="hidden" [value]="selectedSkills.join(', ')" ngModel name="description" #description="ngModel"
               [(ngModel)]="User[0].description" />
             <p class="whatskilled">What are the skills you are looking for?</p>
@@ -938,10 +942,10 @@
             </div>
 
             <div class="row mt-4">
-              <p class="popskill" *ngIf="hidetext">Selected skill </p>
-              <div class="col-4 mt-2" *ngFor="let selectedSkill of selectedSkills; let i = index">
-                <div class="addsk1" (click)="removeSkill(i)">
-                  {{ selectedSkill }} &nbsp;
+              <p class="popskill">Selected and Popular skills</p>
+              <div class="col-4 mt-2" *ngFor="let skill of skills; let i = index">
+                <div class="addsk1" [class.addsk]="selectedSkills.includes(skill)" (click)="toggleSkill(skill)">
+                  {{ skill }} &nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                     <path d="M12.728 4.75684L4.24275 13.2421" stroke="white" stroke-width="2" stroke-linecap="round" />
                     <path d="M4.24268 4.75684L12.728 13.2421" stroke="white" stroke-width="2" stroke-linecap="round" />
@@ -950,21 +954,14 @@
               </div>
             </div>
 
-            <div class="row">
-              <p class="popskill">popular skill </p>
-              <div class="col-4 mt-3" *ngFor="let skill of skills; let i = index">
-                <div class="addsk" (click)="addSkill(skill); hiddentext();increseDetailsPercentage();">
-                  {{skill}} &nbsp; <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
-                    fill="none">
-                    <path d="M7 1V13" stroke="black" stroke-width="2" stroke-linecap="round" />
-                    <path d="M1 7L13 7" stroke="black" stroke-width="2" stroke-linecap="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
             <p class="phoneNumberAuth">Your Phone Number</p>
             <input type="text" class="intPhoneAuth" placeholder="Phone Number" id="phoneNumber" name="phoneNumber"
-              #phoneNumber="ngModel" [(ngModel)]="User[0].phoneNumber" required>
+              #phoneNumber="ngModel" [(ngModel)]="User[0].phoneNumber" required minlength="10" maxlength="10"
+              pattern="[0-9\s]+$">
+            <span class="errormsg1" *ngIf="phoneNumber.errors?.['pattern']">
+              <br> Only Characters are allowed
+            </span>
+
             <p class="disclaimer">*We will not share your contact information to anyone.</p>
             <p class="LocationAuth">Location</p>
             <input type="text" class="intLocAuth" placeholder="Location " id="nationality" required name="nationality"
@@ -991,17 +988,25 @@
     </div>
 
     <div class="container rrpubaligntop1">
-      <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)">
-        <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
-        <input type="hidden" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
-        <input type="hidden" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country">
-        <input type="hidden" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
+      <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm);onSubmitpercentage(govtIdForm);">
+        <input type="text" id="id" name="id" [(ngModel)]="User[0].id">
+        <input type="text" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
+        <input type="text" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+          [(ngModel)]="User[0].govtIdDetails">
+        <input type="text" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+          [(ngModel)]="User[0].portfolioDetails">
+        <input type="text" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+          [(ngModel)]="User[0].educationDetails">
+        <input type="text" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails"
+          [(ngModel)]="User[0].workingDetails">
+        <input type="text" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+          [(ngModel)]="User[0].bankingDetails">
+        <input type="text" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+          [(ngModel)]="User[0].paymentVerify">
+        <input type="text" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
+        <input type="text" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country" >
+        <input type="text" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
         <button type="submit" class="d-none" #idbutton>Submit</button>
-
-
-
-
-
         <div class="row">
           <div class="col-3">
             <div>
@@ -1015,7 +1020,7 @@
               <div>
                 <div>
                   <input type="text" required placeholder="JOHN DOE" pattern='^[a-zA-Z\s]+$' class="rrpubjohntxt1"
-                    id="idNumber" name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber">
+                    id="idNumber" name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber" (click)="increaseGovtPercentage()">
                   <span class="errormsg" *ngIf="!idNumber.valid && (idNumber.touched || idNumber.dirty)">
                     <span class="errormsg" *ngIf="idNumber.errors?.['pattern']">
                       Only Characters are Allowed
@@ -1104,7 +1109,7 @@
                       ending in <span class="kkbnktx4">3457</span></span></div>
                 </div>
                 <div class="col-4">
-                  <p class="kkbnktx5">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
+                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
                 </div>
               </div>
             </div>
@@ -1126,7 +1131,7 @@
                     ending in <span class="kkbnktx4">3657</span></span></div>
               </div>
               <div class="col-4">
-                <p class="kkbnktx5">Edit<span class="kkdel"><img style=" margin-top: -5px;"
+                <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img style=" margin-top: -5px;"
                       src="./assets/dele.png"></span></p>
               </div>
             </div>
@@ -1152,19 +1157,141 @@
             </div>
           </div>
           <p class="kkbnktx6">Add Payment Option</p>
-
-          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#upiModal"><span><img
                 src="./assets/upi.png"></span>UPI</div>
           <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
                 src="./assets/creditcard.png"></span>Credit Or Debit Card</div>
-          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
-                src="./assets/bank.png"></span>Net Banking</div>
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#bankModal "><span><img
+                src="./assets/bank.png"></span>Bank Details</div>
           <button class="btn kkbillbtnlst">Confirm Payment Method</button>
         </div>
       </div>
     </div>
 
+    <div class="modal  fade" id="upiModal" tabindex="-1" aria-labelledby="upiModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content kkmodelbill">
+          <div class="container">
+            <div class="row kkbillr3">
+              <div class="col-2">
+                <span data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  class="material-symbols-outlined kkiconbill">
+                  arrow_back_ios
+                </span>
+              </div>
+              <div class="col-8"></div>
+              <div class="col-2">
+                <img data-bs-dismiss="modal" aria-label="Close" src="../assets/x letter.png" alt="">
+              </div>
+            </div>
+          </div>
+          <p class="kkbnktx6">Add UPI Details</p>
+          <div *ngFor="let bankData of bankDetails">
+            <div *ngIf="User[0].id === bankData.id">
+              <form #upiDetailsform="ngForm"
+                (ngSubmit)="onSubmitBankingDetails(upiDetailsform);onSubmitpercentage(upiDetailsform);">
+                <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+                <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].id">
+                <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
+                <input type="hidden" id="dateLastModified" name="dateLastModified"
+                  [(ngModel)]="User[0].dateLastModified">
+                <input type="hidden" ngModel name="details" #details="ngModel" id="details"
+                  [(ngModel)]="User[0].details">
+                <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+                  [(ngModel)]="User[0].govtIdDetails">
+                <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+                  [(ngModel)]="User[0].portfolioDetails">
+                <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+                  [(ngModel)]="User[0].educationDetails">
+                <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails"
+                  [(ngModel)]="User[0].workingDetails">
+                <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+                  [(ngModel)]="User[0].bankingDetails">
+                <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+                  [(ngModel)]="User[0].paymentVerify">
+                <input type="text" placeholder="UPI Method" class="kkbilinput1" ngModel id="upi" name="upi"
+                  #upi="ngModel" [(ngModel)]="bankData.upi" required >
+                <input type="text" placeholder="Paste Your UPI URL" class="kkbilinput1" ngModel id="upiUrl" name="upiUrl"
+                #upiUrl="ngModel" [(ngModel)]="bankData.upiUrl" required (click)="increseBankPercentage()">
+                <div class="container kkreadiobil">
+                  <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
+                    Make Default Payment
+                  </label>
+                </div>
+                <div class="kkbiladcd">
+                  <button class="btn kkbiladcd1" [disabled]="upiDetailsform.invalid"  data-bs-dismiss="modal" aria-label="Close">Confirm Details</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="modal  fade" id="bankModal" tabindex="-1" aria-labelledby="bankModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content kkmodelbill">
+          <div class="container">
+            <div class="row kkbillr3">
+              <div class="col-2">
+                <span data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  class="material-symbols-outlined kkiconbill">
+                  arrow_back_ios
+                </span>
+              </div>
+              <div class="col-8"></div>
+              <div class="col-2">
+                <img data-bs-dismiss="modal" aria-label="Close" src="../assets/x letter.png" alt="">
+              </div>
+            </div>
+          </div>
+          <p class="kkbnktx6">Add Bank Details</p>
+          <div *ngFor="let bankData of bankDetails">
+            <div *ngIf="User[0].id === bankData.id">
+              <form #bankingDetailsform="ngForm"
+                (ngSubmit)="onSubmitBankingDetails(bankingDetailsform);onSubmitpercentage(bankingDetailsform);">
+                <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+                <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].id">
+                <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
+                <input type="hidden" id="dateLastModified" name="dateLastModified"
+                  [(ngModel)]="User[0].dateLastModified">
+                <input type="hidden" ngModel name="details" #details="ngModel" id="details"
+                  [(ngModel)]="User[0].details">
+                <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+                  [(ngModel)]="User[0].govtIdDetails">
+                <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+                  [(ngModel)]="User[0].portfolioDetails">
+                <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+                  [(ngModel)]="User[0].educationDetails">
+                <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails"
+                  [(ngModel)]="User[0].workingDetails">
+                <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+                  [(ngModel)]="User[0].bankingDetails">
+                <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+                  [(ngModel)]="User[0].paymentVerify">
+                <input type="text" placeholder="Account Number" class="kkbilinput1" ngModel #AccountNumber="ngModel"
+                  minlength="3" maxlength="10" required pattern="[0-9]+$" name="AccountNumber" id="AccountNumber"
+                  [(ngModel)]="bankData.accountNumber">
+                <input type="text" placeholder="IFSC Code" class="kkbilinput1" name="ifscCode" id="ifscCode"
+                  [(ngModel)]="bankData.ifscCode">
+                <input type="text" placeholder="Account Holder Name" class="kkbilinput1" name="holderName"
+                  id="holderName" [(ngModel)]="bankData.holderName" (click)="increseBankPercentage()">
+                <div class="container kkreadiobil">
+                  <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
+                    Make Default Payment
+                  </label>
+                </div>
+                <div class="kkbiladcd">
+                  <button class="btn kkbiladcd1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="bankingDetailsform.invalid">Confirm Details</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="modal  fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
@@ -1184,66 +1311,90 @@
             </div>
           </div>
           <p class="kkbnktx6">Add Card Details</p>
-          <form #bankDetailsform="ngForm" (ngSubmit)="onSubmitBankDetails(bankDetailsform)">
-            <input type="hidden" id="id" name="id" [(ngModel)]="bankservice.bankData.id">
-            <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
-            <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
-              maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankData.cardNumber"
-              required pattern="[0-9\s]+$" />
-            <span *ngIf="!cardNumber.valid && cardNumber.touched">
-              <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
-                Card Number is required
-              </span>
-              <span class="errormsg" *ngIf="cardNumber.errors?.['pattern']">
-                Only Characters are allowed
-              </span>
-            </span>
-            <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
-              minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
-              [(ngModel)]="bankservice.bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
-            <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
-              <span class="errormsg" *ngIf="nameoftheCard.errors?.['required']">
-                Card Name is required
-              </span>
-              <span class="errormsg" *ngIf="nameoftheCard.errors?.['pattern']">
-                Only Characters are allowed
-              </span>
-            </span>
-            <div class="kbiladcrd1">
-              <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
-                #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
-                [(ngModel)]="bankservice.bankData.expiryDate" required pattern="[0-9]+$">
-              <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
-                minlength="1" maxlength="3" [(ngModel)]="bankservice.bankData.cvv" required pattern="[0-9]+$">
+          <div *ngFor="let bankData of bankDetails">
+            <div *ngIf="User[0].id === bankData.id">
+              <form #bankDetailsform="ngForm"
+                (ngSubmit)="onSubmitCardDetails(bankDetailsform);onSubmitpercentage(bankDetailsform);">
+                <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+                <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].id">
+                <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
+                <input type="hidden" id="dateLastModified" name="dateLastModified"
+                  [(ngModel)]="User[0].dateLastModified">
+                <input type="hidden" ngModel name="details" #details="ngModel" id="details"
+                  [(ngModel)]="User[0].details">
+                <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+                  [(ngModel)]="User[0].govtIdDetails">
+                <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+                  [(ngModel)]="User[0].portfolioDetails">
+                <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+                  [(ngModel)]="User[0].educationDetails">
+                <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails"
+                  [(ngModel)]="User[0].workingDetails">
+                <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+                  [(ngModel)]="User[0].bankingDetails">
+                <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+                  [(ngModel)]="User[0].paymentVerify">
+                <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
+                  maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankData.cardNumber" required
+                  pattern="[0-9\s]+$" />
+                <span *ngIf="!cardNumber.valid && cardNumber.touched">
+                  <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
+                    Card Number is required
+                  </span>
+                  <span class="errormsg" *ngIf="cardNumber.errors?.['pattern']">
+                    Only Characters are allowed
+                  </span>
+                </span>
+                <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
+                  minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
+                  [(ngModel)]="bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
+                <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
+                  <span class="errormsg" *ngIf="nameoftheCard.errors?.['required']">
+                    Card Name is required
+                  </span>
+                  <span class="errormsg" *ngIf="nameoftheCard.errors?.['pattern']">
+                    Only Characters are allowed
+                  </span>
+                </span>
+                <div class="kbiladcrd1">
+                  <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
+                    #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
+                    [(ngModel)]="bankData.expiryDate" required pattern="[0-9]+$" (click)="increseBankPercentage();">
+                  <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
+                    minlength="1" maxlength="3" [(ngModel)]="bankData.cvv" required pattern="[0-9]+$">
+                </div>
+                <span *ngIf="!expiryDate.valid && expiryDate.touched">
+                  <span class="errormsg" *ngIf="expiryDate.errors?.['required']">
+                    ExpiryDate is required
+                  </span>
+                  <span class="errormsg" *ngIf="expiryDate.errors?.['pattern']">
+                    Only Numeric are allowed
+                  </span>
+                </span>
+                <span *ngIf="!cvv.valid && cvv.touched">
+                  <span class="errormsg" *ngIf="cvv.errors?.['required']">
+                    cvv is required
+                  </span>
+                  <span class="errormsg" *ngIf="cvv.errors?.['pattern']">
+                    Only Numeric are allowed
+                  </span>
+                </span>
+                <div class="container kkreadiobil">
+                  <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
+                    Make Default Payment
+                  </label>
+                </div>
+                <div class="kkbiladcd">
+                  <button class="btn kkbiladcd1" type="submit" [disabled]="bankDetailsform.invalid"
+                    data-bs-dismiss="modal" aria-label="Close">Add Card</button>
+                </div>
+              </form>
             </div>
-            <span *ngIf="!expiryDate.valid && expiryDate.touched">
-              <span class="errormsg" *ngIf="expiryDate.errors?.['required']">
-                ExpiryDate is required
-              </span>
-              <span class="errormsg" *ngIf="expiryDate.errors?.['pattern']">
-                Only Numeric are allowed
-              </span>
-            </span>
-            <span *ngIf="!cvv.valid && cvv.touched">
-              <span class="errormsg" *ngIf="cvv.errors?.['required']">
-                cvv is required
-              </span>
-              <span class="errormsg" *ngIf="cvv.errors?.['pattern']">
-                Only Numeric are allowed
-              </span>
-            </span>
-            <div class="container kkreadiobil">
-              <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
-                Make Default Payment
-              </label>
-            </div>
-            <div class="kkbiladcd">
-              <button class="btn kkbiladcd1" type="submit" [disabled]="bankDetailsform.invalid">Add Card</button>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>

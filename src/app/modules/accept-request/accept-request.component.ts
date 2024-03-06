@@ -64,7 +64,7 @@ export class AcceptRequestComponent implements OnInit {
 
 }
 
-  }
+  
   onSubmitStatus(form: NgForm) {
     if (form.valid && this.applyService.applyData) {
       this.applyService.PutStatus(form.value).subscribe();
@@ -109,6 +109,8 @@ export class AcceptRequestComponent implements OnInit {
   //   });
   //   Applies.showIcons = !Applies.showIcons;
   // }
+
+
   calculateFees() {
     const platformFeePercentage = 2;
     const taxesPercentage = 6;
@@ -121,7 +123,9 @@ export class AcceptRequestComponent implements OnInit {
       payableAmount: payableAmount.toFixed(2)
     };
   }
+
 }
+
 
 
 interface Proposal {

@@ -1,12 +1,10 @@
-export interface payment {
+export interface wallet {
     id: string;
     createdBy: string;
     dateCreated: string;
     lastModifiedBy: string;
     dateLastModified: string;
-    jobId: string;
-    tax: string;
-    platformFee: string;
-    payableAmount: string;
+    userId: string;
+    amount: string;
     status: string;
 }
