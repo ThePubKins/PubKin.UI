@@ -14,7 +14,7 @@
     <div class="container">
       <p class="kkemphus">Choose Your Profile Now</p>
       <form #profileForm="ngForm" (ngSubmit)="onSubmitProfile(profileForm)">
-        <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+        <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
         <input type="hidden" [value]="selectedImage2 ? selectedImage2 : '/assets/animoji.png'" id="profileUrl"
           name="profileUrl" [(ngModel)]="userservice.userData.ProfileUrl">
         <div class="text-center">
