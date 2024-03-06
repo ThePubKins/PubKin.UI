@@ -339,23 +339,24 @@ margin-top: 103px;
 
 
 .authprofhead{ 
-color: #1C1C1C;
-font-family: "League Spartan", sans-serif;
-font-size: 42px;
-font-style: normal;
-font-weight: 700;
-line-height: 56px; /* 133.333% */
-margin-top: 63px;
+  color: #1C1C1C;
+  font-family: "League Spartan", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 56px;
+  margin-top: 13px;
+
 }
 
 .whatskilled { 
-color: #1C1C1C;
-font-family: "League Spartan", sans-serif;
-font-size: 29px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-margin-top: 63px;
+  color: #1C1C1C;
+  font-family: "League Spartan", sans-serif;
+  font-size: 29px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 21px;
 }
 
 .intsearchauth  {
@@ -410,7 +411,7 @@ width: 100%;
 align-items: center;
 gap: 8px;
 border-radius: 130px;
-background: #A426D1;
+background: #cf7ded;
 color: #FFF;
 font-family: "League Spartan", sans-serif;
 font-size:18px;
@@ -421,18 +422,18 @@ line-height: normal;
 
 
 .addsk { 
-background: #E9ACFF;
-color: #2A2A2A;
+  background: #A426D1;
+color: #fffdfd;
 }
 
 .phoneNumberAuth,.LocationAuth  {
-color: #1C1C1C;
-font-family: "League Spartan", sans-serif;
-font-size: 29px;
-font-style: normal;
-font-weight: 600;
-line-height: normal;
-margin-top: 41px;
+  color: #1C1C1C;
+  font-family: "League Spartan", sans-serif;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 41px;
 }
 
 .intPhoneAuth,.intLocAuth { 
@@ -747,9 +748,9 @@ margin-left: 40px;
 }
 .kkbillpay1{
 display: flex;
-width: 370px;
+width: 81%;
 height: 69px;
-padding: 22px 125px 23.75px 26px;
+padding: 22px 84px 19.75px 26px;
 align-items: flex-end;
 gap: 17px;
 flex-shrink: 0;
@@ -784,7 +785,7 @@ border-radius: 4px;
 background: #A426D1;
 margin-left: 83px;
 width: 280px;
-margin-top: 160px ;
+margin-top: 63px ;
 box-shadow: 2px 18px 29px 0px rgba(123, 43, 154, 0.04), 2px 5px 4px 0px rgba(118, 27, 153, 0.43);
 }
 .kkbilinput1{
@@ -805,28 +806,25 @@ margin-top: 20px;
 text-indent: 40px;
 box-shadow: 0px 4px 10px #e7e1e1;
 }
-.kbiladcrd1{
-display: flex;
-gap:34px;
 
-}
-.kkbilinput2{
-height: 69px;
-justify-content: center;
-align-items: center;
-border-radius: 12px;
-border: 2px solid #E8E8E8;
-background: #FFF;
-width: 170px;
-margin-left: 30px;
-margin-top: 24px;
-color: #A4A4A4;
-text-align: center;
-font-family: "League Spartan";
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+.kkbilinput2{      height: 61px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  padding-left: 21px;
+  border: 2px solid #E8E8E8;
+  background: #FFF;
+  width: 158px;
+  margin-left: 41px;
+  margin-top: 24px;
+  color: #A4A4A4;
+  text-align: left;
+  font-family: "League Spartan";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  box-shadow: 0px 4px 10px #e7e1e1;
 }
 .kkreadiobil{
 margin-top: 39px;
@@ -943,6 +941,23 @@ gap:30px;
   font-family: "League Spartan", sans-serif;
   font-weight: 600;   
  }
+
+ .showProfiles{ 
+  width: 100px;
+ }
+
+ .profileimg{  
+  width: 120px;
+ }
+
+ 
+.kkemphusprof{
+  margin-top: 28px;
+  font-size: 40px;
+  font-family: "League Spartan", sans-serif;
+  font-weight: 600;   
+ }
+
 
  
  .kkemphus1{
@@ -1150,6 +1165,13 @@ gap:30px;
     color: #9617c4;
   }
   
+
+  .errormsg1 { 
+    font-size: 15px;
+    margin-top: 5px;
+    font-family: "League Spartan", sans-serif;
+    color: #9617c4;
+  }
   
   /*Freelancing-details*/
 

@@ -20,4 +20,16 @@ export class BankDetailsService {
   postBankDetails(bankData: any) {
     return this.apiService.post(`BankDetails`, bankData)
   }
+
+  putBankDetails(bankData: any): Observable<any> {
+    return this.apiService.put(`BankDetails/bankdetails`, bankData);
+  }
+
+  putCardDetails(bankData: any): Observable<any> {
+    return this.apiService.put(`BankDetails/carddetails`, bankData);
+  }
+
+  putUpiDetails(bankData: any): Observable<any> {
+    return this.apiService.put(`BankDetails/upidetails`, bankData);
+  }
 }

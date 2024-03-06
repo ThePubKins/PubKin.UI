@@ -20,11 +20,12 @@ export interface Users  {
    roleId : string;
    experience : string;
    description : string;
-   Details:string;
-   GovtIdDetails:string;
-   ProfileUrl:string;   
-   PortfolioDetails:string;
-   EducationDetails:string;
-   WorkingDetails:string;
-   BankingDetails:string;
+   details:string;
+   govtIdDetails:string;
+   profileUrl:string;   
+   portfolioDetails:string;
+   educationDetails:string;
+   workingDetails:string;
+   bankingDetails:string;
+   paymentVerify:string;
 }

@@ -194,7 +194,6 @@ export class SignupComponent implements OnInit {
   verifyOTP() {
     const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
     if (otp_inp.value === this.generatedOTP) {
-      alert("Email address verified...");
       this.submitbutton.nativeElement.click();
       this.router.navigate(['/role']);
     } else {
@@ -282,9 +281,9 @@ export class SignupComponent implements OnInit {
     }
   }
 
-   name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
-   userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
-   Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
+  //  name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
+  //  userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
+  //  Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
 
   checkbox1: boolean = false;
   checkbox2: boolean = false;
