@@ -19,9 +19,7 @@ export class AuthorsComponent implements OnInit {
   constructor(
     public jobService:JobpostService, public userService : UserauthenticateService,
     public dialog: MatDialog,public router: Router) { }
-    navigateToProfile(action: string): void {
-      this.router.navigate(['/post-a-job', action]);
-    }
+
   ngOnInit(): void {
     this.getUserData();
     this.openDeliveryDialog();

@@ -242,8 +242,6 @@ export class SignupComponent implements OnInit, OnDestroy {
       sessionStorage.setItem("loggedInUser", JSON.stringify(payload));
     }
   }
-
-
   checkbox1: boolean = false;
   checkbox2: boolean = false;
 

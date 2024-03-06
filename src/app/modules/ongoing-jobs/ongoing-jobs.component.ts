@@ -26,6 +26,10 @@ export class OngoingJobsComponent {
     this.searchTerm = event.target.value;
   }
 
+  anyJobInProgress(): boolean {
+    return this.Applies.some((Apply: { status: string; }) => Apply.status === 'progress');
+  }
+  
   submitwork : boolean = false;
   submitworks()  { 
      this.submitwork = true;

@@ -4,6 +4,9 @@
   <div class="row ">
     <div class="col-12">
       <div class="appliedborder">
+        <div *ngIf="!anyJobInProgress()" class="jobtitle">
+          No offers are available for you!
+        </div>
         <div *ngFor="let JobPost of  Applies;">
           <div class="row" style="margin-top: 17px;" *ngIf="JobPost.status === 'offers'">
             <div class="col-8">
@@ -16,7 +19,7 @@
             </div>
             <div class="row">
               <div class="col-8">
-                <p class="aboutjob">Rate: ₹<span style="color: black;font-weight: 700;">{{JobPost.rate}}</span></p>
+                <p class="aboutjob">Rate: ₹<span style="color: black;font-weight: 500;">{{JobPost.rate}}</span></p>
               </div>
               <div class="col-4">
                 <p class="postedname">Request by<span style="color: #A426D1;"> {{JobPost.postBy}}</span></p>

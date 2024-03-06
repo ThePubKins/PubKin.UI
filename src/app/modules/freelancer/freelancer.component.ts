@@ -191,6 +191,10 @@ export class FreelancerComponent implements OnInit {
   hide1() { 
   this.hide23 = !this.hide23;
   }
+
+  toggleIcons(Posts: any) {
+    Posts.showIcons = !Posts.showIcons;
+}
   
 
   //Posted Timeline
@@ -224,7 +228,5 @@ export class FreelancerComponent implements OnInit {
       return diffYears + ' years ago';
     }
   }
-  
-
 } 
 
