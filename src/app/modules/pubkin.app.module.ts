@@ -17,7 +17,7 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthprofileComponent } from './authprofile/authprofile.component';
 import { ExampleComponent } from './example/example.component';
-import { SocialLoginModule } from '@abacritt/angularx-social-login';
+// import { SocialLoginModule } from '@abacritt/angularx-social-login';
 import { JobPostComponent } from './job-post/job-post.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ProfilesettingComponent } from './profilesetting/profilesetting.component';
@@ -38,9 +38,15 @@ import { RoleComponent } from './role/role.component';
 import { OngoingJobsComponent } from './ongoing-jobs/ongoing-jobs.component';
 import { FootertagComponent } from './footertag/footertag.component';
 import { PaymentComponent } from './payment/payment.component';
-import { FileSizePipe, JobsearchPipe, LinkifyPipe, TruncatePipe } from '../shared';
+import { GooglesigninComponent } from './signup/googlesignin/googlesignin.component';
+import { GoogleloginComponent } from './signup/googlelogin/googlelogin.component';
+import {  JobsearchPipe } from '../shared';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-
+import {
+    SocialLoginModule,
+    SocialAuthServiceConfig,
+    GoogleLoginProvider,
+  } from "@abacritt/angularx-social-login";
 @NgModule({
     declarations: [
         SignupComponent,
@@ -70,18 +76,33 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
         AuthorsOngoingJobsComponent,
         RoleComponent,
         OngoingJobsComponent,
-        FootertagComponent
+        FootertagComponent,GooglesigninComponent,GoogleloginComponent
     ],
-    providers: [DatePipe],
+    providers: [DatePipe,
+        {
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+              autoLogin: false,
+              providers: [
+                {
+                  id: GoogleLoginProvider.PROVIDER_ID,
+                  provider: new GoogleLoginProvider('202921354570-cgrtnggio9l9amugpir95rb33uf8dehm.apps.googleusercontent.com', {
+                    scopes: 'openid profile email',
+                  }),
+                },
+              ],
+              onError: (err) => {
+                console.error(err);
+              },
+            } as SocialAuthServiceConfig,
+        },
+        ],
     imports: [
         CommonModule, 
         RouterLink, 
         RouterLinkActive, 
         RouterOutlet,
-        LinkifyPipe,
         JobsearchPipe,
-        TruncatePipe,
-        FileSizePipe,
         SocialLoginModule,
         ReactiveFormsModule,
         NgxSplideModule,
@@ -91,11 +112,12 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
         MatCheckboxModule,
         MatCardModule,
         MatCardModule,
-        MatIconModule
+        MatIconModule,
+        SocialLoginModule
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
         NO_ERRORS_SCHEMA
-    ]
+    ],
 })
 export class PubKinAppModule { }

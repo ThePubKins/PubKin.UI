@@ -42,7 +42,7 @@
                     <img class="sho1"  (click)="thirumpivvaa()"  src="../assets/show more.png" alt="">
                     <div class="EDITDEL" *ngIf="maranchupo">
               
-                      <img class="p-2" src="./assets/shortlist.png">
+                      <img class="p-2" src="./assets/shortlist.png" data-bs-toggle="modal" data-bs-target="#deletmodel2">
                       <img class="p-2" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
           </div>'
                 </div>
@@ -51,7 +51,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="deletmodel2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="pad1" >
+        <div class="modal-hed">
 
+          <p class="c22" id="exampleModalLabel5"><b>Do you want Shortliste this freelancer proposal ?</b></p>
+        </div>
+        <div class="kksubbtn">
+          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
+          <button type="button" class="btn kkkbtncn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="deletmodel1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

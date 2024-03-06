@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import { AppliedUserService, CommentsService, FirebaseAuthService, JobpostService, UserauthenticateService, applied_user } from '../../shared';
+import { AppliedUserService, CommentsService, JobpostService, UserauthenticateService, applied_user } from '../../shared';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class ApplyNowComponent {
   jobpostData: applied_user = {} as applied_user;
   filesdetails: any;
   constructor(public datePipe: DatePipe, private route: ActivatedRoute,
-    public authService: FirebaseAuthService, public userservice: UserauthenticateService, public commentservice: CommentsService,
+  public userservice: UserauthenticateService, public commentservice: CommentsService,
     public appliedservice: AppliedUserService, public jobservice: JobpostService) { this.calculateCharactersLeft(); }
 
   ngOnInit(): void {

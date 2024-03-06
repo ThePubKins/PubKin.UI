@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, OnInit,OnDestroy, ViewChild, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FirebaseAuthService, RoleService, UserService, UserauthenticateService } from '../../shared';
-
+import { RoleService, UserService, UserauthenticateService } from '../../shared';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
+import { Subscription } from 'rxjs';
 declare var Email: any;
 declare var google: any;
 
@@ -12,7 +13,7 @@ declare var google: any;
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   usercredential = { email: '', password: '', firstName: '', lastName: '', role: '' };
   email: string = '';
   isSignUp: boolean = true;
@@ -36,29 +37,35 @@ export class SignupComponent implements OnInit {
   verify: boolean = false;
   errorMessage: string = '';
   emails: any;
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, public userservice: UserService, public roleService: RoleService,
-    public userregister: UserauthenticateService, private router: Router, public fireauthservice: FirebaseAuthService) { }
-
+  userEmail: string = '';
+  userName: string = '';
+  constructor(public authService: SocialAuthService,public dialog: MatDialog, private route: ActivatedRoute, public userservice: UserService, public roleService: RoleService,
+    public userregister: UserauthenticateService, private router: Router) { }
+    authSubscription!: Subscription;
   @ViewChild('rolebutton') rolebutton: ElementRef;
   @ViewChild('submitbutton') submitbutton: ElementRef;
   @ViewChild('firebutton') firebutton: ElementRef;
   @ViewChild('loginbutton') loginbutton: ElementRef;
 
-
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+  }
+  googleSignin(googleWrapper: any) {
+    googleWrapper.click();
+  }
   hide1: boolean = true;
   hidePassword: boolean = true;
 
   togglePasswordVisibility(): void {
-    this.hide1 = !this.hide1; // Toggle visibility status
+    this.hide1 = !this.hide1;
     const passwordInput = document.getElementById('password') as HTMLInputElement;
     if (passwordInput) {
-      passwordInput.type = this.hide1 ? 'password' : 'text'; // Change input type based on visibility status
+      passwordInput.type = this.hide1 ? 'password' : 'text';
     }
   }
   togglePasswordVisibility1(): void {
-    this.hidePassword = !this.hidePassword; // Toggle visibility status
+    this.hidePassword = !this.hidePassword; 
   }
-  // Function to change icon based on password visibility
   getVisibilityIcon(): string {
     return this.hide1 ? 'visibility_off' : 'visibility';
   }
@@ -78,18 +85,6 @@ export class SignupComponent implements OnInit {
       this.emails = data;
     });
   }
-
-  getWorkFiles() {
-
-  }
-  //Data will be load on the Firebase form
-  firebaseSignup() {
-    this.email = this.usercredential.email;
-    this.password = this.usercredential.password;
-    this.firstName = this.usercredential.firstName;
-    this.lastName = this.usercredential.lastName
-  }
-
   role() {
     this.usercredential.role = this.selectedRole;
     this.roleService.roleData.roleName = this.selectedRole;
@@ -118,28 +113,6 @@ export class SignupComponent implements OnInit {
     if (loginFailed) {
       this.loginbutton.nativeElement.click();
     }
-  }
-
-  //Firebase Signup function
-  onAuthSubmit() {
-    if (this.isSignUp) {
-      if (!this.displayName) {
-        this.displayName = `${this.firstName} ${this.lastName}`;
-      }
-      this.fireauthservice.signUp(this.email, this.password, this.displayName, this.firstName, this.lastName)
-        .then((userCredential) => {
-          console.log('Sign-up successful', userCredential);
-          this.firebutton.nativeElement.click();
-        })
-        .catch((error) => {
-          console.error('Sign-up error', error);
-        });
-    }
-  }
-
-  //Firebase User Login
-  OnAuthlogin() {
-    this.fireauthservice.signIn(this.email, this.password)
   }
 
   toggleAuthMode() {
@@ -189,14 +162,16 @@ export class SignupComponent implements OnInit {
       }
     });
   }
+  emailVerified: boolean = false;
 
   //verify the OTP
   verifyOTP() {
     const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
     if (otp_inp.value === this.generatedOTP) {
-      alert("Email address verified...");
-      this.submitbutton.nativeElement.click();
-      this.router.navigate(['/role']);
+      this.GoNext = 'button5';
+      setTimeout(() => {
+        this.router.navigate(['/role']);
+    }, 3000);
     } else {
       alert("Invalid OTP");
     }
@@ -243,28 +218,14 @@ export class SignupComponent implements OnInit {
       this.otppopup = false;
     }, 3000);
   }
-
   //Google signup
   ngOnInit(): void {
-    this.googleSignin();
     this.getemail();
     this.action = this.route.snapshot.paramMap.get('action');
-  }
-
-  googleSignin() {
-    google.accounts.id.initialize({
-      client_id: '202921354570-cgrtnggio9l9amugpir95rb33uf8dehm.apps.googleusercontent.com',
-      callback: (resp: any) => this.handleLogin(resp)
+    this.authSubscription = this.authService.authState.subscribe((user) => {
+      this.userEmail = user.email;
+      this.userName = user.name;
     });
-    this.googleBtn = document.getElementById("google-btn") as HTMLElement;
-    if (this.googleBtn) {
-      google.accounts.id.renderButton(this.googleBtn, {
-        theme: 'filled_blue',
-        size: 'large',
-        shape: 'rectangle',
-        width: 350
-      });
-    }
   }
 
   onGoogleSignupClick() {
@@ -282,9 +243,6 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  //  name =  JSON.parse(sessionStorage.getItem("loggedInUser")!).name;
-  //  userProfile = JSON.parse(sessionStorage.getItem("loggedInUser")!).picture;
-  //  Email = JSON.parse(sessionStorage.getItem("loggedInUser")!).email;
 
   checkbox1: boolean = false;
   checkbox2: boolean = false;
