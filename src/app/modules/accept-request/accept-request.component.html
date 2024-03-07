@@ -8,17 +8,19 @@
             <p class="posted">Posted 1 day ago</p>
             <hr class="hrmain">
             <div class="row">
-                <button class="tabn" (click)="onButtonClick('button1')"
-                    [ngClass]="{'selected': selectedButton === 'button1'}">All Proposals()</button>
-                <button class="tabn" (click)="onButtonClick('button2')"
-                    [ngClass]="{'selected': selectedButton === 'button2'}">New Proposals</button>
-                <button class="tabn" (click)="onButtonClick('button3')"
-                    [ngClass]="{'selected': selectedButton === 'button3'}">Shortlisted</button>
-                <button class="tabn" (click)="onButtonClick('button4')"
-                    [ngClass]="{'selected': selectedButton === 'button4'}">Messaged</button>
+                <button class="tabn" (click)="GoNextBtn('button1')"
+                    [ngClass]="{'selected': GoNext === 'button1'}">All Proposals()</button>
+                <button class="tabn" (click)="GoNextBtn('button2')"
+                    [ngClass]="{'selected': GoNext === 'button2'}">New Proposals</button>
+                <button class="tabn" (click)="GoNextBtn('button3')"
+                    [ngClass]="{'selected': GoNext === 'button3'}">Shortlisted</button>
+                <!-- <button class="tabn" (click)="onButtonClick('button4')"
+                    [ngClass]="{'selected': selectedButton === 'button4'}">Messaged</button> -->
             </div>
         </div>
 
+
+        <div *ngIf="GoNext === 'button1'">
       <div class="container " style="margin-top: 50px;">
             <div class="row deta">
 
@@ -53,8 +55,82 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <div *ngIf="GoNext === 'button2'">
+      <div class="container " style="margin-top: 50px;">
+        <div class="row deta">
+
+            <div class="col-1">
+                <div class="elli"></div>
+            </div>
+            <div class="col-5">
+
+                <p class="fname">{{Applies.userEmail}}</p>
+
+                <p class="fsub">{{Applies.skillSet}}</p>
+                <!-- <div class="fsub">4 years expierience <span style="margin-left: 26px;" class="fsub">12 jobs
+                        completed</span></div> -->
+            </div>
+            <div class="col-2"></div>
+            <div class="col-3">
+                <p class="bid">Bidding rate : <span class="rate">${{Applies.biddingRate}}/ hour</span></p>
+                <button class="msg">Message</button><button  class="hire" data-bs-toggle="modal"
+                    data-bs-target="#hireModal" (click)="ApplyModal(Applies)">Hire</button>
+                <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Applies)">View
+                    Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
+            </div>
+            <div class="col-1">
+               <div class="col-1">
+                <img class="sho1"  (click)="thirumpivvaa()"  src="../assets/show more.png" alt="">
+                <div class="EDITDEL" *ngIf="maranchupo">
+          
+                  <img class="p-2" src="./assets/shortlist.png" data-bs-toggle="modal" data-bs-target="#deletmodel2">
+                  <img class="p-2" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
+      </div>'
+            </div>
+        </div>
+    </div>
+</div>
+      </div>
 </div>
 
+<div *ngIf="GoNext === 'button3'">
+  <div class="container " style="margin-top: 50px;">
+        <div class="row deta">
+
+            <div class="col-1">
+                <div class="elli"></div>
+            </div>
+            <div class="col-5">
+
+                <p class="fname">{{Applies.userEmail}}</p>
+
+                <p class="fsub">{{Applies.skillSet}}</p>
+                <!-- <div class="fsub">4 years expierience <span style="margin-left: 26px;" class="fsub">12 jobs
+                        completed</span></div> -->
+            </div>
+            <div class="col-2"></div>
+            <div class="col-3">
+                <p class="bid">Bidding rate : <span class="rate">${{Applies.biddingRate}}/ hour</span></p>
+                <button class="msg">Message</button><button  class="hire" data-bs-toggle="modal"
+                    data-bs-target="#hireModal" (click)="ApplyModal(Applies)">Hire</button>
+                <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Applies)">View
+                    Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
+            </div>
+            <div class="col-1">
+               <div class="col-1">
+                <img class="sho1"  (click)="thirumpivvaa()"  src="../assets/show more.png" alt="">
+                <div class="EDITDEL" *ngIf="maranchupo">
+          
+                  <img class="p-2" src="./assets/shortlist.png" data-bs-toggle="modal" data-bs-target="#deletmodel2">
+                  <img class="p-2" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
+      </div>'
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <div class="modal fade" id="deletmodel2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">

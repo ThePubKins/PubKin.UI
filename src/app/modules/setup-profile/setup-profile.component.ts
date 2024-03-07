@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserauthenticateService } from '../../shared';
+import { UserService, UserauthenticateService } from '../../shared';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-setup-profile',
@@ -11,7 +12,7 @@ export class SetupProfileComponent {
   contentName: string | null = null;
   UserData : any;
 
-  constructor(private route: ActivatedRoute, public userService: UserauthenticateService){}
+  constructor(private route: ActivatedRoute, public userService: UserauthenticateService,public userservice1:UserService){}
   
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -32,4 +33,10 @@ export class SetupProfileComponent {
     } else {
     }
   }
+  onSubmitpresonal(form: NgForm) {
+    if (this.userservice1.userData) {
+      this.userservice1.putPersonalData(form.value).subscribe();
+    }
+  }
+
 }
