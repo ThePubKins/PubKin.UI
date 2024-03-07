@@ -72,12 +72,18 @@ export class ProfiledetailsComponent implements OnInit {
   @ViewChild('submitbutton') submitbutton: ElementRef;
   @ViewChild('idbutton') idbutton: ElementRef;
   @ViewChild('increasebutton') increasebutton: ElementRef;
+  @ViewChild('percentagebutton') percentagebutton: ElementRef;
 
   profilesubmit() {
     this.submitbutton.nativeElement.click();
   }
+
   govtsubmit() {
     this.idbutton.nativeElement.click();
+  }
+
+  PercentageSubmit() {
+    this.percentagebutton.nativeElement.click();
   }
 
   //Avatar for profile
@@ -165,28 +171,50 @@ export class ProfiledetailsComponent implements OnInit {
     }
   }
 
-  increaseGovtPercentage() {
-    this.User[0].govtIdDetails = "35";
+  //FreelancersWorkPercentage
+  increaseWorkingPercentage() {
+    this.User[0].workingDetails = "15";
   }
 
-  increseWorkPercentage() {
-    this.User[0].workingDetails = "Added";
-  }
-
+  //FreelancersPortfolioPercentage
   incresePortfolioPercentage() {
-    this.User[0].portfolioDetails = "Added";
-  }
-  increseEducationPercentage() {
-    this.User[0].educationDetails = "Added";
+    this.User[0].portfolioDetails = "15";
   }
 
+   //FreelancersEducationPercentage
+  increseEducationPercentage() {
+    this.User[0].educationDetails = "15";
+  }
+
+  //FreelancersFreelancingPercentage
+  increseFreelancingPercentage() {
+    this.User[0].details = "15";
+  }
+
+   //FreelancersPricingSkillPercentage
+   incresePricingSkillPercentage() {
+    this.User[0].bankingDetails = "20";
+  }
+
+     //FreelancersPricingSkillPercentage
+     increseGovtDetailsPercentage() {
+      this.User[0].govtIdDetails = "20";
+    }
+
+  //AuthorsDetailsPercentage
   increseDetailsPercentage() {
     this.User[0].details = "30";
   }
 
+  //AuthorsBankDetailsPercentage
   increseBankPercentage() {
     this.User[0].bankingDetails = "35";
     this.User[0].paymentVerify = "Added";
+  }
+
+  //AuthorsGovtIdPercentage
+  increaseGovtPercentage() {
+    this.User[0].govtIdDetails = "35";
   }
 
   //Banking Details Submit to Post Function

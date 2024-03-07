@@ -114,6 +114,7 @@ export class ApplyNowComponent {
     // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
     // this.jobpostData.dateCreated = this.dateFormatted;
     this.appliedservice.applyData.status = 'applied';
+    this.appliedservice.applyData.skillSet=this.UserData[0].description ;
     this.appliedservice.applyData.jobTitle = this.JobPost.jobTitle;
     this.appliedservice.applyData.userId = this.UserData[0].id;
     this.appliedservice.applyData.userEmail = this.UserData[0].firstName;
@@ -122,7 +123,8 @@ export class ApplyNowComponent {
     this.appliedservice.applyData.rate = this.JobPost.toBudget;
     this.appliedservice.applyData.jobId = this.JobPost.id;
     this.appliedservice.applyData.postBy = this.JobPost.createdBy;
-    this.appliedservice.applyData.skillSet = this.JobPost.skillSet;
+    this.appliedservice.applyData.applideUserProfile=this.UserData[0].profileUrl;
+    this.appliedservice.applyData.jobUniqueId=this.JobPost.jobUniqueId;
   }
 
 

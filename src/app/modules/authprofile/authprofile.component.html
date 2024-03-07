@@ -7,13 +7,9 @@
                 <p class="prohead">Profile Image</p>
 
                 <button class="probtn btn" mat-dialog-close routerLink="/profile/choose-your-picutre-now">
-                    <img src="../assets/upload share_.png" alt="Upload">Choose Your Profile
+                  Choose Your Profile
                 </button>
                 <p class="com">{{calculateTotal()}}% Completed</p>
-                 <!-- <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10"
-                    aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar pgrssbar" style="width: 10%"></div>
-                </div>  -->
                 <div class="progress pgrss" role="progressbar" aria-label="Basic example"
                     [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>

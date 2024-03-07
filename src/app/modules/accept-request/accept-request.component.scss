@@ -5,7 +5,12 @@ $pumaincolor:#A426D1;
 .kkfrnavbar {
     margin-top: 20px;
 }
-
+.kkprimg{
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+  }
 .kkfrnavbar1 {
     align-items: baseline;
     justify-content: space-around;
@@ -231,6 +236,7 @@ $pumaincolor:#A426D1;
 .sho1 {
     float: right;
     margin-top: 38px;
+    cursor: pointer;
     // margin-right: 25px;
 }
 
@@ -356,8 +362,7 @@ $pumaincolor:#A426D1;
 .profmo {
     width: 120px;
     height: 119px;
-    margin-left: 79px;
-    margin-top: 23px;
+    margin-top: 24px;
     border-radius: 50%;
     background-color: #D9D9D9;
 }

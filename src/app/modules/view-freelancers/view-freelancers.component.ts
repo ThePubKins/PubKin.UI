@@ -30,6 +30,7 @@ export class ViewFreelancersComponent implements OnInit {
     } else {
     }
   }
+
   toggleIcons(post: any): void {
     this.Posts.forEach((p: any) => {
         p.showIcons = (p === post) ? !p.showIcons : false;
@@ -42,8 +43,8 @@ export class ViewFreelancersComponent implements OnInit {
 
   }
 
-  getAllPosts() { 
-    this.jobService.getJobPost().subscribe(data => {  
+  getAllPosts() {
+    this.jobService.getJobPost().subscribe(data => {
       this.Posts = data;
     })
   }

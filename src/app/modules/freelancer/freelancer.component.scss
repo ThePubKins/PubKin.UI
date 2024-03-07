@@ -203,17 +203,16 @@
 
 .kkjbprcrd {
     margin-left: 19px;
-    height: 457px;
+    height: auto;
     border-radius: 16px;
     border: 2px solid #C1C1C1;
     width: 264px;
-    box-shadow: 10px 10px 21px -19px   #A426D1;
+    box-shadow: 10px 10px 21px -19px #A426D1;
 }
 
 
 .kkcrdbdy {
-
-    height: 80px;
+    height: auto;
     background-color: #FBEFFF;
     border-bottom-left-radius: 17px;
     border-bottom-right-radius: 17px;
@@ -293,14 +292,17 @@
 }
 
 .kkindbx {
-    margin-left: 23px;
-    width: 77%;
-    height: 77px;
+    margin-left: 14px;
+    width: 85%;
+    height: auto;
     margin-top: 18px;
+    padding: 10px;
     border-radius: 8px;
+    padding-bottom: 14px;
+    padding-left: 10px;
+    padding-right: 8px;
     background: #FFF;
-    box-shadow: 1px 1px 0px 0px #A426D1;
-    
+    box-shadow: 10px 10px 21px -19px #A426D1;
 }
 
 .kkindbx1 {
@@ -319,8 +321,7 @@
     font-size: 17px;
     font-style: normal;
     font-weight: 600;
-    padding-left: 17px;
-
+    text-align: left;
 }
 
 .ddis {
@@ -583,13 +584,12 @@
 .pgrss {
     padding: 0px;
     width: 80%;
-    margin-left: 35px;
     height: 9px;
 
 }
 
 .pgrssbar {
-    background-color: #151718;
+    background-color: #A426D1;
 }
 
 .line {

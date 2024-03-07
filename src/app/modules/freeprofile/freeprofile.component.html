@@ -9,11 +9,11 @@
                 <button class="probtn btn" mat-dialog-close routerLink="/profile/choose-your-picutre-now">
                     Choose Your Profile
                 </button>
-                <p class="com">10% complete</p>
-                <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10"
-                    aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar pgrssbar" style="width: 10%"></div>
-                </div>
+                <p class="com">{{calculateTotal()}}% complete</p>
+                <div class="progress pgrss" role="progressbar" aria-label="Basic example"
+                [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
+            </div>
                 <p class="prodes">Completing your<br>
                     profile will land you more jobs</p>
             </div>
@@ -62,6 +62,17 @@
                     </div>
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
+                            <div class="col-12" routerLink="/profile/freelancing-details" mat-dialog-close>
+                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Freelancing details</span> <img
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
                             <div class="col-12" routerLink="/profile/payment" matDialogClose>
                                 <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img
@@ -78,20 +89,11 @@
                                         alt="Pubkin"><span style="margin-left: 10px;">Govt. ID Verification</span> <img
                                         class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>
-                                <hr>
+                                
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid prode" style="cursor: pointer;">
-                        <div class="row">
-                            <div class="col-12" routerLink="/profile/freelancing-details" mat-dialog-close>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
-                                        alt="Pubkin"><span style="margin-left: 10px;">Freelancing details</span> <img
-                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
-                            </div>
-                        </div>
-                    </div>
+                  
                 </div>
             </div>
         </div>

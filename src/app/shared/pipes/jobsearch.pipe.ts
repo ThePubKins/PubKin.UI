@@ -14,9 +14,9 @@ export class JobsearchPipe implements PipeTransform {
     searchTerm = searchTerm.toLowerCase();
 
     return JobPost.filter(JobPost => {
-    return JobPost.JobTitle.toLowerCase().includes(searchTerm) ||
-      JobPost.SkillSet.toLowerCase().includes(searchTerm) || 
-      JobPost.JobUniqueId.toLowerCase().includes(searchTerm);
+    return JobPost.jobTitle.toLowerCase().includes(searchTerm) ||
+      JobPost.skillSet.toLowerCase().includes(searchTerm) || 
+      JobPost.jobUniqueId.toLowerCase().includes(searchTerm);
     });
   }
 

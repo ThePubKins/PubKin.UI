@@ -1,5 +1,3 @@
- <!-- <div id="google-btn"></div>  
-  {{name}}<br><img src="{{userProfile}}" alt=""><br>{{Email}} -->
 <div *ngIf="action === 'all'">
     <div *ngIf="GoNext === 'button1'">
         <div class="container mt-3">
@@ -329,11 +327,7 @@
             
                 <div style=" margin-top: -84px;">
                     <div class="flx" >
-                       <div class="google" >
-                            <img src="../assets/google_.png" alt="pubkin_google">
-                            <p class="goo">Signup with Google</p>    
-                   
-                        </div>                    
+                     <app-googlesignin (loginWithGoogle)="googleSignin($event)"></app-googlesignin>                   
                     </div>
                     <p class="meme1">Or</p>
                     <div class="create"  (click)="GoNextBtn('button2'); freelancerrole()">
@@ -366,11 +360,7 @@
             
                 <div style=" margin-top: -84px;">
                     <div class="flx" >
-                       <div class="google" >
-                            <img src="../assets/google_.png" alt="pubkin_google">
-                            <p class="goo">Signup with Google</p>    
-                   
-                        </div>                    
+                        <app-googlesignin (loginWithGoogle)="googleSignin($event)"></app-googlesignin>                        
                     </div>
                     <p class="meme1">Or</p>
                     <div class="create" (click)="GoNextBtn('button2'); authorrole()" >
