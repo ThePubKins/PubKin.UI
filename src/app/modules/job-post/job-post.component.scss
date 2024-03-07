@@ -426,6 +426,18 @@ line-height: normal;
     padding: 33px;
     border-radius: 14px;
 border: 1px solid #DCDCDC;
+overflow-y:scroll;
+    scrollbar-width: thin; 
+    scrollbar-color: transparent transparent; 
+    
+    
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
   }
 
 .jobheadreview{  

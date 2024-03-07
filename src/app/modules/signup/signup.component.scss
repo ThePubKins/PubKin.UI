@@ -474,14 +474,15 @@ line-height: normal;
     margin-right: 83px;
     margin-top: 10px;
 }
+.crtform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .shhid2{
     color: #A426D1;
     font-family: "League Spartan", sans-serif;
-    position: absolute;
-    right: 0px;
-    display: flex;
-    margin-right: 530px;
-    margin-top: -36px;
+    margin-left: 390px;
 }
 .cemailbtn  {
     display: inline-flex;
@@ -553,7 +554,12 @@ line-height: normal;
     font-size: 18px;
     font-weight: 300;
 }
-
+// .kkcalfr{
+// // position: absolute;
+// width: auto;
+// height: auto;
+// border: 1px solid blueviolet;
+// }
     .check123 { 
     --mdc-checkbox-selected-checkmark-color: white;
     --mdc-checkbox-selected-focus-icon-color: blueviolet;

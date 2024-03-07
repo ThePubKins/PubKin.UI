@@ -28,10 +28,16 @@ export class FreelancerComponent implements OnInit {
     private router: Router) { 
     } 
 
-    ShowMoreLess() { 
-      this.showMore = !this.showMore ;
-    }
-
+    ShowMoreLess(index: number) { 
+      if (this.Posts[index].showMoreIndex === index) {
+          this.Posts[index].showMore = false;
+          this.Posts[index].showMoreIndex = null;
+      } else {
+          this.Posts[index].showMore = true;
+          this.Posts[index].showMoreIndex = index;
+      }
+  }
+  
     //Avatar for profile
     images=[  
       {img_url:'/assets/avd1.png'},
