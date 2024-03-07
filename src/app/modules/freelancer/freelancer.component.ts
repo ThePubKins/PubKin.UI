@@ -18,7 +18,7 @@ export class FreelancerComponent implements OnInit {
   isFilterApplied: boolean = false;
   itemsPerPage: number = 10;
   currentPage: number = 1;
-  UserData : any;
+  UserData: any;
   showMore : boolean = false;
   Posts: any;
 
@@ -28,10 +28,16 @@ export class FreelancerComponent implements OnInit {
     private router: Router) { 
     } 
 
-    ShowMoreLess() { 
-      this.showMore = !this.showMore ;
-    }
-
+    ShowMoreLess(index: number) { 
+      if (this.Posts[index].showMoreIndex === index) {
+          this.Posts[index].showMore = false;
+          this.Posts[index].showMoreIndex = null;
+      } else {
+          this.Posts[index].showMore = true;
+          this.Posts[index].showMoreIndex = index;
+      }
+  }
+  
     //Avatar for profile
     images=[  
       {img_url:'/assets/avd1.png'},
@@ -63,19 +69,6 @@ export class FreelancerComponent implements OnInit {
     this.searchTerm = event.target.value;
   }
 
-  //Progress bar status Functionality
-  // getProgressBarColor(): string {
-  //   const progress = this.Freelancers[0].ProfilePercentage;
-
-  //   if (progress < 35) {
-  //     return '#666666'; 
-  //   } else if (progress < 80) {
-  //     return '#333333'; 
-  //   } 
-  //   else {
-  //     return '#000000';
-  //   }
-  // }
 
   hidden() {
     this.hide = !this.hide
@@ -137,9 +130,9 @@ export class FreelancerComponent implements OnInit {
   //User filterJobs pending
   filterJobPosts() {
     if (this.UserData && this.  Posts.length > 0) {
-      const currentUserSkills = this.UserData.description.split(',').map((description: string) => description.trim().toLowerCase());
+       const currentUserSkills = this.UserData[0].description.split(',').map((description: string) => description);
       this.filteredJobPosts = this.Posts.filter((jobPosts: { skillSet: string; }) => {
-        const jobPostSkills = jobPosts.skillSet.split(',').map((skill: string) => skill.trim().toLowerCase());
+        const jobPostSkills = jobPosts.skillSet.split(',').map((skill: string) => skill);
         const similarityThreshold = 0.5;
         return this.calculateSimilarity(currentUserSkills, jobPostSkills) >= similarityThreshold;
       });
@@ -228,5 +221,17 @@ export class FreelancerComponent implements OnInit {
       return diffYears + ' years ago';
     }
   }
+
+  calculateTotal(): number {
+    const num1 = parseInt(this.UserData[0].details || 0);
+    const num2 = parseInt(this.UserData[0].govtIdDetails || 0);
+    const num3 = parseInt(this.UserData[0].bankingDetails || 0);
+    const num4 = parseInt(this.UserData[0].portfolioDetails || 0);
+    const num5 = parseInt(this.UserData[0].workingDetails || 0);
+    const num6 = parseInt(this.UserData[0].educationDetails || 0);
+
+    const total = num1 + num2 + num3 + num4 + num5 + num6;
+    return total;
+}
 } 
 

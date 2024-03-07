@@ -36,14 +36,9 @@
                 <div class="kkjobfutxt2">Viewed Recently</div>
               </div>
             </div>
-          </div>
-          <!-- <div class="container" *ngFor="let JobPost of filteredJobPosts | jobsearch : searchTerm "  (click)="showJobDetails(JobPost.JobUniqueId)"> -->
-          <!-- <div class="container" *ngFor="let JobPost of (isFilterApplied ? filteredJobPosts : JobPosts) | jobsearch : searchTerm "  > -->
-       
-    
-       
-            <div class="container jobcontents" *ngFor="let JobPost of Posts">
-       
+          </div>       
+
+            <div class="container jobcontents" *ngFor="let JobPost of paginatedDataList  | jobsearch : searchTerm ">
               <div class="row" >
               <div class="col-12">
                 <div class="row">
@@ -68,8 +63,12 @@
                   {{JobPost.toBudget}} est. time : {{JobPost.projectEndDate}} {{JobPost.durationOfProject}} - Posted
                   <!-- {{getPostStatus(JobPost.createDate) }} -->
                 </p>
-                <p class="kkjbtxtline3"><span *ngIf="!showMore">{{JobPost.description | slice:0:300}}....</span><span *ngIf="showMore">{{JobPost.description}}</span><span (click)="ShowMoreLess()" class="text-decoration-underline">  More</span></p>
-
+                <!-- <p class="kkjbtxtline3"><span *ngIf="!showMore">{{JobPost.description | slice:0:300}}....</span><span *ngIf="showMore">{{JobPost.description}}</span><span (click)="ShowMoreLess()" class="text-decoration-underline">  More</span></p> -->
+                <p class="kkjbtxtline3">
+                  <span *ngIf="!JobPost.showMore">{{JobPost.description | slice:0:100}}....</span>
+                  <span *ngIf="JobPost.showMore || JobPost.showMoreIndex === i">{{JobPost.description}}</span>
+                  <span (click)="ShowMoreLess(i)" class="text-decoration-underline">{{ JobPost.showMore ? 'Less' : 'More' }}  </span>
+              </p>
                 <div class="kkjbtxtline4"><img src="../assets/startick.png"> Profile verified</div>
                 <div class="kkjbtxtline5"><img src="../assets/startick.png"> Paymeny verified</div>
                 <div class="kkjbtxtline6">Tracking_ID : {{JobPost.jobUniqueId}}</div>
@@ -88,13 +87,19 @@
             <p class="kkfrname1">Freelancers</p>
             <div class="card-body kkcrdbdy">
               <p class="kkfrname2">Profile Completeness:</p>
-              <!-- <p class="kkcplstus">{{Users[0].ProfilePercentage}}% complete</p> -->
-              <!-- <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow={{Freelancers[0].ProfilePercentage}} aria-valuemin="0" aria-valuemax="100">
-                  <div class="progress-bar pgrssbar" [ngStyle]="{'width': Freelancers[0].ProfilePercentage + '%',  'background-color': getProgressBarColor()}"></div>
-                </div> -->
-              <div class="kkindbx">
-                <p class="kkindbx1">Add Portfolio</p>
-                <p class="kkindbx2">Verify with Govt.ID</p>
+             <p class="kkcplstus">{{calculateTotal()}}% complete</p>
+             <div class="progress pgrss" role="progressbar" aria-label="Basic example"
+             [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
+             <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
+         </div>
+              <div class="kkindbx" *ngIf="calculateTotal() === 100">
+                <p class=" kkindbx2 " *ngIf="!UserData[0].portfolioDetails" >Add Portfolio</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].educationDetails">Add Education Details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].workingDetails">Add Work Details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].details">Add Freelancing details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].bankingDetails">Add Pricing Details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].govtIdDetails">Verify with Govt.ID</p>
+
               </div>
             </div>
           </div>

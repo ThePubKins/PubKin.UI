@@ -140,7 +140,7 @@
       <div class="card kkadrsbx">
         <div class="card-body">
           <div class="container kkacinfhd">
-            <p class="kkactg1">Account</p><img src="../assets/writeic.png">
+            <p class="kkactg1">Account</p><img data-bs-toggle="modal" data-bs-target="#personaldataform" src="../assets/writeic.png">
           </div>
           <div class="container" *ngIf="UserData && UserData.length > 0">
             <p class="kkhdptag1">Name</p>
@@ -158,7 +158,45 @@
         </div>
       </div>
     </div>
-
+    <div class="modal fade " id="personaldataform" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog dia12">
+        <div class="modal-content kkadedudt">
+          <div class="modal-header mohead">
+            <p class="kkadeduhd12">Edit Personal Data</p>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body ">
+            <form autocomplete="off" #personaldata="ngForm" (ngSubmit)="onSubmitpresonal(personaldata)">
+              <div>
+                <input type="hidden" id="id" name="id" [(ngModel)]="UserData[0].id">
+                <div class="mb-3">
+                  <label class="form-label projtitlevv">First Name</label>
+                  <input class="form-control" id="firstName" type="email" name="firstName" [(ngModel)]="UserData[0].firstName">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label projtitlevv">Last Name</label>
+                  <input  class="form-control" type="text" id="lastName" name="lastName" [(ngModel)]="UserData[0].lastName">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label projtitlevv">Email</label>
+                  <input  class="form-control" type="text" id="email" name="email" [(ngModel)]="UserData[0].email">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label projtitlevv">PhoneNumber</label>
+                  <input  class="form-control" type="text" id="phoneNumber" name="phoneNumber"  [(ngModel)]="UserData[0].phoneNumber">
+                </div>
+                <!-- <div class="mb-3">
+                  <label class="form-label projtitlevv">Description</label> -->
+                  <input  class="form-control" type="hidden" id="description" name="description"  [(ngModel)]="UserData[0].description">
+                <!-- </div> -->
+                <button class="btn kkedubt" type="submit" data-bs-dismiss="modal" aria-label="Close"
+                 >Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <div *ngIf="contentName === 'password-&-security'">
       <p class="kkpwhd1">Password and Security</p>
       <div class="card kkpwbx">

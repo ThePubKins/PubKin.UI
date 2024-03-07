@@ -1,12 +1,12 @@
 <!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
 <form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
     <input type="hidden" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
-    <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
+    <!-- <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated"> -->
     <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobservice.jobData.createdBy">
     <input type="hidden" id="userId" name="userId" [(ngModel)]="jobservice.jobData.userId">
     <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobservice.jobData.jobUniqueId">
     <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobservice.jobData.userEmail">
-    <input type="text" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
+    <input type="hidden" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
         [(ngModel)]="jobservice.jobData.service" required>
     <input type="hidden" [value]="selectedSkills.join(', ')" ngModel name="skillSet" #skillSet="ngModel"
         [(ngModel)]="jobservice.jobData.skillSet" />
@@ -530,7 +530,7 @@
                                 <path
                                     d="M5 8C4.73478 8 4.48043 8.10536 4.29289 8.29289C4.10536 8.48043 4 8.73478 4 9V20C4 20.2652 4.10536 20.5196 4.29289 20.7071C4.48043 20.8946 4.73478 21 5 21C5.26522 21 5.51957 20.8946 5.70711 20.7071C5.89464 20.5196 6 20.2652 6 20V9C6 8.73478 5.89464 8.48043 5.70711 8.29289C5.51957 8.10536 5.26522 8 5 8Z"
                                     fill="#A426D1" />
-                            </svg><span class="ratereviewjob">{{jobservice.jobData.experience}}</span>
+                            </svg><span class="ratereviewjob">{{skillset}}</span>
                         </div>
                         <div class="col-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18"
