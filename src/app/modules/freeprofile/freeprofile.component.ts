@@ -30,18 +30,19 @@ export class FreeprofileComponent implements OnInit {
     }
   }
 
-  getProgressBarColor(): string {
-    const progress = this.Freelancers[0].ProfilePercentage;
+ 
 
-    if (progress < 35) {
-      return '#666666'; 
-    } else if (progress < 80) {
-      return '#333333'; 
-    } 
-    else {
-      return '#000000';
-    }
-  }
+  calculateTotal(): number {
+    const num1 = parseInt(this.User[0].details || 0);
+    const num2 = parseInt(this.User[0].govtIdDetails || 0);
+    const num3 = parseInt(this.User[0].bankingDetails || 0);
+    const num4 = parseInt(this.User[0].portfolioDetails || 0);
+    const num5 = parseInt(this.User[0].workingDetails || 0);
+    const num6 = parseInt(this.User[0].educationDetails || 0);
+
+    const total = num1 + num2 + num3 + num4 + num5 + num6;
+    return total;
+}
   
   GoNext: string  = "";
   GoNextBtn(GoBtnName: string): void {

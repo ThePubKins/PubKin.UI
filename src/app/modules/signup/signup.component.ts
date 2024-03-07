@@ -50,6 +50,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
+
   googleSignin(googleWrapper: any) {
     googleWrapper.click();
   }
@@ -89,19 +90,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.usercredential.role = this.selectedRole;
     this.roleService.roleData.roleName = this.selectedRole;
   }
-
-  // loginButton() {
-  //   this.loginbutton.nativeElement.click();
-  // }
-  //   loginButton() {
-  //     const loginFailed = true;
-  //     if (loginFailed) {
-  //         this.errorMessage = 'Incorrect email or password.';
-  //     } else {
-  //         this.errorMessage = '';
-  //     }
-  //     this.loginbutton.nativeElement.click();
-  // }
 
   loginButton() {
     const loginFailed = true;

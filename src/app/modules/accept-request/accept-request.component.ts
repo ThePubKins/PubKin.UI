@@ -20,10 +20,9 @@ export class AcceptRequestComponent implements OnInit {
   selectedrequest: any;
   User: any;
   imageUrl: string = 'https://localhost:7172';
-
+  showicons: boolean[] = [];
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
     public applyService: AppliedUserService) { }
-
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
     if (Email) {
@@ -39,7 +38,7 @@ export class AcceptRequestComponent implements OnInit {
   onChatTargetClick(targetUser: any): void {
     this.chatTarget = targetUser;
   }
-
+ 
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -49,6 +48,9 @@ export class AcceptRequestComponent implements OnInit {
       }
     });
     this.getUserData();
+    this.Applies.forEach(() => {
+      this.showicons.push(false);
+    });
   }
 
   getApplies(jobId: string): void {
@@ -61,7 +63,6 @@ export class AcceptRequestComponent implements OnInit {
         console.error('Error fetching applied users:', err);
       }
     });
-
 }
 
   
@@ -83,12 +84,11 @@ export class AcceptRequestComponent implements OnInit {
     this.Applies.status = "offers"
   }
 
-  selectedButton: string = "button1";
+  GoNext: string = "button1";
 
-  onButtonClick(buttonName: string): void {
-    this.selectedButton = buttonName;
+  GoNextBtn(GoBtnName: string): void {
+    this.GoNext = GoBtnName;
   }
-
   openModal(Apply: any) {
     this.selectedrequest = Apply;
   }
@@ -96,21 +96,14 @@ export class AcceptRequestComponent implements OnInit {
   ApplyModal(Apply: any) {
     this.selectedhire = Apply;
   }
-  maranchupo=false;
-
-  thirumpivvaa(){
-    this.maranchupo = !this.maranchupo
+  showicon(index: number) {
+    this.showicons[index] = !this.showicons[index];
+    for (let i = 0; i < this.showicons.length; i++) {
+      if (i !== index) {
+        this.showicons[i] = false;
+      }
+    }
   }
-  // toggleIcons(Applies: any): void {
-  //   this.Applies.forEach((Applies: { showIcons: boolean; }) => {
-  //       if (Applies !== Applies) {
-  //         Applies.showIcons = false;
-  //       }
-  //   });
-  //   Applies.showIcons = !Applies.showIcons;
-  // }
-
-
   calculateFees() {
     const platformFeePercentage = 2;
     const taxesPercentage = 6;

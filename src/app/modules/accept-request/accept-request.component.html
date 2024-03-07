@@ -1,340 +1,351 @@
 <div style="    padding-bottom: 77px;">
-    <app-author-nav></app-author-nav>
+  <app-author-nav></app-author-nav>
 
-    <div class="container">
-        <div>
-            <p class="ptit">Job Title:</p>
-            <p class="phead">Information about perks and benefits</p>
-            <p class="posted">Posted 1 day ago</p>
-            <hr class="hrmain">
-            <div class="row">
-                <button class="tabn" (click)="onButtonClick('button1')"
-                    [ngClass]="{'selected': selectedButton === 'button1'}">All Proposals()</button>
-                <button class="tabn" (click)="onButtonClick('button2')"
-                    [ngClass]="{'selected': selectedButton === 'button2'}">New Proposals</button>
-                <button class="tabn" (click)="onButtonClick('button3')"
-                    [ngClass]="{'selected': selectedButton === 'button3'}">Shortlisted</button>
-                <button class="tabn" (click)="onButtonClick('button4')"
-                    [ngClass]="{'selected': selectedButton === 'button4'}">Messaged</button>
+  <div class="container">
+    <div>
+      <p class="ptit">Job Title:</p>
+      <p class="phead">Information about perks and benefits</p>
+      <p class="posted">Posted 1 day ago</p>
+      <hr class="hrmain">
+      <div class="row">
+        <button class="tabn" (click)="GoNextBtn('button1')" [ngClass]="{'selected': GoNext === 'button1'}">All
+          Proposals({{Applies.length}})</button>
+        <button class="tabn" (click)="GoNextBtn('button2')" [ngClass]="{'selected': GoNext === 'button2'}">New
+          Proposals</button>
+        <button class="tabn" (click)="GoNextBtn('button3')"
+          [ngClass]="{'selected': GoNext === 'button3'}">Shortlisted</button>
+        <!-- <button class="tabn" (click)="onButtonClick('button4')"
+                    [ngClass]="{'selected': selectedButton === 'button4'}">Messaged</button> -->
+      </div>
+    </div>
+   
+    <div *ngIf="GoNext === 'button1'">
+      <div class="container " style="margin-top: 50px;" *ngIf="Applies && Applies.length > 0">
+        <div class="row deta" *ngFor="let Apply of Applies;let i = index">
+          <div class="col-1">
+            <!-- <div class="elli"> -->
+              <div class="kkprimg" *ngIf="Apply.applideUserProfile">
+                <img src="{{imageUrl + Apply.applideUserProfile }}" class=" kkprimg img-responsive">
             </div>
-        </div>
-
-      <div class="container " style="margin-top: 50px;">
-            <div class="row deta">
-
-                <div class="col-1">
-                    <div class="elli"></div>
-                </div>
-                <div class="col-5">
-
-                    <p class="fname">{{Applies.userEmail}}</p>
-
-                    <p class="fsub">{{Applies.skillSet}}</p>
-                    <!-- <div class="fsub">4 years expierience <span style="margin-left: 26px;" class="fsub">12 jobs
+            <div class="kkprimg" *ngIf="!Apply.applideUserProfile">
+                <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
+            </div>
+            
+            <!-- </div> -->
+           
+          </div>
+          <div class="col-5">
+            <p class="fname">{{Apply.userEmail}}</p>
+            <p class="fsub">{{Apply.skillSet}}</p>
+            <!-- <div class="fsub">4 years expierience <span style="margin-left: 26px;" class="fsub">12 jobs
                             completed</span></div> -->
-                </div>
-                <div class="col-2"></div>
-                <div class="col-3">
-                    <p class="bid">Bidding rate : <span class="rate">${{Applies.biddingRate}}/ hour</span></p>
-                    <button class="msg">Message</button><button  class="hire" data-bs-toggle="modal"
-                        data-bs-target="#hireModal" (click)="ApplyModal(Applies)">Hire</button>
-                    <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Applies)">View
-                        Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-3">
+            <p class="bid">Bidding rate : <span class="rate">${{Apply.biddingRate}}/ hour</span></p>
+            <button class="msg">Message</button><button class="hire" data-bs-toggle="modal" data-bs-target="#hireModal"
+              (click)="ApplyModal(Apply)">Hire</button>
+            <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Apply)">View
+              Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
+          </div>
+          <div class="col-1">
+            <div class="col-1">
+              <img class="sho1" (click)="showicon(i)" src="../assets/show more.png" alt="">
+              <div class="EDITDEL"  *ngIf="showicons[i]">
+
+                <img class="p-2" src="./assets/shortlist.png" data-bs-toggle="modal" data-bs-target="#deletmodel2">
+                <img class="p-2" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
+              </div>'
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="deletmodel2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="pad1">
+            <div class="modal-hed">
+
+              <p class="c22" id="exampleModalLabel5"><b>Do you want Shortliste this freelancer proposal ?</b></p>
+            </div>
+            <div class="kksubbtn">
+              <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
+              <button type="button" class="btn kkkbtncn">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="deletmodel1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="pad1">
+            <div class="modal-hed">
+
+              <p class="c22" id="exampleModalLabel5"><b>Do you want delete this job Proposal ?</b></p>
+            </div>
+            <div class="kksubbtn">
+              <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
+              <button type="button" class="btn kkkbtncn">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Cover Letter Modal-->
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog dia12">
+        <div class="modal-content kkde">
+          <div class="modal-header ">
+            <button type="button" class="btn closemo" data-bs-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M22 2L2 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2 2L22 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body" *ngIf="selectedrequest">
+            <div class="covel">Cover Letter</div>
+            <div class="covcont">
+              {{selectedrequest.applyCoverLetter}}
+            </div>
+            <div class="covel att">Attachments</div>
+            <img src="../assets/erdownload_.png" alt="Pubkin Attachment" class="down"> <span class="file">
+              <a [href]="imageUrl + selectedrequest.fileUrl" target="_blank" download
+                class="no-underline dropname3">{{selectedrequest.fileUrl.split('_')[1]}}</a></span><br>
+            <!-- <button class="dld">Download</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Hire and Pay -->
+    <div class="modal fade " id="hireModal" tabindex="-1" aria-labelledby="hireModalLabel" aria-hidden="true">
+      <div class="modal-dialog dia12">
+        <div class="modal-content hirekkde">
+          <div class="modal-header ">
+            <span class="conf">Confirm Hiring & Pay</span>
+            <button type="button" class="btn hiremo" data-bs-dismiss="modal" aria-label="Close">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M22 2L2 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2 2L22 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+
+
+          <div class="modal-body" *ngIf="selectedhire">
+            <div class="container">
+              <div class="row">
+                <div class="col-5 " style="padding-left: 32px;">
+                  <div class="pcard text-center">
+                    <img class="profmo"  *ngIf="selectedhire.applideUserProfile"  src="{{selectedhire.applideUserProfile}}">
+                <img class="profmo"  *ngIf="!selectedhire.applideUserProfile"  src="../assets/Frame 82.png">
+                    <p class="profilehead">{{selectedhire.userEmail}}
+                      <!--Fetch the UserName from database-->
+                      <img class="prover" src="../assets/Verified Check_.png" alt="Pubkin Verify">
+                    </p>
+                    <p class="profrole">{{selectedhire.skillSet}}</p>
+                    <!-- <div style="margin-top: 23px"> <img src="../assets/star.png" alt="star profile"><span
+                                        class="rateprof">4.9/5 (40 jobs)</span></div> -->
+                  </div>
+                  <div class="bidrate">Bidding Rate: ${{selectedhire.biddingRate}}/hr</div>
+                  <div class="workinghours">Total Work hours: 6 Months</div>
+                  <!--Fetch the duration from database-->
                 </div>
                 <div class="col-1">
-                   <div class="col-1">
-                    <img class="sho1"  (click)="thirumpivvaa()"  src="../assets/show more.png" alt="">
-                    <div class="EDITDEL" *ngIf="maranchupo">
-              
-                      <img class="p-2" src="./assets/shortlist.png" data-bs-toggle="modal" data-bs-target="#deletmodel2">
-                      <img class="p-2" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
-          </div>'
+                  <div class="linepro"></div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+                <div class="col-6">
+                  <div class="amountdeta">
+                    <p class="tamount">Total Amount <span style="float: right;">₹{{selectedhire.biddingRate}}</span></p>
+                    <p class="tamount">Platform fee(2%) <span style="float: right;">₹{{
+                        calculateFees().platformFee }}</span></p>
+                    <p class="tamount">Taxes(6%) <span style="float: right;">₹{{ calculateFees().taxes
+                        }}</span></p>
+                  </div>
+                  <div class="wallet">
+                    <mat-radio-button class="primary" color="primary">
+                      <p class="amountwallet">Use Amount in Wallet <span class="walleamount">₹45</span></p>
+                    </mat-radio-button>
+                  </div>
+                  <div class="float-end mt-5">
+                    <p class="payableamount" style="margin-top: 43px;">Payable amount
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ₹{{
+                        calculateFees().payableAmount }}</span></p>
+                    <p class="payableamount mt-4">Amount in
+                      Wallet<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -₹45</span></p>
+                  </div>
+                  <div class="payamount">Payable Amount<span>₹{{ calculateFees().payableAmount }}</span></div>
 
-<div class="modal fade" id="deletmodel2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
-      <div class="pad1" >
-        <div class="modal-hed">
-
-          <p class="c22" id="exampleModalLabel5"><b>Do you want Shortliste this freelancer proposal ?</b></p>
-        </div>
-        <div class="kksubbtn">
-          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
-          <button type="button" class="btn kkkbtncn">Confirm</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="modal fade" id="deletmodel1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
-      <div class="pad1" >
-        <div class="modal-hed">
-
-          <p class="c22" id="exampleModalLabel5"><b>Do you want delete this job Proposal ?</b></p>
-        </div>
-        <div class="kksubbtn">
-          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
-          <button type="button" class="btn kkkbtncn">Confirm</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Cover Letter Modal-->
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog dia12">
-        <div class="modal-content kkde">
-            <div class="modal-header ">
-                <button type="button" class="btn closemo" data-bs-dismiss="modal" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M22 2L2 22" stroke="black" stroke-width="4" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M2 2L22 22" stroke="black" stroke-width="4" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-body" *ngIf="selectedrequest">
-                <div class="covel">Cover Letter</div>
-                <div class="covcont">
-                    {{selectedrequest.applyCoverLetter}}
+                  <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
+                    <input type="hidden" id="id" name="id" [(ngModel)]="Applies.id">
+                    <input type="hidden" id="status" name="status" [(ngModel)]="Applies.status">
+                    <button class="cpay" data-bs-toggle="modal" data-bs-target="#saveModal"
+                      (click)="ChangeStatus();">Confirm & Pay</button>
+                  </form>
+                  <p class="disclaimer">*This payment will be add on your wallet</p>
                 </div>
-                <div class="covel att">Attachments</div>
-                <img src="../assets/erdownload_.png" alt="Pubkin Attachment" class="down"> <span class="file">
-                  <a [href]="imageUrl + selectedrequest.fileUrl" target="_blank" download class="no-underline dropname3">{{selectedrequest.fileUrl.split('_')[1]}}</a></span><br>
-                <!-- <button class="dld">Download</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!--Hire and Pay -->
-<div class="modal fade " id="hireModal" tabindex="-1" aria-labelledby="hireModalLabel" aria-hidden="true">
-    <div class="modal-dialog dia12">
-        <div class="modal-content hirekkde">
-            <div class="modal-header ">
-                <span class="conf">Confirm Hiring & Pay</span>
-                <button type="button" class="btn hiremo" data-bs-dismiss="modal" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none">
-                        <path d="M22 2L2 22" stroke="black" stroke-width="4" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M2 2L22 22" stroke="black" stroke-width="4" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
-
-
-            <div class="modal-body" *ngIf="selectedhire">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-5 " style="padding-left: 32px;">
-                            <div class="pcard text-center">
-                                <div class="profmo"></div>
-                                <p class="profilehead">{{selectedhire.userEmail}}
-                                    <!--Fetch the UserName from database-->
-                                    <img class="prover" src="../assets/Verified Check_.png" alt="Pubkin Verify">
-                                </p>
-                                <p class="profrole">{{selectedhire.skillSet}}</p>
-                                <!-- <div style="margin-top: 23px"> <img src="../assets/star.png" alt="star profile"><span
-                                        class="rateprof">4.9/5 (40 jobs)</span></div> -->
-                            </div>
-                            <div class="bidrate">Bidding Rate: ${{selectedhire.biddingRate}}/hr</div>
-                            <div class="workinghours">Total Work hours: 6 Months</div>
-                            <!--Fetch the duration from database-->
-                        </div>
-                        <div class="col-1">
-                            <div class="linepro"></div>
-                        </div>
-                        <div class="col-6">
-                            <div class="amountdeta">
-                                <p class="tamount">Total Amount <span
-                                        style="float: right;">₹{{selectedhire.biddingRate}}</span></p>
-                                <p class="tamount">Platform fee(2%) <span style="float: right;">₹{{
-                                        calculateFees().platformFee }}</span></p>
-                                <p class="tamount">Taxes(6%) <span style="float: right;">₹{{ calculateFees().taxes
-                                        }}</span></p>
-                            </div>
-                            <div class="wallet">
-                                 <mat-radio-button  class="primary" color="primary">
-                                   <p class="amountwallet">Use Amount in Wallet <span class="walleamount">₹45</span></p>
-                                 </mat-radio-button>
-                            </div>
-                            <div class="float-end mt-5" >
-                            <p class="payableamount" style="margin-top: 43px;">Payable amount <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ₹{{ calculateFees().payableAmount }}</span></p>
-                            <p class="payableamount mt-4">Amount in Wallet<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -₹45</span></p>
-                        </div>
-                            <div class="payamount">Payable Amount<span>₹{{ calculateFees().payableAmount }}</span></div>
-
-                                    <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
-                                      <input type="hidden" id="id" name="id" [(ngModel)]="Applies.id">
-                                      <input type="hidden" id="status" name="status" [(ngModel)]="Applies.status" >                                    
-                            <button class="cpay"  data-bs-toggle="modal" data-bs-target="#saveModal" (click)="ChangeStatus();">Confirm & Pay</button>
-                          </form>
-                            <p class="disclaimer">*This payment will be add on your wallet</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="modal  fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-      <div class="modal-content kkmodelbill">
-        <div class="container">
-          <div class="row kkbillr3">
-            <div class="col-2">
-              <span data-bs-dismiss="modal" aria-label="Close" class="material-symbols-outlined kkiconbill">
-                arrow_back_ios
-              </span>
-            </div>
-            <div class="col-8"></div>
-            <div class="col-2">
-              <img data-bs-dismiss="modal" aria-label="Close" src="../assets/_x letter_.png" alt="">
+              </div>
             </div>
           </div>
         </div>
-        <p class="kkbnktx6">Saved Payments</p>
-
-       
-        <div class="kkbillpay12">
-            <img  data-bs-toggle="modal" data-bs-target="#exampleModal1"
-              src="../assets/icon _MasterCard_.svg" class="mastercardimg"> <span class="cardnumber23"> 6749 **** **** *749<br>Mr. John Doe</span></div>
-              <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#paymentModal"><span data-bs-toggle="modal" data-bs-target="#paymentModal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                    <path d="M2.41171 14.7554L15.3733 1.79381C16.4317 0.735395 18.1478 0.735395 19.2062 1.79381C20.2646 2.85225 20.2646 4.56828 19.2062 5.6267L6.2446 18.5883C5.9489 18.884 5.57229 19.0856 5.16223 19.1676L1 20L1.83244 15.8378C1.91446 15.4277 2.11601 15.0511 2.41171 14.7554Z" stroke="#858585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2.58594 15.2344L5.7632 18.4116" stroke="#858585" stroke-width="2" stroke-linejoin="round"/>
-                    <path d="M13.1797 4.64453L16.3569 7.82179" stroke="#858585" stroke-width="2"/>
-                  </svg></span > <span class="changepay">Change Payment Method</span></div>
-        <button class="btn kkbillbtnlst">Confirm Payment Method</button>
       </div>
     </div>
-  </div>
 
 
-<div class="modal  fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-      <div class="modal-content kkmodelbill">
-        <div class="container">
-          <div class="row kkbillr3">
-            <div class="col-2">
-              <span data-bs-dismiss="modal" aria-label="Close" class="material-symbols-outlined kkiconbill">
-                arrow_back_ios
-              </span>
-            </div>
-            <div class="col-8"></div>
-            <div class="col-2">
-              <img data-bs-dismiss="modal" aria-label="Close" src="../assets/_x letter_.png" alt="">
+    <div class="modal  fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content kkmodelbill">
+          <div class="container">
+            <div class="row kkbillr3">
+              <div class="col-2">
+                <span data-bs-dismiss="modal" aria-label="Close" class="material-symbols-outlined kkiconbill">
+                  arrow_back_ios
+                </span>
+              </div>
+              <div class="col-8"></div>
+              <div class="col-2">
+                <img data-bs-dismiss="modal" aria-label="Close" src="../assets/_x letter_.png" alt="">
+              </div>
             </div>
           </div>
-        </div>
-        <p class="kkbnktx6">Add Payment Option</p>
+          <p class="kkbnktx6">Saved Payments</p>
 
-        <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
-              src="./assets/upi.png"></span>UPI</div>
-        <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
-              src="./assets/creditcard.png"></span>Credit Or Debit Card</div>
-        <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
-              src="./assets/bank.png"></span>Net Banking</div>
-        <button class="btn kkbillbtnlst">Confirm Payment Method</button>
+
+          <div class="kkbillpay12">
+            <img data-bs-toggle="modal" data-bs-target="#exampleModal1" src="../assets/icon _MasterCard_.svg"
+              class="mastercardimg"> <span class="cardnumber23"> 6749 **** **** *749<br>Mr. John Doe</span>
+          </div>
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#paymentModal"><span data-bs-toggle="modal"
+              data-bs-target="#paymentModal">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                <path
+                  d="M2.41171 14.7554L15.3733 1.79381C16.4317 0.735395 18.1478 0.735395 19.2062 1.79381C20.2646 2.85225 20.2646 4.56828 19.2062 5.6267L6.2446 18.5883C5.9489 18.884 5.57229 19.0856 5.16223 19.1676L1 20L1.83244 15.8378C1.91446 15.4277 2.11601 15.0511 2.41171 14.7554Z"
+                  stroke="#858585" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M2.58594 15.2344L5.7632 18.4116" stroke="#858585" stroke-width="2" stroke-linejoin="round" />
+                <path d="M13.1797 4.64453L16.3569 7.82179" stroke="#858585" stroke-width="2" />
+              </svg></span> <span class="changepay">Change Payment Method</span></div>
+          <button class="btn kkbillbtnlst">Confirm Payment Method</button>
+        </div>
       </div>
     </div>
-  </div>
 
 
-
-  <div class="modal  fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-      <div class="modal-content kkmodelbill">
-        <div class="container">
-          <div class="row kkbillr3">
-            <div class="col-2">
-              <span data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                class="material-symbols-outlined kkiconbill">
-                arrow_back_ios
-              </span>
-            </div>
-            <div class="col-8"></div>
-            <div class="col-2">
-              <img data-bs-dismiss="modal" aria-label="Close" src="../assets/_x letter_.png" alt="">
+    <div class="modal  fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content kkmodelbill">
+          <div class="container">
+            <div class="row kkbillr3">
+              <div class="col-2">
+                <span data-bs-dismiss="modal" aria-label="Close" class="material-symbols-outlined kkiconbill">
+                  arrow_back_ios
+                </span>
+              </div>
+              <div class="col-8"></div>
+              <div class="col-2">
+                <img data-bs-dismiss="modal" aria-label="Close" src="../assets/_x letter_.png" alt="">
+              </div>
             </div>
           </div>
+          <p class="kkbnktx6">Add Payment Option</p>
+
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
+                src="./assets/upi.png"></span>UPI</div>
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
+                src="./assets/creditcard.png"></span>Credit Or Debit Card</div>
+          <div class="kkbillpay1" data-bs-toggle="modal" data-bs-target="#exampleModal1"><span><img
+                src="./assets/bank.png"></span>Net Banking</div>
+          <button class="btn kkbillbtnlst">Confirm Payment Method</button>
         </div>
-        <p class="kkbnktx6">Add Card Details</p>
-        <form #bankDetailsform="ngForm" (ngSubmit)="onSubmitBankDetails(bankDetailsform)">
-          <input type="hidden" id="id" name="id"
-            [(ngModel)]="bankservice.bankData.id">
-          <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
-          <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
-            maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankData.cardNumber"
-            required pattern="[0-9\s]+$" />
-          <span *ngIf="!cardNumber.valid && cardNumber.touched">
-            <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
-              Card Number is required
-            </span>
-            <span class="errormsg" *ngIf="cardNumber.errors?.['pattern']">
-              Only Characters are allowed
-            </span>
-          </span>
-          <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
-            minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
-            [(ngModel)]="bankservice.bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
-          <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
-            <span class="errormsg" *ngIf="nameoftheCard.errors?.['required']">
-              Card Name is required
-            </span>
-            <span class="errormsg" *ngIf="nameoftheCard.errors?.['pattern']">
-              Only Characters are allowed
-            </span>
-          </span>
-          <div class="kbiladcrd1">
-            <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
-              #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
-              [(ngModel)]="bankservice.bankData.expiryDate" required pattern="[0-9]+$">
-            <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
-              minlength="1" maxlength="3" [(ngModel)]="bankservice.bankData.cvv" required pattern="[0-9]+$">
-          </div>
-          <span *ngIf="!expiryDate.valid && expiryDate.touched">
-            <span class="errormsg" *ngIf="expiryDate.errors?.['required']">
-              ExpiryDate is required
-            </span>
-            <span class="errormsg" *ngIf="expiryDate.errors?.['pattern']">
-              Only Numeric are allowed
-            </span>
-          </span>
-          <span *ngIf="!cvv.valid && cvv.touched">
-            <span class="errormsg" *ngIf="cvv.errors?.['required']">
-              cvv is required
-            </span>
-            <span class="errormsg" *ngIf="cvv.errors?.['pattern']">
-              Only Numeric are allowed
-            </span>
-          </span>
-          <div class="container kkreadiobil">
-            <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
-              Make Default Payment
-            </label>
-          </div>
-          <div class="kkbiladcd">
-            <button class="btn kkbiladcd1" type="submit" [disabled]="bankDetailsform.invalid">Add Card</button>
-          </div>
-        </form>
       </div>
     </div>
-  </div>
 
+
+
+    <div class="modal  fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content kkmodelbill">
+          <div class="container">
+            <div class="row kkbillr3">
+              <div class="col-2">
+                <span data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                  class="material-symbols-outlined kkiconbill">
+                  arrow_back_ios
+                </span>
+              </div>
+              <div class="col-8"></div>
+              <div class="col-2">
+                <img data-bs-dismiss="modal" aria-label="Close" src="../assets/_x letter_.png" alt="">
+              </div>
+            </div>
+          </div>
+          <p class="kkbnktx6">Add Card Details</p>
+          <form #bankDetailsform="ngForm" (ngSubmit)="onSubmitBankDetails(bankDetailsform)">
+            <input type="hidden" id="id" name="id" [(ngModel)]="bankservice.bankData.id">
+            <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].userId">
+            <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
+              maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankservice.bankData.cardNumber"
+              required pattern="[0-9\s]+$" />
+            <span *ngIf="!cardNumber.valid && cardNumber.touched">
+              <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
+                Card Number is required
+              </span>
+              <span class="errormsg" *ngIf="cardNumber.errors?.['pattern']">
+                Only Characters are allowed
+              </span>
+            </span>
+            <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
+              minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
+              [(ngModel)]="bankservice.bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
+            <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
+              <span class="errormsg" *ngIf="nameoftheCard.errors?.['required']">
+                Card Name is required
+              </span>
+              <span class="errormsg" *ngIf="nameoftheCard.errors?.['pattern']">
+                Only Characters are allowed
+              </span>
+            </span>
+            <div class="kbiladcrd1">
+              <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
+                #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
+                [(ngModel)]="bankservice.bankData.expiryDate" required pattern="[0-9]+$">
+              <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
+                minlength="1" maxlength="3" [(ngModel)]="bankservice.bankData.cvv" required pattern="[0-9]+$">
+            </div>
+            <span *ngIf="!expiryDate.valid && expiryDate.touched">
+              <span class="errormsg" *ngIf="expiryDate.errors?.['required']">
+                ExpiryDate is required
+              </span>
+              <span class="errormsg" *ngIf="expiryDate.errors?.['pattern']">
+                Only Numeric are allowed
+              </span>
+            </span>
+            <span *ngIf="!cvv.valid && cvv.touched">
+              <span class="errormsg" *ngIf="cvv.errors?.['required']">
+                cvv is required
+              </span>
+              <span class="errormsg" *ngIf="cvv.errors?.['pattern']">
+                Only Numeric are allowed
+              </span>
+            </span>
+            <div class="container kkreadiobil">
+              <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
+                Make Default Payment
+              </label>
+            </div>
+            <div class="kkbiladcd">
+              <button class="btn kkbiladcd1" type="submit" [disabled]="bankDetailsform.invalid">Add Card</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>

@@ -30,13 +30,11 @@ export class ViewFreelancersComponent implements OnInit {
     } else {
     }
   }
-toggleIcons(post: any): void {
-  this.JobPosts.forEach((jobPost: { showIcons: boolean; }) => {
-      if (jobPost !== post) {
-          jobPost.showIcons = false;
-      }
-  });
-  post.showIcons = !post.showIcons;
+
+  toggleIcons(post: any): void {
+    this.Posts.forEach((p: any) => {
+        p.showIcons = (p === post) ? !p.showIcons : false;
+    });
 }
 
   ngOnInit() {
@@ -45,8 +43,8 @@ toggleIcons(post: any): void {
 
   }
 
-  getAllPosts() { 
-    this.jobService.getJobPost().subscribe(data => {  
+  getAllPosts() {
+    this.jobService.getJobPost().subscribe(data => {
       this.Posts = data;
     })
   }

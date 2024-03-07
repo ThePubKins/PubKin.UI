@@ -15,22 +15,29 @@ export class AuthorsComponent implements OnInit {
   JobPostId: string | null;
   Posts: any;
   UserData: any;
+  searchTerm: string;
 
   constructor(
-    public jobService:JobpostService, public userService : UserauthenticateService,
-    public dialog: MatDialog,public router: Router) { }
+    public jobService: JobpostService, public userService: UserauthenticateService,
+    public dialog: MatDialog, public router: Router) { }
 
   ngOnInit(): void {
     this.getUserData();
     this.openDeliveryDialog();
-     this.getAllPosts();
+    this.getAllPosts();
   }
 
-  getAllPosts() { 
-    this.jobService.getJobPost().subscribe(data => {  
+  getAllPosts() {
+    this.jobService.getJobPost().subscribe(data => {
       this.Posts = data;
     })
   }
+
+  //Search input functionality
+  onSearchChange(event: any) {
+    this.searchTerm = event.target.value;
+  }
+
 
   //ProgressBar 
   calculateTotal(): number {
@@ -40,10 +47,10 @@ export class AuthorsComponent implements OnInit {
 
     const total = num1 + num2 + num3;
     return total;
-}
- 
+  }
 
-//Get the Current userData
+
+  //Get the Current userData
   getUserData() {
     const Email = this.userService.getUserEmail() ?? sessionStorage.getItem('email');
     console.log(Email, "email")
@@ -59,7 +66,7 @@ export class AuthorsComponent implements OnInit {
     } else {
     }
   }
-  
+
   //Progress Bar  Functionality
   // getProgressBarColor(): string {
   //   const progress = this.Author[0].ProfilePercentage;

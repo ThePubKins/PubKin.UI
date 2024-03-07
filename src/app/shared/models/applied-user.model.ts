@@ -17,4 +17,6 @@ export interface applied_user {
     postBy: string;
     fileUrl: string;
     AttachFile: string;
+    jobUniqueId:string;
+    applideUserProfile:string; 
 }

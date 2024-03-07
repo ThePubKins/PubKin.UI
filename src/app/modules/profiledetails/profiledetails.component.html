@@ -9,6 +9,25 @@
       class="float-end mt-5" routerLink="/freelancers">
   </div>
 
+<!-- Profile Percentage -->
+<form #percentageForm="ngForm" (ngSubmit)="onSubmitpercentage(percentageForm);">
+  <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+  <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
+  <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+    [(ngModel)]="User[0].govtIdDetails">
+  <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+    [(ngModel)]="User[0].portfolioDetails">
+  <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+    [(ngModel)]="User[0].educationDetails">
+  <input type="hidden" ngModel name="workingDetails" #workingDetails="ngModel" id="workingDetails"
+    [(ngModel)]="User[0].workingDetails">
+  <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+    [(ngModel)]="User[0].bankingDetails">
+  <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+    [(ngModel)]="User[0].paymentVerify">
+    <button type="submit" class="d-none" #percentagebutton>submit</button>
+</form>
+
   <!--Profile Picture -->
   <div *ngIf="contentName === 'choose-your-picutre-now'">
     <div class="container">
@@ -128,7 +147,7 @@
                   <p class="kkeduhdtg kkeduhdtg1">Location</p>
                   <input class="kkin1" type="text" placeholder="eg: Bangalore" id="companyLocation"
                     #companyLocation="ngModel" name="companyLocation" [(ngModel)]="workservice.workData.companyLocation"
-                    required minlength="0" maxlength="45">
+                    required minlength="0" maxlength="45" >
                   <span *ngIf="!companyLocation.valid && (companyLocation.touched || companyLocation.dirty)">
                     <span class="errormsg" *ngIf="companyLocation.errors?.['required']">
                       Company Location is Required
@@ -154,7 +173,7 @@
                   <div class="container kkyrflx1">
                     <div class="kkrow1">
                       <select class="kkin12" id="joiningMonth" name="joiningMonth" #joiningMonth="ngModel"
-                        [(ngModel)]="workservice.workData.joiningMonth" required>
+                        [(ngModel)]="workservice.workData.joiningMonth" required (click)="increaseWorkingPercentage();">
                         <option selected>Jan</option>
                         <option selected>Feb</option>
                         <option selected>Mar</option>
@@ -237,7 +256,7 @@
                   </span>
                 </div>
                 <button type="submit" class="btn kkedubt" [disabled]="workdetailsform.invalid" data-bs-dismiss="modal"
-                  aria-label="Close">Save</button>
+                  aria-label="Close" (click)="PercentageSubmit()">Save</button>
               </form>
             </div>
           </div>
@@ -283,11 +302,11 @@
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg  modal-dialog-centered">
-        <form #portfolioForm="ngForm" (ngSubmit)="onSubmitPortfolio(portfolioForm)">
+        <form #portfolioForm="ngForm" (ngSubmit)="onSubmitPortfolio(portfolioForm);">
           <div class="modal-content kkcmodel">
             <input type="hidden" id="id" name="id" [(ngModel)]="portfolioService.portfolioFormData.id">
             <input type="hidden" id="createdBy" name="createdBy"
-              [(ngModel)]="portfolioService.portfolioFormData.createdBy">
+              [(ngModel)]="portfolioService.portfolioFormData.createdBy" >
             <input type="hidden" id="dateCreated" name="dateCreated"
               [(ngModel)]="portfolioService.portfolioFormData.dateCreated">
             <input type="hidden" id="userId" name="userId" [(ngModel)]="portfolioService.portfolioFormData.userId">
@@ -311,7 +330,7 @@
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label projtitlevv ">Web Link (if available)</label>
                 <input type="text" class="form-control placvv" id="projectLink" name="projectLink"
-                  [(ngModel)]="portfolioService.portfolioFormData.projectLink" placeholder="www.portfolio.com">
+                  [(ngModel)]="portfolioService.portfolioFormData.projectLink" placeholder="www.portfolio.com" (click)="incresePortfolioPercentage()">
               </div>
 
               <!-- <div class="container">
@@ -344,7 +363,7 @@
                   </div>
                 </div>
               </div> -->
-              <button type="submit" class="btn savevv" data-bs-dismiss="modal"> Save</button>
+              <button type="submit" class="btn savevv" data-bs-dismiss="modal" (click)="PercentageSubmit();"> Save</button>
             </div>
           </div>
         </form>
@@ -417,7 +436,7 @@
                     </span>
                     <div class="kkeduhdtg">Degree</div>
                     <input class="kkin1" type="text" placeholder="eg: Bachelors" ngModel name="department" minlength="0"
-                      maxlength="35" #department="ngModel" id="department" (click)="FetchDetails();"
+                      maxlength="35" #department="ngModel" id="department" (click)="FetchDetails();increseEducationPercentage();"
                       [(ngModel)]="educationservice.educationData.department" required>
                     <span *ngIf="!department.valid && department.touched">
                       <span class="errormsg " *ngIf="department.errors?.['required']">
@@ -478,7 +497,7 @@
                   </div>
                 </div>
                 <button class="btn kkedubt" type="submit" data-bs-dismiss="modal" aria-label="Close"
-                  [disabled]="educationForm.invalid">Save</button>
+                  [disabled]="educationForm.invalid" (click)="PercentageSubmit()">Save</button>
               </div>
             </form>
           </div>
@@ -497,7 +516,7 @@
         [(ngModel)]="User[0].Experience">
       <input type="hidden" id="description" [(ngModel)]="User[0].description" [value]="User[0].description"
         name="description" #WrkDesc="ngModel">
-      <button class="btn d-none" #submitbutton type="submit">Next</button>
+      <button class="btn d-none" #submitbutton type="submit" (click)="PercentageSubmit()">Next</button>
     </form>
     <div *ngIf="GoNext === 'button1'">
       <div class="container">
@@ -587,7 +606,7 @@
               <img src="../assets/_upload share_.png" alt="Upload Resume" class="rrpubimg1">
               <p class="rrlinkedinifl1">Upload your Resume</p>
             </div>
-            <div class="circlin rrpubcomcenalign1" (click)="GoNextBtn('button3');">
+            <div class="circlin rrpubcomcenalign1" (click)="GoNextBtn('button3');increseFreelancingPercentage();">
               <p class="rrlinkedinifl1">Fill out the details manually</p>
             </div>
           </div>
@@ -605,7 +624,7 @@
       <div class="container ">
         <button class="btn kkempbtn1" (click)="GoNextBtn('button1')"> Back</button>
         <button class="btn skip">Skip for now</button>
-        <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button3');">Next</button>
+        <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button3');increseFreelancingPercentage();">Next</button>
       </div>
     </div>
 
@@ -638,7 +657,7 @@
 
   </div>
 
-  <!-- Payment rates for Author -->
+  <!-- Payment rates for Freelancer -->
   <div *ngIf="contentName === 'payment'">
     <div class="container">
       <p class="kkemphus">Add your payment rates</p>
@@ -691,11 +710,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <input type="text" id="id" name="id" [(ngModel)]="priceService.pricingSkillData.id">
-              <input type="text" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
-              <input type="text" id="dateCreated" name="dateCreated"
+              <input type="hidden" id="id" name="id" [(ngModel)]="priceService.pricingSkillData.id">
+              <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
+              <input type="hidden" id="dateCreated" name="dateCreated"
                 [(ngModel)]="priceService.pricingSkillData.dateCreated">
-              <input type="text" id="userId" name="userId" [(ngModel)]="User[0].id">
+              <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].id">
               <div>
                 <div class="kkeduhdtg">&nbsp;&nbsp;Your skill<div>
                     <select class="kkin1" placeholder="eg: Compositor" ngModel name="skillSet" #skillSet="ngModel"
@@ -715,7 +734,7 @@
                     <!-- (click)="hideRates()" -->
                     <div class="kkeduhdtg">How do you like to set pricing?</div>
                     <select class="kkin1" placeholder="eg: Compositor" ngModel name="uom" #uom="ngModel" id="uom"
-                      [(ngModel)]="priceService.pricingSkillData.uom" required>
+                      [(ngModel)]="priceService.pricingSkillData.uom" required (click)="incresePricingSkillPercentage()">
                       <option class="kkin1" selected> per hour</option>
                       <option class="kkin1">word count</option>
                       <option class="kkin1"> per book</option>
@@ -802,7 +821,7 @@
                         <button class="skip1">Add skill</button>
                       </div>
                       <div class="col-3">
-                        <button class="btn skip2" data-bs-dismiss="modal" type="submit">Save</button>
+                        <button class="btn skip2" data-bs-dismiss="modal" type="submit" [disabled]="priceForm.invalid" (click)="PercentageSubmit()">Save</button>
                       </div>
                     </div>
                   </div>
@@ -860,7 +879,7 @@
                 </span>
               </div>
               <select class="countrySelect govtselect rrcontopalign2" ngModel name="country" #country="ngModel"
-                id="country" [(ngModel)]="User[0].country">
+                id="country" [(ngModel)]="User[0].country" (click)="increseGovtDetailsPercentage()">
                 <option selected value="India" style="padding: 20px;">India</option>
                 <option value="USA">USA</option>
                 <option value="Australia">Australia</option>
@@ -899,7 +918,7 @@
 
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-      <button class="btn kkempbtn2" routerLink="/freelancers" type="submit" (click)="govtsubmit();">Save
+      <button class="btn kkempbtn2" routerLink="/freelancers" type="submit" (click)="govtsubmit();PercentageSubmit()">Save
         Details</button>
     </div>
   </div>
@@ -1189,7 +1208,7 @@
           <div *ngFor="let bankData of bankDetails">
             <div *ngIf="User[0].id === bankData.id">
               <form #upiDetailsform="ngForm"
-                (ngSubmit)="onSubmitBankingDetails(upiDetailsform);onSubmitpercentage(upiDetailsform);">
+                (ngSubmit)="onSubmitUpiDetails(upiDetailsform);onSubmitpercentage(upiDetailsform);">
                 <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
                 <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].id">
                 <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
@@ -1220,7 +1239,7 @@
                   </label>
                 </div>
                 <div class="kkbiladcd">
-                  <button class="btn kkbiladcd1" [disabled]="upiDetailsform.invalid"  data-bs-dismiss="modal" aria-label="Close">Confirm Details</button>
+                  <button class="btn kkbiladcd1" [disabled]="upiDetailsform.invalid"  data-bs-dismiss="modal" aria-label="Close" type="submit">Confirm Details</button>
                 </div>
               </form>
             </div>
@@ -1284,7 +1303,7 @@
                   </label>
                 </div>
                 <div class="kkbiladcd">
-                  <button class="btn kkbiladcd1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="bankingDetailsform.invalid">Confirm Details</button>
+                  <button class="btn kkbiladcd1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="bankingDetailsform.invalid" type="submit">Confirm Details</button>
                 </div>
               </form>
             </div>
