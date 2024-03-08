@@ -986,7 +986,7 @@
             <input type="text" class="intLocAuth" placeholder="Location " id="nationality" required name="nationality"
               #nationality="ngModel" [(ngModel)]="User[0].nationality">
             <p class="disclaimer">*We will not share your information to anyone.</p>
-            <button class="btn mat-button saveauth" type="submit" [disabled]="personalForm.invalid">Save</button>
+            <button class="btn mat-button saveauth" type="submit" [disabled]="personalForm.invalid" routerLink="/authors">Save</button>
           </form>
         </div>
       </div>
@@ -1228,8 +1228,15 @@
                   [(ngModel)]="User[0].bankingDetails">
                 <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
                   [(ngModel)]="User[0].paymentVerify">
-                <input type="text" placeholder="UPI Method" class="kkbilinput1" ngModel id="upi" name="upi"
-                  #upi="ngModel" [(ngModel)]="bankData.upi" required >
+                <!-- <input type="text" placeholder="UPI Method" class="kkbilinput1" ngModel id="upi" name="upi"
+                  #upi="ngModel" [(ngModel)]="bankData.upi" required > -->
+                  <select class="kkbilinput1 form-control" id="upi" name="upi" [(ngModel)]="bankData.upi" required>
+                    <option value="" disabled selected>Select UPI Method</option>
+                    <option class="ddis"value="method1">Gpay</option>
+                    <option class="ddis" value="method2">Paytm</option>
+                
+                </select>
+                
                 <input type="text" placeholder="Paste Your UPI URL" class="kkbilinput1" ngModel id="upiUrl" name="upiUrl"
                 #upiUrl="ngModel" [(ngModel)]="bankData.upiUrl" required (click)="increseBankPercentage()">
                 <div class="container kkreadiobil">
@@ -1364,7 +1371,7 @@
                     Only Characters are allowed
                   </span>
                 </span>
-                <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
+                <!-- <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
                   minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
                   [(ngModel)]="bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
                 <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
@@ -1374,7 +1381,12 @@
                   <span class="errormsg" *ngIf="nameoftheCard.errors?.['pattern']">
                     Only Characters are allowed
                   </span>
-                </span>
+                </span> -->
+                <select class="kkbilinput1" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard" required>
+                  <option value="" disabled selected>Select Card Name</option>
+                  <option class="ddis" value="method1">Visa</option>
+                  <option class="ddis"value="method2">Rupay</option>
+              </select>
                 <div class="kbiladcrd1">
                   <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
                     #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
