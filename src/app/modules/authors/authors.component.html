@@ -1,4 +1,7 @@
-<div class="dtview">
+<div class="dtview" *ngIf="UserData[0].role === 'freelancer'">
+
+</div>
+<div class="dtview" *ngIf="UserData[0].role === 'author'">
   <app-author-nav></app-author-nav>
   
   <div class="container  rrraligntop1">
@@ -13,6 +16,7 @@
           </button>
           <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item ddis">Today</a></li>
+            <li><a class="dropdown-item ddis">Yesterday</a></li>
           </ul>
         </div>
       </div>
@@ -46,12 +50,15 @@
           <div class="rrkkprdetacn2">
             <p class="rrkkprtag3">Profile Completeness:</p>
             <p class="rrkkprtag4">{{calculateTotal()}}% complete</p>
-           <!-- <div class="progress rrkkprtag5"  aria-valuenow={{Author[0].ProfilePercentage}}  role="progressbar" aria-label="Basic example" aria-valuenow="10"
-              aria-valuemin="0" aria-valuemax="100">
-              <div class="rrprogress-bar"  [ngStyle]="{'width': Author[0].ProfilePercentage + '%',  'background-color': getProgressBarColor()}"></div>
-            </div> -->
-            <div class="rrcomcenalign1">
+         <div class="progress pgrss" role="progressbar" aria-label="Basic example"
+             [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
+             <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
+         </div>
+            <div class="rrcomcenalign1" *ngIf="calculateTotal() < 99">
               <button class="btn rrkkprbtn2" routerLink="/setting">Complete Profile</button>
+            </div>
+            <div class="rrcomcenalign1" *ngIf="calculateTotal() === 100">
+              <p class="rrkkprtag5">Your Profile is Verified Now!</p>
             </div>
           </div>
         </div>
@@ -362,3 +369,5 @@
         </div>
       </div>
     </div>
+
+  </div>

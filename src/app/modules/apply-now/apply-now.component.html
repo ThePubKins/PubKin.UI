@@ -29,6 +29,7 @@
   </div>
   
 <div class="container" *ngIf="JobPost && success">
+
     <form #applyForm="ngForm" (ngSubmit)="onSubmitApply(applyForm);handleFormSubmission()" novalidate>
         <input type="hidden" id="id" name="id" [(ngModel)]="appliedservice.applyData.id">
         <input type="text" id="createdBy" name="createdBy" [(ngModel)]="appliedservice.applyData.createdBy">
@@ -93,7 +94,7 @@
             <p class="phead2">Cover Letter</p>
 
             <textarea [(ngModel)]="inputText" (input)="onInputChange()" [disabled]="isTextareaDisabled()"
-                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter"
+                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter" ngModel required
                 #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="appliedservice.applyData.applyCoverLetter" required
                 class="covcont">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea>
             <div class="row">
@@ -148,7 +149,7 @@
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
                             <input type="text" class="int" id="actualValue" name="actualValue"
-                                [(ngModel)]="formData.actualValue" (input)="calculateResult()">
+                                [(ngModel)]="formData.actualValue" (input)="calculateResult()" required>
                         </div>
                     </div>
                     <div class="col-1">
@@ -176,7 +177,7 @@
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
                             <input type="text" class="int" readonly id="subtractValue" name="subtractValue"
-                                [value]="formData.displaySubtractValue">
+                            ngModel    [value]="formData.displaySubtractValue" required>
                         </div>
                     </div>
                     <div class="col-1">
@@ -203,7 +204,7 @@
                                 <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
-                            <input type="text" class="int" placeholder="400" name="biddingRate" #biddingRate="ngModel"
+                            <input type="text" class="int" placeholder="400" ngModel name="biddingRate" #biddingRate="ngModel"
                                 id="biddingRate" [(ngModel)]="appliedservice.applyData.biddingRate" required>
                         </div>
                     </div>
@@ -220,16 +221,11 @@
             to the <span class="text-decoration-underline termsand" data-bs-toggle="modal" data-bs-target="#myModal">Terms of
                 Use.</span> </span><br>
         <button class="aplbtn" type="submit">Apply Now</button>
-       
-        <!-- (click)="SuccessModal()" -->
+
     </form>
     <button class="sabtn" data-bs-toggle="modal" data-bs-target="#savejob">Save as Draft</button>
     <br><br><br><br>
 </div>
-<!-- (click)="sendFriendRequest(user); "
-                    [disabled]="Freelancers[0].ProfilePercentage <= 79" -->
-
-
 
 <!-- The Modal -->
 <div class="modal " id="myModal">

@@ -64,6 +64,7 @@ export class AcceptRequestComponent implements OnInit {
       }
     });
 }
+
   onSubmitStatus(form: NgForm) {
     if (form.valid && this.applyService.applyData) {
       this.applyService.PutStatus(form.value).subscribe();

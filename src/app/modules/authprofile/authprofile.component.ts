@@ -31,9 +31,9 @@ export class AuthprofileComponent implements OnInit {
 
 
    calculateTotal(): number {
-    const num1 = parseInt(this.User[0].details);
-    const num2 = parseInt(this.User[0].govtIdDetails);
-    const num3 = parseInt(this.User[0].bankingDetails);
+    const num1 = parseInt(this.User[0].details || 0);
+    const num2 = parseInt(this.User[0].govtIdDetails || 0);
+    const num3 = parseInt(this.User[0].bankingDetails || 0);
 
     const total = num1 + num2 + num3;
     return total;

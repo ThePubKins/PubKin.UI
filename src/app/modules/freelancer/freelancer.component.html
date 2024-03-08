@@ -1,3 +1,8 @@
+
+<div  *ngIf="UserData[0].role === 'author'">
+
+</div>
+<div  *ngIf="UserData[0].role === 'freelancer'">
 <app-freelancernav></app-freelancernav>
 <div class="container">
   <div class="row">
@@ -12,15 +17,14 @@
         </button>
         <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item ddis">Today</a></li>
+          <li><a class="dropdown-item ddis">Yesterday</a></li>
         </ul>
       </div>
     </div>
     <div class="col-6">
-
     </div>
   </div>
 </div>
-
 <br><br>
 <div>
   <div class="container kkjobsrc">
@@ -38,7 +42,8 @@
             </div>
           </div>       
 
-            <div class="container jobcontents" *ngFor="let JobPost of paginatedDataList | jobsearch : searchTerm;let i = index  ">
+            <div class="container jobcontents" *ngFor="let JobPost of paginatedDataList | jobsearch : searchTerm ; let  i=index;  ">
+
               <div class="row" >
               <div class="col-12">
                 <div class="row">
@@ -67,7 +72,7 @@
                 <p class="kkjbtxtline3">
                   <span *ngIf="!JobPost.showMore">{{JobPost.description | slice:0:100}}....</span>
                   <span *ngIf="JobPost.showMore || JobPost.showMoreIndex === i">{{JobPost.description}}</span>
-                  <span (click)="ShowMoreLess(i)" class="text-decoration-underline">{{ JobPost.showMore ? 'Less' : 'More' }}  </span>
+                  <span (click)="ShowMoreLess(i)" class="text-decoration-underline" style="cursor: pointer;">{{ JobPost.showMore ? 'Less' : 'More' }}  </span>
               </p>
                 <div class="kkjbtxtline4"><img src="../assets/startick.png"> Profile verified</div>
                 <div class="kkjbtxtline5"><img src="../assets/startick.png"> Paymeny verified</div>
@@ -83,7 +88,7 @@
           <div class="card kkjbprcrd" style=" width: 257px;">
             <img class="kkcrdimg"  *ngIf="UserData[0].profileUrl"  src={{UserData[0].profileUrl}}>
             <img class="kkcrdimg"  *ngIf="!UserData[0].profileUrl"  src="../assets/Frame 82.png">
-            <p class="kkfrname">{{UserData[0].firstName}}</p>
+            <p class="kkfrname">{{UserData[0].firstName}} <img  *ngIf="calculateTotal() === 100" src="../assets/Verified Check_.png" alt="pubkins" style="margin-top: -6px;"> </p>
             <p class="kkfrname1">Freelancers</p>
             <div class="card-body kkcrdbdy">
               <p class="kkfrname2">Profile Completeness:</p>
@@ -92,14 +97,13 @@
              [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
              <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
          </div>
-              <div class="kkindbx" *ngIf="calculateTotal() === 100">
+              <div class="kkindbx" *ngIf="calculateTotal() < 99">
                 <p class=" kkindbx2 " *ngIf="!UserData[0].portfolioDetails" >Add Portfolio</p>
                 <p class="kkindbx2" *ngIf="!UserData[0].educationDetails">Add Education Details</p>
                 <p class="kkindbx2" *ngIf="!UserData[0].workingDetails">Add Work Details</p>
                 <p class="kkindbx2" *ngIf="!UserData[0].details">Add Freelancing details</p>
                 <p class="kkindbx2" *ngIf="!UserData[0].bankingDetails">Add Pricing Details</p>
                 <p class="kkindbx2" *ngIf="!UserData[0].govtIdDetails">Verify with Govt.ID</p>
-
               </div>
             </div>
           </div>
@@ -141,109 +145,4 @@
  
   </div>
 </div>
-  <!-- 
- <button type="button" class="btn btn-primary" data-bs-toggle="modal" style="display:none;"  data-bs-backdrop="false"  data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"   aria-hidden="true">
-  <div class="modal-dialog rrmodalign2">
-      <div class="modal-content rrmodalign1">
-
-      <div class="modal-body">
-          <div class="container " >
-              <div class="row">
-                  <div class="col-4 text-center">
-                      <img class="pimg"  [src]="selectedImage2 ? selectedImage2 : '/assets/avd1.png'" class="btnimg" >
-                      <p class="prohead">Profile Image</p>
-      <button class="probtn" data-bs-toggle="modal" data-bs-target="#myModal" data-bs-backdrop="false"> 
-           <img src="../assets/upload share_.png" alt="Upload" > 
-           Choose Your Avatar
-        </button> 
-        <input  type="hidden" [value]="selectedImage2 ? selectedImage2 : '/assets/selectionavd.png'">
-        
-        <input type="file" #fileInput style="display:none">
-                      <p class="com">{{Freelancers[0].ProfilePercentage}}% complete</p>
-                      <div class="progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow={{Freelancers[0].ProfilePercentage}} aria-valuemin="0" aria-valuemax="100">
-                          <div class="progress-bar pgrssbar" [ngStyle]="{'width': Freelancers[0].ProfilePercentage + '%',  'background-color': getProgressBarColor()}"></div>
-                        </div>
-                      <p class="prodes">Completing your<br>
-                          profile will land you more jobs</p>
-                  </div>
-                  <div class="col-1">
-                      <div class="line"></div>
-                  </div>
-                  <div class="col-7">
-                     <img  (click)="onClose()"  data-bs-dismiss="modal" aria-label="Close" class="close" src="../assets/x letter_.png" alt="close">
-                     <br>
-                     <p class=" prohead1">Complete your Profile</p>
-                     <p class="prodes1">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse</p>
-                     <div class="mrt">
-                     <div class="container-fluid prode" style="cursor: pointer;">
-                      <div class="row">
-                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/portfolio" mat-dialog-close >                            
-                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Portfolio</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
-                                  <hr>
-                          </div>
-                      </div>
-                     </div>
-                     <div class="container-fluid prode"  style="cursor: pointer;">
-                      <div class="row">
-                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/education-details" mat-dialog-close>                            
-                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Education and Certifications</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Showcase your Degrees and Diplomas</p>
-                                  <hr>
-                          </div>
-                      </div>
-                     </div>
-                     <div class="container-fluid prode" style="cursor: pointer;">
-                      <div class="row">
-                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/employment-history" matDialogClose>                            
-                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Employment History</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your past job experience</p>
-                                  <hr>
-                          </div>
-                      </div>
-                     </div>
-                     <div class="container-fluid prode" style="cursor: pointer;">
-                      <div class="row">
-                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/freelancing-details" mat-dialog-close>                            
-                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Freelancing details</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
-                                  <hr>
-                          </div>
-                      </div>
-                     </div>
-                     <div class="container-fluid prode" style="cursor: pointer;">
-                      <div class="row">
-                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close"  routerLink="/profile/payment" matDialogClose>                            
-                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
-                                  <hr>
-                          </div>
-                      </div>
-                     </div>
-                     <div class="container-fluid prode" style="cursor: pointer;">
-                      <div class="row">
-                          <div class="col-12" data-bs-dismiss="modal" aria-label="Close" routerLink="/profile/govtId-details" mat-dialog-close>                            
-                                  <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png" alt="Pubkin"><span style="margin-left: 10px;">Govt. ID Verification</span> <img class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
-                                  <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>
-                                  <hr>
-                          </div>
-                      </div>
-                     </div>
-                     
-                  </div>
-                  </div>
-              </div>
-          </div>
-      
-                  </div>
-   
-    </div>
-  </div>
-</div>
-
-
- -->
+ </div>
