@@ -1,7 +1,7 @@
 <div class="container kkfrnavbar">
   <div class="row kkfrnavbar1">
     <div class="col-2">
-      <img src="../assets/logo.png" class="">
+      <img src="../assets/logo.png" class=""  routerLink="/freelancers">
     </div>
     <div class="col-3 disnoneele"></div>
 
@@ -73,7 +73,7 @@ Wallet          </button>
       </div>
     </div>
     <div class="col-1">
-      <a class="kkfrnavse" style="text-decoration: none;    margin-left: 21px;" routerLink="/chat-room">Message</a>
+      <a class="kkfrnavse" style="text-decoration: none;" >Message</a>
     </div>
     <div class="col-1">
       <img class="bell" src="../assets/bell.png">
@@ -95,7 +95,7 @@ Wallet          </button>
           <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
       </div>
         <div class="kkpname">
-            <p class="kkprname">{{User[0].firstName}}</p>
+            <p class="kkprname">{{User[0].firstName}} <img  *ngIf="calculateTotal() === 100" src="../assets/Verified Check_.png" alt="pubkins" style="margin-top: -6px;"> </p>
             <p class="kkprname1">Freelancer</p>
             <p class="kkprbtn1" routerLink="/setting/wallet" routerLinkActive="active"><span class="material-symbols-outlined">
               account_balance_wallet
@@ -103,7 +103,7 @@ Wallet          </button>
               <p class="kkprbtn1" routerLink="/setting/billing-&-payment"><span class="material-symbols-outlined">
                 settings
                 </span>Settings</p>
-            <button type="button"class="btn kkprbtn2" routerLink="/home">Logout <span class="material-symbols-outlined">
+            <button type="button"class="btn kkprbtn2" (click)="logout()">Logout <span class="material-symbols-outlined">
                 logout
                 </span></button>
         </div>

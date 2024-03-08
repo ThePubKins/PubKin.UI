@@ -114,10 +114,10 @@
             </div>
             <div class="modal-body">
               <form #workdetailsform="ngForm" novalidate autocomplete="off" (ngSubmit)="onSubmitWork(workdetailsform)">
-                <input type="text" id="id" name="id" [(ngModel)]="workservice.workData.id">
-                <input type="text" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
-                <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="workservice.workData.dateCreated">
-                <input type="text" id="UserId" name="UserId" [(ngModel)]="User[0].id">
+                <input type="hidden" id="id" name="id" [(ngModel)]="workservice.workData.id">
+                <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="User[0].firstName">
+                <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="workservice.workData.dateCreated">
+                <input type="hidden" id="UserId" name="UserId" [(ngModel)]="User[0].id">
                 <div>
                   <p class="kkeduhdtg kkeduhdtg1">Job Title*</p>
                   <input class="kkin1" type="text" placeholder="eg: Job Title" ngModel id="JobTitle" name="JobTitle"
@@ -296,7 +296,7 @@
     </div>
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-      <button class="btn kkempbtn2" routerLink="/profile/education-details">Save Details</button>
+      <button class="btn kkempbtn2" routerLink="/profile/education-details" >Save Details</button>
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -317,19 +317,19 @@
             <div class="modal-body">
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label projtitlevv">Project Title*</label>
-                <input type="text" class="form-control placvv" id="projectTitle" name="projectTitle"
+                <input type="text" class="form-control placvv" id="projectTitle" name="projectTitle" required
                   (click)="FetchDetails()" [(ngModel)]="portfolioService.portfolioFormData.projectTitle"
                   placeholder="Name of your Project">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label projtitlevv">Description*</label>
                 <textarea class="form-control placvv" id="description" name="description"
-                  [(ngModel)]="portfolioService.portfolioFormData.description"
+                  [(ngModel)]="portfolioService.portfolioFormData.description" required
                   placeholder="Brief explanation of your project in 350 word" rows="3"></textarea>
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label projtitlevv ">Web Link (if available)</label>
-                <input type="text" class="form-control placvv" id="projectLink" name="projectLink"
+                <input type="text" class="form-control placvv" id="projectLink" name="projectLink" required
                   [(ngModel)]="portfolioService.portfolioFormData.projectLink" placeholder="www.portfolio.com" (click)="incresePortfolioPercentage()">
               </div>
 
@@ -362,8 +362,8 @@
                     </div>
                   </div>
                 </div>
-              </div> -->
-              <button type="submit" class="btn savevv" data-bs-dismiss="modal" (click)="PercentageSubmit();"> Save</button>
+              </div> --> 
+              <button type="submit" class="btn savevv" data-bs-dismiss="modal" [disabled]="portfolioForm.invalid"  (click)="PercentageSubmit();"> Save</button>
             </div>
           </div>
         </form>
@@ -963,7 +963,7 @@
             <div class="row mt-4">
               <p class="popskill">Selected and Popular skills</p>
               <div class="col-4 mt-2" *ngFor="let skill of skills; let i = index">
-                <div class="addsk1" [class.addsk]="selectedSkills.includes(skill)" (click)="toggleSkill(skill)">
+                <div class="addsk1"  [class.addsk]="selectedSkills.includes(skill)" (click)="toggleSkill(skill);increseDetailsPercentage()">
                   {{ skill }} &nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                     <path d="M12.728 4.75684L4.24275 13.2421" stroke="white" stroke-width="2" stroke-linecap="round" />
@@ -1008,23 +1008,23 @@
 
     <div class="container rrpubaligntop1">
       <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm);onSubmitpercentage(govtIdForm);">
-        <input type="text" id="id" name="id" [(ngModel)]="User[0].id">
-        <input type="text" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
-        <input type="text" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+        <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+        <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
+        <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
           [(ngModel)]="User[0].govtIdDetails">
-        <input type="text" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+        <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
           [(ngModel)]="User[0].portfolioDetails">
-        <input type="text" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+        <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
           [(ngModel)]="User[0].educationDetails">
-        <input type="text" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails"
+        <input type="hidden" ngModel name="WorkingDetails" #WorkingDetails="ngModel" id="WorkingDetails"
           [(ngModel)]="User[0].workingDetails">
-        <input type="text" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+        <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
           [(ngModel)]="User[0].bankingDetails">
-        <input type="text" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+        <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
           [(ngModel)]="User[0].paymentVerify">
-        <input type="text" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
-        <input type="text" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country" >
-        <input type="text" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
+        <input type="hidden" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
+        <input type="hidden" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country" >
+        <input type="hidden" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
         <button type="submit" class="d-none" #idbutton>Submit</button>
         <div class="row">
           <div class="col-3">
@@ -1097,8 +1097,7 @@
 
   <!-- Banking Details for the Authors -->
   <div *ngIf="contentName === 'banking-details'">
-
-    <div class="container">
+    <div class="container" >
       <div class="row kkbillr">
         <div class="col-8">
           <p class="kkadbilltx">Add Banking Details</p>
@@ -1115,12 +1114,43 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
+    <div class="container" *ngFor="let bankData of bankDetails">
+      <div class="row" *ngIf="bankData.userId === User[0].id">
         <div class="col-8">
           <div class="kkbillingcon">
-            <p class="kkbnktx1">Default Billing Option</p>
-            <p class="kkbnktx2">Add, update or remove your billing method</p>
+            <p class="kkbnktx1">Card Details</p>
+            <p class="kkbnktx2">Update or remove your Card method</p>
+            <div class="container">
+              <div class="row kkbillr1">
+                <div class="col-8">
+                  <div><img *ngIf="bankData.nameoftheCard === 'Visa'" src="./assets/visadpt.png">
+                    <img *ngIf="bankData.nameoftheCard === 'Rupay'" src="./assets/Vector (1).svg">
+                    <span class="kkbnktx3"> &nbsp;&nbsp;&nbsp;{{bankData.nameoftheCard}}
+                      ending in <span class="kkbnktx4">{{bankData.cardNumber | slice:12:16}}</span></span></div>
+                </div>
+                <div class="col-4">
+                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="kkbillingcon">
+            <p class="kkbnktx1">UPI Details</p>
+            <p class="kkbnktx2">Update or Remove your UPI method</p>
+            <div class="container">
+              <div class="row kkbillr1">
+                <div class="col-8">
+                  <div><img src="./assets/visadpt.png"><span class="kkbnktx3"> &nbsp;&nbsp;&nbsp;UPI ID <span class="kkbnktx4">{{bankData.upiUrl}}</span></span></div>
+                </div>
+                <div class="col-4">
+                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="kkbillingcon">
+            <p class="kkbnktx1">Bank Details</p>
+            <p class="kkbnktx2">Update or remove your Bank method</p>
             <div class="container">
               <div class="row kkbillr1">
                 <div class="col-8">
@@ -1132,32 +1162,11 @@
                 </div>
               </div>
             </div>
-
-
-          </div>
-
-        </div>
-        <div class="col 8">
-
-        </div>
-        <div class="container">
-          <p class="kkbnktx1">Other Billing Option</p>
-          <div class="kkskcardbill">
-            <div class="row kkbillr1">
-              <div class="col-8 ">
-                <div style="margin-top: -24px; "><img src="./assets/visadpt.png"><span class="kkbnktx3">
-                    &nbsp;&nbsp;&nbsp;Visa card
-                    ending in <span class="kkbnktx4">3657</span></span></div>
-              </div>
-              <div class="col-4">
-                <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img style=" margin-top: -5px;"
-                      src="./assets/dele.png"></span></p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
+    
 
     <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
@@ -1210,7 +1219,7 @@
               <form #upiDetailsform="ngForm"
                 (ngSubmit)="onSubmitUpiDetails(upiDetailsform);onSubmitpercentage(upiDetailsform);">
                 <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
-                <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].id">
+                <input type="text" id="userId" name="userId" [(ngModel)]="User[0].id">
                 <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
                 <input type="hidden" id="dateLastModified" name="dateLastModified"
                   [(ngModel)]="User[0].dateLastModified">
@@ -1230,14 +1239,14 @@
                   [(ngModel)]="User[0].paymentVerify">
                 <input type="text" placeholder="UPI Method" class="kkbilinput1" ngModel id="upi" name="upi"
                   #upi="ngModel" [(ngModel)]="bankData.upi" required >
-                <input type="text" placeholder="Paste Your UPI URL" class="kkbilinput1" ngModel id="upiUrl" name="upiUrl"
+                <input type="text" placeholder="Paste Your UPI ID" class="kkbilinput1" ngModel id="upiUrl" name="upiUrl"
                 #upiUrl="ngModel" [(ngModel)]="bankData.upiUrl" required (click)="increseBankPercentage()">
-                <div class="container kkreadiobil">
+                <!-- <div class="container kkreadiobil">
                   <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                   <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
                     Make Default Payment
                   </label>
-                </div>
+                </div> -->
                 <div class="kkbiladcd">
                   <button class="btn kkbiladcd1" [disabled]="upiDetailsform.invalid"  data-bs-dismiss="modal" aria-label="Close" type="submit">Confirm Details</button>
                 </div>
@@ -1296,12 +1305,12 @@
                   [(ngModel)]="bankData.ifscCode">
                 <input type="text" placeholder="Account Holder Name" class="kkbilinput1" name="holderName"
                   id="holderName" [(ngModel)]="bankData.holderName" (click)="increseBankPercentage()">
-                <div class="container kkreadiobil">
+                <!-- <div class="container kkreadiobil">
                   <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                   <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
                     Make Default Payment
                   </label>
-                </div>
+                </div> -->
                 <div class="kkbiladcd">
                   <button class="btn kkbiladcd1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="bankingDetailsform.invalid" type="submit">Confirm Details</button>
                 </div>
@@ -1354,14 +1363,14 @@
                 <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
                   [(ngModel)]="User[0].paymentVerify">
                 <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
-                  maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankData.cardNumber" required
+                  maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankData.cardNumber" required 
                   pattern="[0-9\s]+$" />
                 <span *ngIf="!cardNumber.valid && cardNumber.touched">
                   <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
                     Card Number is required
                   </span>
                   <span class="errormsg" *ngIf="cardNumber.errors?.['pattern']">
-                    Only Characters are allowed
+                    Only Numeric are allowed
                   </span>
                 </span>
                 <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
@@ -1398,12 +1407,12 @@
                     Only Numeric are allowed
                   </span>
                 </span>
-                <div class="container kkreadiobil">
+                <!-- <div class="container kkreadiobil">
                   <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                   <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
                     Make Default Payment
                   </label>
-                </div>
+                </div> -->
                 <div class="kkbiladcd">
                   <button class="btn kkbiladcd1" type="submit" [disabled]="bankDetailsform.invalid"
                     data-bs-dismiss="modal" aria-label="Close">Add Card</button>
@@ -1415,5 +1424,4 @@
       </div>
     </div>
   </div>
-
 </div>

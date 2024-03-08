@@ -31,4 +31,20 @@ export class AuthorNavComponent implements OnInit{
     }
   }
   
+  logout(): void { 
+    this.userauthservice.logout();
+  }
+
+  calculateTotal(): number {
+    const num1 = parseInt(this.User[0].details || 0);
+    const num2 = parseInt(this.User[0].govtIdDetails || 0);
+    const num3 = parseInt(this.User[0].bankingDetails || 0);
+    const num4 = parseInt(this.User[0].portfolioDetails || 0);
+    const num5 = parseInt(this.User[0].workingDetails || 0);
+    const num6 = parseInt(this.User[0].educationDetails || 0);
+
+    const total = num1 + num2 + num3 + num4 + num5 + num6;
+    return total;
+  }
+  
 }

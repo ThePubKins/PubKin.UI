@@ -9,22 +9,22 @@
 </div>
 <div class="container" *ngIf="JobPost && success">
     <form #applyForm="ngForm" (ngSubmit)="onSubmitApply(applyForm)" novalidate>
-        <input type="hidden" id="id" name="id" [(ngModel)]="appliedservice.applyData.id">
-        <input type="text" id="createdBy" name="createdBy" [(ngModel)]="appliedservice.applyData.createdBy">
-        <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="appliedservice.applyData.dateCreated">
-        <input type="text" id="jobId" name="jobId" [(ngModel)]="appliedservice.applyData.jobId">
-        <input type="text" id="userId" name="userId" [(ngModel)]="appliedservice.applyData.userId">
-        <input type="text" id="postBy" name="postBy" [(ngModel)]="appliedservice.applyData.postBy">
-        <input type="text" id="jobTitle" name="jobTitle" [(ngModel)]="appliedservice.applyData.jobTitle">
-        <input type="text" id="jobDescription" name="jobDescription" [(ngModel)]="appliedservice.applyData.jobDescription">
-        <input type="text" id="rate" name="rate" [(ngModel)]="appliedservice.applyData.rate">
-        <input type="text" id="status" name="status" [(ngModel)]="appliedservice.applyData.status">
-        <input type="text" id="userEmail" name="userEmail" [(ngModel)]="appliedservice.applyData.userEmail">
-        <input type="text" id="skillSet" name="skillSet" [(ngModel)]="appliedservice.applyData.skillSet">
-        <input type="text" id="fileUrl" name="fileUrl" [(ngModel)]="appliedservice.applyData.fileUrl">
-        <input type="text" id="AttachFile" name="AttachFile" [(ngModel)]="appliedservice.applyData.AttachFile">
-        <input type="text" id="applideUserProfile" name="applideUserProfile" [(ngModel)]="appliedservice.applyData.applideUserProfile">
-        <input type="text" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="appliedservice.applyData.jobUniqueId">
+        <input type="hidden" id="id" name="id" [(ngModel)]="appliedservice.applyData.id" >
+        <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="appliedservice.applyData.createdBy">
+        <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="appliedservice.applyData.dateCreated">
+        <input type="hidden" id="jobId" name="jobId" [(ngModel)]="appliedservice.applyData.jobId">
+        <input type="hidden" id="userId" name="userId" [(ngModel)]="appliedservice.applyData.userId">
+        <input type="hidden" id="postBy" name="postBy" [(ngModel)]="appliedservice.applyData.postBy">
+        <input type="hidden" id="jobTitle" name="jobTitle" [(ngModel)]="appliedservice.applyData.jobTitle">
+        <input type="hidden" id="jobDescription" name="jobDescription" [(ngModel)]="appliedservice.applyData.jobDescription">
+        <input type="hidden" id="rate" name="rate" [(ngModel)]="appliedservice.applyData.rate">
+        <input type="hidden" id="status" name="status" [(ngModel)]="appliedservice.applyData.status">
+        <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="appliedservice.applyData.userEmail">
+        <input type="hidden" id="skillSet" name="skillSet" [(ngModel)]="appliedservice.applyData.skillSet">
+        <input type="hidden" id="fileUrl" name="fileUrl" [(ngModel)]="appliedservice.applyData.fileUrl">
+        <input type="hidden" id="AttachFile" name="AttachFile" [(ngModel)]="appliedservice.applyData.AttachFile">
+        <input type="hidden" id="applideUserProfile" name="applideUserProfile" [(ngModel)]="appliedservice.applyData.applideUserProfile">
+        <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="appliedservice.applyData.jobUniqueId">
 
         <p class="phead">Submit a Proposal</p>
         <div class="apbox">
@@ -72,7 +72,7 @@
             <p class="phead2">Cover Letter</p>
 
             <textarea [(ngModel)]="inputText" (input)="onInputChange()" [disabled]="isTextareaDisabled()"
-                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter"
+                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter" ngModel required
                 #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="appliedservice.applyData.applyCoverLetter" required
                 class="covcont">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea>
             <div class="row">
@@ -127,7 +127,7 @@
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
                             <input type="text" class="int" id="actualValue" name="actualValue"
-                                [(ngModel)]="formData.actualValue" (input)="calculateResult()">
+                                [(ngModel)]="formData.actualValue" (input)="calculateResult()" required>
                         </div>
                     </div>
                     <div class="col-1">
@@ -155,7 +155,7 @@
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
                             <input type="text" class="int" readonly id="subtractValue" name="subtractValue"
-                                [value]="formData.displaySubtractValue">
+                            ngModel    [value]="formData.displaySubtractValue" required>
                         </div>
                     </div>
                     <div class="col-1">
@@ -182,7 +182,7 @@
                                 <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
-                            <input type="text" class="int" placeholder="400" name="biddingRate" #biddingRate="ngModel"
+                            <input type="text" class="int" placeholder="400" ngModel name="biddingRate" #biddingRate="ngModel"
                                 id="biddingRate" [(ngModel)]="appliedservice.applyData.biddingRate" required>
                         </div>
                     </div>
@@ -198,19 +198,11 @@
         <mat-checkbox class="example-margin check123 mt-3"></mat-checkbox><span class="pcont terms">I accept and agree
             to the <span class="text-decoration-underline termsand" data-bs-toggle="modal" data-bs-target="#myModal">Terms of
                 Use.</span> </span><br>
-        <!-- <div *ngFor="let user of users"> -->
-        <!-- <div class="kklisuser" *ngIf="user.email === JobPost.userEmail"> -->
-        <button class="aplbtn" type="submit">Apply Now</button>
-        <button class="sabtn">Save as Draft</button>
-        <!-- </div> -->
-        <!-- </div> -->
-        <!-- (click)="SuccessModal()" -->
+
+        <button class="aplbtn" type="submit" [disabled]="!applyForm.invalid">Apply Now</button>
+        <button class="sabtn" (click)="SuccessModal()">Save as Draft</button>
     </form>
 </div>
-<!-- (click)="sendFriendRequest(user); "
-                    [disabled]="Freelancers[0].ProfilePercentage <= 79" -->
-
-
 
 <!-- The Modal -->
 <div class="modal " id="myModal">

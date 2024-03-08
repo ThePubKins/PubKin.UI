@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobpostService, UserauthenticateService } from '../../shared';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authors-ongoing-jobs',
@@ -8,7 +9,8 @@ import { JobpostService, UserauthenticateService } from '../../shared';
 })
 export class AuthorsOngoingJobsComponent implements OnInit {
 
-  constructor(public jobService: JobpostService, public userService : UserauthenticateService) {}
+  constructor(public jobService: JobpostService,     public router: Router,
+    public userService : UserauthenticateService) {}
   
   ngOnInit(): void {
     this.getAllPosts();
@@ -22,6 +24,11 @@ export class AuthorsOngoingJobsComponent implements OnInit {
   showViewedWork() { 
      this.viewwork = true;
   }
+
+  showJobDetails(jobUniqueId: string): void {
+    this.router.navigate(['/comments', jobUniqueId]);
+  }
+
 
   getAllPosts() { 
     this.jobService.getJobPost().subscribe(data => {  

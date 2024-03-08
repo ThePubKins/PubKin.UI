@@ -1,4 +1,7 @@
-<div class="pcard">
+<div  *ngIf="User[0].role === 'freelancer'">
+
+</div>
+<div class="pcard"  *ngIf="User[0].role === 'author'">
     <div class="container">
         <div class="row">
             <div class="col-4 text-center">
@@ -14,9 +17,11 @@
                     [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
                 </div>
-
-                <p class="prodes">Completing your<br>
+                <p class="prodes" *ngIf="calculateTotal() === 0 ">Completing your<br>
                     profile will land you more jobs</p>
+                    <p class="prodes" *ngIf="calculateTotal() === 30 "> Great! You get started now</p>
+                        <p class="prodes" *ngIf="calculateTotal() ===    65">Your are Now Finish</p>
+                    <p class="prodes" *ngIf="calculateTotal() === 100">asdbsadbhsabdhbdhasdbh</p>
             </div>
             <div class="col-1">
                 <div class="line"></div>
@@ -30,7 +35,10 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="/profile/author-profile" mat-dialog-close>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                <p class="procont procont1"> 
+                                    <img class="circ1" *ngIf="User[0].details" src="../assets/Group 115.svg"
+                                    alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].details" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Profile Setup</span> <img
                                         class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Lorem Ipsum</p>
@@ -41,7 +49,10 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="profile/banking-details" mat-dialog-close>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].bankingDetails" src="../assets/Group 115.svg"
+                                    alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].bankingDetails" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Add Banking Details</span> <img
                                         class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
@@ -52,7 +63,10 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="profile/authors-idverify" matDialogClose>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].govtIdDetails" src="../assets/Group 115.svg"
+                                    alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].govtIdDetails" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Govt. ID Verification</span> <img
                                         class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>

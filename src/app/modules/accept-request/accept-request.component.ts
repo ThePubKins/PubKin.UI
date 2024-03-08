@@ -65,10 +65,7 @@ export class AcceptRequestComponent implements OnInit {
     });
 }
 
-GoNext: string = "button1";
-GoNextBtn(GoBtnName: string): void {
-  this.GoNext = GoBtnName;
-}
+
   
   onSubmitStatus(form: NgForm) {
     if (form.valid && this.applyService.applyData) {

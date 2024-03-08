@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-6">
                 <div style="position: relative;">
-                    <input type="text" class="search" placeholder="Search Job posting">
+                    <input type="text" class="search" placeholder="Search Job posting" name="search" [(ngModel)]="searchTerm" (input)="onSearchChange($event)">
                     <img class="srch" src="../assets/search.png" alt="pubkin Start a career now">
                     <button class="btn kkfrnavse all dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -20,10 +20,10 @@
         <hr class="hrmain">
     </div>
 
-    <div class="container"  *ngFor="let Post of Posts; ">
+    <div class="container"  *ngFor="let Post of Posts  | jobsearch : searchTerm; ">
         <div *ngIf=" Post.userId === UserData[0].id">
         <div class="row" >
-            <div [routerLink]="['/authors/accept-a-request/pick-now', Post.id]"    class="col-8 phead" >
+            <div [routerLink]="['/authors/accept-a-request/pick-now', Post.id]"  class="col-8 phead" >
                {{Post.jobTitle}}
             </div>
             <div class="col-3"></div>
