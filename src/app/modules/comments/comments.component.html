@@ -50,6 +50,7 @@
               <p class="kkskilltxt">Skills Needed</p>
               <div class="container kksilltagcn" *ngFor="let jobPost of jobPost">
                 <div class="kksilltag" *ngFor="let skill of jobPost.skillSet">{{skill}}</div>
+                <div class="kksilltag" >{{jobPost.skillSet}}</div>
               </div>
             </div>
             <br>

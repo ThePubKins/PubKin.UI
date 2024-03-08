@@ -267,14 +267,14 @@ $pumaincolor:#A426D1;
     margin-top: 30px;
     color: #000;
     font-family: League Spartan;
-    font-size: 29px;
+    font-size: 25px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 36.5px;
 }
 
 .att {
-    margin-top: 59px;
+    margin-top: 40px;
 }
 
 .covcont {
@@ -335,8 +335,8 @@ $pumaincolor:#A426D1;
 
 .hiremo {
     position: absolute;
-    right: 56px;
-    top: 56px;
+    right: 36px;
+    top: 31px;
 }
 
 .conf {
@@ -350,8 +350,8 @@ $pumaincolor:#A426D1;
 }
 
 .pcard {
-    width: 302px;
-    height: 280px;
+    width: 232px;
+    height: 260px;
     flex-shrink: 0;
     border-radius: 16px;
     border: 2px solid #E8E8E8;
@@ -400,7 +400,7 @@ $pumaincolor:#A426D1;
 
 .bidrate {
     display: inline-flex;
-    padding: 28px 24px;
+    padding: 24px 20px;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -410,21 +410,21 @@ $pumaincolor:#A426D1;
     color: #1C1C1C;
     text-align: center;
     font-family: League Spartan;
-    font-size: 22px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
 
 .workinghours {
-    padding: 24px 15px 22px 22px;
+    padding: 20px 15px 20px 20px;
     width: 83%;
     border-radius: 4px;
     background: #FBF0FF;
     color: #1C1C1C;
     text-align: left;
     font-family: League Spartan;
-    font-size: 22px;
+    font-size: 20px;
     font-style: normal;
     margin-top: 30px;
     font-weight: 500;
@@ -493,7 +493,7 @@ $pumaincolor:#A426D1;
     border-radius: 12px;
     border: 2px solid #E8E8E8;
     background: #FFF;
-    width: 100%;
+    width: 90%;
     margin-top: 0px;
     padding: 31px 48px 19px 34px;
 }
@@ -509,10 +509,11 @@ $pumaincolor:#A426D1;
 
 .payamount {
     display: inline-flex;
-    padding: 23px 55px 20px 24px;
+    padding: 23px 26px 20px 24px;
     margin-top: 19px;
     align-items: flex-start;
     gap: 138px;
+    margin-right: 46px;
     flex-shrink: 0;
     border-radius: 9px;
     background: #FBF0FF;
@@ -520,7 +521,7 @@ $pumaincolor:#A426D1;
     text-align: center;
     font-family: League Spartan;
     float: right;
-    font-size: 21px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -543,7 +544,7 @@ $pumaincolor:#A426D1;
     border: 0px;
     float: right;
     margin-top: 35px;
-    margin-right: 30px;
+    margin-right: 45px;
 }
 
 .disclaimer {
@@ -554,13 +555,13 @@ $pumaincolor:#A426D1;
     font-weight: 500;
     line-height: normal;
     margin-top: 14px;
-    margin-right: 27px;
+    margin-right: 43px;
     float: right;
 }
 
 
 .wallet {
-    width: 100%;
+    width: 90%;
     position: relative;
     margin-top: 15px;
     padding: 10px 25px;
@@ -595,7 +596,7 @@ $pumaincolor:#A426D1;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-right: 38px;
+    margin-right: 66px;
 }
 
 

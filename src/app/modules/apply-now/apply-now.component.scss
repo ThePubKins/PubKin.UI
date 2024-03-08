@@ -1,9 +1,10 @@
+$pubmainfont: League Spartan;
 .phead {
     color: #000;
     font-family: League Spartan;
-    font-size: 40px;
+    font-size: 38px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: normal;
     margin-top: 57px;
     margin-left: 15px;
@@ -23,9 +24,9 @@
 .phead1 {
     color: #000;
     font-family: League Spartan;
-    font-size: 32px;
+    font-size: 30px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 39px;
     line-height: 34px;
 }
@@ -36,8 +37,8 @@
     font-style: normal;
     margin-top: 39px;
     line-height: 34px;
-    font-size: 36px;
-    font-weight: 700;
+    font-size: 33px;
+    font-weight: 500;
 }
 
 .pcont {
@@ -299,26 +300,28 @@ line-height: 28.5px; /* 150% */
     font-weight: 500;
     line-height: normal;
     border:0px;
+    margin-top: 34px;
     }
     
     .sabtn { 
+        position: absolute;
         display: inline-flex;
-    padding: 12px 71px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: white;
-    border-radius: 4px;
-    border: 2px solid #A426D1;
-    color: #A426D1;
-    font-family: League Spartan;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-left: 30px;
-    margin-top: 40px;
-    margin-bottom: 80px;
+        padding: 12px 71px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background-color: white;
+        border-radius: 4px;
+        border: 2px solid #A426D1;
+        color: #A426D1;
+        font-family: League Spartan;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin-left: 230px;
+        margin-top: -45px;
+        margin-bottom: 80px;
     }
 
     .moneysymbol  { 
@@ -524,26 +527,28 @@ line-height: 28.5px; /* 150% */
     font-weight: 500;
     line-height: normal;
     border:0px;
+    margin-top: 34px;
     }
     
     .sabtn { 
+        position: absolute;
         display: inline-flex;
-    padding: 12px 71px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: white;
-    border-radius: 4px;
-    border: 2px solid #A426D1;
-    color: #A426D1;
-    font-family: League Spartan;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-left: 30px;
-    margin-top: 40px;
-    margin-bottom: 80px;
+        padding: 12px 71px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background-color: white;
+        border-radius: 4px;
+        border: 2px solid #A426D1;
+        color: #A426D1;
+        font-family: League Spartan;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin-left: 230px;
+        margin-top: -45px;
+        margin-bottom: 80px;
     }
 
     .moneysymbol  { 
@@ -623,6 +628,66 @@ line-height: 28.5px; /* 150% */
 
 .btnfr::placeholder { 
 color: #FFF;
+
+}
+.kkkbtncn{
+    background-color: #A426D1;
+    border: none;
+    color: white;
+    width: 94px;
+    height: 37px;
+    text-align: center;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 18px;
+    padding-top: 8px;
+}
+
+.kkkbtnbk{
+    background-color: #E0E0E0;
+    border: none;
+    color: rgb(8, 8, 8);
+    width: 96px;
+    height: 37px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 32px;
+    padding-top: 8px;
+}
+.kksubbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    // padding-bottom: 25px;
+    margin-top: 20px;
+}
+.c22{
+    font-family: $pubmainfont;
+    font-size: 23px;
+    font-style: normal;
+    line-height: 22px;
+    margin-top: 8px;
+    text-align: center;
+    font-weight: 300;
+}
+
+
+.pad1{
+    padding: 13px 36px 47px 36px;
+}
+
+
+.e1{
+    margin-left: 415px;
+    margin-top: 22px;
+
 
 }
 

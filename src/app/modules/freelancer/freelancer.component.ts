@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FreeprofileComponent } from '../freeprofile/freeprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -19,52 +19,52 @@ export class FreelancerComponent implements OnInit {
   itemsPerPage: number = 10;
   currentPage: number = 1;
   UserData: any;
-  showMore : boolean = false;
+  showMore: boolean = false;
   Posts: any;
 
   constructor(public dialog: MatDialog,
-    public userservice : UserauthenticateService,
-    public jobService : JobpostService,
-    private router: Router) { 
-    } 
-
-    ShowMoreLess(index: number) { 
-      if (this.Posts[index].showMoreIndex === index) {
-          this.Posts[index].showMore = false;
-          this.Posts[index].showMoreIndex = null;
-      } else {
-          this.Posts[index].showMore = true;
-          this.Posts[index].showMoreIndex = index;
-      }
+    public userservice: UserauthenticateService,
+    public jobService: JobpostService,
+    private router: Router) {
   }
-  
-    //Avatar for profile
-    images=[  
-      {img_url:'/assets/avd1.png'},
-      {img_url:'/assets/avd2.png'},
-      {img_url:'/assets/avd3.png'},
-      {img_url:'/assets/avd4.png'},
-      {img_url:'/assets/avd5.png'},
-      {img_url:'/assets/avd6.png'},
-      {img_url:'/assets/avd7.png'},
-      {img_url:'/assets/avd8.png'}
-    ]
-  
-    
-    selectedImage: string | null = null;
-    
-    selectImage(image: any) {
-      this.selectedImage = image.img_url;
+
+  ShowMoreLess(index: number) {
+    if (this.Posts[index].showMoreIndex === index) {
+      this.Posts[index].showMore = false;
+      this.Posts[index].showMoreIndex = null;
+    } else {
+      this.Posts[index].showMore = true;
+      this.Posts[index].showMoreIndex = index;
     }
-    
-    selectedImage2: string | null = null;
-    saveChanges(){
-     this.selectedImage2 = this.selectedImage
-  
-    }
+  }
+
+  //Avatar for profile
+  images = [
+    { img_url: '/assets/avd1.png' },
+    { img_url: '/assets/avd2.png' },
+    { img_url: '/assets/avd3.png' },
+    { img_url: '/assets/avd4.png' },
+    { img_url: '/assets/avd5.png' },
+    { img_url: '/assets/avd6.png' },
+    { img_url: '/assets/avd7.png' },
+    { img_url: '/assets/avd8.png' }
+  ]
 
 
-    //Search input functionality
+  selectedImage: string | null = null;
+
+  selectImage(image: any) {
+    this.selectedImage = image.img_url;
+  }
+
+  selectedImage2: string | null = null;
+  saveChanges() {
+    this.selectedImage2 = this.selectedImage
+
+  }
+
+
+  //Search input functionality
   onSearchChange(event: any) {
     this.searchTerm = event.target.value;
   }
@@ -75,46 +75,29 @@ export class FreelancerComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.getUserData();
-   this.getAllJobPosts();
-   this.openDeliveryDialog();
-    //Modal shows once
-    const modalClosedTimestamp = sessionStorage.getItem('modalClosedTimestamp');  
-    if (!modalClosedTimestamp || this.shouldShowModal(+modalClosedTimestamp)) {
-      this.showModal();
-    }
+    this.getUserData();
+    this.getAllJobPosts();
+    this.openDeliveryDialog();
   }
 
-  //close the modal and never again shows
-    onClose() {
-      sessionStorage.setItem('modalClosedTimestamp', Date.now().toString());
-    }
-    private showModal() {
-      const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-      myModal.show();
-    }
-  
-    private shouldShowModal(closedTimestamp: number): boolean {
-      return Date.now() - closedTimestamp > 7200000;
-    }
 
 
-    //Get the current User details by MySql.
-    getUserData() {
-      const Email = this.userservice.getUserEmail() ?? sessionStorage.getItem('email');
-      if (Email) {
-        this.userservice.getUserData().subscribe({
-          next: (data) => {
-            this.UserData = data?.filter((UserData: any) => UserData.email === Email);
-            console.log(this.UserData)
-          },
-          error: (err) => {
-            console.error('Error fetching data:', err);
-          }
-        });
-      } else {
-      }
+  //Get the current User details by MySql.
+  getUserData() {
+    const Email = this.userservice.getUserEmail() ?? sessionStorage.getItem('email');
+    if (Email) {
+      this.userservice.getUserData().subscribe({
+        next: (data) => {
+          this.UserData = data?.filter((UserData: any) => UserData.email === Email);
+          this.openDeliveryDialog();
+        },
+        error: (err) => {
+          console.error('Error fetching data:', err);
+        }
+      });
+    } else {
     }
+  }
 
   //SkillMatching
   onFilterButtonClick() {
@@ -129,8 +112,8 @@ export class FreelancerComponent implements OnInit {
 
   //User filterJobs pending
   filterJobPosts() {
-    if (this.UserData && this.  Posts.length > 0) {
-       const currentUserSkills = this.UserData[0].description.split(',').map((description: string) => description);
+    if (this.UserData && this.Posts.length > 0) {
+      const currentUserSkills = this.UserData[0].description.split(',').map((description: string) => description);
       this.filteredJobPosts = this.Posts.filter((jobPosts: { skillSet: string; }) => {
         const jobPostSkills = jobPosts.skillSet.split(',').map((skill: string) => skill);
         const similarityThreshold = 0.5;
@@ -142,8 +125,8 @@ export class FreelancerComponent implements OnInit {
   }
 
   //Get the all Job Posts
-  getAllJobPosts() { 
-    this.jobService.getJobPost().subscribe(data => {  
+  getAllJobPosts() {
+    this.jobService.getJobPost().subscribe(data => {
       this.Posts = data;
     })
   }
@@ -167,34 +150,43 @@ export class FreelancerComponent implements OnInit {
     return similarityScore;
   }
 
-  logout(): void { }
 
   //Profile Completion Popup
+  // openDeliveryDialog() {
+  //   this.dialog.open(FreeprofileComponent);
+  // }
+
+  total : any;
   openDeliveryDialog() {
-    this.dialog.open(FreeprofileComponent);
+    if (this.UserData && this.UserData.length > 0) {
+      const total = this.calculateTotal();
+      if (total < 99) {
+        this.dialog.open(FreeprofileComponent);
+      }
+    }
   }
-  
+
   //Jobdetails Component details will be click the fn.
   showJobDetails(jobUniqueId: string): void {
     this.router.navigate(['/freelancers/job-details', jobUniqueId]);
   }
 
   hide23 = false;
-   
-  hide1() { 
-  this.hide23 = !this.hide23;
+
+  hide1() {
+    this.hide23 = !this.hide23;
   }
 
   toggleIcons(Posts: any) {
     Posts.showIcons = !Posts.showIcons;
-}
-  
+  }
+
 
   //Posted Timeline
-  getPostStatus(postDate:string) {  
+  getPostStatus(postDate: string) {
     const today = new Date();
     const parts = postDate.split('-');
-    const post = new Date(+parts[2], +parts[1] - 1, +parts[0]) ;
+    const post = new Date(+parts[2], +parts[1] - 1, +parts[0]);
     const diffTime = today.getTime() - post.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24) - 1);
     const diffMonths = (today.getFullYear() - post.getFullYear()) * 12 + (today.getMonth() - post.getMonth());
@@ -232,6 +224,7 @@ export class FreelancerComponent implements OnInit {
 
     const total = num1 + num2 + num3 + num4 + num5 + num6;
     return total;
+  }
+
 }
-} 
 

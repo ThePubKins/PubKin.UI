@@ -69,13 +69,10 @@ export class UserauthenticateService {
   }
 
   logout(): void {
-    sessionStorage.removeItem('token');
+    localStorage.clear();    
+    sessionStorage.clear();
     this.userEmail = null;
     this.setUser(null);
-    this.router.navigate(['/']);
-  }
-
-  signOut() {
     this.router.navigate(['/']);
   }
 }

@@ -1,13 +1,13 @@
 <app-author-nav></app-author-nav>
-<div *ngIf="!viewwork">
+<div>
     <hr>
     <div class="container" *ngFor="let Post of Posts">
-        <div class="borderboxv11" *ngIf="Post.userId == UserData[0].userId">
+        <div class="borderboxv11" *ngIf="Post.userId == UserData[0].id">
             <div class="row" >
                 <div class="col-10">
                     <p class="recenvv11">{{Post.jobTitle}}</p>
                 </div>
-                <div class="col-2"><button type="button" class="but5" (click)="showViewedWork()">View</button></div>
+                <div class="col-2"><button type="button" class="but5"  (click)="showJobDetails(Post.jobUniqueId)">View</button></div>
                 <p class="recenvv22">Posted 1 day ago</p>
                 <p class="bullet"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17"
                         fill="none"><circle cx="8.5" cy="8.5" r="8.5" fill="#D767FF" />
@@ -15,105 +15,4 @@
             </div>
         </div>
     </div>
-</div>
-<div *ngIf="viewwork">
-    <div class="container">
-        <p class="hed1">Lorem ipsum dolor sit amet consectetur. </p>
-        <br>
-        <div class="row mt-5">
-            <div class="col-8">
-                <div class="box1">
-                    <p class="hed">Work Files</p>
-                    <hr class="codu1">
-                    <div class="d-flex justify-content-center">
-                        <div class="foldericon">
-                            <img class="floder1" src="../assets/folder.png" alt="Upload Now">
-                            <p class="d-flex justify-content-center dropname3">Final_sheet.pdf</p>
-                            <img class="floder2" src="../assets/Group_16.png" alt="Upload Now">
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="foldericon">
-                            <img class="floder1" src="../assets/folder.png" alt="Upload Now">
-                            <p class="d-flex justify-content-center dropname3">Final_sheet.pdf</p>
-                            <img class="floder2" src="../assets/Group_16.png" alt="Upload Now">
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="foldericon">
-                            <img class="floder1" src="../assets/folder.png" alt="Upload Now">
-                            <p class="d-flex justify-content-center dropname3">Final_sheet.pdf</p>
-                            <img class="floder2" src="../assets/Group_16.png" alt="Upload Now">
-                        </div>
-                    </div>
-
-
-                    <div class="text-center">
-                        <button class="uploadbtn5"><img src="../assets/upload.png" alt="upload">Download All</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="box2">
-                    <p class="hed">Submit For Payment</p>
-                    <hr class="codu2">
-                    <ul>
-                        <li class="subtex">Please check if all your requirements are completed</li>
-                        <li class="subtex">Once approved project is completed there will be no rework</li>
-                    </ul>
-
-                    <div class="d-flex justify-content-center" style="padding-bottom: 31px;">
-                        <button class="btn subbut1" data-bs-toggle="modal" data-bs-target="#exampleModal">Rework
-                            Needed</button>
-                    </div>
-
-                    <div class="d-flex justify-content-center" style="padding-bottom: 31px;">
-                        <button class="btn subbut" data-bs-toggle="modal" data-bs-target="#exampleModal5">Mark as
-                            completed</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="pad1">
-                        <div class="modal-hed">
-
-                            <p class="c2" id="exampleModalLabel"><b>Please add the reason of rework</b></p>
-                        </div>
-                        <textarea class="form-control h1" aria-label="With textarea"></textarea>
-                        <div class="modal-fot">
-                            <button type="button" class="but1 but2" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="but but1">Confirm for rework</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="pad1">
-                        <div class="modal-hed">
-
-                            <p class="c22" id="exampleModalLabel5"><b>Do you want mark this as Completed?</b></p>
-                        </div>
-
-                        <div class="modal-fot">
-                            <button type="button" class="but1 but88" data-bs-dismiss="modal">Back</button>
-                            <button type="button" class="but10 but1">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>

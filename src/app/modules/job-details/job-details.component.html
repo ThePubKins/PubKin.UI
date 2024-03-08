@@ -1,11 +1,39 @@
 <app-freelancernav></app-freelancernav>
-  <div style="height: auto;">              
+<div class="all-success" *ngIf="!success">
+  <div class="successmsg">
+      <p class="successhead">Job saved</p>
+      <p class="redirecte">Redirecting now...</p>
+      <img class="successtick" src="../assets/Lottie gif.gif" alt="Pubkin-success">
+  </div>
+</div>
+
+
+<div class="modal fade" id="savejob1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" >
+      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="pad1" >
+        <div class="modal-hed">
+
+          <p class="c22" id="exampleModalLabel5"><b>Do you want save this job ?</b></p>
+        </div>
+        <div class="kksubbtn">
+          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
+          <button type="button" class="btn kkkbtncn" data-bs-dismiss="modal"(click)="savejob()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div style="height: auto;" *ngIf="success">              
     <div class="container kkjbcon1">
       <div class="row" style="padding-bottom: 36px;">
         <p class="kkjbdls">Jobs Details</p>
         <div class="col-8 kkjbdetli1" >
           <div>
-            <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br>{{jobPost.description | slice:0:43 }}... </p>
+            <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br></p>
             <!-- <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.createDate)}}</p> -->
             <hr class="kkline1">
           </div>
@@ -40,17 +68,16 @@
           <hr class="kkline1">
           <div class="kkjbdiv4">
             <p class="kkskilltxt">Skills Needed</p>
-            <div class="container kksilltagcn" *ngFor="let jobPost of jobPost">
-              <div class="kksilltag" *ngFor="let skill of jobPost.skillSet">{{skill.trim()}}</div>
-       
-            </div>
+            <div class="container kksilltagcn" >
+              <div class="kksilltag">{{jobPost.skillSet}}</div>
+              </div>
           </div>
           <br>
 
 
         </div>
         <div class="col-4 kkjbdetlis1 text-center" >
-         <button class="btn kkjbdtbtn2">Save Job</button>
+         <button class="btn kkjbdtbtn2"  data-bs-toggle="modal" data-bs-target="#savejob1">Save Job</button>
          <button class="btn kkjbdtbtn1"  [disabled]="Freelancers[0].ProfilePercentage <= 79" (click)="showApplyNow(jobPost.jobUniqueId)">Apply Now</button>
           <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
           <hr class="kkline2">

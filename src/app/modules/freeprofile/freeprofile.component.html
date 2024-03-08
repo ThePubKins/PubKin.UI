@@ -1,9 +1,12 @@
-<div class="pcard">
+<div  *ngIf="User[0].role === 'author'">
+
+</div>
+<div class="pcard" *ngIf="User[0].role === 'freelancer'"> 
     <div class="container">
         <div class="row">
             <div class="col-4 text-center">
-                <img class="pimg"  *ngIf="User[0].profileUrl"  src={{User[0].profileUrl}}>
-                <img class="pimg"  *ngIf="!User[0].profileUrl"  src="../assets/Frame 82.png">
+                <img class="pimg" *ngIf="User[0].profileUrl" src={{User[0].profileUrl}}>
+                <img class="pimg" *ngIf="!User[0].profileUrl" src="../assets/Frame 82.png">
                 <p class="prohead">Profile Image</p>
 
                 <button class="probtn btn" mat-dialog-close routerLink="/profile/choose-your-picutre-now">
@@ -11,11 +14,17 @@
                 </button>
                 <p class="com">{{calculateTotal()}}% complete</p>
                 <div class="progress pgrss" role="progressbar" aria-label="Basic example"
-                [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
-            </div>
-                <p class="prodes">Completing your<br>
-                    profile will land you more jobs</p>
+                    [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
+                </div>
+                <p class="prodes" *ngIf="calculateTotal() === 0 ">Keep going! You're off to a great start.</p>
+                <p class="prodes" *ngIf="calculateTotal() === 15 ">Progressing nicely! Keep up the momentum.</p>
+                <p class="prodes" *ngIf="calculateTotal() === 30 ">Progressing nicely! Keep up the momentum.</p>
+                <p class="prodes" *ngIf="calculateTotal() === 45 ">You're getting there! Keep pushing forward.</p>
+                <p class="prodes" *ngIf="calculateTotal() === 60 ">You're getting there! Keep pushing forward.</p>
+                <p class="prodes" *ngIf="calculateTotal() === 80 ">Almost done! You're doing Fantastic.</p>
+                <p class="prodes" *ngIf="calculateTotal() === 100 ">Congratulations! You did it! Keep shining bright!
+                </p>
             </div>
             <div class="col-1">
                 <div class="line"></div>
@@ -29,9 +38,14 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="/profile/portfolio" mat-dialog-close>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
-                                        alt="Pubkin"><span style="margin-left: 10px;">Portfolio</span> <img
-                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].portfolioDetails" src="../assets/Group 115.svg"
+                                        alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].portfolioDetails" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin">
+                                    <span style="margin-left: 10px;">Portfolio</span> <img class="navarrow"
+                                        src="../assets/nav arrow down_.png" alt="Nav">
+                                </p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
                                 <hr>
                             </div>
@@ -39,11 +53,16 @@
                     </div>
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
-                            <div class="col-12" routerLinkActive="active" routerLink="/profile/education-details" mat-dialog-close>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                            <div class="col-12" routerLinkActive="active" routerLink="/profile/education-details"
+                                mat-dialog-close>
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].educationDetails" src="../assets/Group 115.svg"
+                                        alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].educationDetails" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Education and
                                         Certifications</span> <img class="navarrow" src="../assets/nav arrow down_.png"
-                                        alt="Nav"></p>
+                                        alt="Nav">
+                                </p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Showcase your Degrees and Diplomas</p>
                                 <hr>
                             </div>
@@ -52,9 +71,13 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="/profile/employment-history" matDialogClose>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].workingDetails" src="../assets/Group 115.svg"
+                                        alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].workingDetails" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Employment History</span> <img
-                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav">
+                                </p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your past job experience</p>
                                 <hr>
                             </div>
@@ -63,9 +86,13 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="/profile/freelancing-details" mat-dialog-close>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].details" src="../assets/Group 115.svg"
+                                        alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].details" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Freelancing details</span> <img
-                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav">
+                                </p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Your works, projects. etc</p>
                                 <hr>
                             </div>
@@ -74,9 +101,13 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="/profile/payment" matDialogClose>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].bankingDetails" src="../assets/Group 115.svg"
+                                        alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].bankingDetails" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img
-                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav">
+                                </p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
                                 <hr>
                             </div>
@@ -85,15 +116,19 @@
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
                             <div class="col-12" routerLink="/profile/govtId-details" mat-dialog-close>
-                                <p class="procont procont1"> <img class="circ" src="../assets/Ellipse 33.png"
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].govtIdDetails" src="../assets/Group 115.svg"
+                                        alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].govtIdDetails" src="../assets/Ellipse 33.png"
                                         alt="Pubkin"><span style="margin-left: 10px;">Govt. ID Verification</span> <img
-                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav"></p>
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav">
+                                </p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>
-                                
+
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
             </div>
         </div>

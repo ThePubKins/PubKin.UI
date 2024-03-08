@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobpostService } from '../../shared';
 
+interface JobPost {
+  skillSet: string[];
+}
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
@@ -12,22 +15,42 @@ export class JobDetailsComponent implements OnInit {
 
   jobPost: any;
   Freelancers: any;
-  constructor( private route: ActivatedRoute, public jobservice: JobpostService,  private router: Router,) { }
-
+  constructor( private route: ActivatedRoute, public jobservice: JobpostService,  private router: Router, public cdr: ChangeDetectorRef) { }
+success:boolean=true;
+savejob() {
+  this.success = !this.success;
+  if (!this.success) {
+    setTimeout(() => {
+      this.router.navigate(['/freelancers']); 
+    }, 1000); 
+  }
+}
   ngOnInit() {
     this.getPosts();
   }
-
+  // getPosts() {
+  //   this.route.params.subscribe((params) => {
+  //     const jobUniqueId = params['id'];
+  //     this.jobservice.getJobPostById(jobUniqueId).subscribe(
+  //      (details) => {
+  //         this.jobPost = details;
+  //       });
+  //   });
+  // }
+  skills: any[] = [];
   getPosts() {
     this.route.params.subscribe((params) => {
       const jobUniqueId = params['id'];
       this.jobservice.getJobPostById(jobUniqueId).subscribe(
-        (details) => {
+        (details: JobPost) => {
           this.jobPost = details;
-          this.jobPost.forEach((jobPost: any) => {
-              jobPost.skillSet = jobPost.skillSet.split(','); 
-          });
-        });
+          console.log('Job Post:', this.jobPost); 
+          if (this.jobPost && this.jobPost.skillSet) {
+            this.skills = this.jobPost.skillSet.split(',');
+            console.log('Skills:', this.skills); 
+          }
+        }
+      );
     });
   }
 

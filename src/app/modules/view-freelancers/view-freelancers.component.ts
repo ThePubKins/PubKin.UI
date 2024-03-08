@@ -14,7 +14,8 @@ export class ViewFreelancersComponent implements OnInit {
   Author: any;
   JobPosts: any;
   UserData: any;
-
+  searchTerm: string;
+  
   constructor(public userservice: UserauthenticateService,
     public jobService: JobpostService, private route: ActivatedRoute) { }
 
@@ -30,6 +31,12 @@ export class ViewFreelancersComponent implements OnInit {
     } else {
     }
   }
+
+    //Search input functionality
+    onSearchChange(event: any) {
+      this.searchTerm = event.target.value;
+    }
+  
 
   toggleIcons(post: any): void {
     this.Posts.forEach((p: any) => {

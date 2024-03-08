@@ -102,7 +102,7 @@
 .kkjobfutxt {
     margin-top: 50px;
     font-size: 35px;
-    font-weight: 700;
+    font-weight: 500;
     font-family: 'League Spartan', sans-serif;
 }
 
@@ -324,19 +324,23 @@
     text-align: left;
 }
 
-.ddis {
-    /* color: #0F0F0F; */
-    font-family: League Spartan;
+.ddis {  
+    color: #0F0F0F;
+    font-family: "League Spartan";
     font-size: 20px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     line-height: normal;
-    padding: 4px 16px 4px 16px;
 }
 
-.ddis:active {
-    background-color: #A426D1;
+.ddis:hover{  
+ color: #A426D1;
 }
+.ddis:active{
+    background-color:  #A426D1;
+    color : white;
+    }
+
 
 .opth {
     color: #787878;
