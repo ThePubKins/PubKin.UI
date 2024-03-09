@@ -15,6 +15,7 @@ export class ProgressJobsComponent {
   FreelancerSkillSet: string = '';
   userSkillSet: string = '';
   currentUser: any;
+  selectedhire: any;
 
 
   constructor(
@@ -39,8 +40,37 @@ export class ProgressJobsComponent {
     } else {
     }
   }
-
+  // formData = {
+  //   actualValue: null as number | null,
+  //   subtractValue: 2,
+  //   displaySubtractValue: '2%',
+  // };
+  formData = {
+    actualValue: null as number | null,
+    subtractValue: 0,
+    displaySubtractValue: '0%',
+    platformFee: 0,
+    paymentAfterTax: 0
+  };
   
+  calculateResult(): void {
+    if (this.selectedhire && this.selectedhire.biddingRate !== null) {
+      const biddingRate = this.selectedhire.biddingRate;
+      const afterTaxRate = biddingRate * (1 - 0.04); 
+      const platformFee = biddingRate * 0.02; 
+      const paymentAfterTax = afterTaxRate - platformFee;
+      this.formData.actualValue = biddingRate;
+      this.formData.subtractValue = afterTaxRate;
+      this.formData.displaySubtractValue = '4%';
+      this.formData.platformFee = platformFee;
+      this.formData.paymentAfterTax = paymentAfterTax;
+    }
+  }
+  
+  
+  ApplyModal(Apply: any) {
+    this.selectedhire = Apply;
+  }
   anyJobInProgress(): boolean {
     return this.Applies.some((Apply: { status: string; }) => Apply.status === 'offers');
   }

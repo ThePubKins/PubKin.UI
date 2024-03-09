@@ -120,7 +120,27 @@
     line-height: 36px; /* 150% */
     margin-top: 20px;
 }
-
+.rejecttxt1 { 
+    color: #000;
+    text-align: center;
+    font-family: "League Spartan";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px; /* 150% */
+    margin-top: 20px;
+    display: flex;
+}
+.rejecttxt2 { 
+    color: #000;
+    text-align: center;
+    font-family: "League Spartan";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px; /* 150% */
+    margin-top: 20px;
+}
 .rejectcancel { 
     display: inline-flex;
 padding: 12px 32px;
@@ -154,6 +174,29 @@ gap: 10px;
 border-radius: 4px;
 background: #A426D1;
 border: 0px;
+}
+.rejectconfirm1 { 
+    color: #FFF;
+font-family: "League Spartan";
+font-size: 18px;
+float: right;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+display: inline-flex;
+padding: 14px 32px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 4px;
+background: #A426D1;
+border: 0px;
+}
+.rate1{
+border-radius: 16px;
+background: #FAEDFF;
+border:1px solid #A426D1;
+padding: 20px;
 }
 input[type=text]:focus {
     outline: none;  
