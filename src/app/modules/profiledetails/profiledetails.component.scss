@@ -360,21 +360,21 @@ margin-top: 103px;
 }
 
 .intsearchauth  {
-display: inline-flex;
-padding: 14px 17px 12px 26px;
-width: 85%;
-justify-content: flex-end;
-align-items: center;
-gap: 265px;
-border-radius: 6px;
-border: 2px solid #ACACAC;
-color: #1C1C1C;
-font-family: "League Spartan", sans-serif;
-font-size: 22px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-margin-top: 23px;
+  display: inline-flex;
+  padding: 14px 40px 12px 26px;
+  width: 85%;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 265px;
+  border-radius: 6px;
+  border: 2px solid #ACACAC;
+  color: #1C1C1C;
+  font-family: "League Spartan", sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: 23px;
 }
 
 .intPhoneAuth::placeholder, .intLocAuth::placeholder,.intsearchauth::placeholder  { 
@@ -396,11 +396,11 @@ right: 108px;
 .popskill {
 color: #2A2A2A;
 font-family: "League Spartan", sans-serif;
-font-size: 20px;
+font-size: 24px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
-margin-top: 32px;
+// margin-top: 32px;
 }
 
 
@@ -408,6 +408,7 @@ margin-top: 32px;
 display: inline-flex;
 padding: 9px 3px 12px 12px;
 width: 100%;
+justify-content: center;
 align-items: center;
 gap: 8px;
 border-radius: 130px;
@@ -420,7 +421,21 @@ font-weight: 500;
 line-height: normal;
 }
 
-
+.ddis {
+  font-family: League Spartan;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 4px 16px 4px 16px;
+}
+.ddis:hover{
+  color:  #A426D1;
+}
+.ddis:active {
+  color: white;
+  background-color: #A426D1;
+}
 .addsk { 
   background: #A426D1;
 color: #fffdfd;
@@ -429,27 +444,27 @@ color: #fffdfd;
 .phoneNumberAuth,.LocationAuth  {
   color: #1C1C1C;
   font-family: "League Spartan", sans-serif;
-  font-size: 27px;
+  font-size: 24px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: normal;
   margin-top: 41px;
 }
 
 .intPhoneAuth,.intLocAuth { 
-display: flex;
-width: 485px;
-padding: 16px 12px 16px 26px;
-align-items: center;
-border-radius: 6px;
-border: 2px solid #ACACAC;
-margin-top: 17px;
-color: #1C1C1C;
-font-family: "League Spartan", sans-serif;
-font-size: 22px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+  display: flex;
+  width: 485px;
+  padding: 16px 12px 16px 26px;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid #ACACAC;
+  margin-top: 17px;
+  color: #1C1C1C;
+  font-family: "League Spartan", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .saveauth  { 
@@ -466,7 +481,7 @@ font-family: "League Spartan", sans-serif;
 font-size: 20px;
 font-style: normal;
 font-weight: 500;
-margin-top: 39px;
+margin-top: 19px;
 float: right;
 line-height: normal;
 }
@@ -485,7 +500,7 @@ margin-top: -9px;
 .disclaimer { 
 color: #A426D1;
 font-family: League Spartan;
-font-size: 17px;
+font-size: 15px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;

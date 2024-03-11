@@ -31,7 +31,7 @@ export class ApplyNowComponent {
   filesdetails: any;
   constructor(public datePipe: DatePipe, private route: ActivatedRoute,
   public userservice: UserauthenticateService, public commentservice: CommentsService,
-    public appliedservice: AppliedUserService, public jobservice: JobpostService) { this.calculateCharactersLeft(); }
+    public appliedservice: AppliedUserService, public jobservice: JobpostService,public router: Router) { this.calculateCharactersLeft(); }
 
   ngOnInit(): void {
     this.getPosts(); this.getUserData();
@@ -86,11 +86,13 @@ export class ApplyNowComponent {
     const file = inputElement.files?.[0];
     this.uploadedFileName = file ? file.name : '';
   }
-
+  handleFormSubmission() {
+    this.SuccessModal();
+  }
   SuccessModal() {
     this.success = false;
     setTimeout(() => {
-      this.success = false;
+      this.router.navigate(['/freelancers']);
     }, 3000);
   }
 

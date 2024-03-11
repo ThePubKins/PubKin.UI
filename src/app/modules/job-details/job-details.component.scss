@@ -1,3 +1,4 @@
+$pubmainfont:'League Spartan', sans-serif;
 @media only screen and (min-width:1201px){
 
     .kkfrnavbar{
@@ -530,7 +531,116 @@
 
 }
 
+.all-success {  
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.successmsg { 
+    width: 705px;
+    height: 471px;
+    top: 15%;
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 2px solid #CBCBCB;
+    left: 24%;
+}
+.successhead{  
+    color: #1C1C1C;
+text-align: center;
+font-family: "League Spartan";
+font-size: 29px;
+font-style: normal;
+margin-top: 80px;
+font-weight: 800;
+line-height: normal;
+}
+.whopee {  
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.redirecte{  
+    color: #6A6A6A;
+text-align: center;
+font-family: "League Spartan";
+font-size: 19px;
+font-style: normal;
+font-weight: 400;
+line-height: 28.5px;
+}
+.successtick { 
+    width: 28%;
+    height: 208px;
+    position: absolute;
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.kkkbtncn{
+    background-color: #A426D1;
+    border: none;
+    color: white;
+    width: 94px;
+    height: 37px;
+    text-align: center;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 18px;
+    padding-top: 8px;
+}
 
+.kkkbtnbk{
+    background-color: #E0E0E0;
+    border: none;
+    color: rgb(8, 8, 8);
+    width: 96px;
+    height: 37px;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-left: 32px;
+    padding-top: 8px;
+}
+.kksubbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    // padding-bottom: 25px;
+    margin-top: 20px;
+}
+.c22{
+    font-family: $pubmainfont;
+    font-size: 23px;
+    font-style: normal;
+    line-height: 22px;
+    margin-top: 8px;
+    text-align: center;
+    font-weight: 300;
+}
+
+
+.pad1{
+    padding: 13px 36px 47px 36px;
+}
+
+
+.e1{
+    margin-left: 415px;
+    margin-top: 22px;
+
+
+}
 input[type=text]:focus {
     outline: none;  
     border-color:#A426D1;
