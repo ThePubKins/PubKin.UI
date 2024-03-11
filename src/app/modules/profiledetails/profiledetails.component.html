@@ -135,7 +135,7 @@
                   <input class="kkin1" type="text" placeholder="eg: ABC solution" ngModel name="companyName"
                     #companyName="ngModel" id="companyName" name="companyName"
                     [(ngModel)]="workservice.workData.companyName" minlength="0" maxlength="35" required
-                    pattern='^[a-zA-Z\s]+$'>
+                    >
                   <span *ngIf="!companyName.valid && (companyName.touched || companyName.dirty)">
                     <span class="errormsg" *ngIf="companyName.errors?.['required']">
                       Company Name is Required
@@ -329,7 +329,7 @@
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label projtitlevv ">Web Link (if available)</label>
-                <input type="text" class="form-control placvv" id="projectLink" name="projectLink" required
+                <input type="text" class="form-control placvv" id="projectLink" name="projectLink" 
                   [(ngModel)]="portfolioService.portfolioFormData.projectLink" placeholder="www.portfolio.com" (click)="incresePortfolioPercentage()">
               </div>
 
@@ -452,12 +452,12 @@
                         Field of Study is required
                       </span>
                     </span>
-                    <div class="kkeduhdtg">Dates Attended</div>
                     <div class="container kkyrflx">
                       <div class="row">
                         <div class="col-6">
+                          <div class="kkeduhdtg">Year of Joining</div>
                           <input class="kkyrbtn1" type="text" ngModel name="yearOfJoining" #yearOfJoining="ngModel"
-                            id="yearOfJoining" pattern='^[0-9]+$' minlength="0" maxlength="4"
+                            id="yearOfJoining" pattern='^[0-9]+$' minlength="0" maxlength="4" placeholder="eg: 2019"
                             [(ngModel)]="educationservice.educationData.yearOfJoining" required>
                           <span *ngIf="!yearOfJoining.valid && yearOfJoining.touched">
                             <span class="errormsg " *ngIf="yearOfJoining.errors?.['required']">
@@ -469,8 +469,9 @@
                           </span>
                         </div>
                         <div class="col-6">
+                          <div class="kkeduhdtg">Year of Completion</div>
                           <input class="kkyrbtn1" type="text" ngModel name="yearOfCompletion"
-                            #yearOfCompletion="ngModel" pattern='^[0-9]+$' minlength="0" maxlength="4"
+                            #yearOfCompletion="ngModel" pattern='^[0-9]+$' minlength="0" maxlength="4" placeholder="eg: 2022"
                             id="yearOfCompletion" [(ngModel)]="educationservice.educationData.yearOfCompletion"
                             required>
                           <span *ngIf="!yearOfCompletion.valid && yearOfCompletion.touched">

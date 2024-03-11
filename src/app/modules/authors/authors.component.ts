@@ -81,8 +81,16 @@ export class AuthorsComponent implements OnInit {
   // }
 
   //Open dialog for Profile
+ 
+  total : any;
   openDeliveryDialog() {
-    this.dialog.open(AuthprofileComponent);
+    if (this.UserData && this.UserData.length > 0) {
+      const total = this.calculateTotal();
+      if (total < 99) {
+        this.dialog.open(AuthprofileComponent);
+      }
+    }
   }
+
 }
 
