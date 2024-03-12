@@ -80,7 +80,7 @@ export class AcceptRequestComponent implements OnInit {
   }
   
   ChangeStatus() { 
-    this.Applies.status = "offers"
+    this.Applies[0].status = "offers"
   }
 
   GoNext: string = "button1";

@@ -1,35 +1,32 @@
 import { Component } from '@angular/core';
+import { JobpostService, UserauthenticateService } from '../../shared';
 import { Router } from '@angular/router';
-import { AppliedUserService, UserauthenticateService } from '../../shared';
 
 @Component({
-  selector: 'app-ongoing-jobs',
-  templateUrl: './ongoing-jobs.component.html',
-  styleUrls: ['./ongoing-jobs.component.scss']
+  selector: 'app-authors-completed-jobs',
+  templateUrl: './authors-completed-jobs.component.html',
+  styleUrls: ['./authors-completed-jobs.component.scss']
 })
-export class OngoingJobsComponent {
+
+export class AuthorsCompletedJobsComponent {
 
   userSkillSet: string = '';
   hide = false;
   searchTerm: string;
   currentUser: any;
-  Applies: any;
+  jobPosts : any;
 
 
   constructor(
     public userService: UserauthenticateService,
     public router: Router,
-    public appliedService: AppliedUserService) { }
+    public jobService: JobpostService) { }
 
 
   onSearchChange(event: any) {
     this.searchTerm = event.target.value;
   }
 
-  anyJobInProgress(): boolean {
-    return this.Applies.some((Apply: { status: string; }) => Apply.status === 'accepted');
-  }
-  
   submitwork : boolean = false;
   submitworks()  { 
      this.submitwork = true;
@@ -38,6 +35,10 @@ export class OngoingJobsComponent {
   //Jobdetails Component details will be click the fn.
   showJobDetails(jobUniqueId: string): void {
     this.router.navigate(['/comments', jobUniqueId]);
+  }
+
+  anyJobInProgress(): boolean {
+    return this.jobPosts.some((Apply: { status: string; }) => Apply.status === 'completed');
   }
 
 
@@ -49,11 +50,11 @@ export class OngoingJobsComponent {
     const Email = this.userService.getUserEmail() ?? sessionStorage.getItem('email');
     if (Email) {
       this.userService.getUserData().subscribe({
-        next: (data) => {
+        next: (data: any[]) => {
           this.currentUser = data?.filter((currentUser: any) => currentUser.email === Email);
           console.log(this.currentUser)
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error('Error fetching data:', err);
         }
       });
@@ -62,10 +63,9 @@ export class OngoingJobsComponent {
   }
 
   getApplyPosts() {
-    this.appliedService.getAppliedUsers().subscribe((posts) => {
-      this.Applies = posts;
+    this.jobService.getJobPost().subscribe((posts) => {
+      this.jobPosts = posts;
     });
   }
-
-
+  
 }

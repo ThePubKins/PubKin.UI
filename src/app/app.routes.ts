@@ -19,7 +19,7 @@ import { ProgressJobsComponent } from './modules/progress-jobs/progress-jobs.com
 import { FootertagComponent } from './modules/footertag/footertag.component';
 import { PaymentComponent } from './modules/payment/payment.component';
 import { CompletedComponent } from './modules/completed/completed.component';
-
+import { AuthorsCompletedJobsComponent } from './modules/authors-completed-jobs/authors-completed-jobs.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -37,7 +37,8 @@ export const routes: Routes = [
   { path: 'authors/accept-a-request', component: ViewFreelancersComponent },
   { path: 'authors/accept-a-request/pick-now/:JobId', component: AcceptRequestComponent },
   { path: 'freelancers/applied-jobs', component: AppliedJobsComponent },
-  { path: 'freelancers/completed', component: CompletedComponent },
+  { path: 'freelancers/completed', component: CompletedComponent }, 
+  { path: 'authors/completed-jobs', component: AuthorsCompletedJobsComponent },
   { path: 'comments/:id', component: CommentsComponent },
   { path: 'freelancers/job-offers', component: ProgressJobsComponent },
   { path: 'freelancers/ongoing-jobs', component: OngoingJobsComponent },

@@ -20,4 +20,7 @@ export class HomeComponent  {
   navigateToProfile(action: string): void {
     this.router.navigate(['/signup', action]);
   }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });}
 }

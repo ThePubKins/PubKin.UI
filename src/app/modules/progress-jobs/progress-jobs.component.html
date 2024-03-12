@@ -8,14 +8,16 @@
           No offers are available for you!
         </div>
         <div *ngFor="let JobPost of  Applies;">
-          <div class="row" style="margin-top: 17px;" *ngIf="JobPost.status === 'offers' && JobPost.userId === currentUser[0].id">
+          <div class="row" style="margin-top: 17px;"
+            *ngIf="JobPost.status === 'offers' && currentUser[0].id == JobPost.userId">
             <div class="col-8">
               <p class="jobtitle">{{JobPost.jobTitle}}</p>
               <p class="jobDesc">{{JobPost.jobDescription | slice:0:220 }}</p>
             </div>
             <div class="col-4">
-              <button class="rejectbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Reject</button>
-              <button class="viewJobbtn">Accept Offer</button>
+              <button class="rejectbtn" data-bs-toggle="modal" data-bs-target="#rejectmodel">Reject</button>
+              <button class="viewJobbtn" data-bs-toggle="modal" data-bs-target="#acceptoffer"
+                (click)="ApplyModal(JobPost);ChangeStatus();">Accept Offer</button>
             </div>
             <div class="row">
               <div class="col-8">
@@ -34,8 +36,67 @@
 </div>
 
 
+<div class="modal fade " id="acceptoffer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  style="    --bs-modal-width: 1020px">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content " *ngIf="selectedhire" style="padding-bottom: 27px;">
 
-<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-header " style="border-bottom: none;     padding: 20px 25px 12px 25px">
+        <p class="rejecttxt">{{selectedhire.jobTitle}}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="padding: 20px 100px 12px 100px">
+
+        <div class="container">
+          <div class="row rate1">
+            <div class="col-8">
+              <p class="rejecttxt1">Your Rate</p>
+            </div>
+            <div class="col-4">
+              <p class="rejecttxt2">{{selectedhire.biddingRate}}</p>
+            </div>
+
+          </div>
+        </div>
+        <br>
+        <div class="container">
+          <div class="row rate1">
+            <div class="col-8">
+              <p class="rejecttxt1">2% Platform Fee</p>
+            </div>
+            <div class="col-4">
+              <p class="rejecttxt2">{{ selectedhire.biddingRate * 0.04}}</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="container ">
+          <div class="row rate1">
+            <div class="col-8">
+              <p class="rejecttxt1">Payment You’ll get after tax</p>
+            </div>
+            <div class="col-4">
+              <p class="rejecttxt2">{{ selectedhire.biddingRate - (selectedhire.biddingRate * 0.04) }}</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 26px;">
+          <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
+            <input type="hidden" id="id" name="id" [(ngModel)]="Applies[0].id">
+            <input type="hidden" id="status" name="status" [(ngModel)]="Applies[0].status">
+            <button (click)="submitNow();" type="submit" class="rejectconfirm1">Accept Offer</button>
+          </form>
+          <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
+            <input type="hidden" id="id" name="id" [(ngModel)]="Applies[0].jobId">
+            <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
+            <button  #submitbutton type="submit" class="d-none">Accept Offer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade " id="rejectmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content " style="padding-bottom: 27px;">
       <div class="modal-header " style="border-bottom: none;">
@@ -44,10 +105,13 @@
       <div class="modal-body">
         <p class="rejecttxt">Do you want to reject offer?</p>
         <div class="text-center" style="margin-top: 26px;">
-          <button class="rejectcancel" >Cancel</button>
+          <button class="rejectcancel">Cancel</button>
           <button class="rejectconfirm">Confirm</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+

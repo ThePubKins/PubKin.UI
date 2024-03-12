@@ -42,10 +42,10 @@
             </div>
           </div>       
 
-            <div class="container jobcontents" *ngFor="let JobPost of paginatedDataList | jobsearch : searchTerm ; let  i=index;  ">
+            <div class="container " *ngFor="let JobPost of paginatedDataList | jobsearch : searchTerm ; let  i=index;  ">
 
-              <div class="row" >
-              <div class="col-12">
+              <div class="row" *ngIf="JobPost.status === 'Open'">
+              <div class="col-12 jobcontents">
                 <div class="row">
                   <div class="col-9">
                     <p class="kkjbtxtline1">{{JobPost.jobTitle}} - {{JobPost.skillSet}}</p>
@@ -77,7 +77,6 @@
                 <div class="kkjbtxtline4"><img src="../assets/startick.png"> Profile verified</div>
                 <div class="kkjbtxtline5"><img src="../assets/startick.png"> Paymeny verified</div>
                 <div class="kkjbtxtline6">Tracking_ID : {{JobPost.jobUniqueId}}</div>
-
               </div>
             </div>
           </div>
