@@ -113,7 +113,7 @@
                 [(ngModel)]="usercredential.password" required><br> -->
             <div class="crtform">
                 <input type="{{ hidePassword ? 'password' : 'text' }}"  class="int1 intem" placeholder="Password" ngModel
-                 maxlength="8"   name="password" #password="ngModel" [(ngModel)]="usercredential.password" required>
+                 minlength="8"   name="password" #password="ngModel" [(ngModel)]="usercredential.password" required>
                 <div mat-icon-button matSuffix (click)="togglePasswordVisibility1()"
                     [attr.aria-label]="hidePassword ? 'Hide password' : 'Show password'"
                     [attr.aria-pressed]="hidePassword" style="cursor: pointer;" > 
@@ -184,7 +184,7 @@
                     <div *ngIf="!verify" class="text-center">
                         <p class="mhead">Please Verify your email</p>
 
-                        <input type="email" class="mailint" id="email" value={{usercredential.email}}><br> <button
+                        <input type="email"  class="mailint" id="email" value={{usercredential.email}}><br> <button
                             class="cemailbtn btn" (click)="sendOTP();verfy()">Confirm</button><br>
                     </div>
                     <div *ngIf="verify" class="text-center">

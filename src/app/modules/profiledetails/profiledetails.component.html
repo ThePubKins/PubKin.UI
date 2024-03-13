@@ -9,6 +9,28 @@
       class="float-end mt-5" routerLink="/freelancers">
   </div>
 
+  <!--Update Congrats Page-->
+<div *ngIf="contentName === 'whoopee'">
+  <div class="text-center flx">
+      <div class="ecard" style="    height: 534px;">
+          <img class="cele" src="../assets/cele.gif" alt="">
+          <div class="now">
+             <p class="mhead mhead1">Whoopee! Details have been updated.</p>
+              <p class="mcont">Redirecting Now...</p>
+              <img class="regif regif1" src="../assets/redirect.gif" alt="Pubkin Now">
+              <br>s
+              <img class="fb" routerLink="/freelancers" src="../assets/icon _facebook icon_.png"
+                  alt="Pubkin facebook">
+              <img class="icon" routerLink="/authors" src="../assets/icon _instagram icon_.png" alt="Pubkin facebook">
+              <img class="icon" src="../assets/icon _linkedin_.png" alt="Pubkin facebook">
+              <img class="icon" src="../assets/icon _youtube_.png" alt="Pubkin facebook">
+          </div>
+
+      </div>
+
+</div>
+</div>
+
 <!-- Profile Percentage -->
 <form #percentageForm="ngForm" (ngSubmit)="onSubmitpercentage(percentageForm);">
   <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
@@ -66,9 +88,9 @@
           <p class="kkemphus1">Showcase your past experience and projects </p>
         </div>
       </div>
-
-
       <div class="container">
+        <div class="row">
+           <div class="container">
         <div class="row">
           <div class="col-4">
             <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -78,29 +100,30 @@
             </div>
           </div>
 
-
-          <div class="col-4" *ngFor="let workDetails of workDetail">
-            <div class="rrpubcomcenalign1" *ngIf="workDetails.userId == User[0].id">
-              <div class="kkempcrd">
-
-                <div class=" text02">{{workDetails.jobTitle }}</div>
-                <div class=" text03">{{workDetails.companyName}}</div>
-                <div class=" text03">{{workDetails.companyLocation }}</div>
-                <div class=" text04">{{workDetails.joiningMonth}} {{workDetails.joiningYear}} -
-                  {{workDetails.completedMonth}} {{workDetails.completedYear}}</div>
-                <div class=" text05">{{workDetails.description}}</div>
+          <ng-container *ngFor="let workDetails of workDetail">
+            <ng-container *ngIf="workDetails.userId == User[0].id">
+              <div class="col-4">
+                <div class="rrpubcomcenalign1">
+                  <div class="kkempcrd">
+                    <div class="text02">{{ workDetails.jobTitle }}</div>
+                    <div class="text03">{{ workDetails.companyName }}</div>
+                    <div class="text03">{{ workDetails.companyLocation }}</div>
+                    <div class="text04">{{ workDetails.joiningMonth }} {{ workDetails.joiningYear }} -
+                      {{ workDetails.completedMonth }} {{ workDetails.completedYear }}</div>
+                    <div class="text05">{{ workDetails.description }}</div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-4">
-
-          </div>
+            </ng-container>
+          </ng-container>
         </div>
+      </div>
+              </div>
       </div>
 
       <div class="container ">
         <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-        <button class="btn kkempbtn2" routerLink="/profile/payment">Save Details</button>
+        <button class="btn kkempbtn2" routerLink="/profile/freelancing-details">Save Details</button>
       </div>
 
       <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -147,7 +170,7 @@
                   <p class="kkeduhdtg kkeduhdtg1">Location</p>
                   <input class="kkin1" type="text" placeholder="eg: Bangalore" id="companyLocation"
                     #companyLocation="ngModel" name="companyLocation" [(ngModel)]="workservice.workData.companyLocation"
-                    required minlength="0" maxlength="45" >
+                    required minlength="0" maxlength="45"  (click)="increaseWorkingPercentage();">
                   <span *ngIf="!companyLocation.valid && (companyLocation.touched || companyLocation.dirty)">
                     <span class="errormsg" *ngIf="companyLocation.errors?.['required']">
                       Company Location is Required
@@ -172,8 +195,8 @@
                   </div>
                   <div class="container kkyrflx1">
                     <div class="kkrow1">
-                      <select class="kkin12" id="joiningMonth" name="joiningMonth" #joiningMonth="ngModel"
-                        [(ngModel)]="workservice.workData.joiningMonth" required (click)="increaseWorkingPercentage();">
+                      <select  class="kkin12" id="joiningMonth" name="joiningMonth" #joiningMonth="ngModel"
+                        [(ngModel)]="workservice.workData.joiningMonth" required >
                         <option selected>Jan</option>
                         <option selected>Feb</option>
                         <option selected>Mar</option>
@@ -188,27 +211,15 @@
                         <option selected>Dec</option>
                       </select>
 
-                      <select class="kkin12" ngModel name="joiningYear" id="joiningYear" name="joiningYear"
+                      <select id="year1" [(ngModel)]="selectedYear1" (change)="updateSelectedYears('year1')"      class="kkin12" ngModel name="joiningYear" id="joiningYear" name="joiningYear"
                         [(ngModel)]="workservice.workData.joiningYear" required>
-                        <option selected>2011</option>
-                        <option selected>2012</option>
-                        <option selected>2013</option>
-                        <option selected>2014</option>
-                        <option selected>2015</option>
-                        <option selected>2016</option>
-                        <option selected>2017</option>
-                        <option selected>2018</option>
-                        <option selected>2019</option>
-                        <option selected>2020</option>
-                        <option selected>2021</option>
-                        <option selected>2022</option>
-                        <option selected>2023</option>
-                        <option selected>2024</option>
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+
                       </select>
                     </div>
                     <div class="kkrow2">
                       <select class="kkin12" id="completedMonth" name="completedMonth"
-                        [(ngModel)]="workservice.workData.completedMonth" required>
+                        [(ngModel)]="workservice.workData.completedMonth" >
                         <option selected>Jan</option>
                         <option selected>Feb</option>
                         <option selected>Mar</option>
@@ -222,22 +233,10 @@
                         <option selected>Nov</option>
                         <option selected>Dec</option>
                       </select>
-                      <select class="kkin12" ngModel name="completedyear" #completedyear="ngModel" id="completedyear"
-                        [(ngModel)]="workservice.workData.completedYear" required>
-                        <option selected>2011</option>
-                        <option selected>2012</option>
-                        <option selected>2013</option>
-                        <option selected>2014</option>
-                        <option selected>2015</option>
-                        <option selected>2016</option>
-                        <option selected>2017</option>
-                        <option selected>2018</option>
-                        <option selected>2019</option>
-                        <option selected>2020</option>
-                        <option selected>2021</option>
-                        <option selected>2022</option>
-                        <option selected>2023</option>
-                        <option selected>2024</option>
+                      <select id="year2" [(ngModel)]="selectedYear2" (change)="updateSelectedYears('year2')" class="kkin12" ngModel name="completedyear" #completedyear="ngModel" id="completedyear"
+                        [(ngModel)]="workservice.workData.completedYear" >
+                        <option *ngFor="let year of getAvailableYears()" [value]="year">{{ year }}</option>
+
                       </select>
                     </div>
                   </div>
@@ -270,30 +269,31 @@
   <div *ngIf="contentName === 'portfolio'">
     <div class="container">
       <p class="kkemphus">Add your Portfolio</p>
-      <p class="kkemphus1">Lorem Ipsum Dolor</p>
+      <p class="kkemphus1">Your works, projects. etc</p>
     </div>
 
-
-    <div class="container">
-      <div class="row">
-        <div class="col-4">
-          <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <img src="./assets/_add circle_.png" class="rraddcirimg1">
-            <p class="rraddexptxt1">Add Projects,links
-            </p>
-          </div>
-        </div>
-        <div class="col-4" *ngFor="let portfolio of portfolios">
-          <div class="rrpubcomcenalign1">
-            <div class="kkempcrd" *ngIf="portfolio.userId == User[0].id">
-              <div class=" text02">{{portfolio.projectTitle}}</div>
-              <div class=" text03">{{portfolio.projectLink}}</div>
-              <div class=" text05">{{portfolio.description | slice:0:170}}</div>
-            </div>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <img src="./assets/_add circle_.png" class="rraddcirimg1">
+        <p class="rraddexptxt1">Add Projects, links</p>
+      </div>
+    </div>
+    <ng-container *ngFor="let portfolio of portfolios">
+      <div class="col-4" *ngIf="portfolio.userId == User[0].id">
+        <div class="rrpubcomcenalign1">
+          <div class="kkempcrd">
+            <div class="text02">{{ portfolio.projectTitle }}</div>
+            <div class="text03">{{ portfolio.projectLink }}</div>
+            <div class="text05">{{ portfolio.description | slice:0:170 }}</div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+  </div>
+</div>
+
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
       <button class="btn kkempbtn2" routerLink="/profile/education-details" >Save Details</button>
@@ -376,29 +376,34 @@
   <div *ngIf="contentName === 'education-details'">
     <div class="container">
       <p class="kkemphus">Add your Education and Certification</p>
-      <p class="kkemphus1">Lorem Ipsum Dolor</p>
+      <p class="kkemphus1">Showcase your Degrees and Diplomas</p>
     </div>
     <div class="container">
       <div class="row">
+        <!-- Add Projects, links card -->
         <div class="col-4">
           <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="./assets/_add circle_.png" class="rraddcirimg1">
-            <p class="rraddexptxt1">Education Certification
-            </p>
+            <p class="rraddexptxt1">Education Certification</p>
           </div>
         </div>
-        <div class="col-4" *ngFor="let educationDetails of educationDetail">
-          <div class="rrpubcomcenalign1">
-            <div class="kkempcrd" *ngIf="educationDetails.usersId == User[0].id">
-              <div class=" text02">{{educationDetails.department}}</div>
-              <div class=" text03">{{educationDetails.instituteName}} {{educationDetails.courseName}}</div>
-              <div class=" text04">{{educationDetails.yearOfJoining}}- {{educationDetails.yearOfCompletion }}</div>
-              <div class=" text05">{{educationDetails.description}}</div>
+    
+        <!-- Loop through education details -->
+        <ng-container *ngFor="let educationDetails of educationDetail">
+          <div class="col-4" *ngIf="educationDetails.usersId == User[0].id">
+            <div class="rrpubcomcenalign1">
+              <div class="kkempcrd">
+                <div class="text02">{{educationDetails.department}}</div>
+                <div class="text03">{{educationDetails.instituteName}} {{educationDetails.courseName}}</div>
+                <div class="text04">{{educationDetails.yearOfJoining}}-{{educationDetails.yearOfCompletion}}</div>
+                <div class="text05">{{educationDetails.description}}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </div>
     </div>
+    
 
 
     <div class="container ">
@@ -524,7 +529,7 @@
         <p class="kkemphus">Do you have experience in freelancing?</p>
         <p class="kkemphus1">All the information are confidential, we wont share with anyone</p>
       </div>
-
+      <!-- <span [ngStyle]="{'color': hides1 === 'Intermediate' ? 'red' : 'white'}">{{ User[0].experience }}</span> -->
       <div class="container rrpubaligntop1">
         <div class="row">
           <div class="col-4">
@@ -624,7 +629,7 @@
       </div>
       <div class="container ">
         <button class="btn kkempbtn1" (click)="GoNextBtn('button1')"> Back</button>
-        <button class="btn skip">Skip for now</button>
+        <button class="btn skip" routerLink="/freelancers">skip for now</button>
         <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button3');increseFreelancingPercentage();">Next</button>
       </div>
     </div>
@@ -651,8 +656,8 @@
       </div>
       <div class="container ">
         <button class="btn kkempbtn1" (click)="GoNextBtn('button2')"> Back</button>
-        <button class="btn skip">Skip for now</button>
-        <button class="btn kkempbtn2 kkempbtn3" routerLink="/freelancers" (click)="profilesubmit();">Next</button>
+        <button class="btn skip" routerLink="/freelancers">Skip for now</button>
+        <button class="btn kkempbtn2 kkempbtn3" routerLink="/profile/payment" (click)="profilesubmit();">Next</button>
       </div>
     </div>
 
@@ -662,34 +667,35 @@
   <div *ngIf="contentName === 'payment'">
     <div class="container">
       <p class="kkemphus">Add your payment rates</p>
-      <p class="kkemphus1">Lorem Ipsum Dolor</p>
+      <p class="kkemphus1">Add your bank details and work rate</p>
     </div>
 
     <div class="container">
       <div class="row">
+        <!-- Add Projects, links card -->
         <div class="col-4">
           <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <img src="./assets/_add circle_.png" class="rraddcirimg1">
-            <p class="rraddexptxt1">Add rates
-            <p>
+            <p class="rraddexptxt1">Add rates</p>
           </div>
         </div>
-        <div class="col-4" *ngFor="let priceSkill of priceSkills">
-          <div class="rrpubcomcenalign1" *ngIf="priceSkill.userId == User[0].id">
-            <div class="kkempcrd">
-              <div class=" text02">{{priceSkill.skillSet}}</div>
-              <div class=" text03">{{priceSkill.uom}}</div>
-              <div class=" text03">{{priceSkill.simplePrice}} - {{priceSkill.mediumPrice}} - {{priceSkill.complexPrice}}
+    
+        <!-- Display priceSkills data -->
+        <ng-container *ngFor="let priceSkill of priceSkills">
+          <div class="col-4" *ngIf="priceSkill.userId == User[0].id">
+            <div class="rrpubcomcenalign1">
+              <div class="kkempcrd">
+                <div class="text02">{{ priceSkill.skillSet }}</div>
+                <div class="text03">{{ priceSkill.uom }}</div>
+                <div class="text03">{{ priceSkill.simplePrice }} - {{ priceSkill.mediumPrice }} - {{ priceSkill.complexPrice }}</div>
+                <div class="text04">{{ priceSkill.simpleDescription }}</div>
               </div>
-              <div class=" text04">{{priceSkill.simpleDescription}} </div>
             </div>
           </div>
-        </div>
-        <div class="col-4">
-
-        </div>
+        </ng-container>
       </div>
     </div>
+    
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
       <button class="btn kkempbtn2 rrextrawidthbtn1" routerLink="/profile/govtId-details">Next, Add Banking
@@ -749,7 +755,7 @@
                           <div class="col-4">
                             <p class="prateh" style="margin-left: 3px;">Simple</p>
                             <textarea class="ratecard" ngModel name="simpleDescription" #simpleDescription="ngModel"
-                              id="simpleDescription" placeholder="Description"
+                              id="simpleDescription" placeholder="Description" maxlength="150"
                               [(ngModel)]="priceService.pricingSkillData.simpleDescription" required></textarea>
                             <span *ngIf="!simpleDescription.valid && simpleDescription.touched">
                               <span class="errormsg" *ngIf="simpleDescription.errors?.['required']">
@@ -760,7 +766,7 @@
                           <div class="col-4">
                             <p class="prateh" style="margin-left: 3px;">Medium </p>
                             <textarea class="ratecard" ngModel name="mediumDescription" #mediumDescription="ngModel"
-                              id="mediumDescription" placeholder="Description"
+                              id="mediumDescription" placeholder="Description" maxlength="150"
                               [(ngModel)]="priceService.pricingSkillData.mediumDescription" required></textarea>
                             <span *ngIf="!mediumDescription.valid && mediumDescription.touched">
                               <span class="errormsg" *ngIf="mediumDescription.errors?.['required']">
@@ -771,12 +777,13 @@
                           <div class="col-4">
                             <p class="prateh" style="margin-left: 3px;">Complex</p>
                             <textarea class="ratecard" ngModel name="complexDescription" #complexDescription="ngModel"
-                              id="complexDescription" placeholder="Description"
+                              id="complexDescription" placeholder="Description" maxlength="150"
                               [(ngModel)]="priceService.pricingSkillData.complexDescription" required></textarea>
                             <span *ngIf="!complexDescription.valid && complexDescription.touched">
                               <span class="errormsg" *ngIf="complexDescription.errors?.['required']">
                                 Description is required
                               </span>
+                     
                             </span>
                           </div>
                         </div>
@@ -869,7 +876,7 @@
             <div>
               <div>
                 <input type="text" ng required placeholder="JOHN DOE" pattern='^[a-zA-Z\s]+$' class="rrpubjohntxt1"
-                  id="idNumber" name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber">
+                  id="idNumber" required name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber">
                 <span class="errormsg" *ngIf="!idNumber.valid && (idNumber.touched || idNumber.dirty)">
                   <span class="errormsg" *ngIf="idNumber.errors?.['pattern']">
                     Only Characters are Allowed
@@ -919,7 +926,7 @@
 
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-      <button class="btn kkempbtn2" routerLink="/freelancers" type="submit" (click)="govtsubmit();PercentageSubmit()">Save
+      <button class="btn kkempbtn2" routerLink="/freelancers" type="submit"  (click)="govtsubmit();PercentageSubmit()">Save
         Details</button>
     </div>
   </div>
@@ -1440,3 +1447,6 @@
     </div>
   </div>
 </div>
+
+
+

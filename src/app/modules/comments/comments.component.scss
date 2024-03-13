@@ -32,7 +32,7 @@
     .kkjbdls{
             font-size: 40px;
             font-family: "League Spartan", sans-serif;
-            font-weight: 700;
+            font-weight: 500;
         }
         
         .kkjbcon1{
@@ -297,7 +297,7 @@
     .kkjbdls{
             font-size: 40px;
             font-family: "League Spartan", sans-serif;
-            font-weight: 700;
+            font-weight: 500;
         }
         
         .kkjbcon1{
@@ -885,7 +885,6 @@ padding-left: 10px;
     border: none;
     color: rgb(8, 8, 8);
     font-size: 16px;
-    margin: 7px 21px;
     cursor: pointer;
     border-radius: 4px;
     font-family: 'League Spartan', sans-serif;
@@ -938,8 +937,14 @@ padding-left: 10px;
 }
 
 .h1{
-    width: 100%;
+    width: 90%;
     height: 361px;
+    margin-left: 22px;
+}
+
+.fileupload-comments { 
+    margin-left: 24px;
+    margin-top: 13px;
 }
 .recenvv11 {
     color: #000;

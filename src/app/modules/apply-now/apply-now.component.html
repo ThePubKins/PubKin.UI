@@ -57,8 +57,8 @@
                         <p class="phead1"> {{JobPost.jobUniqueId}} - {{JobPost.jobTitle}} </p>
                         <p class="pcont"> {{JobPost.description | slice:0:200 }}...</p>
                         <div class="row">
-                            <div class="col-4" *ngFor="let skill of JobPost.skillSet">
-                                <div class="skill"> {{ skill }}</div>
+                            <div class="col-12" >
+                                <div class="skill"> {{ JobPost.skillSet }}</div>
                             </div>
                         </div>
                     </div>

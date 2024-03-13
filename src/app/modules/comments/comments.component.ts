@@ -201,7 +201,7 @@ export class CommentsComponent implements OnInit {
     // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
     // this.commentData.dateCreated = this.dateFormatted;
     this.commentData.jobId = this.jobPost.id;
-    this.commentData.createdBy = 'KarthiKeyan';
+    this.commentData.createdBy = this.User[0].firstName;
   }
 
   getPostStatus(postDate: string): string {

@@ -1,4 +1,9 @@
+<div *ngIf="User[0].role == 'freelancer'">
 <app-freelancernav></app-freelancernav>
+</div>
+<div *ngIf="User[0].role == 'author'">
+  <app-author-nav></app-author-nav>
+  </div>
 <div *ngIf="!viewwork">
   <div *ngIf="!submitwork">
     <div style="height: auto;">
@@ -92,8 +97,7 @@
               <div class="kkcmdbx3">
                 <p class="kkcmdtx2">Files:</p>
                 <ul class="kkcmdbx4" *ngFor="let comment of comments; let i=index">
-
-                  <li class=" kkcmdtx3" *ngIf="jobPost.id == comment.jobId">
+                 <li class=" kkcmdtx3" *ngIf="jobPost.id == comment.jobId">
                     <div class="container img-fluid mt-3">
                       <a [href]="imageUrl + comment.fileUrl" target="_blank" download class="no-underline">
                         <p class="imageShows">{{i+1}}. {{comment.fileUrl.split('_')[1]}}</p>
@@ -240,8 +244,7 @@
           </div>
           <textarea (click)="showDetails();" class="form-control h1" aria-label="With textarea" name="comments"
             [(ngModel)]="commentData.Comments" required></textarea>
-
-          <input type="file" id="file" name="file" (change)="onFileSelected($event)" required>
+          <input type="file" id="file" name="file" class="fileupload-comments" (change)="onFileSelected($event)" required>
         </div>
         <div>
           <div class="modal-fot">

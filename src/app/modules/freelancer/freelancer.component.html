@@ -88,7 +88,7 @@
             <img class="kkcrdimg"  *ngIf="UserData[0].profileUrl"  src={{UserData[0].profileUrl}}>
             <img class="kkcrdimg"  *ngIf="!UserData[0].profileUrl"  src="../assets/Frame 82.png">
             <p class="kkfrname">{{UserData[0].firstName}} <img  *ngIf="calculateTotal() === 100" src="../assets/Verified Check_.png" alt="pubkins" style="margin-top: -6px;"> </p>
-            <p class="kkfrname1">Freelancers</p>
+            <p class="kkfrname1">Freelancer</p>
             <div class="card-body kkcrdbdy">
               <p class="kkfrname2">Profile Completeness:</p>
              <p class="kkcplstus">{{calculateTotal()}}% complete</p>
