@@ -128,7 +128,7 @@ export class ApplyNowComponent {
     this.appliedservice.applyData.jobDescription = this.JobPost.description;
     this.appliedservice.applyData.rate = this.JobPost.toBudget;
     this.appliedservice.applyData.jobId = this.JobPost.id;
-    this.appliedservice.applyData.postBy = this.JobPost.;
+    this.appliedservice.applyData.postBy = this.JobPost.postBy;
     this.appliedservice.applyData.applideUserProfile=this.UserData[0].profileUrl;
     this.appliedservice.applyData.jobUniqueId=this.JobPost.jobUniqueId;
   }
