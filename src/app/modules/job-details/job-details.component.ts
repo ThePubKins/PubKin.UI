@@ -16,20 +16,31 @@ export class JobDetailsComponent implements OnInit {
   jobPost: any;
   Freelancers: any;
   UserData:any;
-  constructor( private route: ActivatedRoute,   public userservice: UserauthenticateService,
+  selectedhire:any;
+
+  constructor( private route: ActivatedRoute,    public userservice: UserauthenticateService,
      public jobservice: JobpostService,  private router: Router, public cdr: ChangeDetectorRef) { }
 success:boolean=true;
+
 savejob() {
   this.success = !this.success;
   if (!this.success) {
     setTimeout(() => {
       this.router.navigate(['/freelancers']); 
-    }, 1000); 
+    }, 2000); 
   }
 }
   ngOnInit() {
     this.getPosts();
     this.getUserData();
+  }
+  
+  ApplyModal(Posts: any) {
+    this.selectedhire = Posts;
+  }
+
+  ChangeStatus() { 
+     this.selectedhire.status = 'delete';
   }
   
   calculateTotal(): number {
@@ -44,6 +55,14 @@ savejob() {
     return total;
   }
 
+
+
+  
+  // onSubmitStatus(form: NgForm) {
+  //   if (form.valid && this.appliedService.applyData) {
+  //     this.appliedService.PutStatus(form.value).subscribe();
+  //   }
+  // }
 
   skills: any[] = [];
   getPosts() {

@@ -25,9 +25,13 @@ export class OngoingJobsComponent {
   onSearchChange(event: any) {
     this.searchTerm = event.target.value;
   }
+  getCurrentUserOpenJobs(): any[] {
+    const userOpenJobs = this.Applies.some((Apply: { status: string;userId:string; }) => Apply.status === 'accepted' && Apply.userId === this.currentUser[0].id);
+    return userOpenJobs ? userOpenJobs : [];
+}
 
-  anyJobInProgress(): boolean {
-    return this.Applies.some((Apply: { status: string; }) => Apply.status === 'accepted');
+  anyJobInProgress() {
+    return this.getCurrentUserOpenJobs().length > 0;
   }
   
   submitwork : boolean = false;

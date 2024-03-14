@@ -27,7 +27,6 @@
   </div>
 
 
-
   <div class="container rrraligntop1">
     <div class="row">
       <div class="col-8">
@@ -40,7 +39,7 @@
               <p class="kkprtag2">Lorem ipsum dolor sit amet consectetur. Cursus nisi mauris rhoncus tortor.</p>
             </div>
             <div class="rrcomcenalign1">
-              <button class="btn kkprbtn1" [disabled]="calculateTotal() < 85" routerLink="/post-a-job">Post A Job</button>
+              <button class="btn kkprbtn1" [disabled]="calculateTotal() < 69" routerLink="/post-a-job">Post A Job</button>
             </div>
           </div>
         </div>
@@ -55,7 +54,7 @@
              <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
          </div>
             <div class="rrcomcenalign1" *ngIf="calculateTotal() < 99">
-              <button class="btn rrkkprbtn2" routerLink="/setting">Complete Profile</button>
+              <button class="btn rrkkprbtn2" (click)="openDeliveryDialog();">Complete Profile</button>
             </div>
             <div class="rrcomcenalign1" *ngIf="calculateTotal() === 100">
               <p class="rrkkprtag5">Your Profile is Verified Now!</p>
@@ -94,6 +93,42 @@
     </div>
   </div>
 
+  <div class="container">
+    <div class="row mt-3 ">
+      <div class="col-3">
+        <!-- <label for="colFormLabelSm" class="col-form-label col-form-label-sm c1">Jobs Per Page:</label> -->
+      </div>
+      <div class="col-1">
+        <!-- <select class="form-select" id="autoSizingSelect">
+  <option selected>10</option>
+  <option value="1">20</option>
+  <option value="2">50</option>
+  </select> -->
+      </div>
+      <div class="col-2"></div>
+      <div class="col-3"></div>
+      <div class="col-2">
+        <div class="pagination">
+          <div class="k2">
+            < </div>
+              <button class="btn btn-link k1" [disabled]="currentPage === 1"
+                (click)="onPageChange(currentPage - 1)">Previous</button>
+              <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <ul class="pagination">
+                  <li class="page-item"><a class="d5"><span class="circle">{{currentPage}}</span></a>
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-link k1" [disabled]="paginatedDataList.length < itemsPerPage"
+                (click)="onPageChange(currentPage + 1)">Next</button>
+              <div class="k2">></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+  
   <div class="container rrkkprdivbox1">
     <p class="rrchead">Service 1</p>
     <div class="row">
@@ -369,5 +404,3 @@
         </div>
       </div>
     </div>
-
-  </div>

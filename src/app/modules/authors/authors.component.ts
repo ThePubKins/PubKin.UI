@@ -16,6 +16,10 @@ export class AuthorsComponent implements OnInit {
   Posts: any;
   UserData: any;
   searchTerm: string;
+  isFilterApplied: boolean = false;
+  itemsPerPage: number = 10;
+  currentPage: number = 1;
+  filteredJobPosts: any[] = [];
 
   constructor(
     public jobService: JobpostService, public userService: UserauthenticateService,
@@ -49,6 +53,9 @@ export class AuthorsComponent implements OnInit {
     return total;
   }
 
+  onPageChange(pageNumber: number) {
+    this.currentPage = pageNumber;
+  }
 
   //Get the Current userData
   getUserData() {
@@ -67,21 +74,16 @@ export class AuthorsComponent implements OnInit {
     }
   }
 
-  //Progress Bar  Functionality
-  // getProgressBarColor(): string {
-  //   const progress = this.Author[0].ProfilePercentage;
-  //   if (progress < 40) {
-  //     return '#666666'; 
-  //   } else if (progress < 80) {
-  //     return '#333333'; 
-  //   } 
-  //   else {
-  //     return '#000000';
-  //   }
-  // }
+  get paginatedDataList(): { value: string; date: string }[] {
+    const dataToPaginate = this.isFilterApplied ? this.filteredJobPosts : this.Posts;
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return dataToPaginate.slice(startIndex, endIndex);
+  }
+
+
 
   //Open dialog for Profile
- 
   total : any;
   openDeliveryDialog() {
     if (this.UserData && this.UserData.length > 0) {

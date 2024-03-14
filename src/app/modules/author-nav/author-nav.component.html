@@ -5,7 +5,8 @@
       </div>
       <div class="col-5">
         <div class="rrheadalign1">
-          <a class="kkfrnavse rrmessalign1" routerLink="/post-a-job">Post a Job</a>
+          <a class="kkfrnavse rrmessalign1"  *ngIf="calculateTotal() < 69" >Post a Job</a>
+          <a class="kkfrnavse rrmessalign1"  *ngIf="calculateTotal() > 69" routerLink="/post-a-job">Post a Job</a>
           <!-- <div class="dropdown">
             <button class="btn kkfrnavse dropdown-toggle " type="button" id="dropdownMenuButton1"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -25,7 +26,7 @@
             </button>
             <ul class="dropdown-menu listd" aria-labelledby="dropdownMenuButton1">
               <!-- <li><a class="dropdown-item ddis">Post a New Job</a></li><br> -->
-              <li routerLink="/authors/accept-a-request" ><a class="dropdown-item ddis" >My Jobs</a></li><br>
+              <li ><a class="dropdown-item ddis" routerLink="/authors/accept-a-request">My Jobs</a></li><br>
               <li  routerLink="/authors/on-going-jobs"><a class="dropdown-item ddis" >Ongoing Jobs</a></li><br>
               <li  routerLink="/authors/completed-jobs"><a class="dropdown-item ddis" >Completed Jobs</a></li><br>
             </ul>

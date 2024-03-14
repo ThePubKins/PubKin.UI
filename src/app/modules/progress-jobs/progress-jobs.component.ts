@@ -105,9 +105,15 @@ export class ProgressJobsComponent {
 
 
   
-  anyJobInProgress(): boolean {
-    return this.Applies.some((Apply: { status: string; }) => Apply.status === 'offers');
+  getCurrentUserOpenJobs(): any[] {
+    const userOpenJobs = this.Applies.some((Apply: { status: string;userId:string; }) => Apply.status === 'offers' && Apply.userId === this.currentUser[0].id);
+    return userOpenJobs ? userOpenJobs : [];
+}
+
+  anyJobInProgress() {
+    return this.getCurrentUserOpenJobs().length > 0;
   }
+
 
   getApplyPosts() {
     this.appliedService.getAppliedUsers().subscribe((posts) => {

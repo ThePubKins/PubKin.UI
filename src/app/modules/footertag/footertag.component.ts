@@ -8,13 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FootertagComponent implements OnInit {
   heading: string;
+  content:any;
+
   constructor(private router: Router,private route: ActivatedRoute) { }
   navigateToProfile(action: string): void {
     this.router.navigate(['/signup', action]);
   }
+
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.heading = params['heading'];
-    });
+    this.content = this.route.snapshot.paramMap.get('content');
   }
 }

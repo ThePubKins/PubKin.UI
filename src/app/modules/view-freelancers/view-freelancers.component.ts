@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JobpostService, UserauthenticateService } from '../../shared';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-view-freelancers',
@@ -8,13 +10,14 @@ import { JobpostService, UserauthenticateService } from '../../shared';
   styleUrls: ['./view-freelancers.component.scss']
 })
 export class ViewFreelancersComponent implements OnInit {
+
   texct: string = '2';
   Posts: any[];
   JobPostId: string | null;
   Author: any;
-  JobPosts: any;
   UserData: any;
   searchTerm: string;
+  selectedhire : any;
   
   constructor(public userservice: UserauthenticateService,
     public jobService: JobpostService, private route: ActivatedRoute) { }
@@ -45,14 +48,35 @@ export class ViewFreelancersComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.getAllPosts();
+    this.getJobPosts();
     this.getUserData();
-
+  }
+    
+  ApplyModal(Posts: any) {
+    this.selectedhire = Posts;
   }
 
-  getAllPosts() {
-    this.jobService.getJobPost().subscribe(data => {
+  ChangeStatus() { 
+     this.selectedhire.status = 'delete';
+  }
+  onSubmitStatus(form: NgForm) {
+    if (form.valid && this.jobService.jobData) {
+      this.jobService.JobStatus(form.value).subscribe();
+    }
+  }
+
+  getCurrentUserOpenJobs(): any[] {
+
+    const userOpenJobs = this.Posts.filter((Post: { status: string; userId: string }) => Post.status === 'Open' && Post.userId === this.UserData[0].id);
+    return userOpenJobs ? userOpenJobs : [];
+  }
+  anyJobInProgress() {
+    return this.getCurrentUserOpenJobs().length > 0;
+  }
+
+  getJobPosts() {
+    this.jobService.getJobPost().subscribe((data) => {
       this.Posts = data;
-    })
+    });
   }
 }

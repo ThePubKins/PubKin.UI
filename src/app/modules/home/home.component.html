@@ -390,8 +390,9 @@
         <div class="rrpubkinendalign1">
           <div>
             <p class="rrforclientsheadtxt1">Company</p>
-            <p class="rrforclientstxt2" routerLink="/WhatisPubKin?" (click)="scrollToTop()">What is PubKin?</p>
-            <p class="rrforclientstxt2">Lorem Ipsum</p>
+            <p class="rrforclientstxt2"  (click)="scrollToTop();navigateToPubkin('whatispubkin')" >What is PubKin?</p>
+            <p class="rrforclientstxt2"(click)="scrollToTop();navigateToPubkin('objectives')">Objectives for PubKin</p>
+            <p class="rrforclientstxt2" (click)="scrollToTop();navigateToPubkin('services')">Services for PubKin</p>
           </div>
         </div>
       </div>
