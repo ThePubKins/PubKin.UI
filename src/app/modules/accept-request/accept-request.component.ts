@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
-
 @Component({
   selector: 'app-accept-request',
   templateUrl: './accept-request.component.html',
@@ -80,7 +79,7 @@ export class AcceptRequestComponent implements OnInit {
   }
   
   ChangeStatus() { 
-    this.Applies.status = "offers"
+    this.Applies[0].status = "offers"
   }
 
   GoNext: string = "button1";

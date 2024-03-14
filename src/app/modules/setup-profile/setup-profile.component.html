@@ -343,9 +343,7 @@
             <p class="kkhdptag1">phone</p>
             <p class="kkhdptag2">+91 {{UserData[0].phoneNumber}}</p>
             <p class="kkhdptag1">Address</p>
-            <p class="kkhdptag2">{{UserData[0].country}}
-              Whitefield, Bangalore<br><br>
-              Karnataka - 600 0001</p>
+            <p class="kkhdptag2">{{UserData[0].country}}</p>
           </div>
           <p class="kkclsacnt">Close Pubkin Account</p>
         </div>
@@ -362,21 +360,25 @@
             <form autocomplete="off" #personaldata="ngForm" (ngSubmit)="onSubmitpresonal(personaldata)">
               <div>
                 <input type="hidden" id="id" name="id" [(ngModel)]="UserData[0].id">
-                <div class="mb-3">
+                <div class="mb-3 modalinputpersonal">
                   <label class="form-label projtitlevv">First Name</label>
                   <input class="form-control" id="firstName" type="email" name="firstName" [(ngModel)]="UserData[0].firstName">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 modalinputpersonal">
                   <label class="form-label projtitlevv">Last Name</label>
                   <input  class="form-control" type="text" id="lastName" name="lastName" [(ngModel)]="UserData[0].lastName">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 modalinputpersonal">
                   <label class="form-label projtitlevv">Email</label>
                   <input  class="form-control" type="text" id="email" name="email" [(ngModel)]="UserData[0].email">
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 modalinputpersonal">
                   <label class="form-label projtitlevv">PhoneNumber</label>
                   <input  class="form-control" type="text" id="phoneNumber" name="phoneNumber"  [(ngModel)]="UserData[0].phoneNumber">
+                </div>
+                <div class="mb-3 modalinputpersonal">
+                  <label class="form-label projtitlevv">Address</label>
+                  <input  class="form-control" type="text" id="country" name="country"  [(ngModel)]="UserData[0].country">
                 </div>
                 <!-- <div class="mb-3">
                   <label class="form-label projtitlevv">Description</label> -->
@@ -398,8 +400,7 @@
             <p class="kkpwtg1">Change Password<span class="kkpwtg2"><br>Choose a unique password with at least 8
                 characters long </span></p><img style="width: 48px; height: 50px;" src="../assets/writeic.png">
           </div>
-          <br><br><br>
-          <div class="container kkpwdiv">
+          <!-- <div class="container kkpwdiv">
             <p class="kkpwtg1">Enable-Two Step Authentication<span class="kkpwtg2"><br>You will receive a six-digit code
                 by text and email</span></p>
             <div class="form-check form-switch adproadsad4">
@@ -407,7 +408,7 @@
         width: 52px;" type="checkbox" role="switch" id="flexSwitchCheckDefault">
 
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

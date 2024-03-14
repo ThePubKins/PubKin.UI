@@ -276,10 +276,10 @@
                   <div class="payamount">Payable Amount<span>₹{{ calculateFees().payableAmount }}</span></div>
 
                   <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
-                    <input type="hidden" id="id" name="id" [(ngModel)]="Applies.id">
-                    <input type="hidden" id="status" name="status" [(ngModel)]="Applies.status">
-                    <button class="cpay" data-bs-toggle="modal" data-bs-target="#saveModal"
-                      (click)="ChangeStatus();">Confirm & Pay</button>
+                    <input type="hidden" id="id" name="id" [(ngModel)]="Applies[0].id">
+                    <input type="hidden" id="status" name="status" [(ngModel)]="Applies[0].status">
+                    <button class="cpay" type="submit" data-bs-toggle="modal" data-bs-target="#saveModal"
+                      (click)="ChangeStatus();" >Confirm & Pay</button>
                   </form>
                   <p class="disclaimer">*This payment will be add on your wallet</p>
                 </div>

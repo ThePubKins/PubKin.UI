@@ -78,6 +78,7 @@ export class ApplyNowComponent {
   
   uploadedFileName: string = '';
   selectedFiles: string[] = [];
+  
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
     this.selectedFiles.push(selectedFile.name);
@@ -89,6 +90,8 @@ export class ApplyNowComponent {
   handleFormSubmission() {
     this.SuccessModal();
   }
+
+
   SuccessModal() {
     this.success = false;
     setTimeout(() => {
@@ -111,6 +114,7 @@ export class ApplyNowComponent {
       this.appliedservice.applyData.biddingRate = this.formData.actualValue - afterTaxReport;
     }
   }
+
 
   AppliedJobs() {
     // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');

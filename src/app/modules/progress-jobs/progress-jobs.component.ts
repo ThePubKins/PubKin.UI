@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppliedUserService, UserauthenticateService } from '../../shared';
+import { AppliedUserService, JobpostService, UserauthenticateService } from '../../shared';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-progress-jobs',
@@ -15,16 +16,26 @@ export class ProgressJobsComponent {
   FreelancerSkillSet: string = '';
   userSkillSet: string = '';
   currentUser: any;
-
+  selectedhire: any;
+  jobPosts: any;
 
   constructor(
     public userService: UserauthenticateService,
     public router: Router,
-    public appliedService: AppliedUserService) { }
+    public jobService:JobpostService,
+    public appliedService: AppliedUserService,
+    ) { }
 
 
   ngOnInit() {
     this.getUserData(); this.getApplyPosts();
+    this.getJobPosts();
+  }
+
+
+  @ViewChild('submitbutton') submitbutton: ElementRef;
+  submitNow() {
+    this.submitbutton.nativeElement.click();
   }
 
   getUserData() {
@@ -39,6 +50,59 @@ export class ProgressJobsComponent {
     } else {
     }
   }
+
+  formData = {
+    actualValue: null as number | null,
+    subtractValue: 0,
+    displaySubtractValue: '0%',
+    platformFee: 0,
+    paymentAfterTax: 0
+  };
+  
+  calculateResult(): void {
+    if (this.selectedhire && this.selectedhire.biddingRate !== null) {
+      const biddingRate = this.selectedhire.biddingRate;
+      const afterTaxRate = biddingRate * (1 - 0.04); 
+      const platformFee = biddingRate * 0.02; 
+      const paymentAfterTax = afterTaxRate - platformFee;
+      this.formData.actualValue = biddingRate;
+      this.formData.subtractValue = afterTaxRate;
+      this.formData.displaySubtractValue = '4%';
+      this.formData.platformFee = platformFee;
+      this.formData.paymentAfterTax = paymentAfterTax;
+    }
+  }
+  
+  
+  ApplyModal(Apply: any) {
+    this.selectedhire = Apply;
+  }
+
+
+  onSubmitStatus(form: NgForm) {
+    if (form.valid && this.appliedService.applyData) {
+      this.appliedService.PutStatus(form.value).subscribe();
+    }
+  }
+
+  
+  onSubmitJobStatus(form: NgForm) {
+    if (form.valid && this.jobService.jobData) {
+      this.jobService.JobStatus(form.value).subscribe();
+    }
+  }
+
+  getJobPosts() {
+    this.jobService.getJobPost().subscribe((data) => {
+      this.jobPosts = data;
+    });
+  }
+      
+  ChangeStatus() { 
+   this.Applies[0].status = "accepted";
+    this.jobPosts[0].status = "Ongoing";
+  }
+
 
   
   anyJobInProgress(): boolean {

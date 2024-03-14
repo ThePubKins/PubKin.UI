@@ -9,9 +9,8 @@
         <div *ngIf="!anyJobInProgress()" class="kkjbtxtline1">
           No applied jobs are available for you!
         </div>
-        <!-- <div class="container" *ngFor="let JobPost of filteredJobPosts | jobsearch : searchTerm "  (click)="showJobDetails(JobPost.JobUniqueId)"> -->
         <div class="container " *ngFor="let Apply of  Applies;">
-          <div class="row" *ngIf="Apply.status === 'applied'">
+          <div class="row" *ngIf="Apply.status === 'applied' && Apply.userId === currentUser[0].id">
             <div class="col-12 position-relative">
               <div class="row">
                 <div class="col-9">

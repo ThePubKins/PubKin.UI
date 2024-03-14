@@ -1072,6 +1072,7 @@ gap:30px;
     color: #4B4B4B;
   font-family: "League Spartan", sans-serif;
   font-size: 19px;
+  word-wrap: break-word;
   font-style: normal;
   font-weight: 400;
   line-height: 36px; 
@@ -1084,6 +1085,7 @@ gap:30px;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
+    word-wrap: break-word;
     line-height: 23px;
   }
 
@@ -1349,7 +1351,76 @@ gap:30px;
   }
 }
 
+//whoopee
+.flx { 
+  display: flex;
+  justify-content: center ;
+}
 
+.ecard  {
+  position: relative;
+  width: 596px;
+  height: 506px;
+  border-radius: 16px;
+  margin-top: 27px;
+  border: 1px solid #CBCBCB;
+  -webkit-box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+  box-shadow: 2px 4px 0px 1px rgba(0,0,0,.16), 0 9px 10px 0 rgba(0,0,0,.12);
+}
+
+
+.cele { 
+  width: 248px;
+  height: 198px;
+  position: absolute;
+  margin-left: -125px;
+}
+
+
+.mhead{  
+  color: #1C1C1C;
+  text-align: center;
+  font-size: 30px;
+  font-style: normal;
+  font-family: "League Spartan",sans-serif;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 25px;
+} 
+
+.mhead1 { 
+  margin-top: 71px;
+}
+
+.mcont { 
+  color: #6A6A6A;
+  font-family: "League Spartan",sans-serif;
+text-align: center;
+font-size: 19px;
+font-style: normal;
+font-weight: 400;
+line-height: 28.5px; /* 150% */
+margin-top: 18px;
+}
+
+.regif { 
+  width: 197px;
+  margin-top: 58px;
+height: 197px;
+flex-shrink: 0;
+}
+
+.regif1 { 
+  margin-top: 0px;
+}
+
+.rimg  { 
+  margin-top: -7px;
+}
+
+.icon { 
+  margin-left: 35px;
+}
 
 
 input[type=text]:focus {
@@ -1380,3 +1451,7 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6)
 --mdc-checkbox-unselected-hover-state-layer-color: blueviolet;
 --mdc-checkbox-unselected-pressed-state-layer-color: blueviolet;
 }
+
+
+
+

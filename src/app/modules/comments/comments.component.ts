@@ -27,6 +27,7 @@ export class CommentsComponent implements OnInit {
   selectedFiles1: string[] = [];
   User: any;
   imageUrl: string = 'https://localhost:7172';
+  jobPosts:any;
 
   constructor(private route: ActivatedRoute, public datePipe: DatePipe, public userauthservice: UserauthenticateService,
     public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: WorkfileService) { }
@@ -38,6 +39,7 @@ export class CommentsComponent implements OnInit {
     this.getCommentNow();
     this.getWorkFiles();
     this.getUserData();
+    this.getJobPosts();
   }
 
   submitworks() {
@@ -55,10 +57,24 @@ export class CommentsComponent implements OnInit {
         (details) => {
           this.jobPost = details;
           this.jobPost.forEach((jobPost: any) => {
-            jobPost.skillSet = jobPost.skillSet.split(',');
+            jobPost[0].skillSet = jobPost[0].skillSet.split(',');
           });
         });
     });
+  }
+
+
+  selectedFile: File | null = null;
+
+  onFileSelected12(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
+  selectFile() {
+    document.getElementById('fileInput')?.click();
   }
 
   hideFolder() {
@@ -76,6 +92,24 @@ export class CommentsComponent implements OnInit {
       this.workFile = data;
     });
   }
+
+    
+  onSubmitJobStatus(form: NgForm) {
+    if (form.valid && this.jobservice.jobData) {
+      this.jobservice.JobStatus(form.value).subscribe();
+    }
+  }
+  
+  getJobPosts() {
+    this.jobservice.getJobPost().subscribe((data) => {
+      this.jobPosts = data;
+    });
+  }
+      
+  ChangeStatus() { 
+    this.jobPosts[0].status = "completed";
+  }
+
 
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
@@ -138,6 +172,7 @@ export class CommentsComponent implements OnInit {
   openFileUploadDialog() {
     this.fileInput.nativeElement.click();
   }
+
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
     console.log('Selected file:', selectedFile);
@@ -166,7 +201,7 @@ export class CommentsComponent implements OnInit {
     // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
     // this.commentData.dateCreated = this.dateFormatted;
     this.commentData.jobId = this.jobPost.id;
-    this.commentData.createdBy = 'KarthiKeyan';
+    this.commentData.createdBy = this.User[0].firstName;
   }
 
   getPostStatus(postDate: string): string {

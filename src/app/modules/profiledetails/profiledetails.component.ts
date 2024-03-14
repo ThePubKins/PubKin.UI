@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./profiledetails.component.scss']
 })
 export class ProfiledetailsComponent implements OnInit {
+[x: string]: any;
   contentName: string;
   selectedRate: string = 'Hourly';
   currentUser: Observable<any>;
@@ -135,6 +136,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitWork(form: NgForm) {
     if (form.valid && this.workservice.workData) {
       this.workservice.postWorkDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'employment-history';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -142,6 +150,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitEducation(form: NgForm) {
     if (form.valid && this.educationservice.educationData) {
       this.educationservice.postEducation(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'education-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -149,6 +164,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitPortfolio(form: NgForm) {
     if (form.valid && this.portfolioService.portfolioFormData) {
       this.portfolioService.postPortfolios(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'portfolio';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -161,6 +183,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitPrice(form: NgForm) {
     if (form.valid && this.priceService.pricingSkillData) {
       this.priceService.postSkillPricing(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'payment';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -246,6 +275,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitGovtIdDetails(form: NgForm) {
     if (form.valid && this.userservice.userData) {
       this.userservice.putGovtDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'govtId-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -267,6 +303,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitExperienceDetails(form: NgForm) {
     if (form.valid && this.userservice.userData) {
       this.userservice.putFreelancingDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'freelancing-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -349,7 +392,16 @@ export class ProfiledetailsComponent implements OnInit {
   Exp3() {
     this.hides1 = "Expert";
   }
+  selectedOption: string = '1'; // Default selection
 
+  // Make sure to include FormsModule in your module imports array.
+  
+  // If you want to handle changes on dropdown selection:
+  onSelectionChange(event: Event) {
+    // You can handle the selection change event h
+
+
+}
 
   skills = [
     'Lorem Ipsum 1',
@@ -445,4 +497,42 @@ export class ProfiledetailsComponent implements OnInit {
         return {};
     }
   }
+
+
+  accordionItems = [
+    { title: 'Section 1', content: 'Content for Section 1 goes here.', active: false },
+    { title: 'Section 2', content: 'Content for Section 2 goes here.', active: false },
+    // Add more sections as needed
+  ];
+
+  // Extend the list of years
+  years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, ]; 
+  selectedYear1: number | null;
+  selectedYear2: number | null;
+
+
+  updateSelectedYears(dropdown: string) {
+    // Check if the selected years are the same and handle accordingly
+    if (dropdown === 'year1' && this.selectedYear1 === this.selectedYear2) {
+      // Handle the case when the selected years in Section 1 and Section 2 are the same
+      this.selectedYear1 = null;
+      alert("Please select different years in Section 1 and Section 2.");
+    } else if (dropdown === 'year2' && this.selectedYear1 === this.selectedYear2) {
+      // Handle the case when the selected years in Section 1 and Section 2 are the same
+      this.selectedYear2 = null;
+      alert("Please select different years in Section 1 and Section 2.");
+    }
+  }
+
+  // Return the list of years excluding the already selected year in Section 1
+  getAvailableYears(): number[] {
+    if (this.selectedYear1 !== null && this.selectedYear1 !== undefined) {
+      // If a starting year is selected, exclude that year and the years before it
+      return this.years.filter(year => year > this.selectedYear1!);
+    } else {
+      return this.years;
+    }
+  }
+
+
 }

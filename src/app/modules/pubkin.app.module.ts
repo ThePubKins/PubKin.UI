@@ -28,6 +28,7 @@ import { AcceptRequestComponent } from './accept-request/accept-request.componen
 import { MatIconModule } from '@angular/material/icon'
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { ProgressJobsComponent } from './progress-jobs/progress-jobs.component';
+import {AuthorsCompletedJobsComponent } from './authors-completed-jobs/authors-completed-jobs.component'
 import { CompletedComponent } from './completed/completed.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { FreelancernavComponent } from './freelancernav/freelancernav.component';
@@ -54,6 +55,7 @@ import {
         FreelancerComponent,
         FreeprofileComponent,
         PaymentComponent,
+        AuthorsCompletedJobsComponent,
         CommentsComponent,
         ProfiledetailsComponent,
         JobDetailsComponent,

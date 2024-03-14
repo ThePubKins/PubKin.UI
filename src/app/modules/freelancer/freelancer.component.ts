@@ -171,8 +171,7 @@ export class FreelancerComponent implements OnInit {
     this.router.navigate(['/freelancers/job-details', jobUniqueId]);
   }
 
-  hide23 = false;
-
+ hide23 = false;
   hide1() {
     this.hide23 = !this.hide23;
   }

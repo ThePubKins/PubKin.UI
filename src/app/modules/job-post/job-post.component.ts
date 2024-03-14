@@ -206,7 +206,7 @@ export class JobPostComponent implements OnInit {
 
   fetchdetails() { 
     this.jobservice.jobData.userEmail= this.User[0].email;
-    this.jobservice.jobData.status= 'Pending';
+    this.jobservice.jobData.status= 'Open';
     this.jobservice.jobData.userId= this.User[0].id;
     this.jobservice.jobData.createdBy = `${this.User[0].firstName} ${this.User[0].lastName}`;
     this.firstName = (this.User[0].firstName || '').toUpperCase().slice(0, 1);

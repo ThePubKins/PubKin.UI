@@ -32,21 +32,21 @@
 
     <form #applyForm="ngForm" (ngSubmit)="onSubmitApply(applyForm);handleFormSubmission()" novalidate>
         <input type="hidden" id="id" name="id" [(ngModel)]="appliedservice.applyData.id">
-        <input type="text" id="createdBy" name="createdBy" [(ngModel)]="appliedservice.applyData.createdBy">
-        <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="appliedservice.applyData.dateCreated">
-        <input type="text" id="jobId" name="jobId" [(ngModel)]="appliedservice.applyData.jobId">
-        <input type="text" id="userId" name="userId" [(ngModel)]="appliedservice.applyData.userId">
-        <input type="text" id="postBy" name="postBy" [(ngModel)]="appliedservice.applyData.postBy">
-        <input type="text" id="jobTitle" name="jobTitle" [(ngModel)]="appliedservice.applyData.jobTitle">
-        <input type="text" id="jobDescription" name="jobDescription" [(ngModel)]="appliedservice.applyData.jobDescription">
-        <input type="text" id="rate" name="rate" [(ngModel)]="appliedservice.applyData.rate">
-        <input type="text" id="status" name="status" [(ngModel)]="appliedservice.applyData.status">
-        <input type="text" id="userEmail" name="userEmail" [(ngModel)]="appliedservice.applyData.userEmail">
-        <input type="text" id="skillSet" name="skillSet" [(ngModel)]="appliedservice.applyData.skillSet">
-        <input type="text" id="fileUrl" name="fileUrl" [(ngModel)]="appliedservice.applyData.fileUrl">
-        <input type="text" id="AttachFile" name="AttachFile" [(ngModel)]="appliedservice.applyData.AttachFile">
-        <input type="text" id="applideUserProfile" name="applideUserProfile" [(ngModel)]="appliedservice.applyData.applideUserProfile">
-        <input type="text" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="appliedservice.applyData.jobUniqueId">
+        <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="appliedservice.applyData.createdBy">
+        <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="appliedservice.applyData.dateCreated">
+        <input type="hidden" id="jobId" name="jobId" [(ngModel)]="appliedservice.applyData.jobId">
+        <input type="hidden" id="userId" name="userId" [(ngModel)]="appliedservice.applyData.userId">
+        <input type="hidden" id="postBy" name="postBy" [(ngModel)]="appliedservice.applyData.postBy">
+        <input type="hidden" id="jobTitle" name="jobTitle" [(ngModel)]="appliedservice.applyData.jobTitle">
+        <input type="hidden" id="jobDescription" name="jobDescription" [(ngModel)]="appliedservice.applyData.jobDescription">
+        <input type="hidden" id="rate" name="rate" [(ngModel)]="appliedservice.applyData.rate">
+        <input type="hidden" id="status" name="status" [(ngModel)]="appliedservice.applyData.status">
+        <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="appliedservice.applyData.userEmail">
+        <input type="hidden" id="skillSet" name="skillSet" [(ngModel)]="appliedservice.applyData.skillSet">
+        <input type="hidden" id="fileUrl" name="fileUrl" [(ngModel)]="appliedservice.applyData.fileUrl">
+        <input type="hidden" id="AttachFile" name="AttachFile" [(ngModel)]="appliedservice.applyData.AttachFile">
+        <input type="hidden" id="applideUserProfile" name="applideUserProfile" [(ngModel)]="appliedservice.applyData.applideUserProfile">
+        <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="appliedservice.applyData.jobUniqueId">
 
         <p class="phead">Submit a Proposal</p>
         <div class="apbox">
@@ -57,8 +57,8 @@
                         <p class="phead1"> {{JobPost.jobUniqueId}} - {{JobPost.jobTitle}} </p>
                         <p class="pcont"> {{JobPost.description | slice:0:200 }}...</p>
                         <div class="row">
-                            <div class="col-4" *ngFor="let skill of JobPost.skillSet">
-                                <div class="skill"> {{ skill }}</div>
+                            <div class="col-12" >
+                                <div class="skill"> {{ JobPost.skillSet }}</div>
                             </div>
                         </div>
                     </div>
