@@ -100,21 +100,6 @@
                     </div>
                     <div class="container-fluid prode" style="cursor: pointer;">
                         <div class="row">
-                            <div class="col-12" routerLink="/profile/payment" matDialogClose>
-                                <p class="procont procont1">
-                                    <img class="circ1" *ngIf="User[0].bankingDetails" src="../assets/Group 115.svg"
-                                        alt="Pubkin">
-                                    <img class="circ" *ngIf="!User[0].bankingDetails" src="../assets/Ellipse 33.png"
-                                        alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img
-                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav">
-                                </p>
-                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
-                                <hr>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid prode" style="cursor: pointer;">
-                        <div class="row">
                             <div class="col-12" routerLink="/profile/govtId-details" mat-dialog-close>
                                 <p class="procont procont1">
                                     <img class="circ1" *ngIf="User[0].govtIdDetails" src="../assets/Group 115.svg"
@@ -124,11 +109,24 @@
                                         class="navarrow" src="../assets/nav arrow down_.png" alt="Nav">
                                 </p>
                                 <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Any govt. ID will work</p>
-
+                                <hr>
                             </div>
                         </div>
                     </div>
-
+                    <div class="container-fluid prode" style="cursor: pointer;">
+                        <div class="row">
+                            <div class="col-12" routerLink="/profile/payment" matDialogClose>
+                                <p class="procont procont1">
+                                    <img class="circ1" *ngIf="User[0].bankingDetails" src="../assets/Group 115.svg"
+                                        alt="Pubkin">
+                                    <img class="circ" *ngIf="!User[0].bankingDetails" src="../assets/Ellipse 33.png"
+                                        alt="Pubkin"><span style="margin-left: 10px;">Setup Payment</span> <img
+                                        class="navarrow" src="../assets/nav arrow down_.png" alt="Nav">
+                                </p>
+                                <p class="prodesc">&nbsp;&nbsp;&nbsp;&nbsp;Add your bank details and work rate</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

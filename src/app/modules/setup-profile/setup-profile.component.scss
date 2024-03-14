@@ -251,7 +251,7 @@
     
     .kkpwbx{  
       width: 750px;
-      height: 284px;
+      height: auto;
       margin-top: 35px;
       padding: 25px 14px;
       flex-shrink: 0;
@@ -719,7 +719,7 @@
     
     .kkpwbx{  
       width: 750px;
-      height: 284px;
+      height: auto;
       margin-top: 35px;
       padding: 25px 14px;
       flex-shrink: 0;
@@ -1202,7 +1202,7 @@ display: flex;
 border: 2px solid #9E9E9E;
 }
 .kkadedudt{
-  width: 700px;
+  width: 100%;
   height: auto;
 
 background: #FFF;
@@ -1216,6 +1216,10 @@ background: #FFF;
   font-weight: 500;
   margin-left: 15px;
   margin-top: 25px;
+  }
+
+  .modalinputpersonal { 
+    padding-right: 60px;
   }
   .kkedubt{
     background-color: #A426D1;

@@ -41,10 +41,10 @@ export class AuthorsComponent implements OnInit {
 
   //ProgressBar 
   calculateTotal(): number {
-    const num1 = parseInt(this.UserData[0].details);
-    const num2 = parseInt(this.UserData[0].govtIdDetails);
-    const num3 = parseInt(this.UserData[0].bankingDetails);
-
+    const num1 = parseInt(this.UserData[0].details || 0);
+    const num2 = parseInt(this.UserData[0].govtIdDetails || 0);
+    const num3 = parseInt(this.UserData[0].bankingDetails || 0);
+    
     const total = num1 + num2 + num3;
     return total;
   }
@@ -81,8 +81,16 @@ export class AuthorsComponent implements OnInit {
   // }
 
   //Open dialog for Profile
+ 
+  total : any;
   openDeliveryDialog() {
-    this.dialog.open(AuthprofileComponent);
+    if (this.UserData && this.UserData.length > 0) {
+      const total = this.calculateTotal();
+      if (total < 99) {
+        this.dialog.open(AuthprofileComponent);
+      }
+    }
   }
+
 }
 

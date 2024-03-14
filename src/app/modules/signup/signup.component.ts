@@ -38,7 +38,9 @@ export class SignupComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
   emails: any;
   userEmail: string = '';
-  userName: string = '';
+  userfirstName: string = '';
+  userlastName: string = '';
+
   constructor(public authService: SocialAuthService,public dialog: MatDialog, private route: ActivatedRoute, public userservice: UserService, public roleService: RoleService,
     public userregister: UserauthenticateService, private router: Router) { }
     authSubscription!: Subscription;
@@ -47,9 +49,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   @ViewChild('firebutton') firebutton: ElementRef;
   @ViewChild('loginbutton') loginbutton: ElementRef;
 
-  ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
-  }
 
   googleSignin(googleWrapper: any) {
     googleWrapper.click();
@@ -214,8 +213,22 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.action = this.route.snapshot.paramMap.get('action');
     this.authSubscription = this.authService.authState.subscribe((user) => {
       this.userEmail = user.email;
-      this.userName = user.name;
+      this.userfirstName = user.firstName;
+      this.userlastName = user.lastName;
     });
+  }
+  
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
+  googleSignUp() { 
+    this.usercredential.email = this.userEmail;
+    this.usercredential.firstName = this.userfirstName;
+    this.usercredential.lastName = this.userlastName;
+    this.email = this.userEmail;
   }
 
   onGoogleSignupClick() {

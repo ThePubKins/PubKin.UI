@@ -1,8 +1,10 @@
 <app-author-nav></app-author-nav>
 <div>
     <hr>
+    <!-- <p class="recenvv12">Ongoing Jobs</p> -->
     <div class="container" *ngFor="let Post of Posts">
-        <div class="borderboxv11" *ngIf="Post.userId == UserData[0].id">
+   
+        <div class="borderboxv11" *ngIf="Post.userId == UserData[0].id && Post.status === 'Ongoing'">
             <div class="row" >
                 <div class="col-10">
                     <p class="recenvv11">{{Post.jobTitle}}</p>

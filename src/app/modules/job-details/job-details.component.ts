@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JobpostService } from '../../shared';
+import { JobpostService, UserauthenticateService } from '../../shared';
 
 interface JobPost {
   skillSet: string[];
@@ -15,7 +15,9 @@ export class JobDetailsComponent implements OnInit {
 
   jobPost: any;
   Freelancers: any;
-  constructor( private route: ActivatedRoute, public jobservice: JobpostService,  private router: Router, public cdr: ChangeDetectorRef) { }
+  UserData:any;
+  constructor( private route: ActivatedRoute,   public userservice: UserauthenticateService,
+     public jobservice: JobpostService,  private router: Router, public cdr: ChangeDetectorRef) { }
 success:boolean=true;
 savejob() {
   this.success = !this.success;
@@ -27,16 +29,22 @@ savejob() {
 }
   ngOnInit() {
     this.getPosts();
+    this.getUserData();
   }
-  // getPosts() {
-  //   this.route.params.subscribe((params) => {
-  //     const jobUniqueId = params['id'];
-  //     this.jobservice.getJobPostById(jobUniqueId).subscribe(
-  //      (details) => {
-  //         this.jobPost = details;
-  //       });
-  //   });
-  // }
+  
+  calculateTotal(): number {
+    const num1 = parseInt(this.UserData[0].details || 0);
+    const num2 = parseInt(this.UserData[0].govtIdDetails || 0);
+    const num3 = parseInt(this.UserData[0].bankingDetails || 0);
+    const num4 = parseInt(this.UserData[0].portfolioDetails || 0);
+    const num5 = parseInt(this.UserData[0].workingDetails || 0);
+    const num6 = parseInt(this.UserData[0].educationDetails || 0);
+
+    const total = num1 + num2 + num3 + num4 + num5 + num6;
+    return total;
+  }
+
+
   skills: any[] = [];
   getPosts() {
     this.route.params.subscribe((params) => {
@@ -52,6 +60,21 @@ savejob() {
         }
       );
     });
+  }
+
+  getUserData() {
+    const Email = this.userservice.getUserEmail() ?? sessionStorage.getItem('email');
+    if (Email) {
+      this.userservice.getUserData().subscribe({
+        next: (data) => {
+          this.UserData = data?.filter((UserData: any) => UserData.email === Email);
+        },
+        error: (err) => {
+          console.error('Error fetching data:', err);
+        }
+      });
+    } else {
+    }
   }
 
   showApplyNow(jobUniqueId: string): void {

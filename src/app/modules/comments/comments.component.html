@@ -1,7 +1,11 @@
+<div *ngIf="User[0].role == 'freelancer'">
 <app-freelancernav></app-freelancernav>
+</div>
+<div *ngIf="User[0].role == 'author'">
+  <app-author-nav></app-author-nav>
+  </div>
 <div *ngIf="!viewwork">
   <div *ngIf="!submitwork">
-
     <div style="height: auto;">
       <div class="container kkjbcon1">
         <div class="row" style="padding-bottom: 36px;">
@@ -48,8 +52,8 @@
             <hr class="kkline1">
             <div class="kkjbdiv4">
               <p class="kkskilltxt">Skills Needed</p>
-              <div class="container kksilltagcn" *ngFor="let jobPost of jobPost">
-                <div class="kksilltag" *ngFor="let skill of jobPost.skillSet">{{skill}}</div>
+              <div class="container kksilltagcn" >
+                <!-- <div class="kksilltag" >{{skill}}</div> -->
                 <div class="kksilltag" >{{jobPost.skillSet}}</div>
               </div>
             </div>
@@ -93,8 +97,7 @@
               <div class="kkcmdbx3">
                 <p class="kkcmdtx2">Files:</p>
                 <ul class="kkcmdbx4" *ngFor="let comment of comments; let i=index">
-
-                  <li class=" kkcmdtx3" *ngIf="jobPost.id == comment.jobId">
+                 <li class=" kkcmdtx3" *ngIf="jobPost.id == comment.jobId">
                     <div class="container img-fluid mt-3">
                       <a [href]="imageUrl + comment.fileUrl" target="_blank" download class="no-underline">
                         <p class="imageShows">{{i+1}}. {{comment.fileUrl.split('_')[1]}}</p>
@@ -233,21 +236,20 @@
       <form novalidate #commentForm="ngForm" autocomplete="off" (ngSubmit)="submitForm(commentForm)">
         <div class="pad1">
           <div class="">
-            <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="commentData.dateCreated">
-            <input type="text" id="id" name="id" [(ngModel)]="commentData.id">
-            <input type="text" id="createdBy" name="createdBy" [(ngModel)]="commentData.createdBy">
-            <input type="text" id="jobId" name="jobId" [(ngModel)]="commentData.jobId">
+            <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="commentData.dateCreated">
+            <input type="hidden" id="id" name="id" [(ngModel)]="commentData.id">
+            <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="commentData.createdBy">
+            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="commentData.jobId">
             <p class="c2" id="exampleModalLabel">Please add your comments</p>
           </div>
           <textarea (click)="showDetails();" class="form-control h1" aria-label="With textarea" name="comments"
             [(ngModel)]="commentData.Comments" required></textarea>
-
-          <input type="file" id="file" name="file" (change)="onFileSelected($event)" required>
+          <input type="file" id="file" name="file" class="fileupload-comments" (change)="onFileSelected($event)" required>
         </div>
         <div>
           <div class="modal-fot">
             <button type="button" class="but1 but2" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="but but1">Send</button>
+            <button type="submit" class="but but1"  data-bs-dismiss="modal" aria-label="Close">Send</button>
           </div>
         </div>
       </form>
@@ -261,13 +263,17 @@
     <div class="modal-content">
       <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
       <div class="pad1">
-        <div class="modal-hed">
+        <div class="">
 
           <p class="c22" id="exampleModalLabel5"><b>Do you want mark this as Completed?</b></p>
         </div>
         <div class="kksubbtn">
           <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
-          <button type="button" class="btn kkkbtncn">Confirm</button>
+          <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
+            <input type="hidden" id="id" name="id" [(ngModel)]="jobPost.id">
+            <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
+          <button type="button" class="btn kkkbtncn" type="submit">Confirm</button>
+        </form>
         </div>
       </div>
     </div>
@@ -324,7 +330,7 @@
             <li class="subtex">Once approved project is completed there will be no rework</li>
           </ul>
           <div class="d-flex justify-content-center" style="padding-bottom: 31px;">
-            <button class="btn subbut" data-bs-toggle="modal" data-bs-target="#exampleModal5">Mark as
+            <button class="btn subbut" data-bs-toggle="modal" data-bs-target="#exampleModal5" (click)="ChangeStatus();">Mark as
               completed</button>
           </div>
         </div>
@@ -332,3 +338,11 @@
     </div>
 
   </div>
+
+
+
+  <!-- <label for="fileInput" *ngIf="selectedFile">{{ selectedFile.name }}</label>
+<input type="file" id="fileInput" (change)="onFileSelected12($event)" >
+<button (click)="selectFile()">Select File</button> -->
+
+

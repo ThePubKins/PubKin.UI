@@ -7,7 +7,6 @@
   </div>
 </div>
 
-
 <div class="modal fade" id="savejob1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" >
@@ -78,7 +77,7 @@
         </div>
         <div class="col-4 kkjbdetlis1 text-center" >
          <button class="btn kkjbdtbtn2"  data-bs-toggle="modal" data-bs-target="#savejob1">Save Job</button>
-         <button class="btn kkjbdtbtn1"  [disabled]="Freelancers[0].ProfilePercentage <= 79" (click)="showApplyNow(jobPost.jobUniqueId)">Apply Now</button>
+         <button class="btn kkjbdtbtn1"  [disabled]="calculateTotal() < 85" (click)="showApplyNow(jobPost.jobUniqueId)">Apply Now</button>
           <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
           <hr class="kkline2">
           <div class="container kkdivjbr2">
