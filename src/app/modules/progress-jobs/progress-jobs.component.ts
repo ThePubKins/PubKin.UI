@@ -17,7 +17,7 @@ export class ProgressJobsComponent {
   userSkillSet: string = '';
   currentUser: any;
   selectedhire: any;
-  jobPosts: import("d:/Sathish Software/ThePubkins/ThePubkins-UI/src/app/shared/index").jobpost[];
+  jobPosts: any;
 
   constructor(
     public userService: UserauthenticateService,
