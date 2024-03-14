@@ -90,11 +90,11 @@
             <input type="email" id="email" class="int intem" placeholder="Email" ngModel name="email" #email="ngModel"
                 [(ngModel)]="usercredential.email" [class.invalid]="email.invalid && email.touched" required
                 pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
-            <span *ngFor="let useremail of emails">
-                <div class="errormsg" *ngIf="useremail.i===usercredential.email">
-                    * Email already exists
-                </div>
-            </span>
+                <span *ngFor="let email of emails">
+                    <div class="errormsg" *ngIf="email ===usercredential.email">
+                        * Email already exists
+                    </div>
+                </span>
             <div *ngIf="!email.valid && email.touched">
                 <span class="errormsg" *ngIf="email.errors?.['required']">
                     Email is required
