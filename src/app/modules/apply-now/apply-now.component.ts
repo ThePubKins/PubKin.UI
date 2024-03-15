@@ -103,6 +103,7 @@ export class ApplyNowComponent {
     actualValue: null as number | null,
     subtractValue: 2,
     displaySubtractValue: '2%',
+    taxValue : null as number |null,
   };
 
   calculateResult(): void {
@@ -111,7 +112,8 @@ export class ApplyNowComponent {
       const afterTaxReport = (4 / 100) * this.formData.actualValue;
       this.formData.subtractValue = afterTaxReport;
       this.formData.displaySubtractValue = percentToSubtract.toFixed(2);
-      this.appliedservice.applyData.biddingRate = this.formData.actualValue - afterTaxReport;
+      this.formData.taxValue = this.formData.actualValue - afterTaxReport;
+      this.appliedservice.applyData.biddingRate = this.formData.actualValue;
     }
   }
 

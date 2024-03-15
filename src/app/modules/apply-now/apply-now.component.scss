@@ -107,8 +107,11 @@ line-height: 28.5px; /* 150% */
     transform: translate(-50%, -50%);
 }
 
-@media only screen and (min-width:1000px)and (max-width:1200px){
-
+@media only screen and (min-width:999px)and (max-width:1200px){
+// .draftmodel{
+//     width: 50%;
+//     margin-left: 260px;
+// }
     .skill {
         display: inline-flex;
         padding: 15px 25px;
@@ -126,7 +129,16 @@ line-height: 28.5px; /* 150% */
         margin-top: 29px;
         line-height: normal;
     }
-    
+    .successmsg { 
+        width: 705px;
+        height: 471px;
+        top: 15%;
+        position: relative;
+        flex-shrink: 0;
+        border-radius: 24px;
+        border: 2px solid #CBCBCB;
+        left: 15%;
+    }
     .line { 
         width: auto;
         height: 411px;
