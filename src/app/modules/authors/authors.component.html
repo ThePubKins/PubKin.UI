@@ -77,11 +77,11 @@
     </div>
   </div>
   <div class="container " *ngFor="let JobPost of Posts  | jobsearch : searchTerm ">
-    <div class="borderboxv" *ngIf=" JobPost.userId == UserData[0].id" >
+    <div class="borderboxv" *ngIf=" JobPost.userId == UserData[0].id && JobPost.status == 'Open'" >
       <div class="row" >
         <br>
         <div class="col-10">
-          <p class="recenvv">{{JobPost.jobTitle}}</p>
+          <p class="recenvv" routerLink="/authors/accept-a-request">{{JobPost.jobTitle}}</p>
         </div>
         <div class="col-2"><svg class="svgbutt" xmlns="http://www.w3.org/2000/svg" width="33" height="33"
             viewBox="0 0 33 33" fill="none">

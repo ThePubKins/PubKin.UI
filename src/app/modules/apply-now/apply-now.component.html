@@ -1,7 +1,7 @@
 <app-freelancernav></app-freelancernav>
 <div class="all-success" *ngIf="!success">
     <div class="successmsg">
-        <p class="successhead">Success! Your Proposal was Sent</p>
+        <p class="successhead">Success! Your Proposal Sent</p>
         <img class="whopee" src="../assets/Success.gif" alt="Success">
         <p class="redirecte">Redirecting now...</p>
         <img class="successtick" src="../assets/Lottie gif.gif" alt="Pubkin-success">
@@ -35,6 +35,7 @@
         <input type="hidden" id="id" name="id" [(ngModel)]="appliedservice.applyData.id">
         <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="appliedservice.applyData.createdBy">
         <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="appliedservice.applyData.dateCreated">
+        <input type="hidden" id="applyDate" name="applyDate" [(ngModel)]="appliedservice.applyData.applyDate">
         <input type="hidden" id="jobId" name="jobId" [(ngModel)]="appliedservice.applyData.jobId">
         <input type="hidden" id="userId" name="userId" [(ngModel)]="appliedservice.applyData.userId">
         <input type="hidden" id="postBy" name="postBy" [(ngModel)]="appliedservice.applyData.postBy">
@@ -96,10 +97,11 @@
 
             <p class="phead2">Cover Letter</p>
 
-            <textarea [(ngModel)]="inputText" (input)="onInputChange()" [disabled]="isTextareaDisabled()" ngModel
-                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter" required
-                #applyCoverLetter="ngModel" id="applyCoverLetter"
-                [(ngModel)]="appliedservice.applyData.applyCoverLetter" required
+
+            <textarea [(ngModel)]="inputText" (input)="onInputChange()" ngModel
+                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter"  required
+                #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="appliedservice.applyData.applyCoverLetter" required
+
                 class="covcont">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea>
             <div class="row">
                 <div class="col-8"></div>
@@ -330,14 +332,13 @@
                         {{UserData[0].lastName}}</li><br>
                     <!-- <li class=" liscontentvv" class="float-end text-start">{{UserData[0].firstName}} {{UserData[0].lastName}}</li><br> -->
                     <li class=" liscontentvv" class="float-end text-start">{{currentDate | date}}</li><br>
+                    <button type="button" class="btn btnfr" data-bs-dismiss="modal"
+                    >Agree</button>
                 </ul>
+              
             </div>
             <div class="border border-light"></div>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btnfr" data-bs-dismiss="modal">Agree</button>
-            </div>
         </div>
     </div>
 </div>

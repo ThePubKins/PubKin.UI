@@ -87,6 +87,7 @@ export class ApplyNowComponent {
     const file = inputElement.files?.[0];
     this.uploadedFileName = file ? file.name : '';
   }
+  
   handleFormSubmission() {
     this.SuccessModal();
   }
@@ -96,6 +97,7 @@ export class ApplyNowComponent {
     this.success = false;
     setTimeout(() => {
       this.router.navigate(['/freelancers']);
+      
     }, 3000);
   }
 
@@ -119,8 +121,8 @@ export class ApplyNowComponent {
 
 
   AppliedJobs() {
-    // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
-    // this.jobpostData.dateCreated = this.dateFormatted;
+    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
+    this.appliedservice.applyData.applyDate = this.dateFormatted;
     this.appliedservice.applyData.status = 'applied';
     this.appliedservice.applyData.skillSet=this.UserData[0].description ;
     this.appliedservice.applyData.jobTitle = this.JobPost.jobTitle;

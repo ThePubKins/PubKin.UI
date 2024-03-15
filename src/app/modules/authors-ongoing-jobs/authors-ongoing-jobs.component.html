@@ -2,14 +2,19 @@
 <div>
     <hr>
     <!-- <p class="recenvv12">Ongoing Jobs</p> -->
-    <div class="container">
+    <!-- <div class="container">
         <div *ngIf="!anyJobInProgress()" class="recenvv11">
           No Ongoing Jobs are available for you!
         </div>
-      </div>
+      </div> -->
+      <div class="container">
+        <div *ngIf="anyJobInProgress()" class="recenvv11">
+            No Ongoing Jobs are available for you!
+        </div>
+    </div>
+    
     <div class="container" *ngFor="let Post of Posts">
-   
-        <div class="borderboxv11" *ngIf="Post.userId == UserData[0].id && Post.status === 'Ongoing'">
+        <div class="borderboxv11" *ngIf="Post.userId === UserData[0].id && Post.status === 'Ongoing'">
             <div class="row" >
                 <div class="col-10">
                     <p class="recenvv11">{{Post.jobTitle}}</p>

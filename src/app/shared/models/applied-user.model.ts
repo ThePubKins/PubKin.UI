@@ -19,4 +19,5 @@ export interface applied_user {
     AttachFile: string;
     jobUniqueId:string;
     applideUserProfile:string; 
+    applyDate : string;
 }

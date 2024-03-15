@@ -1278,3 +1278,20 @@ input[type=text]:focus {
   border-color:#A426D1;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6);
   }
+
+.profilesettinginfo:hover{
+  color: #A426D1;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+  .profilesettinginfo { 
+    color: #131313;
+    font-family: "League Spartan", sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 25px;
+    line-height: 51px;
+    cursor: pointer;
+}

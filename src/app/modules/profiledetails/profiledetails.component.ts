@@ -256,18 +256,39 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitBankingDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.putBankDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'banking-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
   onSubmitCardDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.putCardDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'banking-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
   onSubmitUpiDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.putUpiDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'banking-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
