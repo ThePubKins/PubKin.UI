@@ -83,7 +83,6 @@ margin-top: 25px;
   margin-left: 5px;
 }
 
-
 .kkempcrd1  { 
   width: 365px;
   height: 280px;
@@ -939,11 +938,11 @@ gap:30px;
 }
 
  
-.rrpubcomcenalign1{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+// .rrpubcomcenalign1{
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
 .rrpubcomendalign1{
   display: flex;
   align-items: flex-end;
@@ -1057,6 +1056,7 @@ gap:30px;
     font-style: normal;
     font-weight: 600;
     line-height: 36px;
+    word-wrap: break-word;
   }
   
   .text03 { 
@@ -1065,7 +1065,8 @@ gap:30px;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: 36px;
+    word-wrap: break-word;
+    line-height: 25px;
   }
   
   .text04 { 

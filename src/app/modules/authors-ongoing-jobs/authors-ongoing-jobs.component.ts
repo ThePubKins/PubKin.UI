@@ -25,6 +25,16 @@ export class AuthorsOngoingJobsComponent implements OnInit {
      this.viewwork = true;
   }
 
+  getCurrentUserOpenJobs(): any[] {
+    const userOpenJobs = this.Posts.some((Post: { status: string;userId:string; }) => Post.status === 'Ongoing' && Post.userId === this.UserData[0].id);
+    return userOpenJobs ? userOpenJobs : [];
+}
+
+  anyJobInProgress() {
+    return this.getCurrentUserOpenJobs().length > 0;
+  }
+
+
   showJobDetails(jobUniqueId: string): void {
     this.router.navigate(['/comments', jobUniqueId]);
   }

@@ -10,45 +10,44 @@
   </div>
 
   <!--Update Congrats Page-->
-<div *ngIf="contentName === 'whoopee'">
-  <div class="text-center flx">
+  <div *ngIf="contentName === 'whoopee'">
+    <div class="text-center flx">
       <div class="ecard" style="    height: 534px;">
-          <img class="cele" src="../assets/cele.gif" alt="">
-          <div class="now">
-             <p class="mhead mhead1">Whoopee! Details have been updated.</p>
-              <p class="mcont">Redirecting Now...</p>
-              <img class="regif regif1" src="../assets/redirect.gif" alt="Pubkin Now">
-              <br>s
-              <img class="fb" routerLink="/freelancers" src="../assets/icon _facebook icon_.png"
-                  alt="Pubkin facebook">
-              <img class="icon" routerLink="/authors" src="../assets/icon _instagram icon_.png" alt="Pubkin facebook">
-              <img class="icon" src="../assets/icon _linkedin_.png" alt="Pubkin facebook">
-              <img class="icon" src="../assets/icon _youtube_.png" alt="Pubkin facebook">
-          </div>
+        <img class="cele" src="../assets/cele.gif" alt="">
+        <div class="now">
+          <p class="mhead mhead1">Whoopee! Details have been updated.</p>
+          <p class="mcont">Redirecting Now...</p>
+          <img class="regif regif1" src="../assets/redirect.gif" alt="Pubkin Now">
+          <br>s
+          <img class="fb" routerLink="/freelancers" src="../assets/icon _facebook icon_.png" alt="Pubkin facebook">
+          <img class="icon" routerLink="/authors" src="../assets/icon _instagram icon_.png" alt="Pubkin facebook">
+          <img class="icon" src="../assets/icon _linkedin_.png" alt="Pubkin facebook">
+          <img class="icon" src="../assets/icon _youtube_.png" alt="Pubkin facebook">
+        </div>
 
       </div>
 
-</div>
-</div>
+    </div>
+  </div>
 
-<!-- Profile Percentage -->
-<form #percentageForm="ngForm" (ngSubmit)="onSubmitpercentage(percentageForm);">
-  <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
-  <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
-  <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
-    [(ngModel)]="User[0].govtIdDetails">
-  <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
-    [(ngModel)]="User[0].portfolioDetails">
-  <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
-    [(ngModel)]="User[0].educationDetails">
-  <input type="hidden" ngModel name="workingDetails" #workingDetails="ngModel" id="workingDetails"
-    [(ngModel)]="User[0].workingDetails">
-  <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
-    [(ngModel)]="User[0].bankingDetails">
-  <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
-    [(ngModel)]="User[0].paymentVerify">
+  <!-- Profile Percentage -->
+  <form #percentageForm="ngForm" (ngSubmit)="onSubmitpercentage(percentageForm);">
+    <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
+    <input type="hidden" ngModel name="details" #details="ngModel" id="details" [(ngModel)]="User[0].details">
+    <input type="hidden" ngModel name="govtIdDetails" #govtIdDetails="ngModel" id="govtIdDetails"
+      [(ngModel)]="User[0].govtIdDetails">
+    <input type="hidden" ngModel name="portfolioDetails" #portfolioDetails="ngModel" id="portfolioDetails"
+      [(ngModel)]="User[0].portfolioDetails">
+    <input type="hidden" ngModel name="educationDetails" #educationDetails="ngModel" id="educationDetails"
+      [(ngModel)]="User[0].educationDetails">
+    <input type="hidden" ngModel name="workingDetails" #workingDetails="ngModel" id="workingDetails"
+      [(ngModel)]="User[0].workingDetails">
+    <input type="hidden" ngModel name="bankingDetails" #bankingDetails="ngModel" id="bankingDetails"
+      [(ngModel)]="User[0].bankingDetails">
+    <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
+      [(ngModel)]="User[0].paymentVerify">
     <button type="submit" class="d-none" #percentagebutton>submit</button>
-</form>
+  </form>
 
   <!--Profile Picture -->
   <div *ngIf="contentName === 'choose-your-picutre-now'">
@@ -90,35 +89,35 @@
       </div>
       <div class="container">
         <div class="row">
-           <div class="container">
-        <div class="row">
-          <div class="col-4">
-            <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <img src="./assets/_add circle_.png" class="rraddcirimg1">
-              <p class="rraddexptxt1">Add Experience
-              <p>
-            </div>
-          </div>
-
-          <ng-container *ngFor="let workDetails of workDetail">
-            <ng-container *ngIf="workDetails.userId == User[0].id">
+          <div class="container">
+            <div class="row">
               <div class="col-4">
-                <div class="rrpubcomcenalign1">
-                  <div class="kkempcrd">
-                    <div class="text02">{{ workDetails.jobTitle }}</div>
-                    <div class="text03">{{ workDetails.companyName }}</div>
-                    <div class="text03">{{ workDetails.companyLocation }}</div>
-                    <div class="text04">{{ workDetails.joiningMonth }} {{ workDetails.joiningYear }} -
-                      {{ workDetails.completedMonth }} {{ workDetails.completedYear }}</div>
-                    <div class="text05">{{ workDetails.description }}</div>
-                  </div>
+                <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <img src="./assets/_add circle_.png" class="rraddcirimg1">
+                  <p class="rraddexptxt1">Add Experience
+                  <p>
                 </div>
               </div>
-            </ng-container>
-          </ng-container>
+
+              <ng-container *ngFor="let workDetails of workDetail">
+                <ng-container *ngIf="workDetails.userId == User[0].id">
+                  <div class="col-4">
+                    <div class="rrpubcomcenalign1">
+                      <div class="kkempcrd">
+                        <div class="text02">{{ workDetails.jobTitle }}</div>
+                        <div class="text03">{{ workDetails.companyName }}</div>
+                        <div class="text03">{{ workDetails.companyLocation }}</div>
+                        <div class="text04">{{ workDetails.joiningMonth }} {{ workDetails.joiningYear }} -
+                          {{ workDetails.completedMonth }} {{ workDetails.completedYear }}</div>
+                        <div class="text05">{{ workDetails.description }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
         </div>
-      </div>
-              </div>
       </div>
 
       <div class="container ">
@@ -126,7 +125,7 @@
         <button class="btn kkempbtn2" routerLink="/profile/freelancing-details">Save Details</button>
       </div>
 
-      <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade " id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog  dia12">
           <div class="modal-content kkadedudt">
             <div class="modal-header mohead">
@@ -157,8 +156,7 @@
                   <p class="kkeduhdtg kkeduhdtg1">Company*</p>
                   <input class="kkin1" type="text" placeholder="eg: ABC solution" ngModel name="companyName"
                     #companyName="ngModel" id="companyName" name="companyName"
-                    [(ngModel)]="workservice.workData.companyName" minlength="0" maxlength="35" required
-                    >
+                    [(ngModel)]="workservice.workData.companyName" minlength="0" maxlength="35" required>
                   <span *ngIf="!companyName.valid && (companyName.touched || companyName.dirty)">
                     <span class="errormsg" *ngIf="companyName.errors?.['required']">
                       Company Name is Required
@@ -170,7 +168,7 @@
                   <p class="kkeduhdtg kkeduhdtg1">Location</p>
                   <input class="kkin1" type="text" placeholder="eg: Bangalore" id="companyLocation"
                     #companyLocation="ngModel" name="companyLocation" [(ngModel)]="workservice.workData.companyLocation"
-                    required minlength="0" maxlength="45"  (click)="increaseWorkingPercentage();">
+                    required minlength="0" maxlength="45" (click)="increaseWorkingPercentage();">
                   <span *ngIf="!companyLocation.valid && (companyLocation.touched || companyLocation.dirty)">
                     <span class="errormsg" *ngIf="companyLocation.errors?.['required']">
                       Company Location is Required
@@ -195,8 +193,8 @@
                   </div>
                   <div class="container kkyrflx1">
                     <div class="kkrow1">
-                      <select  class="kkin12" id="joiningMonth" name="joiningMonth" #joiningMonth="ngModel"
-                        [(ngModel)]="workservice.workData.joiningMonth" required >
+                      <select class="kkin12" id="joiningMonth" name="joiningMonth" #joiningMonth="ngModel"
+                        [(ngModel)]="workservice.workData.joiningMonth" required>
                         <option selected>Jan</option>
                         <option selected>Feb</option>
                         <option selected>Mar</option>
@@ -211,7 +209,8 @@
                         <option selected>Dec</option>
                       </select>
 
-                      <select id="year1" [(ngModel)]="selectedYear1" (change)="updateSelectedYears('year1')"      class="kkin12" ngModel name="joiningYear" id="joiningYear" name="joiningYear"
+                      <select id="year1" [(ngModel)]="selectedYear1" (change)="updateSelectedYears('year1')"
+                        class="kkin12" ngModel name="joiningYear" id="joiningYear" name="joiningYear"
                         [(ngModel)]="workservice.workData.joiningYear" required>
                         <option *ngFor="let year of years" [value]="year">{{ year }}</option>
 
@@ -219,7 +218,7 @@
                     </div>
                     <div class="kkrow2">
                       <select class="kkin12" id="completedMonth" name="completedMonth"
-                        [(ngModel)]="workservice.workData.completedMonth" >
+                        [(ngModel)]="workservice.workData.completedMonth">
                         <option selected>Jan</option>
                         <option selected>Feb</option>
                         <option selected>Mar</option>
@@ -233,10 +232,10 @@
                         <option selected>Nov</option>
                         <option selected>Dec</option>
                       </select>
-                      <select id="year2" [(ngModel)]="selectedYear2" (change)="updateSelectedYears('year2')" class="kkin12" ngModel name="completedyear" #completedyear="ngModel" id="completedyear"
-                        [(ngModel)]="workservice.workData.completedYear" >
+                      <select id="year2" [(ngModel)]="selectedYear2" (change)="updateSelectedYears('year2')"
+                        class="kkin12" ngModel name="completedyear" #completedyear="ngModel" id="completedyear"
+                        [(ngModel)]="workservice.workData.completedYear">
                         <option *ngFor="let year of getAvailableYears()" [value]="year">{{ year }}</option>
-
                       </select>
                     </div>
                   </div>
@@ -272,31 +271,31 @@
       <p class="kkemphus1">Your works, projects. etc</p>
     </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-4">
-      <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <img src="./assets/_add circle_.png" class="rraddcirimg1">
-        <p class="rraddexptxt1">Add Projects, links</p>
-      </div>
-    </div>
-    <ng-container *ngFor="let portfolio of portfolios">
-      <div class="col-4" *ngIf="portfolio.userId == User[0].id">
-        <div class="rrpubcomcenalign1">
-          <div class="kkempcrd">
-            <div class="text02">{{ portfolio.projectTitle }}</div>
-            <div class="text03">{{ portfolio.projectLink }}</div>
-            <div class="text05">{{ portfolio.description | slice:0:170 }}</div>
+    <div class="container wrkcontainer">
+      <div class="row">
+        <div class="col-4">
+          <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <img src="./assets/_add circle_.png" class="rraddcirimg1">
+            <p class="rraddexptxt1">Add Projects, links</p>
           </div>
         </div>
+        <ng-container *ngFor="let portfolio of portfolios">
+          <div class="col-4" *ngIf="portfolio.userId == User[0].id">
+            <div class="rrpubcomcenalign1">
+              <div class="kkempcrd">
+                <div class="text02">{{ portfolio.projectTitle }}</div>
+                <div class="text03">{{ portfolio.projectLink }}</div>
+                <div class="text05">{{ portfolio.description | slice:0:170 }}</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
       </div>
-    </ng-container>
-  </div>
-</div>
+    </div>
 
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-      <button class="btn kkempbtn2" routerLink="/profile/education-details" >Save Details</button>
+      <button class="btn kkempbtn2" routerLink="/profile/education-details">Save Details</button>
     </div>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -306,7 +305,7 @@
           <div class="modal-content kkcmodel">
             <input type="hidden" id="id" name="id" [(ngModel)]="portfolioService.portfolioFormData.id">
             <input type="hidden" id="createdBy" name="createdBy"
-              [(ngModel)]="portfolioService.portfolioFormData.createdBy" >
+              [(ngModel)]="portfolioService.portfolioFormData.createdBy">
             <input type="hidden" id="dateCreated" name="dateCreated"
               [(ngModel)]="portfolioService.portfolioFormData.dateCreated">
             <input type="hidden" id="userId" name="userId" [(ngModel)]="portfolioService.portfolioFormData.userId">
@@ -329,8 +328,9 @@
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label projtitlevv ">Web Link (if available)</label>
-                <input type="text" class="form-control placvv" id="projectLink" name="projectLink" 
-                  [(ngModel)]="portfolioService.portfolioFormData.projectLink" placeholder="www.portfolio.com" (click)="incresePortfolioPercentage()">
+                <input type="text" class="form-control placvv" id="projectLink" name="projectLink"
+                  [(ngModel)]="portfolioService.portfolioFormData.projectLink" placeholder="www.portfolio.com"
+                  (click)="incresePortfolioPercentage()">
               </div>
 
               <!-- <div class="container">
@@ -362,8 +362,9 @@
                     </div>
                   </div>
                 </div>
-              </div> --> 
-              <button type="submit" class="btn savevv" data-bs-dismiss="modal" [disabled]="portfolioForm.invalid"  (click)="PercentageSubmit();"> Save</button>
+              </div> -->
+              <button type="submit" class="btn savevv" data-bs-dismiss="modal" [disabled]="portfolioForm.invalid"
+                (click)="PercentageSubmit();"> Save</button>
             </div>
           </div>
         </form>
@@ -378,7 +379,7 @@
       <p class="kkemphus">Add your Education and Certification</p>
       <p class="kkemphus1">Showcase your Degrees and Diplomas</p>
     </div>
-    <div class="container">
+    <div class="container wrkcontainer">
       <div class="row">
         <!-- Add Projects, links card -->
         <div class="col-4">
@@ -387,7 +388,7 @@
             <p class="rraddexptxt1">Education Certification</p>
           </div>
         </div>
-    
+
         <!-- Loop through education details -->
         <ng-container *ngFor="let educationDetails of educationDetail">
           <div class="col-4" *ngIf="educationDetails.usersId == User[0].id">
@@ -403,7 +404,7 @@
         </ng-container>
       </div>
     </div>
-    
+
 
 
     <div class="container ">
@@ -411,7 +412,7 @@
       <button class="btn kkempbtn2" routerLink="/profile/employment-history">Save Details</button>
     </div>
 
-    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade " id="exampleModal"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog dia12">
         <div class="modal-content kkadedudt">
           <div class="modal-header mohead">
@@ -432,16 +433,17 @@
                   [(ngModel)]="educationservice.educationData.boardUniversity">
                 <div class="kkeduhdtg">&nbsp;&nbsp;School/College Name*<div>
                     <input class="kkin1" type="text" placeholder="eg: ABC University" ngModel name="instituteName"
-                      minlength="0" maxlength="35" #instituteName="ngModel" id="instituteName"
+                      minlength="0" maxlength="90" #instituteName="ngModel" id="instituteName"
                       [(ngModel)]="educationservice.educationData.instituteName" required>
                     <span *ngIf="!instituteName.valid && instituteName.touched">
                       <span class="errormsg" *ngIf="instituteName.errors?.['required']">
                         College Name is required
                       </span>
                     </span>
-                    <div class="kkeduhdtg">Degree</div>
+                    <div class="kkeduhdtg">Degree/Board of Schooling/Diploma</div>
                     <input class="kkin1" type="text" placeholder="eg: Bachelors" ngModel name="department" minlength="0"
-                      maxlength="35" #department="ngModel" id="department" (click)="FetchDetails();increseEducationPercentage();"
+                      maxlength="35" #department="ngModel" id="department"
+                      (click)="FetchDetails();increseEducationPercentage();"
                       [(ngModel)]="educationservice.educationData.department" required>
                     <span *ngIf="!department.valid && department.touched">
                       <span class="errormsg " *ngIf="department.errors?.['required']">
@@ -461,32 +463,27 @@
                       <div class="row">
                         <div class="col-6">
                           <div class="kkeduhdtg">Year of Joining</div>
-                          <input class="kkyrbtn1" type="text" ngModel name="yearOfJoining" #yearOfJoining="ngModel"
-                            id="yearOfJoining" pattern='^[0-9]+$' minlength="0" maxlength="4" placeholder="eg: 2019"
-                            [(ngModel)]="educationservice.educationData.yearOfJoining" required>
+                          <select [(ngModel)]="selectedYear1" (change)="updateSelectedYears('year1')"
+                            class="kkyrbtn1" ngModel name="yearOfJoining" #yearOfJoining="ngModel"
+                            id="yearOfJoining"   [(ngModel)]="educationservice.educationData.yearOfJoining" required
+                            [(ngModel)]="workservice.workData.joiningYear" required>
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                          </select>
                           <span *ngIf="!yearOfJoining.valid && yearOfJoining.touched">
                             <span class="errormsg " *ngIf="yearOfJoining.errors?.['required']">
                               Year of Joining is required
-                            </span>
-                            <span class="errormsg" *ngIf="yearOfJoining.errors?.['pattern']">
-                              Only numeric are allowed
-                            </span>
+                            </span>                            
                           </span>
                         </div>
                         <div class="col-6">
                           <div class="kkeduhdtg">Year of Completion</div>
-                          <input class="kkyrbtn1" type="text" ngModel name="yearOfCompletion"
-                            #yearOfCompletion="ngModel" pattern='^[0-9]+$' minlength="0" maxlength="4" placeholder="eg: 2022"
-                            id="yearOfCompletion" [(ngModel)]="educationservice.educationData.yearOfCompletion"
-                            required>
-                          <span *ngIf="!yearOfCompletion.valid && yearOfCompletion.touched">
-                            <span class="errormsg " *ngIf="yearOfCompletion.errors?.['required']">
-                              Year of Completion is required
-                            </span>
-                            <span class="errormsg" *ngIf="yearOfCompletion.errors?.['pattern']">
-                              Only numeric are allowed
-                            </span>
-                          </span>
+                          <select  [(ngModel)]="selectedYear2" (change)="updateSelectedYears('year2')"
+                          class="kkyrbtn1" ngModel name="yearOfCompletion"
+                          #yearOfCompletion="ngModel" id="yearOfCompletion"
+                          [(ngModel)]="educationservice.educationData.yearOfCompletion" required>
+                          <option *ngFor="let year of getAvailableYears()" [value]="year">{{ year }}</option>
+                        </select>                       
+                         
                         </div>
                       </div>
                     </div>
@@ -498,6 +495,9 @@
                     <span *ngIf="!description.valid && description.touched">
                       <span class="errormsg float-start" *ngIf="description.errors?.['required']">
                         Description is required
+                      </span>
+                      <span class="errormsg float-start" *ngIf="description.errors?.['maxlength']">
+                        You reached the maximum length (100 characters)
                       </span>
                     </span>
                   </div>
@@ -630,7 +630,8 @@
       <div class="container ">
         <button class="btn kkempbtn1" (click)="GoNextBtn('button1')"> Back</button>
         <button class="btn skip" routerLink="/freelancers">skip for now</button>
-        <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button3');increseFreelancingPercentage();">Next</button>
+        <button class="btn kkempbtn2 kkempbtn3"
+          (click)="GoNextBtn('button3');increseFreelancingPercentage();">Next</button>
       </div>
     </div>
 
@@ -674,12 +675,12 @@
       <div class="row">
         <!-- Add Projects, links card -->
         <div class="col-4">
-          <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <div class="kkempcrd" data-bs-toggle="modal" data-bs-target="#exampleModal" >
             <img src="./assets/_add circle_.png" class="rraddcirimg1">
             <p class="rraddexptxt1">Add rates</p>
           </div>
         </div>
-    
+
         <!-- Display priceSkills data -->
         <ng-container *ngFor="let priceSkill of priceSkills">
           <div class="col-4" *ngIf="priceSkill.userId == User[0].id">
@@ -687,7 +688,8 @@
               <div class="kkempcrd">
                 <div class="text02">{{ priceSkill.skillSet }}</div>
                 <div class="text03">{{ priceSkill.uom }}</div>
-                <div class="text03">{{ priceSkill.simplePrice }} - {{ priceSkill.mediumPrice }} - {{ priceSkill.complexPrice }}</div>
+                <div class="text03">{{ priceSkill.simplePrice }} - {{ priceSkill.mediumPrice }} - {{
+                  priceSkill.complexPrice }}</div>
                 <div class="text04">{{ priceSkill.simpleDescription }}</div>
               </div>
             </div>
@@ -695,7 +697,7 @@
         </ng-container>
       </div>
     </div>
-    
+
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
       <button class="btn kkempbtn2 rrextrawidthbtn1" routerLink="/profile/govtId-details">Next, Add Banking
@@ -707,7 +709,7 @@
 
 
     <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)">
-      <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog dia12">
           <div class="modal-content kkadedudt">
             <div class="modal-header mohead">
@@ -741,7 +743,8 @@
                     <!-- (click)="hideRates()" -->
                     <div class="kkeduhdtg">How do you like to set pricing?</div>
                     <select class="kkin1" placeholder="eg: Compositor" ngModel name="uom" #uom="ngModel" id="uom"
-                      [(ngModel)]="priceService.pricingSkillData.uom" required (click)="incresePricingSkillPercentage()">
+                      [(ngModel)]="priceService.pricingSkillData.uom" required
+                      (click)="incresePricingSkillPercentage()">
                       <option class="kkin1" selected> per hour</option>
                       <option class="kkin1">word count</option>
                       <option class="kkin1"> per book</option>
@@ -783,7 +786,7 @@
                               <span class="errormsg" *ngIf="complexDescription.errors?.['required']">
                                 Description is required
                               </span>
-                     
+
                             </span>
                           </div>
                         </div>
@@ -829,7 +832,8 @@
                         <button class="skip1">Add skill</button>
                       </div>
                       <div class="col-3">
-                        <button class="btn skip2" data-bs-dismiss="modal" type="submit" [disabled]="priceForm.invalid" (click)="PercentageSubmit()">Save</button>
+                        <button class="btn skip2" data-bs-dismiss="modal" type="submit" [disabled]="priceForm.invalid"
+                          (click)="PercentageSubmit()">Save</button>
                       </div>
                     </div>
                   </div>
@@ -876,7 +880,8 @@
             <div>
               <div>
                 <input type="text" ng required placeholder="JOHN DOE" pattern='^[a-zA-Z\s]+$' class="rrpubjohntxt1"
-                  id="idNumber" required name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber">
+                  id="idNumber" required name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber"
+                  (click)="increseGovtDetailsPercentage()">
                 <span class="errormsg" *ngIf="!idNumber.valid && (idNumber.touched || idNumber.dirty)">
                   <span class="errormsg" *ngIf="idNumber.errors?.['pattern']">
                     Only Characters are Allowed
@@ -887,7 +892,7 @@
                 </span>
               </div>
               <select class="countrySelect govtselect rrcontopalign2" ngModel name="country" #country="ngModel"
-                id="country" [(ngModel)]="User[0].country" (click)="increseGovtDetailsPercentage()">
+                id="country" [(ngModel)]="User[0].country">
                 <option selected value="India" style="padding: 20px;">India</option>
                 <option value="USA">USA</option>
                 <option value="Australia">Australia</option>
@@ -909,10 +914,10 @@
         <div class="col-6">
           <div class="rrpubcomendalign1">
             <div class="govtupload ">
-              <div class="rrpubcomcenalign1">
+              <div class="rrpubcomcenalign1 d-flex justify-content-center">
                 <img class="govtimg" src="../assets/govt upload.png" alt="Govt Id">
               </div>
-              <div class="rrpubcomcenalign1">
+              <div class="rrpubcomcenalign1 d-flex justify-content-center">
                 <p class="uplohead">Upload or Drag your ID image</p>
               </div>
               <div class="rrpubcomcenalign1">
@@ -926,7 +931,8 @@
 
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-      <button class="btn kkempbtn2" routerLink="/freelancers" type="submit"  (click)="govtsubmit();PercentageSubmit()">Save
+      <button class="btn kkempbtn2" routerLink="/freelancers" type="submit"
+        (click)="govtsubmit();PercentageSubmit()">Save
         Details</button>
     </div>
   </div>
@@ -971,7 +977,8 @@
             <div class="row mt-4">
               <p class="popskill">Selected and Popular skills</p>
               <div class="col-4 mt-2" *ngFor="let skill of skills; let i = index">
-                <div class="addsk1"  [class.addsk]="selectedSkills.includes(skill)" (click)="toggleSkill(skill);increseDetailsPercentage()">
+                <div class="addsk1" [class.addsk]="selectedSkills.includes(skill)"
+                  (click)="toggleSkill(skill);increseDetailsPercentage()">
                   {{ skill }} &nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                     <path d="M12.728 4.75684L4.24275 13.2421" stroke="white" stroke-width="2" stroke-linecap="round" />
@@ -994,7 +1001,8 @@
             <input type="text" class="intLocAuth" placeholder="Location " id="nationality" required name="nationality"
               #nationality="ngModel" [(ngModel)]="User[0].nationality">
             <p class="disclaimer">*We will not share your information to anyone.</p>
-            <button class="btn mat-button saveauth" type="submit" [disabled]="personalForm.invalid" routerLink="/authors">Save</button>
+            <button class="btn mat-button saveauth" type="submit" [disabled]="personalForm.invalid"
+              routerLink="/authors">Save</button>
           </form>
         </div>
       </div>
@@ -1031,7 +1039,7 @@
         <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
           [(ngModel)]="User[0].paymentVerify">
         <input type="hidden" ngModel name="idNumber" #idNumber="ngModel" id="idNumber" [(ngModel)]="User[0].idNumber">
-        <input type="hidden" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country" >
+        <input type="hidden" ngModel name="country" #country="ngModel" id="country" [(ngModel)]="User[0].country">
         <input type="hidden" ngModel name="idType" #idType="ngModel" id="idType" [(ngModel)]="User[0].idType">
         <button type="submit" class="d-none" #idbutton>Submit</button>
         <div class="row">
@@ -1047,7 +1055,7 @@
               <div>
                 <div>
                   <input type="text" required placeholder="JOHN DOE" pattern='^[a-zA-Z\s]+$' class="rrpubjohntxt1"
-                    id="idNumber" name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber" (click)="increaseGovtPercentage()">
+                    id="idNumber" name="idNumber" #idNumber="ngModel" [(ngModel)]="User[0].idNumber">
                   <span class="errormsg" *ngIf="!idNumber.valid && (idNumber.touched || idNumber.dirty)">
                     <span class="errormsg" *ngIf="idNumber.errors?.['pattern']">
                       Only Characters are Allowed
@@ -1058,7 +1066,7 @@
                   </span>
                 </div>
                 <select class="countrySelect govtselect rrcontopalign2" id="country" required name="country"
-                  #country="ngModel" [(ngModel)]="User[0].country">
+                  #country="ngModel" [(ngModel)]="User[0].country" (click)="increaseGovtPercentage()">
                   <option selected value="India" style="padding: 20px;">India</option>
                   <option value="USA">USA</option>
                   <option value="Australia">Australia</option>
@@ -1080,10 +1088,10 @@
           <div class="col-6">
             <div class="rrpubcomendalign1">
               <div class="govtupload ">
-                <div class="rrpubcomcenalign1">
+                <div class="rrpubcomcenalign1 d-flex justify-content-center">
                   <img class="govtimg" src="../assets/govt upload.png" alt="Govt Id">
                 </div>
-                <div class="rrpubcomcenalign1">
+                <div class="rrpubcomcenalign1 d-flex justify-content-center">
                   <p class="uplohead">Upload or Drag your ID image</p>
                 </div>
                 <div class="rrpubcomcenalign1">
@@ -1105,7 +1113,7 @@
 
   <!-- Banking Details for the Authors -->
   <div *ngIf="contentName === 'banking-details'">
-    <div class="container" >
+    <div class="container">
       <div class="row kkbillr">
         <div class="col-8">
           <p class="kkadbilltx">Add Banking Details</p>
@@ -1123,7 +1131,7 @@
     </div>
 
     <div class="container" *ngFor="let bankData of bankDetails">
-      <div class="row" *ngIf="bankData.userId === User[0].id">
+      <div class="row" *ngIf="bankData.id === User[0].id">
         <div class="col-8">
           <div class="kkbillingcon">
             <p class="kkbnktx1">Card Details</p>
@@ -1134,10 +1142,12 @@
                   <div><img *ngIf="bankData.nameoftheCard === 'Visa'" src="./assets/visadpt.png">
                     <img *ngIf="bankData.nameoftheCard === 'Rupay'" src="./assets/Vector (1).svg">
                     <span class="kkbnktx3"> &nbsp;&nbsp;&nbsp;{{bankData.nameoftheCard}}
-                      ending in <span class="kkbnktx4">{{bankData.cardNumber | slice:12:16}}</span></span></div>
+                      ending in <span class="kkbnktx4">{{bankData.cardNumber | slice:12:16}}</span></span>
+                  </div>
                 </div>
                 <div class="col-4">
-                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
+                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img
+                        src="./assets/dele.png"></span></p>
                 </div>
               </div>
             </div>
@@ -1148,10 +1158,12 @@
             <div class="container">
               <div class="row kkbillr1">
                 <div class="col-8">
-                  <div><img src="./assets/visadpt.png"><span class="kkbnktx3"> &nbsp;&nbsp;&nbsp;UPI ID <span class="kkbnktx4">{{bankData.upiUrl}}</span></span></div>
+                  <div><img src="./assets/visadpt.png"><span class="kkbnktx3"> &nbsp;&nbsp;&nbsp;UPI ID <span
+                        class="kkbnktx4">{{bankData.upiUrl}}</span></span></div>
                 </div>
                 <div class="col-4">
-                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
+                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img
+                        src="./assets/dele.png"></span></p>
                 </div>
               </div>
             </div>
@@ -1166,7 +1178,8 @@
                       ending in <span class="kkbnktx4">3457</span></span></div>
                 </div>
                 <div class="col-4">
-                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img src="./assets/dele.png"></span></p>
+                  <p class="kkbnktx5" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit<span class="kkdel"><img
+                        src="./assets/dele.png"></span></p>
                 </div>
               </div>
             </div>
@@ -1174,7 +1187,7 @@
         </div>
       </div>
     </div>
-    
+
 
     <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
@@ -1227,7 +1240,7 @@
               <form #upiDetailsform="ngForm"
                 (ngSubmit)="onSubmitUpiDetails(upiDetailsform);onSubmitpercentage(upiDetailsform);">
                 <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
-                <input type="text" id="userId" name="userId" [(ngModel)]="User[0].id">
+                <input type="hidden" id="userId" name="userId" [(ngModel)]="User[0].id">
                 <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
                 <input type="hidden" id="dateLastModified" name="dateLastModified"
                   [(ngModel)]="User[0].dateLastModified">
@@ -1245,19 +1258,19 @@
                   [(ngModel)]="User[0].bankingDetails">
                 <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
                   [(ngModel)]="User[0].paymentVerify">
-                
+
                 <!-- <input type="text" placeholder="UPI Method" class="kkbilinput1" ngModel id="upi" name="upi"
                   #upi="ngModel" [(ngModel)]="bankData.upi" required > -->
-                  <select class="kkbilinput1 form-control" id="upi" name="upi" [(ngModel)]="bankData.upi" required>
-                    <option value="" disabled selected>Select UPI Method</option>
-                    <option class="ddis"value="method1">Gpay</option>
-                    <option class="ddis" value="method2">Paytm</option>
-                
-                </select>
-                
-                <input type="text" placeholder="Paste Your UPI URL" class="kkbilinput1" ngModel id="upiUrl" name="upiUrl"
+                <select class="kkbilinput1 form-control" id="upi" name="upi" [(ngModel)]="bankData.upi" required>
+                  <option value="" disabled selected>Select UPI Method</option>
+                  <option class="ddis" value="method1">Gpay</option>
+                  <option class="ddis" value="method2">Paytm</option>
 
-                #upiUrl="ngModel" [(ngModel)]="bankData.upiUrl" required (click)="increseBankPercentage()">
+                </select>
+
+                <input type="text" placeholder="Paste Your UPI URL" class="kkbilinput1" ngModel id="upiUrl"
+                  name="upiUrl" #upiUrl="ngModel" [(ngModel)]="bankData.upiUrl" required
+                  (click)="increseBankPercentage()">
                 <!-- <div class="container kkreadiobil">
                   <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                   <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
@@ -1265,7 +1278,8 @@
                   </label>
                 </div> -->
                 <div class="kkbiladcd">
-                  <button class="btn kkbiladcd1" [disabled]="upiDetailsform.invalid"  data-bs-dismiss="modal" aria-label="Close" type="submit">Confirm Details</button>
+                  <button class="btn kkbiladcd1" [disabled]="upiDetailsform.invalid" data-bs-dismiss="modal"
+                    aria-label="Close" type="submit">Confirm Details</button>
                 </div>
               </form>
             </div>
@@ -1329,7 +1343,8 @@
                   </label>
                 </div> -->
                 <div class="kkbiladcd">
-                  <button class="btn kkbiladcd1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="bankingDetailsform.invalid" type="submit">Confirm Details</button>
+                  <button class="btn kkbiladcd1" data-bs-dismiss="modal" aria-label="Close"
+                    [disabled]="bankingDetailsform.invalid" type="submit">Confirm Details</button>
                 </div>
               </form>
             </div>
@@ -1380,7 +1395,7 @@
                 <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
                   [(ngModel)]="User[0].paymentVerify">
                 <input type="text" placeholder="Card Number" class="kkbilinput1" id="cardNumber" ngModel minlength="1"
-                  maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankData.cardNumber" required 
+                  maxlength="16" name="cardNumber" #cardNumber="ngModel" [(ngModel)]="bankData.cardNumber" required
                   pattern="[0-9\s]+$" />
                 <span *ngIf="!cardNumber.valid && cardNumber.touched">
                   <span class="errormsg" *ngIf="cardNumber.errors?.['required']">
@@ -1401,15 +1416,17 @@
                     Only Characters are allowed
                   </span>
                 </span> -->
-                <select class="kkbilinput1" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard" required>
+                <select class="kkbilinput1" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard"
+                  required>
                   <option value="" disabled selected>Select Card Name</option>
                   <option class="ddis" value="method1">Visa</option>
-                  <option class="ddis"value="method2">Rupay</option>
-              </select>
+                  <option class="ddis" value="method2">Rupay</option>
+                </select>
                 <div class="kbiladcrd1">
-                  <input type="text" class="kkbilinput2" placeholder="Expiry Date" ngModel id="expiryDate"
-                    #expiryDate="ngModel" minlength="1" maxlength="6" name="expiryDate"
-                    [(ngModel)]="bankData.expiryDate" required pattern="[0-9]+$" (click)="increseBankPercentage();">
+                  <input type="text" class="kkbilinput2" placeholder="MM/YYYY" ngModel id="expiryDate"
+                    #expiryDate="ngModel" minlength="1" maxlength="8" name="expiryDate"
+                    [(ngModel)]="bankData.expiryDate" required pattern="[0-9]+/[0-9]+$"
+                    (click)="increseBankPercentage();">
                   <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
                     minlength="1" maxlength="3" [(ngModel)]="bankData.cvv" required pattern="[0-9]+$">
                 </div>
@@ -1447,6 +1464,3 @@
     </div>
   </div>
 </div>
-
-
-

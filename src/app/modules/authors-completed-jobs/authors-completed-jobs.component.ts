@@ -37,8 +37,13 @@ export class AuthorsCompletedJobsComponent {
     this.router.navigate(['/comments', jobUniqueId]);
   }
 
-  anyJobInProgress(): boolean {
-    return this.jobPosts.some((Apply: { status: string; }) => Apply.status === 'completed');
+  getCurrentUserOpenJobs(): any[] {
+    const userOpenJobs = this.jobPosts.some((jobPost: { status: string;userId:string; }) => jobPost.status === 'Ongoing' && jobPost.userId === this.currentUser[0].id);
+    return userOpenJobs ? userOpenJobs : [];
+}
+
+  anyJobInProgress() {
+    return this.getCurrentUserOpenJobs().length > 0;
   }
 
 

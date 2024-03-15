@@ -42,7 +42,7 @@ export const routes: Routes = [
   { path: 'comments/:id', component: CommentsComponent },
   { path: 'freelancers/job-offers', component: ProgressJobsComponent },
   { path: 'freelancers/ongoing-jobs', component: OngoingJobsComponent },
-  { path: 'WhatisPubKin?', component: FootertagComponent },
+  { path: 'docs/:content', component: FootertagComponent },
   { path: 'payment', component: PaymentComponent }
 ];
 

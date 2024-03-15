@@ -82,12 +82,12 @@
         </div>
         <div style="margin-top: 26px;">
           <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
-            <input type="hidden" id="id" name="id" [(ngModel)]="Applies[0].id">
+            <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.id">
             <input type="hidden" id="status" name="status" [(ngModel)]="Applies[0].status">
-            <button (click)="submitNow();" type="submit" class="rejectconfirm1">Accept Offer</button>
+            <button (click)="submitNow();"  type="submit" class="rejectconfirm1">Accept Offer</button>
           </form>
           <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
-            <input type="hidden" id="id" name="id" [(ngModel)]="Applies[0].jobId">
+            <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.jobId">
             <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
             <button  #submitbutton type="submit" class="d-none">Accept Offer</button>
           </form>

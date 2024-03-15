@@ -19,7 +19,11 @@
         </div>
         <hr class="hrmain">
     </div>
-
+<div class="container">
+    <div *ngIf="!anyJobInProgress()" class="phead">
+      No Job Posts are available for you!
+    </div>
+  </div>
     <div class="container"  *ngFor="let Post of Posts  | jobsearch : searchTerm; ">
         <div *ngIf="Post.userId == UserData[0].id && Post.status === 'Open'">
         <div class="row" >
@@ -31,13 +35,10 @@
                 <img class="show12" src="../assets/show more.png" alt="Pubkin Its yours" (click)="toggleIcons(Post)">  
                 <div class="EDITDEL" *ngIf="Post.showIcons" >
                         <!-- <img  src="./assets/Frame 193.png"> -->
-                        <img src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel">                
-                
+                        <img  src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel" (click)="ApplyModal(Post);ChangeStatus()">                
             </div>
         </div>
         <p class="posted">Posted 1 day ago</p>
-        <!-- <button><a target="_blank"  [routerLink]="['/authors/accept-a-request/pick-now', Post.jobId]" class="text-decoration-none">ramasamy</a></button> -->
-
         <p class="prop" [routerLink]="['/authors/accept-a-request/pick-now', Post.jobId]"> <img class="cicr" src="../assets/Ellipse 40.png" alt="Ellipse">New Proposals: 0<span
                 class="tot">Total Proposal: 0</span></p>
         <hr class="sub">
@@ -49,7 +50,7 @@
 
 
   <div class="modal fade" id="deletmodel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered" >
       <div class="modal-content">
         <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
         <div class="pad1" >
@@ -57,9 +58,13 @@
   
             <p class="c22" id="exampleModalLabel5"><b>Do you want delete this post ?</b></p>
           </div>
-          <div class="kksubbtn">
+          <div class="kksubbtn" *ngIf="selectedhire">
             <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
-            <button type="button" class="btn kkkbtncn">Confirm</button>
+            <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
+              <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.id">
+              <input type="hidden" id="status" name="status" [(ngModel)]="selectedhire.status">
+            <button type="submit" class="btn kkkbtncn">Confirm</button>
+            </form>
           </div>
         </div>
       </div>

@@ -63,12 +63,10 @@ export class FreelancerComponent implements OnInit {
 
   }
 
-
   //Search input functionality
   onSearchChange(event: any) {
     this.searchTerm = event.target.value;
   }
-
 
   hidden() {
     this.hide = !this.hide

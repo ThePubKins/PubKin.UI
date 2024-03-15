@@ -97,12 +97,12 @@
              <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
          </div>
               <div class="kkindbx" *ngIf="calculateTotal() < 99">
-                <p class=" kkindbx2 " *ngIf="!UserData[0].portfolioDetails" >Add Portfolio</p>
-                <p class="kkindbx2" *ngIf="!UserData[0].educationDetails">Add Education Details</p>
-                <p class="kkindbx2" *ngIf="!UserData[0].workingDetails">Add Work Details</p>
-                <p class="kkindbx2" *ngIf="!UserData[0].details">Add Freelancing details</p>
-                <p class="kkindbx2" *ngIf="!UserData[0].bankingDetails">Add Pricing Details</p>
-                <p class="kkindbx2" *ngIf="!UserData[0].govtIdDetails">Verify with Govt.ID</p>
+                <p class=" kkindbx2 " *ngIf="!UserData[0].portfolioDetails" routerLink="/profile/portfolio">Add Portfolio</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].educationDetails" routerLink="/profile/education-details">Add Education Details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].workingDetails" routerLink="/profile/employment-history" >Add Work Details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].details" routerLink="/profile/freelancing-details">Add Freelancing details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].bankingDetails"  routerLink="/profile/payment">Add Pricing Details</p>
+                <p class="kkindbx2" *ngIf="!UserData[0].govtIdDetails" routerLink="/profile/govtId-details" >Verify with Govt.ID</p>
               </div>
             </div>
           </div>
@@ -141,7 +141,6 @@
         </div>
       </div>
     </div>
- 
   </div>
 </div>
  </div>

@@ -1,7 +1,7 @@
 <!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
 <form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
     <input type="hidden" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
-    <!-- <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated"> -->
+    <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
     <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobservice.jobData.createdBy">
     <input type="hidden" id="userId" name="userId" [(ngModel)]="jobservice.jobData.userId">
     <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobservice.jobData.jobUniqueId">
@@ -86,7 +86,7 @@
                 <button class="back" routerLink="/authors">Back</button>
             </div>
             <div class="col-5">
-                <button class="next" (click)="GoNextBtn('button2')">Next</button>
+                <button class="next" (click)="GoNextBtn('button2')" >Next</button>
             </div>
             <div class="col-1">
 

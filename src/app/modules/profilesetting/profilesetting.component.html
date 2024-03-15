@@ -1,5 +1,10 @@
 <div class="pcview">
+  <div *ngIf="User[0].role === 'freelancer'">
   <app-freelancernav></app-freelancernav>
+</div>
+<div *ngIf="User[0].role === 'author'">
+  <app-author-nav></app-author-nav>
+</div>
   <hr>
   <div class="container">
     <div class="row">

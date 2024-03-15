@@ -26,7 +26,6 @@ export class JobpostService {
     return this.apiService.get(`JobPost/${jobId}`);
   }
 
-
   JobStatus(jobData: any): Observable<any> {
     return this.apiService.put(`JobPost/status`,jobData);
   }

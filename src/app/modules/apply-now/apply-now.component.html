@@ -93,8 +93,8 @@
 
             <p class="phead2">Cover Letter</p>
 
-            <textarea [(ngModel)]="inputText" (input)="onInputChange()" [disabled]="isTextareaDisabled()"
-                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter" ngModel required
+            <textarea [(ngModel)]="inputText" (input)="onInputChange()" [disabled]="isTextareaDisabled()"ngModel
+                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter"  required
                 #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="appliedservice.applyData.applyCoverLetter" required
                 class="covcont">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea>
             <div class="row">
@@ -148,7 +148,7 @@
                                 <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
-                            <input type="text" class="int" id="actualValue" name="actualValue"
+                            <input type="text" class="int" id="actualValue" name="actualValue" ngModel placeholder="2000"
                                 [(ngModel)]="formData.actualValue" (input)="calculateResult()" required>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
                                 <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
-                            <input type="text" class="int" readonly id="subtractValue" name="subtractValue"
+                            <input type="text" disabled class="int"  placeholder="40" readonly id="subtractValue" name="subtractValue"
                             ngModel    [value]="formData.displaySubtractValue" required>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                                 <span *ngIf="JobPost.currency === 'OMR'" class="moneysymbol">ر.ع.</span>
                                 <span *ngIf="JobPost.currency === 'SAR'" class="moneysymbol">.س</span>
                             </div>
-                            <input type="text" class="int" placeholder="400" ngModel name="biddingRate" #biddingRate="ngModel"
+                            <input type="text"disabled class="int" placeholder="1920"  ngModel name="biddingRate" #biddingRate="ngModel"
                                 id="biddingRate" [(ngModel)]="appliedservice.applyData.biddingRate" required>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
         <mat-checkbox class="example-margin check123 mt-3"></mat-checkbox><span class="pcont terms">I accept and agree
             to the <span class="text-decoration-underline termsand" data-bs-toggle="modal" data-bs-target="#myModal">Terms of
                 Use.</span> </span><br>
-        <button class="aplbtn" type="submit">Apply Now</button>
+        <button class="aplbtn" type="submit" [disabled]="!applyForm.valid">Apply Now</button>
 
     </form>
     <button class="sabtn" data-bs-toggle="modal" data-bs-target="#savejob">Save as Draft</button>
@@ -228,7 +228,7 @@
 </div>
 
 <!-- The Modal -->
-<div class="modal " id="myModal">
+<div class="modal " id="myModal" >
     <div class="modal-dialog p-5 modal-dialog-scrollable modalterms">
         <div class="modal-content">
 
