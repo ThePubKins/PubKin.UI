@@ -38,13 +38,13 @@ export class AuthorsCompletedJobsComponent {
   }
 
   getCurrentUserOpenJobs(): any[] {
-    const userOpenJobs = this.jobPosts.some((jobPost: { status: string;userId:string; }) => jobPost.status === 'Ongoing' && jobPost.userId === this.currentUser[0].id);
+    const userOpenJobs = this.jobPosts.some((jobPost: { status: string;userId:string; }) => jobPost.status === 'completed' && jobPost.userId === this.currentUser[0].id);
     return userOpenJobs ? userOpenJobs : [];
 }
 
-  anyJobInProgress() {
-    return this.getCurrentUserOpenJobs().length > 0;
-  }
+anyJobInProgress() {
+  return this.getCurrentUserOpenJobs().length === 0;
+}
 
 
   ngOnInit() {

@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ProgressJobsComponent {
 
-  Applies :any;
+  Applies: any;
   showSkillMatchButton = true;
   selectedFreelancer: any;
   FreelancerSkillSet: string = '';
@@ -22,9 +22,9 @@ export class ProgressJobsComponent {
   constructor(
     public userService: UserauthenticateService,
     public router: Router,
-    public jobService:JobpostService,
+    public jobService: JobpostService,
     public appliedService: AppliedUserService,
-    ) { }
+  ) { }
 
 
   ngOnInit() {
@@ -58,12 +58,12 @@ export class ProgressJobsComponent {
     platformFee: 0,
     paymentAfterTax: 0
   };
-  
+
   calculateResult(): void {
     if (this.selectedhire && this.selectedhire.biddingRate !== null) {
       const biddingRate = this.selectedhire.biddingRate;
-      const afterTaxRate = biddingRate * (1 - 0.04); 
-      const platformFee = biddingRate * 0.02; 
+      const afterTaxRate = biddingRate * (1 - 0.04);
+      const platformFee = biddingRate * 0.02;
       const paymentAfterTax = afterTaxRate - platformFee;
       this.formData.actualValue = biddingRate;
       this.formData.subtractValue = afterTaxRate;
@@ -72,8 +72,8 @@ export class ProgressJobsComponent {
       this.formData.paymentAfterTax = paymentAfterTax;
     }
   }
-  
-  
+
+
   ApplyModal(Apply: any) {
     this.selectedhire = Apply;
   }
@@ -85,7 +85,7 @@ export class ProgressJobsComponent {
     }
   }
 
-  
+
   onSubmitJobStatus(form: NgForm) {
     if (form.valid && this.jobService.jobData) {
       this.jobService.JobStatus(form.value).subscribe();
@@ -97,23 +97,22 @@ export class ProgressJobsComponent {
       this.jobPosts = data;
     });
   }
-      
-  ChangeStatus() { 
-   this.Applies[0].status = "accepted";
+
+  ChangeStatus() {
+    this.Applies[0].status = "accepted";
     this.jobPosts[0].status = "Ongoing";
   }
 
 
-  
-  getCurrentUserOpenJobs(): any[] {
-    const userOpenJobs = this.Applies.some((Apply: { status: string;userId:string; }) => Apply.status === 'offers' && Apply.userId === this.currentUser[0].id);
-    return userOpenJobs ? userOpenJobs : [];
-}
 
-  anyJobInProgress() {
-    return this.getCurrentUserOpenJobs().length > 0;
+  getCurrentUserOpenJobs(): any[] {
+    const userOpenJobs = this.Applies.some((Apply: { status: string; userId: string; }) => Apply.status === 'offers' && Apply.userId === this.currentUser[0].id);
+    return userOpenJobs ? userOpenJobs : [];
   }
 
+  anyJobInProgress() {
+    return this.getCurrentUserOpenJobs().length === 0;
+  }
 
   getApplyPosts() {
     this.appliedService.getAppliedUsers().subscribe((posts) => {
@@ -122,7 +121,7 @@ export class ProgressJobsComponent {
   }
 
   logout(): void { }
-  
+
 
   showJobDetails(jobUniqueId: string): void {
     this.router.navigate(['/freelancers/job-details', jobUniqueId]);

@@ -34,7 +34,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/@splidejs/splide/dist/css/splide.min.css",
               "./node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -103,7 +104,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           }

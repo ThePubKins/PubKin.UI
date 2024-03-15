@@ -41,9 +41,9 @@ export class CompletedComponent {
     return userOpenJobs ? userOpenJobs : [];
 }
 
-  anyJobInProgress() {
-    return this.getCurrentUserOpenJobs().length > 0;
-  }
+anyJobInProgress() {
+  return this.getCurrentUserOpenJobs().length === 0;
+}
 
 
 

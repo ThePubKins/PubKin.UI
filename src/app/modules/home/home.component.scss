@@ -681,18 +681,34 @@
   }
 
   .rrforclientsheadtxt1 {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 500;
     font-family: 'League Spartan', sans-serif;
   }
-
+  .rrforclientsheadtxt3 {
+    font-size: 22px;
+    font-weight: 500;
+    font-family: "League Spartan", sans-serif;
+  }
+  .rrforclientsheadtxt4 {
+    font-size: 17px;
+    font-weight: 300;
+    font-family: 'League Spartan', sans-serif;
+  }
   .rrforclientstxt2 {
     color: #1C1C1C;
-    font-family: 'League Spartan', sans-serif;
-    font-size: 18px;
+    font-family: "League Spartan", sans-serif;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: normal;
+  }
+
+  .rrforclientstxt2:hover { 
+    color: #A426D1;
+    // font-size: 17px;
+    text-decoration: underline;
+    // font-weight: 500;
   }
 
   .rrworktalents1 {

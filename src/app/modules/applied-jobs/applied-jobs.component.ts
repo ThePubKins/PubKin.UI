@@ -63,14 +63,13 @@ export class AppliedJobsComponent {
   }
 
   getCurrentUserOpenJobs(): any[] {
-    const userOpenJobs = this.Applies.some((Apply: { status: string;userId:string; }) => Apply.status === 'accepted' && Apply.userId === this.currentUser[0].id);
-    return userOpenJobs ? userOpenJobs : [];
+    const userOpenJobs = this.Applies.filter((Apply: { status: string; userId: string; }) => Apply.status === 'accepted' );
+    return userOpenJobs; 
 }
 
-  anyJobInProgress() {
-    return this.getCurrentUserOpenJobs().length > 0;
-  }
-  
+anyJobInProgress() {
+  return this.getCurrentUserOpenJobs().length === 0;
+}
 
   logout(): void { }
 

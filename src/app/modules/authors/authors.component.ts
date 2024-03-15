@@ -65,6 +65,7 @@ export class AuthorsComponent implements OnInit {
       this.userService.getUserData().subscribe({
         next: (data) => {
           this.UserData = data?.filter((UserData: any) => UserData.email === Email);
+          this.openDeliveryDialog();
         },
         error: (err) => {
           console.error('Error fetching data:', err);

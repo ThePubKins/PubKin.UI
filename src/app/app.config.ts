@@ -13,6 +13,8 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTokenInterceptor } from './core';
+import { provideToastr } from 'ngx-toastr';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 const firebaseConfig = {
   // apiKey: "AIzaSyCnQbgNXDJT6sy1_f8gx3d74kM-3FY2uCw",
@@ -38,6 +40,7 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptorsFromDi()
     ),
+      provideToastr(),provideAnimations(),
     { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
     { provide: FIREBASE_OPTIONS, useValue: firebaseConfig },
     importProvidersFrom([
@@ -49,5 +52,5 @@ export const appConfig: ApplicationConfig = {
       providePerformance(() => getPerformance()),
       provideStorage(() => getStorage()),
     ])
-  ]
+   ],
 };

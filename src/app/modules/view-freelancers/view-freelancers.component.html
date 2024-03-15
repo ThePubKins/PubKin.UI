@@ -20,7 +20,7 @@
         <hr class="hrmain">
     </div>
 <div class="container">
-    <div *ngIf="!anyJobInProgress()" class="phead">
+    <div *ngIf="anyJobInProgress()" class="phead">
       No Job Posts are available for you!
     </div>
   </div>
@@ -35,10 +35,10 @@
                 <img class="show12" src="../assets/show more.png" alt="Pubkin Its yours" (click)="toggleIcons(Post)">  
                 <div class="EDITDEL" *ngIf="Post.showIcons" >
                         <!-- <img  src="./assets/Frame 193.png"> -->
-                        <img  src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel" (click)="ApplyModal(Post);ChangeStatus()">                
+                        <img  src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel" (click)="ApplyModal(Post);">                
             </div>
         </div>
-        <p class="posted">Posted 1 day ago</p>
+        <p class="posted">Posted {{getPostStatus(Post.postDate)}}</p>
         <p class="prop" [routerLink]="['/authors/accept-a-request/pick-now', Post.jobId]"> <img class="cicr" src="../assets/Ellipse 40.png" alt="Ellipse">New Proposals: 0<span
                 class="tot">Total Proposal: 0</span></p>
         <hr class="sub">
@@ -63,7 +63,7 @@
             <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
               <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.id">
               <input type="hidden" id="status" name="status" [(ngModel)]="selectedhire.status">
-            <button type="submit" class="btn kkkbtncn">Confirm</button>
+            <button type="submit" class="btn kkkbtncn" (click)="ChangeStatus()">Confirm</button>
             </form>
           </div>
         </div>

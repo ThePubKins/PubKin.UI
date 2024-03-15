@@ -6,8 +6,8 @@
     <div class="row ">
       <div class="col-12">
         <div class="appliedborder">
-          <div *ngIf="!anyJobInProgress()" class="jobtitle">
-            No completed jobs are available for you!
+          <div *ngIf="anyJobInProgress()" class="jobtitle">
+            No Completed jobs are available for you!
           </div>
           <div *ngFor="let Apply of  jobPosts;">
             <div class="row" style="margin-top: 17px;" *ngIf="Apply.status === 'completed' && Apply.userId === currentUser[0].id" >

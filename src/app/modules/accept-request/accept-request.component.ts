@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-accept-request',
   templateUrl: './accept-request.component.html',
@@ -10,6 +11,7 @@ import { AppliedUserService, BankDetailsService, UserauthenticateService } from 
 export class AcceptRequestComponent implements OnInit {
   Applies: any;
   Hire: any;
+  deleteProposal :any;
   selectedJobPostId: any;
   user: any;
   users: any[] = [];
@@ -17,11 +19,18 @@ export class AcceptRequestComponent implements OnInit {
   payment: number = 0;
   selectedhire: any;
   selectedrequest: any;
+  currentDate: any = new Date();
   User: any;
   imageUrl: string = 'https://localhost:7172';
   showicons: boolean[] = [];
+  filteredData: any[];
+
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
-    public applyService: AppliedUserService) { }
+    public applyService: AppliedUserService, private datePipe: DatePipe) { 
+      this.currentDate = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
+    }
+
+
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
     if (Email) {
@@ -33,6 +42,11 @@ export class AcceptRequestComponent implements OnInit {
     } else {
     }
   }
+
+  ApplyDeleteModal(Applies: any) {
+    this.deleteProposal = Applies;
+  }
+  
 
   onChatTargetClick(targetUser: any): void {
     this.chatTarget = targetUser;
@@ -80,6 +94,10 @@ export class AcceptRequestComponent implements OnInit {
   
   ChangeStatus() { 
     this.Applies[0].status = "offers"
+  }
+
+ DeleteStatus() { 
+    this.Applies[0].status = "reject"
   }
 
   GoNext: string = "button1";

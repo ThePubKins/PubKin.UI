@@ -6,7 +6,7 @@
     <div class="row ">
       <div class="col-12">
         <div class="appliedborder">
-          <div *ngIf="!anyJobInProgress()" class="jobtitle">
+          <div *ngIf="anyJobInProgress()" class="jobtitle">
             No jobs in progress are available for you!
           </div>
           <div *ngFor="let Apply of  Applies;">

@@ -30,10 +30,9 @@ export class OngoingJobsComponent {
     return userOpenJobs ? userOpenJobs : [];
 }
 
-  anyJobInProgress() {
-    return this.getCurrentUserOpenJobs().length > 0;
-  }
-  
+anyJobInProgress() {
+  return this.getCurrentUserOpenJobs().length === 0;
+}
   submitwork : boolean = false;
   submitworks()  { 
      this.submitwork = true;

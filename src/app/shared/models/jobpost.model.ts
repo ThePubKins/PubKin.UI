@@ -24,4 +24,5 @@ export interface jobpost {
   attachUrl:string;
   attachFile:string;
   fileName : string;
+  postDate : string;
 }
