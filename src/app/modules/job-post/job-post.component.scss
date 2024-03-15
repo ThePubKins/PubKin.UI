@@ -4,7 +4,7 @@ font-family: League Spartan;
 font-size: 18px;
 font-style: normal;
 font-weight: 400;
-margin-top: 25px;
+margin-top: 11px;
 line-height: 36px; /* 200% */
 }
 
@@ -417,28 +417,75 @@ line-height: normal;
   }
 
   /* button6  */
-
-  .reviewjob { 
-    width: auto;
-    flex-shrink: 0;
-    height: 576px;
-    overflow-y: scroll;
-    padding: 33px;
-    border-radius: 14px;
-border: 1px solid #DCDCDC;
-overflow-y:scroll;
-    scrollbar-width: thin; 
-    scrollbar-color: transparent transparent; 
-    
-    
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent;
-    }
-  }
+@media only screen and (min-width:999px) and (max-width:1200px) {
+    .reviewjob { 
+        width: auto;
+        flex-shrink: 0;
+        height: 300px;
+        overflow-y: scroll;
+        padding: 33px;
+        border-radius: 14px;
+    border: 1px solid #DCDCDC;
+    overflow-y:scroll;
+        scrollbar-width: thin; 
+        scrollbar-color: transparent transparent; 
+        
+        
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
+      }
+}
+@media only screen and (min-width:1201px) and (max-width:1400px) {
+    .reviewjob { 
+        width: auto;
+        flex-shrink: 0;
+        height:400px;
+        overflow-y: scroll;
+        padding: 33px;
+        border-radius: 14px;
+    border: 1px solid #DCDCDC;
+    overflow-y:scroll;
+        scrollbar-width: thin; 
+        scrollbar-color: transparent transparent; 
+        
+        
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
+      }
+}
+@media only screen and (min-width:1401px) {
+    .reviewjob { 
+        width: auto;
+        flex-shrink: 0;
+        height:572px;
+        overflow-y: scroll;
+        padding: 33px;
+        border-radius: 14px;
+    border: 1px solid #DCDCDC;
+    overflow-y:scroll;
+        scrollbar-width: thin; 
+        scrollbar-color: transparent transparent; 
+        
+        
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
+      }
+}
 
 .jobheadreview{  
     color: #000;

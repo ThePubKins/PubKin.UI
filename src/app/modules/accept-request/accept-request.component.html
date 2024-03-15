@@ -12,8 +12,8 @@
           Proposals({{Applies.length}})</button>
         <button class="tabn" (click)="GoNextBtn('button2')" [ngClass]="{'selected': GoNext === 'button2'}">New
           Proposals</button>
-        <button class="tabn" (click)="GoNextBtn('button3')"
-          [ngClass]="{'selected': GoNext === 'button3'}">Shortlisted</button>
+        <!-- <button class="tabn" (click)="GoNextBtn('button3')"
+          [ngClass]="{'selected': GoNext === 'button3'}">Shortlisted</button> -->
         <!-- <button class="tabn" (click)="onButtonClick('button4')"
                     [ngClass]="{'selected': selectedButton === 'button4'}">Messaged</button> -->
       </div>
@@ -43,7 +43,8 @@
           <div class="col-2"></div>
           <div class="col-3">
             <p class="bid">Bidding rate : <span class="rate">${{Apply.biddingRate}}/ hour</span></p>
-            <button class="msg">Message</button><button class="hire" data-bs-toggle="modal" data-bs-target="#hireModal"
+            <!-- <button class="msg">Message</button> -->
+            <button class="hire" data-bs-toggle="modal" data-bs-target="#hireModal"
               (click)="ApplyModal(Apply)">Hire</button>
             <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Apply)">View
               Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
@@ -54,8 +55,10 @@
               <div class="EDITDEL"  *ngIf="showicons[i]">
 
                 <!-- <img class="p-2" src="./assets/shortlist.png" data-bs-toggle="modal" data-bs-target="#deletmodel2"> -->
+
                 <img class="p-2" (click)="ApplyDeleteModal(Apply)" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
-              </div>'
+
+              </div>
             </div>
           </div>
         </div>
@@ -66,6 +69,7 @@
     </div>
 
     <div *ngIf="GoNext === 'button2'">
+
       <div class="container " style="margin-top: 50px;" *ngIf="Applies && Applies.length > 0">
         <div class="row deta" *ngFor="let Apply of Applies;let i = index">
            <!-- <div *ngIf="currentDate === Apply.applyDate">        -->
@@ -106,10 +110,12 @@
           <!-- </div> -->
         </div>
       </div>
+
       </div>
       </div>
 
 <div *ngIf="GoNext === 'button3'">
+
   <div class="container " style="margin-top: 50px;" *ngIf="Applies && Applies.length > 0">
     <div class="row deta" *ngFor="let Apply of Applies;let i = index">
       <div class="col-1">
@@ -150,6 +156,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 
@@ -202,12 +209,13 @@
       <div class="modal-dialog dia12">
         <div class="modal-content kkde">
           <div class="modal-header ">
-            <button type="button" class="btn closemo" data-bs-dismiss="modal" aria-label="Close">
+            <!-- <button type="button" class="btn closemo" data-bs-dismiss="modal" aria-label="Close">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M22 2L2 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
                 <path d="M2 2L22 22" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-            </button>
+            </button> -->
+            <button type="button" class="btn-close btnclose" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" *ngIf="selectedrequest">
             <div class="covel">Cover Letter</div>
