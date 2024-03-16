@@ -11,6 +11,20 @@ padding: 69px 90px 47px 129px;
 }
 
 
+.passwordbox {
+    position: relative;
+}
+
+.eyesvg {
+    width: 25px;
+    right: auto;
+    margin-top: -38px;
+    position: relative;
+    margin-left: 474px;
+    
+}
+
+
 .errormsg { 
     color: #A426D1;
 font-family: League Spartan;
@@ -468,11 +482,11 @@ line-height: normal;
 .shhid1{
     color: #A426D1;
     font-family: "League Spartan", sans-serif;
-     position: absolute;
+    position: absolute;
     right: 0px;
     display: flex;
     margin-right: 83px;
-    margin-top: 10px;
+    margin-top: 22px;
 }
 .crtform{
     display: flex;

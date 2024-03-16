@@ -10,13 +10,13 @@
           No applied jobs are available for you!
         </div>
         <div class="container " *ngFor="let Apply of  Applies;">
-          <div class="row" *ngIf="Apply.status === 'applied' && Apply.userId === currentUser[0].id">
+          <div class="row" *ngIf="Apply.status === 'applied' && Apply.userId === currentUser[0].id && !anyJobInProgress()">
             <div class="col-12 position-relative">
               <div class="row">
                 <div class="col-9">
                   <p class="kkjbtxtline1">{{Apply.jobTitle}} </p>
                   <p class="jobDesc23">{{Apply.jobDescription | slice:0:220}}...</p>
-                  <p class="kkjbtxtline2">Rate: ₹{{Apply.rate}} - Applied {{ getPostStatus(Apply.dateCreated)}} </p>
+                  <p class="kkjbtxtline2">Rate: ₹{{Apply.rate}} - Applied {{ getPostStatus(Apply.applyDate)}} </p>
                 </div>
                 <div class="col-3">
                   <!-- <span><img src="../assets/tag.png"

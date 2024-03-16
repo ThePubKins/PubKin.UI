@@ -12,5 +12,4 @@ export * from './workfile.service';
 export * from './portfolio.service';
 export * from './wallet.service';
 export * from './payment.service';
-
-
+export * from './applied-user-notification.service';

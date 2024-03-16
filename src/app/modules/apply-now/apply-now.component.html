@@ -99,7 +99,7 @@
 
 
             <textarea [(ngModel)]="inputText" (input)="onInputChange()" ngModel
-                (click)=" AppliedJobs()" [ngClass]="getCharacterCountClass()" name="applyCoverLetter"  required
+                [ngClass]="getCharacterCountClass()" name="applyCoverLetter"  required
                 #applyCoverLetter="ngModel" id="applyCoverLetter" [(ngModel)]="appliedservice.applyData.applyCoverLetter" required
 
                 class="covcont">Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea>
@@ -224,7 +224,7 @@
 
             </div>
         </div>
-        <mat-checkbox class="example-margin check123 mt-3" ></mat-checkbox><span class="pcont terms">I accept and agree
+        <mat-checkbox class="example-margin check123 mt-3"  (click)=" AppliedJobs()"></mat-checkbox><span class="pcont terms">I accept and agree
             to the <span class="text-decoration-underline termsand" data-bs-toggle="modal"
                 data-bs-target="#myModal">Terms of
                 Use.</span> </span><br>

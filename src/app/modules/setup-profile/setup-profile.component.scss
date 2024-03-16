@@ -14,14 +14,15 @@
   }
   
   .kkbpaycrd{
-      margin-top: 35px;
-      width: 129%;
-      height: 352px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  border: 2px solid #9E9E9E;
-  box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04), 2px 4px 4px 0px rgba(118, 27, 153, 0.43);
-  }
+    margin-top: 35px;
+    width: 750px;
+    height: auto;
+    padding: 7px 0px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid #9E9E9E;
+    box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04), 2px 4px 4px 0px rgba(118, 27, 153, 0.43);
+}
   .kkbpybtn1{
     margin-left: 185px;
     color: #FFF;
@@ -485,12 +486,13 @@
   .kkbpaycrd{
     margin-top: 35px;
     width: 750px;
-    height: 352px;
+    height: auto;
+    padding: 7px 0px;
     flex-shrink: 0;
     border-radius: 20px;
     border: 1px solid #9E9E9E;
     box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04), 2px 4px 4px 0px rgba(118, 27, 153, 0.43);
-  }
+}
   .kkbpybtn1{
     margin-left: 185px;
     color: #FFF;

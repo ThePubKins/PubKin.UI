@@ -20,19 +20,15 @@
     </div>
    
     <div *ngIf="GoNext === 'button1'">
-      <div class="container " style="margin-top: 50px;" *ngIf="Applies && Applies.length > 0">
-        <div class="row deta" *ngFor="let Apply of Applies;let i = index">
+      <div class="container " style="margin-top: 50px;" *ngFor="let Apply of Applies;let i = index">
+        <div class="row deta" >
           <div class="col-1">
-            <!-- <div class="elli"> -->
               <div class="kkprimg" *ngIf="Apply.applideUserProfile">
                 <img src="{{Apply.applideUserProfile }}" class=" kkprimg img-responsive">
             </div>
             <div class="kkprimg" *ngIf="!Apply.applideUserProfile">
                 <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
-            </div>
-            
-            <!-- </div> -->
-           
+            </div>           
           </div>
           <div class="col-5">
             <p class="fname">{{Apply.userEmail}}</p>
@@ -295,8 +291,11 @@
                   <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
                     <input type="hidden" id="id" name="id" [(ngModel)]="Applies[0].id">
                     <input type="hidden" id="status" name="status" [(ngModel)]="Applies[0].status">
+                    <input type="hidden" id="postBy" name="postBy" [(ngModel)]="Applies[0].postBy">
+                    <input type="hidden" id="jobId" name="jobId" [(ngModel)]="Applies[0].jobId">
+                    <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="Applies[0].jobUniqueId">
                     <button class="cpay" type="submit" data-bs-toggle="modal" data-bs-target="#saveModal"
-                      (click)="ChangeStatus();" >Confirm & Pay</button>
+                      (click)="ChangeStatus();subscribeToProduct();" >Confirm & Pay</button>
                   </form>
                   <p class="disclaimer">*This payment will be add on your wallet</p>
                 </div>
@@ -456,3 +455,7 @@
         </div>
       </div>
     </div>
+
+
+
+    

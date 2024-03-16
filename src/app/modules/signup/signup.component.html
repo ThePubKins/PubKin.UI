@@ -3,7 +3,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
                 </div>
@@ -52,7 +52,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
 
@@ -159,7 +159,7 @@
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-3">
-                        <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                        <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                     </div>
                     <div class="col-9">
 
@@ -221,7 +221,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
             </div>
             <div class="col-9">
 
@@ -261,12 +261,18 @@
                     [(ngModel)]="email" required><br>
                 <input type="password" class="int" style="width:430px" placeholder="Password" id="password"
                     name="password" [(ngModel)]="password" required>
-                <div mat-icon-button matSuffix (click)="togglePasswordVisibility()"
-                    [attr.aria-label]="hide1 ? 'Hide password' : 'Show password'" [attr.aria-pressed]="hide1"
-                    style="cursor: pointer;">
-                    <span class="shhid1">{{ hide1 ? 'Show Password' : 'Hide Password' }}</span>
-                </div>
-                <mat-checkbox class="check34 check123"><span class="che3">Remember me</span></mat-checkbox>
+                    <div  matSuffix (click)="togglePasswordVisibility()"
+                                [attr.aria-label]="hide1 ? 'Hide password' : 'Show password'" [attr.aria-pressed]="hide1"
+                                style="cursor: pointer;">
+                                <div class="eyesvg">
+                                <span class="material-icons">
+                                    {{ hide1 ? 'visibility_off' : 'visibility' }}
+                                </span>
+                            </div>
+                            <p class="shhid1" routerLink="/forget-password">Forgot password?</p>
+                            </div>
+                <mat-checkbox class="check34 check123"><span class="che3">Remember me </span></mat-checkbox>
+               
                 <p *ngIf="errorMessage !== ''" class="error-message" style="color:#A426D1;">{{"*"+ errorMessage }}</p>
                 <div class="flx">
                     <button class="btnfr1" type="submit" (click)="loginButton();Userlogin()"><span>Login</span></button>
@@ -286,7 +292,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
             </div>
             <div class="col-9">
 
@@ -325,7 +331,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
                 </div>
@@ -360,7 +366,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
                 </div>

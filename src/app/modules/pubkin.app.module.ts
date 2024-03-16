@@ -30,6 +30,7 @@ import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { ProgressJobsComponent } from './progress-jobs/progress-jobs.component';
 import {AuthorsCompletedJobsComponent } from './authors-completed-jobs/authors-completed-jobs.component'
 import { CompletedComponent } from './completed/completed.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { FreelancernavComponent } from './freelancernav/freelancernav.component';
 import { AuthorNavComponent } from './author-nav/author-nav.component';
@@ -41,6 +42,7 @@ import { FootertagComponent } from './footertag/footertag.component';
 import { PaymentComponent } from './payment/payment.component';
 import { GooglesigninComponent } from './signup/googlesignin/googlesignin.component';
 import { GoogleloginComponent } from './signup/googlelogin/googlelogin.component';
+import { NgToastModule } from 'ng-angular-popup';
 import {  JobsearchPipe } from '../shared';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {
@@ -58,6 +60,7 @@ import {
         AuthorsCompletedJobsComponent,
         CommentsComponent,
         ProfiledetailsComponent,
+        ForgetPasswordComponent,
         JobDetailsComponent,
         AuthorsComponent,
         AuthprofileComponent,
@@ -104,6 +107,7 @@ import {
         RouterLink, 
         RouterLinkActive, 
         RouterOutlet,
+        NgToastModule,
         JobsearchPipe,
         SocialLoginModule,
         ReactiveFormsModule,
