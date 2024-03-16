@@ -84,16 +84,30 @@ export class AcceptRequestComponent implements OnInit {
     }
   }
 
-
+success:boolean=false;
+successmsg(){
+  this.success = !this.success;
+  if (this.success) {
+    setTimeout(() => {
+      this.success = false;
+      window.location.reload();
+    }, 1500);
+  }
+}
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.postBankDetails(form.value).subscribe();
     }
   }
-  
+  resetStatusAfterDelay() {
+    setTimeout(() => {
+      this.Applies[0].status = "";
+    }, 3000);
+  }
   ChangeStatus() { 
     this.Applies[0].status = "offers"
+    this.resetStatusAfterDelay();
   }
 
  DeleteStatus() { 

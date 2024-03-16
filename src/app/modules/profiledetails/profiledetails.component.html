@@ -522,8 +522,8 @@
       <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
       <input type="hidden" id="dateLastModified" name="dateLastModified" [(ngModel)]="User[0].dateLastModified">
       <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="User[0].firstName">
-      <input type="hidden" id="hides1 " [(ngModel)]="hides1" [value]="hides1" name="Experience" #Experience="ngModel"
-        [(ngModel)]="User[0].Experience">
+      <input type="hidden" id="experience "  name="experience" #experience="ngModel"
+        [(ngModel)]="User[0].experience">
       <input type="hidden" id="description" [(ngModel)]="User[0].description" [value]="User[0].description"
         name="description" #WrkDesc="ngModel">
       <button class="btn d-none" #submitbutton type="submit" (click)="PercentageSubmit()">Next</button>

@@ -401,17 +401,16 @@ export class ProfiledetailsComponent implements OnInit {
     }
   }
 
-  hides1: any;
   Exp1() {
-    this.hides1 = "Beginner";
+    this.User[0].experience = "Beginner";
   }
 
   Exp2() {
-    this.hides1 = "Intermediate";
+    this.User[0].experience = "Intermediate";
   }
 
   Exp3() {
-    this.hides1 = "Expert";
+    this.User[0].experience = "Expert";
   }
   selectedOption: string = '1'; // Default selection
 
