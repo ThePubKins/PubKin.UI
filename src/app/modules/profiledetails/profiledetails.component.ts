@@ -116,8 +116,18 @@ export class ProfiledetailsComponent implements OnInit {
     { img_url: '/assets/animoji-18.png' }
   ]
 
+  @ViewChild('firstButton') firstButton: ElementRef;
+
+
   closeProfile() {
-    this.hideprofileclose = true
+
+      this.firstButton.nativeElement.click();
+      if(this.User[0].role === 'freelancer'){
+        this.router.navigate(['/freelancers']);
+      }
+      if(this.User[0].role === 'author'){
+        this.router.navigate(['/authors']);
+      }
   }
 
   selectedImage: string;
@@ -526,7 +536,7 @@ export class ProfiledetailsComponent implements OnInit {
   ];
 
   // Extend the list of years
-  years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, ]; 
+  years = [1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, ]; 
   selectedYear1: number | null;
   selectedYear2: number | null;
 

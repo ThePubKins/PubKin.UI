@@ -1,0 +1,16 @@
+.Click {
+    position: relative; // Ensure proper positioning for child elements
+    width: 100%; // Adjust width as needed
+    height: 100%; // Adjust height as needed
+    background-color: lightblue; // Example background color
+  
+    .notClick {
+      width: 300px; // Width for notClick div
+      height: 300px; // Height for notClick div
+      background-color: lightcoral; // Example background color
+  
+      // Add other styles for the notClick div as needed
+    }
+
+
+}

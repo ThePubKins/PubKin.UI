@@ -27,8 +27,6 @@ export class FreelancerComponent implements OnInit {
     public jobService: JobpostService,
     public singlarService:AppliedUserNotificationService,
     private router: Router) {
-      this.singlarService.startConnection();
-      this.singlarService.addProductListener();
   }
 
   ShowMoreLess(index: number) {
@@ -76,10 +74,11 @@ export class FreelancerComponent implements OnInit {
     this.hide = !this.hide
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUserData();
     this.getAllJobPosts();
     this.openDeliveryDialog();
+    this.singlarService.addProductListener();
   }
 
 

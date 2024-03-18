@@ -6,10 +6,10 @@
     <img *ngIf="User[0].role === 'freelancer'" routerLink="/freelancers" src="./assets/Artboard 1 1.png" alt="Pubkin"
       class="rrpublogoimg1">
 
-    <img *ngIf="hideprofileclose && User[0].role === 'author'" src="./assets/_x letter_.png" alt="Pubkin"
+    <!-- <img *ngIf="User[0].role === 'author'" src="./assets/_x letter_.png" alt="Pubkin"
       class="float-end mt-5" routerLink="/authors">
-    <img *ngIf="hideprofileclose && User[0].role === 'freelancer'" src="./assets/_x letter_.png" alt="Pubkin"
-      class="float-end mt-5" routerLink="/freelancers">
+    <img *ngIf="User[0].role === 'freelancer'" src="./assets/_x letter_.png" alt="Pubkin"
+      class="float-end mt-5" routerLink="/freelancers"> -->
   </div>
 
   <!--Update Congrats Page-->
@@ -75,7 +75,9 @@
           </div>
         </div>
         <div class="container mt-5 savebtnalign1">
-          <button class=" btn  savevv " type="submit" (click)="closeProfile();">Save</button>
+          
+            <a class=" btn  savevv "  (click)="closeProfile();">Save</a>
+            <button type="submit" style="display:none" #firstButton>save</button>
         </div>
       </form>
     </div>
@@ -702,12 +704,10 @@
         </ng-container>
       </div>
     </div>
-
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
       <button class="btn kkempbtn2 rrextrawidthbtn1" routerLink="/freelancers">Save Details</button>
     </div>
-
     <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)">
       <div class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" id="exampleModal" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -756,7 +756,40 @@
                     <div *ngIf="!Rates">
                       <div class="container">
                         <div class="row">
-                          <div class="col-4">
+                          <div class="col-12">
+                            <p class="prateh" style="margin-left: 3px;">Simple</p>
+                            <textarea class="ratecard" ngModel name="simpleDescription" #simpleDescription="ngModel"
+                              id="simpleDescription" placeholder="Description" maxlength="150"
+                              [(ngModel)]="priceService.pricingSkillData.simpleDescription" required></textarea>
+                            <span *ngIf="!simpleDescription.valid && simpleDescription.touched">
+                              <span class="errormsg" *ngIf="simpleDescription.errors?.['required']">
+                                Description is required
+                              </span>
+                            </span>
+                          </div>
+                          <div class="col-12">
+                            <p class="prateh" style="margin-left: 3px;">Medium </p>
+                            <textarea class="ratecard" ngModel name="mediumDescription" #mediumDescription="ngModel"
+                              id="mediumDescription" placeholder="Description" maxlength="150"
+                              [(ngModel)]="priceService.pricingSkillData.mediumDescription" required></textarea>
+                            <span *ngIf="!mediumDescription.valid && mediumDescription.touched">
+                              <span class="errormsg" *ngIf="mediumDescription.errors?.['required']">
+                                Description is required
+                              </span>
+                            </span>
+                          </div>
+                          <div class="col-12">
+                            <p class="prateh" style="margin-left: 3px;">Complex</p>
+                            <textarea class="ratecard" ngModel name="complexDescription" #complexDescription="ngModel"
+                              id="complexDescription" placeholder="Description" maxlength="150"
+                              [(ngModel)]="priceService.pricingSkillData.complexDescription" required></textarea>
+                            <span *ngIf="!complexDescription.valid && complexDescription.touched">
+                              <span class="errormsg" *ngIf="complexDescription.errors?.['required']">
+                                Description is required
+                              </span>
+                            </span>
+                          </div>
+                          <!-- <div class="col-4">
                             <p class="prateh" style="margin-left: 3px;">Simple</p>
                             <textarea class="ratecard" ngModel name="simpleDescription" #simpleDescription="ngModel"
                               id="simpleDescription" placeholder="Description" maxlength="150"
@@ -789,7 +822,7 @@
                               </span>
 
                             </span>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <p class="prateh" style="margin-left: 17px;">Your Rates</p>

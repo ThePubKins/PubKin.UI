@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone  } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import * as signalR from "@microsoft/signalr"
 import { AppliedUserNotification } from '../models/AppliedUserNotification.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppliedUserNotificationService {
 
-  constructor(private toast: NgToastService) {}
+
+  constructor(private toast: NgToastService,  private zone: NgZone) {}
   private hubConnection!: signalR.HubConnection;
  
     public startConnection = () => {
@@ -25,7 +27,7 @@ export class AppliedUserNotificationService {
     public addProductListener = () => {
       this.hubConnection.on('SendMessage', (notification: AppliedUserNotification) => {
         this.showNotification(notification);
-     
+        this.triggerChangeDetection();      
       });
     }
 
@@ -37,5 +39,9 @@ export class AppliedUserNotificationService {
     public subscribeToProduct(jobId:string)
     {
       this.hubConnection.invoke("SuscribeToProduct",jobId)
+    }
+
+    private triggerChangeDetection(): void {
+      this.zone.run(() => {}); 
     }
 }
