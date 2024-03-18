@@ -886,13 +886,19 @@ margin-left: 47px;
 
 
 .EDITDEL{
-   margin-top: 67px;
+   margin-top: 143px;
     margin-left: -27px;
     position: absolute;
     display: flex;
     flex-direction: column;
 }
-
+.EDITDEL1{
+    margin-top: 80px;
+     margin-left: -27px;
+     position: absolute;
+     display: flex;
+     flex-direction: column;
+ }
 .kkkbtncn{
     background-color: #A426D1;
     border: none;
@@ -1181,11 +1187,11 @@ margin-left: 47px;
         font-family: League Spartan;
         font-size: 18px;
         font-style: normal;
-        margin-top: 29px;
+        margin-top: 30px;
         font-weight: 500;
         line-height: 36px;
         float: right;
-        margin-right: 35px;
+
     }
     
     .sho1 {
@@ -1831,13 +1837,19 @@ margin-left: 47px;
     
     
     .EDITDEL{
-        margin-top: 97px;
+        margin-top: 137px;
         margin-left: -27px;
         position: absolute;
         display: flex;
         flex-direction: column;
     }
-    
+    .EDITDEL1{
+        margin-top: 71px;
+        margin-left: -27px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+    }
     .kkkbtncn{
         background-color: #A426D1;
         border: none;
@@ -1908,3 +1920,60 @@ margin-left: 47px;
     }
     
     }
+
+    
+.successmsg { 
+    width: 705px;
+    height: 471px;
+    top: 15%;
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 24px;
+    border: 2px solid #CBCBCB;
+    left: 27%;
+}
+
+.all-success {  
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.successhead{  
+    color: #1C1C1C;
+text-align: center;
+font-family: "League Spartan";
+font-size: 29px;
+font-style: normal;
+margin-top: 80px;
+font-weight: 800;
+line-height: normal;
+}
+
+.redirecte{  
+    color: #6A6A6A;
+text-align: center;
+font-family: "League Spartan";
+font-size: 19px;
+font-style: normal;
+font-weight: 400;
+line-height: 28.5px; /* 150% */
+}
+
+.whopee {  
+    width: 50%;
+    height: auto;
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.successtick { 
+    width: 28%;
+    height: 208px;
+    position: absolute;
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
