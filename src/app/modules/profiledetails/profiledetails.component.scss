@@ -73,7 +73,7 @@ background: #FFF;
 
 .kkadeduhd{
 font-family: 'League Spartan', sans-serif;
-font-size: 40px;
+font-size: 36px;
 font-weight: 500;
 margin-left: 15px;
 margin-top: 25px;
@@ -103,11 +103,11 @@ margin-top: 25px;
 .kkeduhdtg{
   color: #333;
   font-family: 'League Spartan', sans-serif;
-font-size: 22px;
+font-size: 20px;
 font-weight: 500;
 line-height: 36px;
 margin-left: 10px;
-margin-top: 22px;
+margin-top: 20px;
 }
 
 .kkeduhdtg1 { 
@@ -124,9 +124,9 @@ margin-top: 22px;
 .kkin1{
     display: flex;
   width: 92%;
-  font-size: 17px;
+  font-size: 16px;
   font-family: 'League Spartan', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   height: 50px;
   padding: 14px 0px 14px 16px;
   align-items: center;
@@ -509,10 +509,17 @@ margin-top: 14px;
 .kkcmodel{
 width: 690px
 }
+.kkeditdet12{
+  display: flex !important;
+  align-items: flex-end;
+  gap: 12px;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 .portfoltitlevv {
 color: #1c1c1c;
 font-family: League Spartan;
-font-size: 40px;
+font-size: 36px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -521,7 +528,7 @@ padding: 18px 4px 0px 22px;
 .projtitlevv {
 color: #333;
 font-family: League Spartan;
-font-size: 22px;
+font-size: 20px;
 font-style: normal;
 font-weight: 500;
 line-height: 36px;
@@ -533,7 +540,7 @@ width: 600px;
 margin-left: 30px;
 color: #292525;
 font-family: League Spartan;
-font-size: 17px;
+font-size: 16px;
 font-style: normal;
 font-weight: 300;
 line-height: normal;
@@ -960,9 +967,9 @@ gap:30px;
 
 .kkemphus{
   margin-top: 50px;
-  font-size: 40px;
+  font-size: 30px;
   font-family: "League Spartan", sans-serif;
-  font-weight: 600;   
+  font-weight: 500;   
  }
 
  .showProfiles{ 
@@ -1019,7 +1026,7 @@ gap:30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: 140px;
   height: 45px;
   position: absolute;
   bottom: 80px;
@@ -1048,9 +1055,9 @@ gap:30px;
   .rraddexptxt1{
     color: #7B7B7B;
     font-family: "League Spartan", sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 36px;
     margin-top:10px;
     margin-left:10px;
@@ -1059,10 +1066,10 @@ gap:30px;
   .text02 { 
     color: #252525;
     font-family: "League Spartan", sans-serif;
-    font-size: 23px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 36px;
+    font-weight: 500;
+    line-height: 24px;
     word-wrap: break-word;
   }
   
@@ -1111,9 +1118,9 @@ gap:30px;
    .rrivfn1{
       color: #333;
         font-family: "League Spartan", sans-serif;
-      font-size: 24px;
+      font-size: 20px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 600;
       line-height: 36px;
    }
    .rrfulnamealigntop{
@@ -1221,9 +1228,9 @@ gap:30px;
 .rrexpcont {
   color: #1C1C1C;
   font-family: 'League Spartan', sans-serif;
-  font-size: 24px;
+  font-size: 22px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: normal;
   margin-top: 36px;
 }
@@ -1268,7 +1275,7 @@ gap:30px;
         line-height: normal;
         position: absolute;
         bottom: 65px;
-        right: 255px;
+        right: 205px;
         transform: translate(-50%,-50%);
     }
 
@@ -1339,14 +1346,13 @@ gap:30px;
 
 
   .rrextrawidthbtn1{
-      width:300px;
+      width:150px;
   }
 
 
 }
 
-
-@media only screen and (min-width:601px) and (max-width:1000px){
+@media only screen and (min-width:601px) and (max-width:1000px) {
 .dtview{
   display:none;
 }
@@ -1476,3 +1482,7 @@ height: 480px;
       background-color: transparent;
     }
 }
+
+
+
+

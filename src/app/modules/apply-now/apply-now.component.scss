@@ -2,7 +2,7 @@ $pubmainfont: League Spartan;
 .phead {
     color: #000;
     font-family: League Spartan;
-    font-size: 38px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -24,7 +24,7 @@ $pubmainfont: League Spartan;
 .phead1 {
     color: #000;
     font-family: League Spartan;
-    font-size: 30px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     margin-top: 39px;
@@ -37,16 +37,25 @@ $pubmainfont: League Spartan;
     font-style: normal;
     margin-top: 39px;
     line-height: 34px;
-    font-size: 33px;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.phead3 {
+    color: #000;
+    font-family: League Spartan;
+    font-style: normal;
+    line-height: 34px;
+    font-size: 20px;
     font-weight: 500;
 }
 
 .pcont {
     color: #535353;
     font-family: League Spartan;
-    font-size: 24px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 36px;
 }
 
@@ -114,20 +123,20 @@ line-height: 28.5px; /* 150% */
 // }
     .skill {
         display: inline-flex;
-        padding: 15px 25px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border-radius: 154px;
-        background: #FCF3FF;
-        color: #1C1C1C;
-        font-family: League Spartan;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        margin-bottom: 55px;
-        margin-top: 29px;
-        line-height: normal;
+    padding: 15px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 154px;
+    background: #FCF3FF;
+    color: #1C1C1C;
+    font-family: League Spartan;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 55px;
+    margin-top: 20px;
+    line-height: normal;
     }
     .successmsg { 
         width: 705px;
@@ -141,14 +150,14 @@ line-height: 28.5px; /* 150% */
     }
     .line { 
         width: auto;
-        height: 411px;
+        height: 331px;
         border-left: 2px solid #C1C1C1;
     }
     
     
     .ico { 
-        width: 23px;
-        height: 26px;
+        width: 19px;
+        height: 20px;
     }
     .icons { 
         margin-left: 25px;
@@ -157,9 +166,9 @@ line-height: 28.5px; /* 150% */
         gap: 20px;
         color: #000;
         font-family: League Spartan;
-        font-size: 20px;
+        font-size: 17px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 30px;
     }
     
@@ -170,14 +179,14 @@ line-height: 28.5px; /* 150% */
     }
     
     .covcont{ 
-        width: 95%;
-        height: 240px;
+        width: 99%;
+        height: 100px;
         flex-shrink: 0;
         border-radius: 12px;
         border: 2px solid #C1C1C1;
         color: #535353;
         font-family: League Spartan;
-        font-size: 24px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         margin-top: 11px;
@@ -186,18 +195,18 @@ line-height: 28.5px; /* 150% */
     }
     .remain1 { 
         color: #8B8B8B;
-        font-family: League Spartan;
-        font-size: 16px;
-        font-style: normal;
-        float: right;
-        font-weight: 500;
-        line-height: 41px;
+    font-family: League Spartan;
+    font-size: 16px;
+    font-style: normal;
+    float: right;
+    font-weight: 400;
+    line-height: 41px;
         margin-right: -30px;
     }
     
     .up { 
-        width: 98%;
-        height: 111px;
+        width: 99%;
+        height: 85px;
         flex-shrink: 0;
         border-radius: 12px;
         border: 2px solid #F8E5FF;
@@ -227,11 +236,11 @@ line-height: 28.5px; /* 150% */
     .atta { 
         color: #8B8B8B;
         font-family: League Spartan;
-        font-size: 18px;
+        font-size: 16px;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 41px;
-        margin-top: 16px;
+        margin-top: 4px;
         margin-left: 10px;
         margin-bottom: 24px;
     }
@@ -257,24 +266,25 @@ line-height: 28.5px; /* 150% */
     
     .cont1 { 
         color: #7B7B7B;
-    font-family: League Spartan;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 36px; 
+        font-family: League Spartan;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
     }
     
     .int { 
         display: flex;
-        width: 185px;
+        width: 150px;
         height: 47px;
-        padding: 16px 6px 11px 41px;        align-items: center;
+        padding: 16px 6px 11px 41px;
+        align-items: center;
         flex-shrink: 0;
         border-radius: 4px;
         border: 2px solid #C5C5C5;
         color: #0A0A0A;
         font-family: League Spartan;
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 500;
         line-height: 36px;
@@ -284,13 +294,13 @@ line-height: 28.5px; /* 150% */
     .hr { 
         color: #333;
         font-family: League Spartan;
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 500;
         line-height: 36px;
         position: relative;
         top: 21px;
-        left: -15px;
+        left: 5px;
     }
     
     .alignvv{
@@ -298,26 +308,26 @@ line-height: 28.5px; /* 150% */
     }
     .aplbtn { 
         display: inline-flex;
-    padding: 12px 62px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 4px;
-    background: #A426D1;
-    color: #FFF;
-    font-family: League Spartan;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    border:0px;
-    margin-top: 34px;
+        padding: 12px 42px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        background: #A426D1;
+        color: #FFF;
+        font-family: League Spartan;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        border: 0px;
+        margin-top: 34px;
     }
     
     .sabtn { 
         position: absolute;
         display: inline-flex;
-        padding: 12px 71px;
+        padding: 11.5px 31px;
         justify-content: center;
         align-items: center;
         gap: 10px;
@@ -326,12 +336,12 @@ line-height: 28.5px; /* 150% */
         border: 2px solid #A426D1;
         color: #A426D1;
         font-family: League Spartan;
-        font-size: 20px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
-        margin-left: 230px;
-        margin-top: -45px;
+        margin-left: 180px;
+        margin-top: -41px;
         margin-bottom: 80px;
     }
 
@@ -360,24 +370,24 @@ line-height: 28.5px; /* 150% */
         background: #FCF3FF;
         color: #1C1C1C;
         font-family: League Spartan;
-        font-size: 20px;
+        font-size: 16px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 500;
         margin-bottom: 55px;
-        margin-top: 29px;
+        margin-top: 20px;
         line-height: normal;
     }
     
     .line { 
         width: auto;
-        height: 411px;
+        height: 331px;
         border-left: 2px solid #C1C1C1;
     }
     
     
     .ico { 
-        width: 23px;
-        height: 26px;
+        width: 19px;
+        height: 20px;
     }
     .icons { 
         margin-left: 52px;
@@ -386,27 +396,28 @@ line-height: 28.5px; /* 150% */
         gap: 20px;
         color: #000;
         font-family: League Spartan;
-        font-size: 20px;
+        font-size: 17px;
         font-style: normal;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 30px;
     }
     
     .lin1 { 
         border-bottom: 2px solid #C1C1C1;
-        margin-left: -30px;
-        width: 104%;
+    margin-left: -30px;
+    width: 104%;
+    margin-top: -30px;
     }
     
     .covcont{ 
         width: 99%;
-        height: 240px;
+        height: 100px;
         flex-shrink: 0;
         border-radius: 12px;
         border: 2px solid #C1C1C1;
         color: #535353;
         font-family: League Spartan;
-        font-size: 24px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
         margin-top: 11px;
@@ -419,14 +430,14 @@ line-height: 28.5px; /* 150% */
         font-size: 16px;
         font-style: normal;
         float: right;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 41px;
         margin-right: -90px;
     }
     
     .up { 
-        width: 98%;
-        height: 111px;
+        width: 99%;
+        height: 85px;
         flex-shrink: 0;
         border-radius: 12px;
         border: 2px solid #F8E5FF;
@@ -456,11 +467,11 @@ line-height: 28.5px; /* 150% */
     .atta { 
         color: #8B8B8B;
         font-family: League Spartan;
-        font-size: 18px;
+        font-size: 16px;
         font-style: normal;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 41px;
-        margin-top: 16px;
+        margin-top: 4px;
         margin-left: 10px;
         margin-bottom: 24px;
     }
@@ -486,24 +497,25 @@ line-height: 28.5px; /* 150% */
     
     .cont1 { 
         color: #7B7B7B;
-    font-family: League Spartan;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 36px; 
+        font-family: League Spartan;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 36px;
     }
     
     .int { 
         display: flex;
-        width: 185px;
+        width: 150px;
         height: 47px;
-        padding: 16px 6px 11px 41px;           align-items: center;
+        padding: 16px 6px 11px 41px;
+        align-items: center;
         flex-shrink: 0;
         border-radius: 4px;
         border: 2px solid #C5C5C5;
         color: #0A0A0A;
         font-family: League Spartan;
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 500;
         line-height: 36px;
@@ -513,52 +525,52 @@ line-height: 28.5px; /* 150% */
     .hr { 
         color: #333;
         font-family: League Spartan;
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
         font-weight: 500;
         line-height: 36px;
         position: relative;
         top: 21px;
-        left: 22px;
+        left: 5px;
     }
     
     .aplbtn { 
         display: inline-flex;
-    padding: 12px 62px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 4px;
-    background: #A426D1;
-    color: #FFF;
-    font-family: League Spartan;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    border:0px;
-    margin-top: 34px;
+        padding: 12px 42px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        background: #A426D1;
+        color: #FFF;
+        font-family: League Spartan;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        border: 0px;
+        margin-top: 34px;
     }
     
     .sabtn { 
         position: absolute;
-        display: inline-flex;
-        padding: 12px 71px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        background-color: white;
-        border-radius: 4px;
-        border: 2px solid #A426D1;
-        color: #A426D1;
-        font-family: League Spartan;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        margin-left: 230px;
-        margin-top: -45px;
-        margin-bottom: 80px;
+    display: inline-flex;
+    padding: 11.5px 31px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    border-radius: 4px;
+    border: 2px solid #A426D1;
+    color: #A426D1;
+    font-family: League Spartan;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 180px;
+    margin-top: -41px;
+    margin-bottom: 80px;
     }
 
     .moneysymbol  { 
@@ -610,7 +622,7 @@ line-height: 28.5px; /* 150% */
 }
 
 .terms { 
-    font-size: 20px;
+    font-size: 18px;
 }
 
 

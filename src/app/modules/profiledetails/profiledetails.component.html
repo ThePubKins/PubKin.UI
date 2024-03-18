@@ -82,7 +82,7 @@
   </div>
 
   <!-- Employment History -->
-  <div *ngIf="contentName === 'employment-history'">
+  <div *ngIf="contentName === 'employment-history'">  
     <div>
       <div class="container">
         <div>
@@ -107,6 +107,14 @@
                   <div class="col-4">
                     <div class="rrpubcomcenalign1">
                       <div class="kkempcrd">
+                        <div class="kkeditdet12">
+                          <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                            edit
+                            </span>
+                            <span class="material-symbols-outlined"  style="color: red;">
+                              delete
+                              </span>
+                              </div>
                         <div class="text02">{{ workDetails.jobTitle }}</div>
                         <div class="text03">{{ workDetails.companyName }}</div>
                         <div class="text03">{{ workDetails.companyLocation }}</div>
@@ -287,6 +295,14 @@
           <div class="col-4" *ngIf="portfolio.userId == User[0].id">
             <div class="rrpubcomcenalign1">
               <div class="kkempcrd">
+                <div class="kkeditdet12">
+                <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                  edit
+                  </span>
+                  <span class="material-symbols-outlined"  style="color: red;">
+                    delete
+                    </span>
+                    </div>
                 <div class="text02">{{ portfolio.projectTitle }}</div>
                 <div class="text03">{{ portfolio.projectLink }}</div>
                 <div class="text05">{{ portfolio.description | slice:0:170 }}</div>
@@ -398,6 +414,14 @@
           <div class="col-4" *ngIf="educationDetails.usersId == User[0].id">
             <div class="rrpubcomcenalign1">
               <div class="kkempcrd">
+                <div class="kkeditdet12">
+                  <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                    edit
+                    </span>
+                    <span class="material-symbols-outlined"  style="color: red;">
+                      delete
+                      </span>
+                      </div>
                 <div class="text02">{{educationDetails.department}}</div>
                 <div class="text03">{{educationDetails.instituteName}} {{educationDetails.courseName}}</div>
                 <div class="text04">{{educationDetails.yearOfJoining}}-{{educationDetails.yearOfCompletion}}</div>
@@ -691,6 +715,14 @@
           <div class="col-4" *ngIf="priceSkill.userId == User[0].id">
             <div class="rrpubcomcenalign1">
               <div class="kkempcrd">
+                <div class="kkeditdet12">
+                  <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                    edit
+                    </span>
+                    <span class="material-symbols-outlined"  style="color: red;">
+                      delete
+                      </span>
+                      </div>
                 <div class="text02">{{ priceSkill.skillSet }}</div>
                 <div class="text03">{{ priceSkill.uom }}</div>
                 <div class="text03">{{ priceSkill.simplePrice }} - {{ priceSkill.mediumPrice }} - {{
