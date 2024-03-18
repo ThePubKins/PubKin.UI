@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ApiService } from '../../core';
@@ -74,5 +74,10 @@ export class UserauthenticateService {
     this.userEmail = null;
     this.setUser(null);
     this.router.navigate(['/']);
+  }
+  private hideProfileSource = new Subject<void>();
+  hideProfile$ = this.hideProfileSource.asObservable();
+  toggleProfileVisibility() {
+    this.hideProfileSource.next(); 
   }
 }
