@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthprofileComponent } from '../authprofile/authprofile.component';
 import { MatDialog } from '@angular/material/dialog';
-import { JobpostService, UserauthenticateService } from '../../shared';
+import { AppliedUserNotificationService, JobpostService, UserauthenticateService } from '../../shared';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,18 +19,21 @@ export class AuthorsComponent implements OnInit {
   isFilterApplied: boolean = false;
   itemsPerPage: number = 10;
   currentPage: number = 1;
+  jobUniqueId:any;
   filteredJobPosts: any[] = [];
 
   constructor(
     public jobService: JobpostService, public userService: UserauthenticateService,
-    public dialog: MatDialog, public router: Router) { }
+    public dialog: MatDialog, public router: Router) { 
+ 
+    }
 
   ngOnInit(): void {
     this.getUserData();
     this.openDeliveryDialog();
     this.getAllPosts();
   }
-
+  
   getAllPosts() {
     this.jobService.getJobPost().subscribe(data => {
       this.Posts = data;

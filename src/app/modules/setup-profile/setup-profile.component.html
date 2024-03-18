@@ -23,22 +23,29 @@
           </div>
         </div>
       </div>
-      <div class="card kkbpaycrd">
-        <div class="card-body" style="    padding-top: 35px;">
+      <div  *ngFor="let bankData of bankDetails">
+      <div class="card kkbpaycrd"  *ngIf="bankData.id === UserData[0].id">
+        <div class="card-body" >
           <p class="kkbpytg1">Manage Billing Methods<span><button class="btn kkbpybtn1" data-bs-toggle="modal"
                 data-bs-target="#exampleModal">Add a New Billing
                 Method</button></span></p>
           <p class="kkbpytg2">Add, update or remove your billing method</p>
-
+<!-- 
           <p class="kkbpytg3">Primary</p>
-          <p class="kkbpytg2">Your Primary methods is used for recurring payments</p>
+          <p class="kkbpytg2">Your Primary methods is used for recurring payments</p> -->
           <hr>
-          <p class="kksvitg1"> <img src="../assets/visadpt.png">&nbsp;&nbsp;Visa card ending in <span
-              class="kksvitg2">3567</span></p>
+          <p class="kksvitg1"> <img *ngIf="bankData.nameoftheCard === 'Visa'" src="./assets/visadpt.png">
+            <svg *ngIf="bankData.nameoftheCard === 'MasterCard'"  height="36" width="46" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M482.9 410.3c0 6.8-4.6 11.7-11.2 11.7-6.8 0-11.2-5.2-11.2-11.7 0-6.5 4.4-11.7 11.2-11.7 6.6 0 11.2 5.2 11.2 11.7zm-310.8-11.7c-7.1 0-11.2 5.2-11.2 11.7 0 6.5 4.1 11.7 11.2 11.7 6.5 0 10.9-4.9 10.9-11.7-.1-6.5-4.4-11.7-10.9-11.7zm117.5-.3c-5.4 0-8.7 3.5-9.5 8.7h19.1c-.9-5.7-4.4-8.7-9.6-8.7zm107.8 .3c-6.8 0-10.9 5.2-10.9 11.7 0 6.5 4.1 11.7 10.9 11.7 6.8 0 11.2-4.9 11.2-11.7 0-6.5-4.4-11.7-11.2-11.7zm105.9 26.1c0 .3 .3 .5 .3 1.1 0 .3-.3 .5-.3 1.1-.3 .3-.3 .5-.5 .8-.3 .3-.5 .5-1.1 .5-.3 .3-.5 .3-1.1 .3-.3 0-.5 0-1.1-.3-.3 0-.5-.3-.8-.5-.3-.3-.5-.5-.5-.8-.3-.5-.3-.8-.3-1.1 0-.5 0-.8 .3-1.1 0-.5 .3-.8 .5-1.1 .3-.3 .5-.3 .8-.5 .5-.3 .8-.3 1.1-.3 .5 0 .8 0 1.1 .3 .5 .3 .8 .3 1.1 .5s.2 .6 .5 1.1zm-2.2 1.4c.5 0 .5-.3 .8-.3 .3-.3 .3-.5 .3-.8 0-.3 0-.5-.3-.8-.3 0-.5-.3-1.1-.3h-1.6v3.5h.8V426h.3l1.1 1.4h.8l-1.1-1.3zM576 81v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V81c0-26.5 21.5-48 48-48h480c26.5 0 48 21.5 48 48zM64 220.6c0 76.5 62.1 138.5 138.5 138.5 27.2 0 53.9-8.2 76.5-23.1-72.9-59.3-72.4-171.2 0-230.5-22.6-15-49.3-23.1-76.5-23.1-76.4-.1-138.5 62-138.5 138.2zm224 108.8c70.5-55 70.2-162.2 0-217.5-70.2 55.3-70.5 162.6 0 217.5zm-142.3 76.3c0-8.7-5.7-14.4-14.7-14.7-4.6 0-9.5 1.4-12.8 6.5-2.4-4.1-6.5-6.5-12.2-6.5-3.8 0-7.6 1.4-10.6 5.4V392h-8.2v36.7h8.2c0-18.9-2.5-30.2 9-30.2 10.2 0 8.2 10.2 8.2 30.2h7.9c0-18.3-2.5-30.2 9-30.2 10.2 0 8.2 10 8.2 30.2h8.2v-23zm44.9-13.7h-7.9v4.4c-2.7-3.3-6.5-5.4-11.7-5.4-10.3 0-18.2 8.2-18.2 19.3 0 11.2 7.9 19.3 18.2 19.3 5.2 0 9-1.9 11.7-5.4v4.6h7.9V392zm40.5 25.6c0-15-22.9-8.2-22.9-15.2 0-5.7 11.9-4.8 18.5-1.1l3.3-6.5c-9.4-6.1-30.2-6-30.2 8.2 0 14.3 22.9 8.3 22.9 15 0 6.3-13.5 5.8-20.7 .8l-3.5 6.3c11.2 7.6 32.6 6 32.6-7.5zm35.4 9.3l-2.2-6.8c-3.8 2.1-12.2 4.4-12.2-4.1v-16.6h13.1V392h-13.1v-11.2h-8.2V392h-7.6v7.3h7.6V416c0 17.6 17.3 14.4 22.6 10.9zm13.3-13.4h27.5c0-16.2-7.4-22.6-17.4-22.6-10.6 0-18.2 7.9-18.2 19.3 0 20.5 22.6 23.9 33.8 14.2l-3.8-6c-7.8 6.4-19.6 5.8-21.9-4.9zm59.1-21.5c-4.6-2-11.6-1.8-15.2 4.4V392h-8.2v36.7h8.2V408c0-11.6 9.5-10.1 12.8-8.4l2.4-7.6zm10.6 18.3c0-11.4 11.6-15.1 20.7-8.4l3.8-6.5c-11.6-9.1-32.7-4.1-32.7 15 0 19.8 22.4 23.8 32.7 15l-3.8-6.5c-9.2 6.5-20.7 2.6-20.7-8.6zm66.7-18.3H408v4.4c-8.3-11-29.9-4.8-29.9 13.9 0 19.2 22.4 24.7 29.9 13.9v4.6h8.2V392zm33.7 0c-2.4-1.2-11-2.9-15.2 4.4V392h-7.9v36.7h7.9V408c0-11 9-10.3 12.8-8.4l2.4-7.6zm40.3-14.9h-7.9v19.3c-8.2-10.9-29.9-5.1-29.9 13.9 0 19.4 22.5 24.6 29.9 13.9v4.6h7.9v-51.7zm7.6-75.1v4.6h.8V302h1.9v-.8h-4.6v.8h1.9zm6.6 123.8c0-.5 0-1.1-.3-1.6-.3-.3-.5-.8-.8-1.1-.3-.3-.8-.5-1.1-.8-.5 0-1.1-.3-1.6-.3-.3 0-.8 .3-1.4 .3-.5 .3-.8 .5-1.1 .8-.5 .3-.8 .8-.8 1.1-.3 .5-.3 1.1-.3 1.6 0 .3 0 .8 .3 1.4 0 .3 .3 .8 .8 1.1 .3 .3 .5 .5 1.1 .8 .5 .3 1.1 .3 1.4 .3 .5 0 1.1 0 1.6-.3 .3-.3 .8-.5 1.1-.8 .3-.3 .5-.8 .8-1.1 .3-.6 .3-1.1 .3-1.4zm3.2-124.7h-1.4l-1.6 3.5-1.6-3.5h-1.4v5.4h.8v-4.1l1.6 3.5h1.1l1.4-3.5v4.1h1.1v-5.4zm4.4-80.5c0-76.2-62.1-138.3-138.5-138.3-27.2 0-53.9 8.2-76.5 23.1 72.1 59.3 73.2 171.5 0 230.5 22.6 15 49.5 23.1 76.5 23.1 76.4 .1 138.5-61.9 138.5-138.4z"/></svg>    
+            &nbsp;&nbsp;{{bankData.nameoftheCard}} card ending in <span
+              class="kksvitg2">{{bankData.cardNumber | slice:12:16}}</span></p>
           <div class="kkedittg">
-            <p class="kkbpayed">Edit&nbsp;&nbsp; <img style="margin-top: -6px; " src="../assets/dele.png"></p>
+            <p class="kkbpayed" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Edit&nbsp;&nbsp; 
+              <!-- <img style="margin-top: -6px; " src="../assets/dele.png"> -->
+            </p>
           </div>
         </div>
+      </div>
       </div>
 
       <div class="modal  fade" id="withDrawModal" tabindex="-1" aria-labelledby="withDrawModalLabel" aria-hidden="true">
@@ -67,8 +74,6 @@
         </div>
       </div>
 
-
-
       <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
           <div class="modal-content kkmodelbill">
@@ -96,7 +101,7 @@
           </div>
         </div>
       </div>
-
+  
       <div class="modal  fade" id="upiModal" tabindex="-1" aria-labelledby="upiModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
           <div class="modal-content kkmodelbill">
@@ -117,7 +122,8 @@
             <p class="kkbnktx6">Add UPI Details</p>
             <div *ngFor="let bankData of bankDetails">
               <div *ngIf="UserData[0].id === bankData.id">
-                <form #upiDetailsform="ngForm" (ngSubmit)="onSubmitUpiDetails(upiDetailsform);">
+                <form #upiDetailsform="ngForm"
+                  (ngSubmit)="onSubmitUpiDetails(upiDetailsform);" novalidate>
                   <input type="hidden" id="id" name="id" [(ngModel)]="UserData[0].id">
                   <input type="hidden" id="userId" name="userId" [(ngModel)]="UserData[0].id">
                   <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="UserData[0].firstName">
@@ -137,10 +143,19 @@
                     [(ngModel)]="UserData[0].bankingDetails">
                   <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
                     [(ngModel)]="UserData[0].paymentVerify">
-                  <input type="text" placeholder="UPI Method" class="kkbilinput1" ngModel id="upi" name="upi"
-                    #upi="ngModel" [(ngModel)]="bankData.upi" required>
+  
+                  <!-- <input type="text" placeholder="UPI Method" class="kkbilinput1" ngModel id="upi" name="upi"
+                    #upi="ngModel" [(ngModel)]="bankData.upi" required > -->
+                  <select class="kkbilinput1 form-control" id="upi" name="upi" [(ngModel)]="bankData.upi" required>
+                    <option value="" disabled selected>Select UPI Method</option>
+                    <option class="ddis" value="Gpay">Gpay</option>
+                    <option class="ddis" value="ApplePay">ApplePay</option>
+                    <option class="ddis" value="PayPal">PayPal</option>
+                  </select>
+  
                   <input type="text" placeholder="Paste Your UPI URL" class="kkbilinput1" ngModel id="upiUrl"
-                    name="upiUrl" #upiUrl="ngModel" [(ngModel)]="bankData.upiUrl" required>
+                    name="upiUrl" #upiUrl="ngModel" [(ngModel)]="bankData.upiUrl" required
+                   >
                   <!-- <div class="container kkreadiobil">
                     <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                     <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
@@ -157,7 +172,7 @@
           </div>
         </div>
       </div>
-
+  
       <div class="modal  fade" id="bankModal" tabindex="-1" aria-labelledby="bankModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
           <div class="modal-content kkmodelbill">
@@ -178,7 +193,8 @@
             <p class="kkbnktx6">Add Bank Details</p>
             <div *ngFor="let bankData of bankDetails">
               <div *ngIf="UserData[0].id === bankData.id">
-                <form #bankingDetailsform="ngForm" (ngSubmit)="onSubmitBankingDetails(bankingDetailsform);">
+                <form #bankingDetailsform="ngForm" novalidate
+                  (ngSubmit)="onSubmitBankingDetails(bankingDetailsform); ">
                   <input type="hidden" id="id" name="id" [(ngModel)]="UserData[0].id">
                   <input type="hidden" id="userId" name="userId" [(ngModel)]="UserData[0].id">
                   <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="UserData[0].firstName">
@@ -199,12 +215,12 @@
                   <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
                     [(ngModel)]="UserData[0].paymentVerify">
                   <input type="text" placeholder="Account Number" class="kkbilinput1" ngModel #AccountNumber="ngModel"
-                    minlength="3" maxlength="10" required pattern="[0-9]+$" name="AccountNumber" id="AccountNumber"
+                    minlength="3" maxlength="15" required pattern="[0-9]+$" name="AccountNumber" id="AccountNumber"
                     [(ngModel)]="bankData.accountNumber">
                   <input type="text" placeholder="IFSC Code" class="kkbilinput1" name="ifscCode" id="ifscCode"
                     [(ngModel)]="bankData.ifscCode">
                   <input type="text" placeholder="Account Holder Name" class="kkbilinput1" name="holderName"
-                    id="holderName" [(ngModel)]="bankData.holderName">
+                    id="holderName" [(ngModel)]="bankData.holderName" >
                   <!-- <div class="container kkreadiobil">
                     <input class="form-check-input kkrdbtn1" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                     <label class="form-check-label kkrdttx1" for="flexRadioDefault1">
@@ -221,7 +237,7 @@
           </div>
         </div>
       </div>
-
+  
       <div class="modal  fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
           <div class="modal-content kkmodelbill">
@@ -242,7 +258,8 @@
             <p class="kkbnktx6">Add Card Details</p>
             <div *ngFor="let bankData of bankDetails">
               <div *ngIf="UserData[0].id === bankData.id">
-                <form #bankDetailsform="ngForm" (ngSubmit)="onSubmitCardDetails(bankDetailsform);">
+                <form #bankDetailsform="ngForm" novalidate
+                  (ngSubmit)="onSubmitCardDetails(bankDetailsform);">
                   <input type="hidden" id="id" name="id" [(ngModel)]="UserData[0].id">
                   <input type="hidden" id="userId" name="userId" [(ngModel)]="UserData[0].id">
                   <input type="hidden" id="lastModifiedBy" name="lastModifiedBy" [(ngModel)]="UserData[0].firstName">
@@ -273,7 +290,7 @@
                       Only Numeric are allowed
                     </span>
                   </span>
-                  <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
+                  <!-- <input type="text" placeholder="Name on the Card" class="kkbilinput1" ngModel id="nameoftheCard"
                     minlength="1" maxlength="16" #nameoftheCard="ngModel" name="nameoftheCard"
                     [(ngModel)]="bankData.nameoftheCard" required pattern="[a-zA-z\s]+$">
                   <span *ngIf="!nameoftheCard.valid && nameoftheCard.touched">
@@ -283,11 +300,18 @@
                     <span class="errormsg" *ngIf="nameoftheCard.errors?.['pattern']">
                       Only Characters are allowed
                     </span>
-                  </span>
+                  </span> -->
+                  <select class="kkbilinput1" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard"
+                    required>
+                    <option value="" disabled selected>Select Card Name</option>
+                    <option class="ddis" value="Visa">Visa</option>
+                    <option class="ddis" value="MasterCard">MasterCard</option>
+                  </select>
                   <div class="kbiladcrd1">
                     <input type="text" class="kkbilinput2" placeholder="MM/YYYY" ngModel id="expiryDate"
-                      #expiryDate="ngModel" minlength="1" maxlength="7" name="expiryDate"
-                      [(ngModel)]="bankData.expiryDate" required pattern="[0-9]+/[0-9]+$">
+                      #expiryDate="ngModel" minlength="1" maxlength="8" name="expiryDate"
+                      [(ngModel)]="bankData.expiryDate" required pattern="[0-9]+/[0-9]+$"
+                      >
                     <input type="text" class="kkbilinput2" placeholder="CVV" ngModel id="cvv" #cvv="ngModel" name="cvv"
                       minlength="1" maxlength="3" [(ngModel)]="bankData.cvv" required pattern="[0-9]+$">
                   </div>
@@ -389,7 +413,7 @@
 
     <div *ngIf="contentName === 'profile-setting'">
       <p class="kkacinf">Profile Info</p>
-      <div class="kkbpaycrd pt-4">
+      <div class="kkbpaycrd pt-4" *ngIf="UserData[0].role === 'freelancer'">
         <ul>
           <li class="profilesettinginfo" routerLink="/profile/portfolio">Change your Portfolio details</li>
           <li class="profilesettinginfo" routerLink="/profile/education-details">Change your Education Details</li>
@@ -397,6 +421,14 @@
           <li class="profilesettinginfo" routerLink="/profile/freelancing-details">Change your Freelancing details</li>
           <li class="profilesettinginfo" routerLink="/profile/payment">Change your Pricing Details</li>
           <li class="profilesettinginfo" routerLink="/profile/govtId-details">Change your Govt.ID</li>
+        </ul>
+
+      </div>
+      <div class="kkbpaycrd pt-4" *ngIf="UserData[0].role === 'author'">
+        <ul>
+          <li class="profilesettinginfo" routerLink="/profile/employment-history">Change Personal Details</li>
+          <li class="profilesettinginfo" routerLink="/profile/banking-details">Change your banking details</li>
+          <li class="profilesettinginfo" routerLink="/profile/authors-idverify">Change your Govt.ID</li>
         </ul>
 
       </div>

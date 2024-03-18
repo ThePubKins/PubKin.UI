@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BankDetailsService, EducationService, PortfolioService, UserService, UserauthenticateService, WorkdetailsService, portfolio, PricingSkillService } from '../../shared';
@@ -55,6 +55,7 @@ export class ProfiledetailsComponent implements OnInit {
     public educationservice: EducationService,
     public workservice: WorkdetailsService,
     public datePipe: DatePipe,
+    public router: Router,
     public priceService: PricingSkillService,
     public bankservice: BankDetailsService) {
     this.calculateCharactersLeft('SimpleDesc');
@@ -296,13 +297,6 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitGovtIdDetails(form: NgForm) {
     if (form.valid && this.userservice.userData) {
       this.userservice.putGovtDetails(form.value).subscribe();
-      this.contentName = 'whoopee';
-      setTimeout(() => {
-        if (this.contentName === 'whoopee') {
-          this.contentName = 'govtId-details';
-          window.location.reload();
-          }
-      }, 1500);
     }
   }
 
@@ -317,6 +311,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitPersonal(form: NgForm) {
     if (form.valid && this.userservice.userData) {
       this.userservice.putPersonalData(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'author-profile';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -453,7 +454,6 @@ export class ProfiledetailsComponent implements OnInit {
   addSkill(skill: string): void {
     if (!this.selectedSkills.includes(skill)) {
       this.selectedSkills.push(skill);
-      this.User[0].skillSet = this.selectedSkills.join(', ');
     }
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FreeprofileComponent } from '../freeprofile/freeprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { JobpostService, UserauthenticateService } from '../../shared';
+import { AppliedUserNotificationService, JobpostService, UserauthenticateService } from '../../shared';
 
 declare var bootstrap: any;
 @Component({
@@ -25,7 +25,10 @@ export class FreelancerComponent implements OnInit {
   constructor(public dialog: MatDialog,
     public userservice: UserauthenticateService,
     public jobService: JobpostService,
+    public singlarService:AppliedUserNotificationService,
     private router: Router) {
+      this.singlarService.startConnection();
+      this.singlarService.addProductListener();
   }
 
   ShowMoreLess(index: number) {
@@ -38,6 +41,7 @@ export class FreelancerComponent implements OnInit {
     }
   }
 
+  
   //Avatar for profile
   images = [
     { img_url: '/assets/avd1.png' },

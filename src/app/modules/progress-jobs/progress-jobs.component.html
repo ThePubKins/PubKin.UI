@@ -9,7 +9,7 @@
         </div>
         <div *ngFor="let JobPost of  Applies;">
           <div class="row" style="margin-top: 17px;"
-            *ngIf="JobPost.status === 'offers' && currentUser[0].id == JobPost.userId">
+            *ngIf="JobPost.status === 'offers' && currentUser[0].id == JobPost.userId && !anyJobInProgress()">
             <div class="col-8">
               <p class="jobtitle">{{JobPost.jobTitle}}</p>
               <p class="jobDesc">{{JobPost.jobDescription | slice:0:220 }}</p>
@@ -17,7 +17,7 @@
             <div class="col-4">
               <button class="rejectbtn" data-bs-toggle="modal" data-bs-target="#rejectmodel">Reject</button>
               <button class="viewJobbtn" data-bs-toggle="modal" data-bs-target="#acceptoffer"
-                (click)="ApplyModal(JobPost);ChangeStatus();">Accept Offer</button>
+                (click)="ApplyModal(JobPost);">Accept Offer</button>
             </div>
             <div class="row">
               <div class="col-8">
@@ -84,7 +84,10 @@
           <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
             <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.id">
             <input type="hidden" id="status" name="status" [(ngModel)]="Applies[0].status">
-            <button (click)="submitNow();"  type="submit" class="rejectconfirm1">Accept Offer</button>
+            <input type="hidden" id="postBy" name="postBy" [(ngModel)]="Applies[0].postBy">
+            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="Applies[0].jobId">
+            <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="Applies[0].jobUniqueId">
+            <button (click)="submitNow();ChangeStatus();"  type="submit" class="rejectconfirm1">Accept Offer</button>
           </form>
           <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
             <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.jobId">

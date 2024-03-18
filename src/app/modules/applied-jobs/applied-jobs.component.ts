@@ -63,7 +63,7 @@ export class AppliedJobsComponent {
   }
 
   getCurrentUserOpenJobs(): any[] {
-    const userOpenJobs = this.Applies.filter((Apply: { status: string; userId: string; }) => Apply.status === 'accepted' );
+    const userOpenJobs = this.Applies.filter((Apply: { status: string; userId: string; }) => Apply.status === 'applied' && Apply.userId === this.currentUser[0].id );
     return userOpenJobs; 
 }
 
