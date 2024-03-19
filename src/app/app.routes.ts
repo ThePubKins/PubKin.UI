@@ -20,6 +20,7 @@ import { FootertagComponent } from './modules/footertag/footertag.component';
 import { PaymentComponent } from './modules/payment/payment.component';
 import { CompletedComponent } from './modules/completed/completed.component';
 import { AuthorsCompletedJobsComponent } from './modules/authors-completed-jobs/authors-completed-jobs.component';
+import { ForgetPasswordComponent } from './modules/forget-password/forget-password.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -42,7 +43,9 @@ export const routes: Routes = [
   { path: 'comments/:id', component: CommentsComponent },
   { path: 'freelancers/job-offers', component: ProgressJobsComponent },
   { path: 'freelancers/ongoing-jobs', component: OngoingJobsComponent },
-  { path: 'WhatisPubKin?', component: FootertagComponent },
-  { path: 'payment', component: PaymentComponent }
+  { path: 'docs/:content', component: FootertagComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent }
+  
 ];
 

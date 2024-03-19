@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { jobpost, JobpostService, UserauthenticateService } from '../../shared';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-job-post',
@@ -34,12 +35,14 @@ export class JobPostComponent implements OnInit {
   end: string | null = null;
   selectedRate: string = 'Hourly';
   Rate: string = 'INR';
-  User = [{ firstName: '', lastName: '', email :'', id: '' }];
+  Posts : any;
+  User : any;
   jobData : jobpost= {} as jobpost;
   selectedOption: string  = this.jobservice.jobData.complexity;
 
   ngOnInit(): void {
     this.getUserData();
+    this.getAllPosts();
   }
 
   constructor(   public fb: FormBuilder,public datePipe: DatePipe,
@@ -54,8 +57,6 @@ export class JobPostComponent implements OnInit {
       this.jobservice.postJobPost(form.value).subscribe();
     }
   }
-
-
 
   //Character Left for the description
   onInputChange() {
@@ -73,6 +74,12 @@ export class JobPostComponent implements OnInit {
   getCharacterCountClass() {
     return { 'character-limit-exceeded': this.isTextareaDisabled() };
   }
+
+  getAllPosts() {
+    return this.jobservice.getJobPost().pipe(
+        map(data => data.length) // Assuming data is an array, this counts its length
+    );
+}
 
   //get current user Data
    getUserData() {
@@ -204,16 +211,22 @@ export class JobPostComponent implements OnInit {
     }
   } 
 
-  fetchdetails() { 
-    this.jobservice.jobData.userEmail= this.User[0].email;
-    this.jobservice.jobData.status= 'Open';
-    this.jobservice.jobData.userId= this.User[0].id;
-    this.jobservice.jobData.createdBy = `${this.User[0].firstName} ${this.User[0].lastName}`;
-    this.firstName = (this.User[0].firstName || '').toUpperCase().slice(0, 1);
-    this.lastName = (this.User[0].lastName || '').toUpperCase().slice(0, 2);
-    this.jobservice.jobData.jobUniqueId = `A${this.firstName}${this.lastName} - ${this._count}`
-  }
   
+  fetchdetails() { 
+    this.getAllPosts().subscribe(totalPosts => {
+        this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
+        this.jobservice.jobData.postDate = this.dateFormatted;
+        this.jobservice.jobData.userEmail = this.User[0].email;
+        this.jobservice.jobData.status = 'Open';
+        this.jobservice.jobData.userId = this.User[0].id;
+        this.jobservice.jobData.createdBy = `${this.User[0].firstName} ${this.User[0].lastName}`;
+        this.firstName = (this.User[0].firstName || '').toUpperCase().slice(0, 1);
+        this.lastName = (this.User[0].lastName || '').toUpperCase().slice(0, 2);
+        this.jobservice.jobData.jobUniqueId = `A${this.firstName}${this.lastName} - ${totalPosts}`;
+    });
+}
+
+
  submitPostJob(form: NgForm) {
     if (this.jobservice.jobData) {
       const formData = new FormData();
@@ -260,6 +273,14 @@ export class JobPostComponent implements OnInit {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.uploadedFileName = file ? file.name : ''; 
+  }
+
+  total :any;
+  calculateTotal(): any {
+    const num1 = parseInt(this.User[0].details || 0);
+    const num2 = parseInt(this.User[0].govtIdDetails || 0);
+    const num3 = parseInt(this.User[0].bankingDetails || 0);
+    const total = num1 + num2 + num3;
   }
 
 

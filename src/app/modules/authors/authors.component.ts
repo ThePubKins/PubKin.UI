@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthprofileComponent } from '../authprofile/authprofile.component';
 import { MatDialog } from '@angular/material/dialog';
-import { JobpostService, UserauthenticateService } from '../../shared';
+import {  JobpostService, UserauthenticateService } from '../../shared';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,17 +16,24 @@ export class AuthorsComponent implements OnInit {
   Posts: any;
   UserData: any;
   searchTerm: string;
+  isFilterApplied: boolean = false;
+  itemsPerPage: number = 10;
+  currentPage: number = 1;
+  jobUniqueId:any;
+  filteredJobPosts: any[] = [];
 
   constructor(
     public jobService: JobpostService, public userService: UserauthenticateService,
-    public dialog: MatDialog, public router: Router) { }
+    public dialog: MatDialog, public router: Router) { 
+ 
+    }
 
   ngOnInit(): void {
     this.getUserData();
     this.openDeliveryDialog();
     this.getAllPosts();
   }
-
+  
   getAllPosts() {
     this.jobService.getJobPost().subscribe(data => {
       this.Posts = data;
@@ -49,6 +56,9 @@ export class AuthorsComponent implements OnInit {
     return total;
   }
 
+  onPageChange(pageNumber: number) {
+    this.currentPage = pageNumber;
+  }
 
   //Get the Current userData
   getUserData() {
@@ -58,6 +68,7 @@ export class AuthorsComponent implements OnInit {
       this.userService.getUserData().subscribe({
         next: (data) => {
           this.UserData = data?.filter((UserData: any) => UserData.email === Email);
+          this.openDeliveryDialog();
         },
         error: (err) => {
           console.error('Error fetching data:', err);
@@ -67,21 +78,16 @@ export class AuthorsComponent implements OnInit {
     }
   }
 
-  //Progress Bar  Functionality
-  // getProgressBarColor(): string {
-  //   const progress = this.Author[0].ProfilePercentage;
-  //   if (progress < 40) {
-  //     return '#666666'; 
-  //   } else if (progress < 80) {
-  //     return '#333333'; 
-  //   } 
-  //   else {
-  //     return '#000000';
-  //   }
-  // }
+  get paginatedDataList(): { value: string; date: string }[] {
+    const dataToPaginate = this.isFilterApplied ? this.filteredJobPosts : this.Posts;
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return dataToPaginate.slice(startIndex, endIndex);
+  }
+
+
 
   //Open dialog for Profile
- 
   total : any;
   openDeliveryDialog() {
     if (this.UserData && this.UserData.length > 0) {

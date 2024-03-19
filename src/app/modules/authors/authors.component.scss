@@ -1,7 +1,8 @@
 .pgrss {
   padding: 0px;
-  width: 100%;
+  width: 80%;
   height: 9px;
+  margin-left: 28px;
 
 }
 
@@ -16,8 +17,9 @@
   }
 
   .rrpublogoimg1 {
-    width: 139px;
-    height: 69px;
+    width: 100px;
+    height: 65px;
+    margin-top: 6px;
   }
 
   .rrcomcenalign1 {
@@ -146,9 +148,9 @@
     color: #000;
     font-family: "League Spartan", sans-serif;
     margin-top: 42px;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 27px;
   }
 
@@ -156,9 +158,10 @@
   .rrkkprtag4 {
     color: #787878;
     font-family: "League Spartan", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
+    margin-left: 27px;
     line-height: 27px;
   }
 
@@ -185,9 +188,9 @@ color: #A426D1;
     color: #0F0F0F;
     text-align: center;
     font-family: "League Spartan", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 27px;
   }
 
@@ -235,9 +238,9 @@ color: #A426D1;
   .rrchead {
     color: #000;
     font-family: "League Spartan", sans-serif;
-    font-size: 35px;
+    font-size: 32px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 10px;
     margin-left: 10px;
     line-height: normal;
@@ -273,9 +276,9 @@ color: #A426D1;
   .rrccont {
     color: #1C1C1C;
     font-family: "League Spartan", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 200;
+    font-weight: 300;
   }
 
   .rrkkcrdprtx {
@@ -296,13 +299,13 @@ color: #A426D1;
     border-radius: 154px;
     color: #1C1C1C;
     font-family: "League Spartan", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: normal;
     background: #FAEDFF;
-    width: 37%;
-    height: 36px;
+    width: 34%;
+    height: 32px;
     margin-top: 6px;
     margin-bottom: 7px;
     border: 1px solid #edcbfa;
@@ -316,10 +319,91 @@ color: #A426D1;
     margin-left: 10px;
   }
 
+
+  
+
+.k1 {
+  color: #A426D1;
+  font-family: League Spartan;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: -32px;
+}
+
+.k2 {
+  color: #A426D1;
+  font-family: League Spartan;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+  margin-top: 2px;
+}
+
+.k3 {
+  color: #A426D1;
+  font-family: League Spartan;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+
+
+}
+
+.c1 {
+  font-family: League Spartan;
+  font-size: 20px;
+  margin-left: 139px;
+  margin-top: 5px;
+  font-style: normal;
+  font-weight: 400px;
+  line-height: 20px;
+
+
+}
+
+.c4 {
+  margin-top: 800px;
+}
+
+
+
+.d5 {
+  background-color: #A426D1;
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: flex;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 50%;
+
+
+}
+
+.d5:hover {
+  opacity: 1
+}
+
+.circle {
+  padding-top: 6px;
+  padding-left: 10px;
+
+}
+
+
   .rrkkhrtxt {
-    margin-top: 26px;
+    margin-top: 20px;
     font-family: "League Spartan", sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
   }
 
@@ -343,9 +427,9 @@ color: #A426D1;
   .vvrecnt {
     color: #1c1c1c;
     font-family: League Spartan;
-    font-size: 40px;
+    font-size: 32px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: normal;
     margin-top: 41px;
     cursor: pointer;
@@ -354,10 +438,10 @@ color: #A426D1;
   .viewallvv {
     color: #a426d1;
     font-family: League Spartan;
-    font-size: 21px;
+    font-size: 20px;
     cursor: pointer;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: normal;
     margin-top: 47px;
     text-align: right;
@@ -366,7 +450,7 @@ color: #A426D1;
   .borderboxv {
     width: 100%;
     padding: 36px 27px 28px 43px;
-    height: 205px;
+    height: 170px;
     margin-top: 22px;
     flex-shrink: 0;
     border-radius: 20px;
@@ -376,14 +460,14 @@ color: #A426D1;
   .recenvv {
     color: #000;
     font-family: League Spartan;
-    font-size: 27px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 36px;
   }
 
   .svgbutt {
-    margin-top: 26%;
+    margin-top: 19%;
     float: right;
     margin-right: 25px;
   }
@@ -391,11 +475,11 @@ color: #A426D1;
   .recenvv2 {
     color: #000;
     font-family: League Spartan;
-    font-size: 24px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: 36px;
-    margin-top: 24px;
+    // margin-top: 24px;
   }
 
 
@@ -422,9 +506,9 @@ color: #A426D1;
 @media only screen and (min-width:1201px) {
   .kkprtag1 {
     font-family: "League Spartan", sans-serif;
-    font-size: 40px;
+    font-size: 35px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 600;
     line-height: normal;
   }
 
@@ -453,7 +537,7 @@ color: #A426D1;
     color: #9C9C9C;
     text-align: center;
     font-family: "League Spartan", sans-serif;
-    font-size: 17px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -467,9 +551,9 @@ color: #A426D1;
     align-self: center;
     color: #FFF;
     font-family: League Spartan;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 27px;
     box-shadow: 3px 2px 12px 1px rgba(0, 0, 0, .16), 0 9px 10px 0 rgba(0, 0, 0, .12);
   }
@@ -486,8 +570,8 @@ color: #A426D1;
 
   .rrkkprcrd {
     margin-top: 30px;
-    width: 93%;
-    height: 26rem;
+    width: 90%;
+    height: 24rem;
     text-align: center;
     background: #FFF;
     border-radius: 16px;
@@ -531,7 +615,7 @@ color: #A426D1;
     font-family: League Spartan;
     font-size: 16px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 27px;
     box-shadow: 3px 2px 12px 1px rgba(0, 0, 0, .16), 0 9px 10px 0 rgba(0, 0, 0, .12);
   }
@@ -549,7 +633,7 @@ color: #A426D1;
   .rrkkprcrd {
     margin-top: 30px;
     width: 100%;
-    height: 26rem;
+    height: 23rem;
     text-align: center;
     background: #FFF;
     border-radius: 16px;
@@ -617,9 +701,9 @@ color: #A426D1;
     border-radius: 154px;
     color: #1C1C1C;
     font-family: "League Spartan", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: normal;
     background: #FAEDFF;
     width: 40%;
@@ -630,9 +714,9 @@ color: #A426D1;
   }
 
   .rrkkhrtxt {
-    margin-top: 26px;
+    margin-top: 20px;
     font-family: "League Spartan", sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
   }
 

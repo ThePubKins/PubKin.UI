@@ -33,7 +33,7 @@
         <div class="col-8 kkjbdetli1" >
           <div>
             <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br></p>
-            <!-- <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.createDate)}}</p> -->
+            <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.postDate)}}</p>
             <hr class="kkline1">
           </div>
           <div class="kkjbdiv2">
@@ -58,8 +58,7 @@
                   <span *ngIf="jobPost.currency === 'AOA'" >Kz</span>
                   <span *ngIf="jobPost.currency === 'ARS  '" >$</span>
                   <span *ngIf="jobPost.currency === 'OMR'" >ر.ع.</span>
-                  <span *ngIf="jobPost.currency === 'SAR'" >.س</span> {{jobPost.fromBudget}}-{{jobPost.toBudget}}
-                  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/{{jobPost.rateBasis}}</p>
+                  <span *ngIf="jobPost.currency === 'SAR'" >.س</span> {{jobPost.fromBudget}}-{{jobPost.toBudget}} / {{jobPost.rateBasis}}</p>
               </div>
             </div>
           </div>
@@ -76,7 +75,7 @@
 
         </div>
         <div class="col-4 kkjbdetlis1 text-center" >
-         <button class="btn kkjbdtbtn2"  data-bs-toggle="modal" data-bs-target="#savejob1">Save Job</button>
+         <button class="btn kkjbdtbtn2"  data-bs-toggle="modal" data-bs-target="#savejob1" (click)="ApplyModal(jobPost)">Save Job</button>
          <button class="btn kkjbdtbtn1"  [disabled]="calculateTotal() < 85" (click)="showApplyNow(jobPost.jobUniqueId)">Apply Now</button>
           <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
           <hr class="kkline2">

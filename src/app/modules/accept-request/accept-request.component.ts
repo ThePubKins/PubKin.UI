@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
+import { AppliedUserNotificationService, AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-accept-request',
   templateUrl: './accept-request.component.html',
@@ -10,6 +11,7 @@ import { AppliedUserService, BankDetailsService, UserauthenticateService } from 
 export class AcceptRequestComponent implements OnInit {
   Applies: any;
   Hire: any;
+  deleteProposal: any;
   selectedJobPostId: any;
   user: any;
   users: any[] = [];
@@ -17,11 +19,30 @@ export class AcceptRequestComponent implements OnInit {
   payment: number = 0;
   selectedhire: any;
   selectedrequest: any;
+  currentDate: any = new Date();
   User: any;
   imageUrl: string = 'https://localhost:7172';
   showicons: boolean[] = [];
+  filteredData: any[];
+
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
-    public applyService: AppliedUserService) { }
+    public applyService: AppliedUserService, private datePipe: DatePipe, public singlarService: AppliedUserNotificationService) {
+    this.currentDate = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
+
+  }
+
+
+
+  subscribeToProduct() {
+    this.singlarService.subscribeToProduct(this.Applies[0].jobId);
+  }
+
+
+  onChatTargetClick(targetUser: any): void {
+    this.chatTarget = targetUser;
+
+  }
+
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
     if (Email) {
@@ -34,10 +55,23 @@ export class AcceptRequestComponent implements OnInit {
     }
   }
 
+  ApplyDeleteModal(Applies: any) {
+    this.deleteProposal = Applies;
+  }
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  subscribeToProduct() {
+    this.singlarService.subscribeToProduct(this.Applies[0].jobId);
+  }
+
+
   onChatTargetClick(targetUser: any): void {
     this.chatTarget = targetUser;
   }
- 
+
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -54,7 +88,7 @@ export class AcceptRequestComponent implements OnInit {
 
   getApplies(jobId: string): void {
     this.applyService.getAppliedUserById(jobId).subscribe({
-     next: (result: any) => {
+      next: (result: any) => {
         this.Applies = result;
         console.log(this.Applies);
       },
@@ -62,7 +96,7 @@ export class AcceptRequestComponent implements OnInit {
         console.error('Error fetching applied users:', err);
       }
     });
-}
+  }
 
   onSubmitStatus(form: NgForm) {
     if (form.valid && this.applyService.applyData) {
@@ -70,7 +104,15 @@ export class AcceptRequestComponent implements OnInit {
     }
   }
 
-
+success:boolean=false;
+successmsg(){
+  this.success = !this.success;
+  if (this.success) {
+    setTimeout(() => {
+      this.success = false;
+    }, 1500);
+  }
+}
   //Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
@@ -78,8 +120,19 @@ export class AcceptRequestComponent implements OnInit {
     }
   }
   
+  resetStatusAfterDelay() {
+    setTimeout(() => {
+      this.Applies[0].status = "";
+    }, 3000);
+  }
+  
   ChangeStatus() { 
-    this.Applies[0].status = "offers"
+    this.selectedhire.status = "offers"
+    this.resetStatusAfterDelay();
+  }
+
+  DeleteStatus() {
+    this.Applies[0].status = "reject"
   }
 
   GoNext: string = "button1";

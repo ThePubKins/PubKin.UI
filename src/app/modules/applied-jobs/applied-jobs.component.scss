@@ -148,12 +148,12 @@
     border-radius: 8px;
     background: #F5D9FF;
     border-radius: 8px;
-    margin-top: 30px;
+    margin-top: -8px;
     color: #000;
     font-family: League Spartan;
-    font-size: 29px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 36.5px;
 }
 
@@ -167,9 +167,18 @@
     padding: 0px 15px;
     color: #535353;
     font-family: League Spartan;
-    font-size: 24px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 400;
     line-height: 40px;
     margin-top: 21px;
 }
+.btnclose5 {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+
+  }

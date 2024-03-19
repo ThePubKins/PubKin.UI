@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { BankDetailsService, EducationService, PortfolioService, UserService, UserauthenticateService, WorkdetailsService, portfolio, PricingSkillService } from '../../shared';
@@ -55,6 +55,7 @@ export class ProfiledetailsComponent implements OnInit {
     public educationservice: EducationService,
     public workservice: WorkdetailsService,
     public datePipe: DatePipe,
+    public router: Router,
     public priceService: PricingSkillService,
     public bankservice: BankDetailsService) {
     this.calculateCharactersLeft('SimpleDesc');
@@ -256,18 +257,39 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitBankingDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.putBankDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'banking-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
   onSubmitCardDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.putCardDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'banking-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
   onSubmitUpiDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.putUpiDetails(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'banking-details';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -275,13 +297,6 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitGovtIdDetails(form: NgForm) {
     if (form.valid && this.userservice.userData) {
       this.userservice.putGovtDetails(form.value).subscribe();
-      this.contentName = 'whoopee';
-      setTimeout(() => {
-        if (this.contentName === 'whoopee') {
-          this.contentName = 'govtId-details';
-          window.location.reload();
-          }
-      }, 1500);
     }
   }
 
@@ -296,6 +311,13 @@ export class ProfiledetailsComponent implements OnInit {
   onSubmitPersonal(form: NgForm) {
     if (form.valid && this.userservice.userData) {
       this.userservice.putPersonalData(form.value).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'author-profile';
+          window.location.reload();
+          }
+      }, 1500);
     }
   }
 
@@ -380,17 +402,16 @@ export class ProfiledetailsComponent implements OnInit {
     }
   }
 
-  hides1: any;
   Exp1() {
-    this.hides1 = "Beginner";
+    this.User[0].experience = "Beginner";
   }
 
   Exp2() {
-    this.hides1 = "Intermediate";
+    this.User[0].experience = "Intermediate";
   }
 
   Exp3() {
-    this.hides1 = "Expert";
+    this.User[0].experience = "Expert";
   }
   selectedOption: string = '1'; // Default selection
 
@@ -433,7 +454,6 @@ export class ProfiledetailsComponent implements OnInit {
   addSkill(skill: string): void {
     if (!this.selectedSkills.includes(skill)) {
       this.selectedSkills.push(skill);
-      this.User[0].skillSet = this.selectedSkills.join(', ');
     }
   }
 

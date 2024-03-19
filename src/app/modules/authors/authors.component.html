@@ -27,7 +27,6 @@
   </div>
 
 
-
   <div class="container rrraligntop1">
     <div class="row">
       <div class="col-8">
@@ -40,7 +39,7 @@
               <p class="kkprtag2">Lorem ipsum dolor sit amet consectetur. Cursus nisi mauris rhoncus tortor.</p>
             </div>
             <div class="rrcomcenalign1">
-              <button class="btn kkprbtn1" [disabled]="calculateTotal() < 85" routerLink="/post-a-job">Post A Job</button>
+              <button class="btn kkprbtn1" [disabled]="calculateTotal() < 69" routerLink="/post-a-job">Post A Job</button>
             </div>
           </div>
         </div>
@@ -55,7 +54,7 @@
              <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
          </div>
             <div class="rrcomcenalign1" *ngIf="calculateTotal() < 99">
-              <button class="btn rrkkprbtn2" routerLink="/setting">Complete Profile</button>
+              <button class="btn rrkkprbtn2" (click)="openDeliveryDialog();">Complete Profile</button>
             </div>
             <div class="rrcomcenalign1" *ngIf="calculateTotal() === 100">
               <p class="rrkkprtag5">Your Profile is Verified Now!</p>
@@ -78,11 +77,11 @@
     </div>
   </div>
   <div class="container " *ngFor="let JobPost of Posts  | jobsearch : searchTerm ">
-    <div class="borderboxv" *ngIf=" JobPost.userId == UserData[0].id" >
+    <div class="borderboxv" *ngIf=" JobPost.userId == UserData[0].id && JobPost.status == 'Open'" >
       <div class="row" >
         <br>
         <div class="col-10">
-          <p class="recenvv">{{JobPost.jobTitle}}</p>
+          <p class="recenvv" routerLink="/authors/accept-a-request">{{JobPost.jobTitle}}</p>
         </div>
         <div class="col-2"><svg class="svgbutt" xmlns="http://www.w3.org/2000/svg" width="33" height="33"
             viewBox="0 0 33 33" fill="none">
@@ -94,13 +93,49 @@
     </div>
   </div>
 
+  <div class="container">
+    <div class="row mt-3 ">
+      <div class="col-3">
+        <!-- <label for="colFormLabelSm" class="col-form-label col-form-label-sm c1">Jobs Per Page:</label> -->
+      </div>
+      <div class="col-1">
+        <!-- <select class="form-select" id="autoSizingSelect">
+  <option selected>10</option>
+  <option value="1">20</option>
+  <option value="2">50</option>
+  </select> -->
+      </div>
+      <div class="col-2"></div>
+      <div class="col-3"></div>
+      <div class="col-1">
+        <div class="pagination">
+          <div class="k2">
+            < </div>
+              <button class="btn btn-link k1" [disabled]="currentPage === 1"
+                (click)="onPageChange(currentPage - 1)">Previous</button>
+              <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <ul class="pagination">
+                  <li class="page-item"><a class="d5"><span class="circle">{{currentPage}}</span></a>
+                  </li>
+                </ul>
+              </div>
+              <button class="btn btn-link k1" [disabled]="paginatedDataList.length < itemsPerPage"
+                (click)="onPageChange(currentPage + 1)">Next</button>
+              <div class="k2">></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+  
   <div class="container rrkkprdivbox1">
     <p class="rrchead">Service 1</p>
     <div class="row">
       <div class="col-lg-3">
         <div class="rrkkprcrd">
           <div class="rrcomcenalign1">
-            <img src="./assets/laptop.png" class="rounded-circle rrkkimgcard1" alt="...">
+            <img src="./assets/animoji.png" class="rounded-circle rrkkimgcard1" alt="...">
           </div>
           <div class="rrcomcenalign1">
             <p class="rrkkchead">Sathish <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -133,7 +168,7 @@
         <div class="rrcomcenalign1">
           <div class="rrkkprcrd">
             <div class="rrcomcenalign1">
-              <img src="./assets/1img.jpg" class="rounded-circle rrkkimgcard1" alt="...">
+              <img src="./assets/animoji-24.png" class="rounded-circle rrkkimgcard1" alt="...">
             </div>
             <div class="rrcomcenalign1">
               <p class="rrkkchead">Karthi <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -167,7 +202,7 @@
         <div class="rrcomcenalign1">
           <div class="rrkkprcrd">
             <div class="rrcomcenalign1">
-              <img src="./assets/laptop.png" class="rounded-circle rrkkimgcard1" alt="...">
+              <img src="./assets/animoji-19.png" class="rounded-circle rrkkimgcard1" alt="...">
             </div>
             <div class="rrcomcenalign1">
               <p class="rrkkchead">Viswa <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -201,7 +236,7 @@
         <div class="rrcomendalign1">
           <div class="rrkkprcrd">
             <div class="rrcomcenalign1">
-              <img src="./assets/3img.jpg" class="rounded-circle rrkkimgcard1" alt="...">
+              <img src="./assets/animoji-22.png" class="rounded-circle rrkkimgcard1" alt="...">
             </div>
             <div class="rrcomcenalign1">
               <p class="rrkkchead">Rahul <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -236,7 +271,7 @@
         <div class="col-lg-3">
           <div class="rrkkprcrd">
             <div class="rrcomcenalign1">
-              <img src="./assets/laptop.png" class="rounded-circle rrkkimgcard1" alt="...">
+              <img src="./assets/animoji-12.png" class="rounded-circle rrkkimgcard1" alt="...">
             </div>
             <div class="rrcomcenalign1">
               <p class="rrkkchead">Anusiya <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -269,7 +304,7 @@
           <div class="rrcomcenalign1">
             <div class="rrkkprcrd">
               <div class="rrcomcenalign1">
-                <img src="./assets/3img.jpg" class="rounded-circle rrkkimgcard1" alt="...">
+                <img src="./assets/animoji-23.png" class="rounded-circle rrkkimgcard1" alt="...">
               </div>
               <div class="rrcomcenalign1">
                 <p class="rrkkchead">Dinesh <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -303,7 +338,7 @@
           <div class="rrcomcenalign1">
             <div class="rrkkprcrd">
               <div class="rrcomcenalign1">
-                <img src="./assets/laptop.png" class="rounded-circle rrkkimgcard1" alt="...">
+                <img src="./assets/animoji-1.png" class="rounded-circle rrkkimgcard1" alt="...">
               </div>
               <div class="rrcomcenalign1">
                 <p class="rrkkchead">Jesi <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -337,7 +372,7 @@
           <div class="rrcomendalign1">
             <div class="rrkkprcrd">
               <div class="rrcomcenalign1">
-                <img src="./assets/3img.jpg" class="rounded-circle rrkkimgcard1" alt="...">
+                <img src="./assets/animoji-13.png" class="rounded-circle rrkkimgcard1" alt="...">
               </div>
               <div class="rrcomcenalign1">
                 <p class="rrkkchead">Abdul <img src="./assets/startick.png" alt="Pubkin" class="rrkkcheadimg1"> </p>
@@ -370,4 +405,5 @@
       </div>
     </div>
 
-  </div>
+
+

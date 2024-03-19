@@ -3,7 +3,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
                 </div>
@@ -52,7 +52,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
 
@@ -114,13 +114,21 @@
             <div class="crtform">
                 <input type="{{ hidePassword ? 'password' : 'text' }}"  class="int1 intem" placeholder="Password" ngModel
                  minlength="8"   name="password" #password="ngModel" [(ngModel)]="usercredential.password" required>
-                <div mat-icon-button matSuffix (click)="togglePasswordVisibility1()"
+                 <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <div *ngIf="password.errors?.['required']" class="errormsg">
+                      Password is required.
+                    </div>
+                    <div *ngIf="password.errors?.['minlength']" class="errormsg">
+                      Password must be at least 8 characters long.
+                    </div>
+                  </div>
+                 <div mat-icon-button matSuffix (click)="togglePasswordVisibility1()"
                     [attr.aria-label]="hidePassword ? 'Hide password' : 'Show password'"
                     [attr.aria-pressed]="hidePassword" style="cursor: pointer;" > 
                     <span class="shhid2">{{ hidePassword ? 'Show Password' : 'Hide Password' }}</span>
                 </div><br>
-
             </div>
+          
 
             <div style="    width: 99%;margin-top: 18px;">
                 <mat-checkbox class="example-margin check123" name="myCheckbox" ngModel required></mat-checkbox>
@@ -151,7 +159,7 @@
             <div class="container mt-3">
                 <div class="row">
                     <div class="col-3">
-                        <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                        <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                     </div>
                     <div class="col-9">
 
@@ -213,7 +221,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
             </div>
             <div class="col-9">
 
@@ -253,12 +261,18 @@
                     [(ngModel)]="email" required><br>
                 <input type="password" class="int" style="width:430px" placeholder="Password" id="password"
                     name="password" [(ngModel)]="password" required>
-                <div mat-icon-button matSuffix (click)="togglePasswordVisibility()"
-                    [attr.aria-label]="hide1 ? 'Hide password' : 'Show password'" [attr.aria-pressed]="hide1"
-                    style="cursor: pointer;">
-                    <span class="shhid1">{{ hide1 ? 'Show Password' : 'Hide Password' }}</span>
-                </div>
-                <mat-checkbox class="check34 check123"><span class="che3">Remember me</span></mat-checkbox>
+                    <div  matSuffix (click)="togglePasswordVisibility()"
+                                [attr.aria-label]="hide1 ? 'Hide password' : 'Show password'" [attr.aria-pressed]="hide1"
+                                style="cursor: pointer;">
+                                <div class="eyesvg">
+                                <span class="material-icons">
+                                    {{ hide1 ? 'visibility_off' : 'visibility' }}
+                                </span>
+                            </div>
+                            <p class="shhid1" routerLink="/forget-password">Forgot password?</p>
+                            </div>
+                <mat-checkbox class="check34 check123"><span class="che3">Remember me </span></mat-checkbox>
+               
                 <p *ngIf="errorMessage !== ''" class="error-message" style="color:#A426D1;">{{"*"+ errorMessage }}</p>
                 <div class="flx">
                     <button class="btnfr1" type="submit" (click)="loginButton();Userlogin()"><span>Login</span></button>
@@ -278,7 +292,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
             </div>
             <div class="col-9">
 
@@ -317,7 +331,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
                 </div>
@@ -352,7 +366,7 @@
         <div class="container mt-3">
             <div class="row">
                 <div class="col-3">
-                    <img src="../assets/Artboard 1 1.png" alt="Pubkin">
+                    <img routerLink="/" src="../assets/Artboard 1 1.png" alt="Pubkin">
                 </div>
                 <div class="col-9">
                 </div>
@@ -481,14 +495,14 @@
                     Terms and Conditions. PubKin reserves the right to modify or terminate the Platform at any time
                     without
                     notice.</p>
-
+                    <button type="button" style="    width: 100px;
+                    height: 50px;" class="btn btnfr6" data-bs-dismiss="modal">Agree</button>
             </div>
 
             <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" style="    width: 100px;
-        height: 50px;" class="btn btnfr" data-bs-dismiss="modal">Agree</button>
-            </div>
+            <!-- <div class="modal-footer">
+               
+            </div> -->
 
         </div>
     </div>

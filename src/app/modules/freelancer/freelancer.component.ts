@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FreeprofileComponent } from '../freeprofile/freeprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { JobpostService, UserauthenticateService } from '../../shared';
+import { AppliedUserNotificationService , JobpostService, UserauthenticateService } from '../../shared';
 
 declare var bootstrap: any;
 @Component({
@@ -12,6 +12,7 @@ declare var bootstrap: any;
 })
 export class FreelancerComponent implements OnInit {
   filteredJobPosts: any[] = [];
+  notifications: any[] = [];
   hide = false;
   searchTerm: string;
   currentUser: any;
@@ -25,7 +26,12 @@ export class FreelancerComponent implements OnInit {
   constructor(public dialog: MatDialog,
     public userservice: UserauthenticateService,
     public jobService: JobpostService,
-    private router: Router) {
+    public singlarService:AppliedUserNotificationService,
+    private router: Router) {}
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+
   }
 
   ShowMoreLess(index: number) {
@@ -38,6 +44,7 @@ export class FreelancerComponent implements OnInit {
     }
   }
 
+  
   //Avatar for profile
   images = [
     { img_url: '/assets/avd1.png' },
@@ -63,12 +70,10 @@ export class FreelancerComponent implements OnInit {
 
   }
 
-
   //Search input functionality
   onSearchChange(event: any) {
     this.searchTerm = event.target.value;
   }
-
 
   hidden() {
     this.hide = !this.hide
@@ -79,6 +84,7 @@ export class FreelancerComponent implements OnInit {
     this.getAllJobPosts();
     this.openDeliveryDialog();
   }
+
 
 
 

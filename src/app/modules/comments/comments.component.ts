@@ -27,7 +27,7 @@ export class CommentsComponent implements OnInit {
   selectedFiles1: string[] = [];
   User: any;
   imageUrl: string = 'https://localhost:7172';
-  jobPosts:any;
+  jobPosts: any;
 
   constructor(private route: ActivatedRoute, public datePipe: DatePipe, public userauthservice: UserauthenticateService,
     public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: WorkfileService) { }
@@ -40,6 +40,7 @@ export class CommentsComponent implements OnInit {
     this.getWorkFiles();
     this.getUserData();
     this.getJobPosts();
+    this.getCommentNow();
   }
 
   submitworks() {
@@ -84,29 +85,34 @@ export class CommentsComponent implements OnInit {
   getCommentNow() {
     this.commentservice.getComments().subscribe(data => {
       this.comments = data;
+      this.comments.sort((a: { commentDateTime: string | number | Date; }, b: { commentDateTime: string | number | Date; }) => {
+        const dateA = new Date(a.commentDateTime);
+        const dateB = new Date(b.commentDateTime);
+        return dateA.getTime() - dateB.getTime();
+      });
     });
   }
-
+  
   getWorkFiles() {
     this.workfileservice.getfile().subscribe(data => {
       this.workFile = data;
     });
   }
 
-    
+
   onSubmitJobStatus(form: NgForm) {
     if (form.valid && this.jobservice.jobData) {
       this.jobservice.JobStatus(form.value).subscribe();
     }
   }
-  
+
   getJobPosts() {
     this.jobservice.getJobPost().subscribe((data) => {
       this.jobPosts = data;
     });
   }
-      
-  ChangeStatus() { 
+
+  ChangeStatus() {
     this.jobPosts[0].status = "completed";
   }
 
@@ -122,7 +128,7 @@ export class CommentsComponent implements OnInit {
     } else {
     }
   }
-  submitForm(form : NgForm) {
+  submitForm(form: NgForm) {
     // const formData = new FormData();
     // formData.append('id', this.commentData.id);
     // formData.append('Comments', this.commentData.Comments);
@@ -143,6 +149,9 @@ export class CommentsComponent implements OnInit {
 
     if (form.valid && this.commentservice.commentData) {
       this.commentservice.postComments(form.value).subscribe();
+      setTimeout(() => {
+        window.location.reload();
+      }, 50);
     }
   }
 
@@ -198,8 +207,8 @@ export class CommentsComponent implements OnInit {
 
 
   showDetails() {
-    // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
-    // this.commentData.dateCreated = this.dateFormatted;
+    this.dateFormatted = this.datePipe.transform(this.currentDate, 'MMM dd hh:mma');
+    this.commentData.commentDateTime = this.dateFormatted;
     this.commentData.jobId = this.jobPost.id;
     this.commentData.createdBy = this.User[0].firstName;
   }

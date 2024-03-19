@@ -23,6 +23,7 @@
             <div class="col-1"></div>
             <div class="col-10">
                 <div class="kkaptft">
+                  <div *ngIf="content === 'whatispubkin'">
                   <h1>{{ heading }}</h1>
                     <p class="contentmainhd">What is PubKin?</p><p class="contentmainhd1">
                     PubKin is more than just a platform; it's a pioneering ecosystem designed to revolutionize the way authors, publishers, service providers, and freelancers collaborate in the publishing industry. We've harnessed the power of technology to simplify the process and break down barriers, making publishing more accessible and efficient for everyone involved.</p>  
@@ -31,7 +32,9 @@
                     PubKin by Alize Software Services LLP is more than a solution; it's a transformative force in the publishing industry. Say goodbye to the frustrations and inefficiencies of the current vendor landscape. With PubKin, authors and publishers can focus on what they do best—creating and sharing compelling stories—while our platform takes care of the rest.
                     
                     <br><br>Join us in reshaping the future of publishing by adopting PubKin. Discover how our collaborative platform can simplify your publishing journey, boost efficiency, and enable your creativity like never before.</p>
-                  <p class="contentmainhd"> Objective for PubKin:</p>
+                 </div>
+                 <div *ngIf="content === 'objectives'">
+                    <p class="contentmainhd"> Objective for PubKin:</p>
                     <p class="kksidehead">
                     "Empowering the Publishing Ecosystem Through Seamless Collaboration"</p>
                     
@@ -76,8 +79,10 @@
                     
                     In summary, PubKin's objective is to be the driving force behind a transformative shift in the publishing industry, where collaboration is efficient, transparent, and empowering for all stakeholders. We are dedicated to providing the tools and resources that authors, publishers, service providers, and freelancers need to thrive in the ever-evolving world of publishing.</p>
                     
-                    
-                   <p  class="contentmainhd"> PubKin Services: Empowering the Publishing Ecosystem</p>
+                        </div>
+                        <div *ngIf="content === 'services'">
+
+                        <p  class="contentmainhd"> PubKin Services: Empowering the Publishing Ecosystem</p>
                     <p class="kksidehead">
                     PubKin is your gateway to a comprehensive range of services that cater to authors, publishers, service providers, and freelancers. Our platform simplifies the publishing process and offers a wide array of services to meet your unique needs. Here's a breakdown of the services we provide:</p>
                     
@@ -140,7 +145,7 @@
                     
                     PubKin's services are designed to empower and streamline the publishing process, ensuring that every stakeholder in the industry can access the tools, talent, and resources they need to succeed. Whether you're an author seeking to bring your manuscript to life, a publisher looking for the next bestseller, or a service provider seeking new clients, PubKin has the services you need to thrive in the publishing ecosystem.</div>
                     <br><br>
-                </div>
+                    </div></div>
             </div>
             <div class="col-1"></div>
         </div>

@@ -21,17 +21,12 @@ export class HomeComponent  {
     this.router.navigate(['/signup', action]);
   }
 
+  navigateToPubkin(content: string): void {
+    this.router.navigate(['/docs', content]);
+  }
+
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });}
-
-    selectedOption: string = '1'; // Default selection
-
-    // Make sure to include FormsModule in your module imports array.
-    
-    // If you want to handle changes on dropdown selection:
-    onSelectionChange(event: Event) {
-      // You can handle the selection change event h
-
-
-}
+    selectedOption: string = '1'; 
+    onSelectionChange(event: Event) {}
 }

@@ -11,6 +11,20 @@ padding: 69px 90px 47px 129px;
 }
 
 
+.passwordbox {
+    position: relative;
+}
+
+.eyesvg {
+    width: 25px;
+    right: auto;
+    margin-top: -38px;
+    position: relative;
+    margin-left: 474px;
+    
+}
+
+
 .errormsg { 
     color: #A426D1;
 font-family: League Spartan;
@@ -468,11 +482,11 @@ line-height: normal;
 .shhid1{
     color: #A426D1;
     font-family: "League Spartan", sans-serif;
-     position: absolute;
+    position: absolute;
     right: 0px;
     display: flex;
     margin-right: 83px;
-    margin-top: 10px;
+    margin-top: 22px;
 }
 .crtform{
     display: flex;
@@ -530,6 +544,23 @@ line-height: normal;
         border: 3px solid #A426D1;
         background: #A426D1;
 }
+.btnfr6 { 
+    width: 356px;
+    gap: 8px;
+    cursor: pointer;
+    color: #FFF;
+    font-family: "League Spartan",sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 4px;
+    line-height: normal;
+    height: 54px;
+    border-radius: 8px;
+    border: 3px solid #A426D1;
+    background: #A426D1;
+    float: inline-end;
+}
 
 .btnfr::placeholder { 
     color: #FFF;
@@ -540,6 +571,8 @@ line-height: normal;
     color: #1C1C1C;
     font-size: 20px;
     font-weight: 400;
+    line-height: 20px;
+    text-align: justify;
 }
 
 .kkhead2tx{
