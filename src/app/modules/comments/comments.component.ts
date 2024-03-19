@@ -40,6 +40,7 @@ export class CommentsComponent implements OnInit {
     this.getWorkFiles();
     this.getUserData();
     this.getJobPosts();
+    this.getCommentNow();
   }
 
   submitworks() {
@@ -87,14 +88,11 @@ export class CommentsComponent implements OnInit {
       this.comments.sort((a: { commentDateTime: string | number | Date; }, b: { commentDateTime: string | number | Date; }) => {
         const dateA = new Date(a.commentDateTime);
         const dateB = new Date(b.commentDateTime);
-        console.log("Date A:", dateA);
-        console.log("Date B:", dateB);
         return dateA.getTime() - dateB.getTime();
       });
-      console.log("Sorted Comments:", this.comments);
     });
   }
-
+  
   getWorkFiles() {
     this.workfileservice.getfile().subscribe(data => {
       this.workFile = data;

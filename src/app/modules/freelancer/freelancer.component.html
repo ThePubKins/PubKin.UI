@@ -70,8 +70,8 @@
                 </p>
                 <!-- <p class="kkjbtxtline3"><span *ngIf="!showMore">{{JobPost.description | slice:0:300}}....</span><span *ngIf="showMore">{{JobPost.description}}</span><span (click)="ShowMoreLess()" class="text-decoration-underline">  More</span></p> -->
                 <p class="kkjbtxtline3">
-                  <span *ngIf="!JobPost.showMore">{{JobPost.description | slice:0:100}}....</span>
-                  <span *ngIf="JobPost.showMore || JobPost.showMoreIndex === i">{{JobPost.description}}</span>
+                  <span *ngIf="!JobPost.showMore">{{JobPost.description | slice:0:100}}...</span>
+                  <span *ngIf="JobPost.showMore || JobPost.showMoreIndex === i">{{JobPost.description}}...</span>
                   <span (click)="ShowMoreLess(i)" class="text-decoration-underline" style="cursor: pointer;">{{ JobPost.showMore ? 'Less' : 'More' }}  </span>
               </p>
                 <div class="kkjbtxtline4"><img src="../assets/startick.png"> Profile verified</div>
@@ -146,6 +146,4 @@
  </div>
 
 
- <div>
-  <ng-toast [style]="{ width: '300px', paddingTop: '30px' }"></ng-toast>
-</div>
+  <!-- <ng-toast [style]="{ width: '300px', paddingTop: '30px' }"></ng-toast> -->

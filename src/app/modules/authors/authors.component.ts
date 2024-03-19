@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthprofileComponent } from '../authprofile/authprofile.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AppliedUserNotificationService, JobpostService, UserauthenticateService } from '../../shared';
+import {  JobpostService, UserauthenticateService } from '../../shared';
 import { Router } from '@angular/router';
 
 @Component({

@@ -43,7 +43,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { GooglesigninComponent } from './signup/googlesignin/googlesignin.component';
 import { GoogleloginComponent } from './signup/googlelogin/googlelogin.component';
 import { NgToastModule } from 'ng-angular-popup';
-import {  JobsearchPipe } from '../shared';
+import {  AppliedUserNotificationService, JobsearchPipe } from '../shared';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import {
     SocialLoginModule,
@@ -83,7 +83,7 @@ import {
         OngoingJobsComponent,
         FootertagComponent,GooglesigninComponent,GoogleloginComponent
     ],
-    providers: [DatePipe,
+    providers: [DatePipe,AppliedUserNotificationService,
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {

@@ -1,5 +1,6 @@
+
 <!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
-<form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
+    <form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
     <input type="hidden" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
     <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
     <input type="hidden" id="postDate" name="postDate" [(ngModel)]="jobservice.jobData.postDate">
