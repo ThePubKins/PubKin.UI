@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FreeprofileComponent } from '../freeprofile/freeprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AppliedUserNotificationService, JobpostService, UserauthenticateService } from '../../shared';
+import { AppliedUserNotificationService , JobpostService, UserauthenticateService } from '../../shared';
 
 declare var bootstrap: any;
 @Component({
@@ -12,6 +12,7 @@ declare var bootstrap: any;
 })
 export class FreelancerComponent implements OnInit {
   filteredJobPosts: any[] = [];
+  notifications: any[] = [];
   hide = false;
   searchTerm: string;
   currentUser: any;
@@ -26,9 +27,11 @@ export class FreelancerComponent implements OnInit {
     public userservice: UserauthenticateService,
     public jobService: JobpostService,
     public singlarService:AppliedUserNotificationService,
-    private router: Router) {
-      this.singlarService.startConnection();
-      this.singlarService.addProductListener();
+    private router: Router) {}
+
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+
   }
 
   ShowMoreLess(index: number) {
@@ -81,6 +84,7 @@ export class FreelancerComponent implements OnInit {
     this.getAllJobPosts();
     this.openDeliveryDialog();
   }
+
 
 
 

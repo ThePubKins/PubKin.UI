@@ -991,7 +991,7 @@
         </div>
         <div class="col-6">
           <form #personalForm="ngForm" (ngSubmit)="onSubmitPersonal(personalForm);onSubmitpercentage(personalForm)">
-            <input type="text" id="id" name="id" [(ngModel)]="User[0].id">
+            <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id">
             <input type="hidden" ngModel name="firstName" #firstName="ngModel" id="firstName"
               [(ngModel)]="User[0].firstName ">
             <input type="hidden" ngModel name="lastName" #lastName="ngModel" id="lastName"
@@ -1010,7 +1010,7 @@
               [(ngModel)]="User[0].bankingDetails">
             <input type="hidden" ngModel name="paymentVerify" #paymentVerify="ngModel" id="paymentVerify"
               [(ngModel)]="User[0].paymentVerify">
-            <input type="text" [value]="selectedSkills.join(', ')" ngModel name="description" #description="ngModel"
+            <input type="text" [value]="selectedSkills.join(', ')" ngModel id="description" name="description" #description="ngModel"
               [(ngModel)]="User[0].description" />
             <p class="whatskilled">What are the skills you are looking for?</p>
             <!-- <div style="position: relative;"> <input type="text" class="intsearchauth" placeholder="Enter the skillset">
@@ -1019,9 +1019,9 @@
 
             <div class="row mt-4">
               <p class="popskill">Selected and Popular skills</p>
-              <div class="col-4 mt-2" *ngFor="let skill of skills; let i = index">
+              <div class="col-4 mt-2" *ngFor="let skill of skills; let i = index" (click)="increseDetailsPercentage()">
                 <div class="addsk1" [class.addsk]="selectedSkills.includes(skill)"
-                  (click)="toggleSkill(skill);increseDetailsPercentage()">
+                  (click)="toggleSkill(skill);">
                   {{ skill }} &nbsp;
                   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
                     <path d="M12.728 4.75684L4.24275 13.2421" stroke="white" stroke-width="2" stroke-linecap="round" />

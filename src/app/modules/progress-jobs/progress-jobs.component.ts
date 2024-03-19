@@ -97,9 +97,13 @@ export class ProgressJobsComponent {
       this.jobPosts = data;
     });
   }
+  
+  ChangeStatusRevert() { 
+    this.selectedhire.status = "offers";
+  }
 
   ChangeStatus() {
-    this.Applies[0].status = "accepted";
+    this.selectedhire.status = "accepted";
     this.jobPosts[0].status = "Ongoing";
   }
 

@@ -87,12 +87,13 @@
                   <li class="kkcmdbox1 position-relative" *ngIf="jobPost.id == comment.jobId">
                     <p class="kkcmdtx1" >{{comment.createdBy}} :</p>
                     <p class=" kkcmdbox kkcmdtx">{{comment.comments}}</p>
-                    <p class="commentdateshows">{{comment.commentDateTime}}</p>
+                    <p class="commentdateshows">{{ comment.commentDateTime}}</p>
                     <hr>
                   </li>
                 </ul>
               </div>
             </div>
+            
             <div class="col-4">
               <div class="kkcmdbx3">
                 <p class="kkcmdtx2">Files:</p>

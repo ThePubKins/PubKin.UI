@@ -28,6 +28,19 @@ export class AcceptRequestComponent implements OnInit {
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
     public applyService: AppliedUserService, private datePipe: DatePipe, public singlarService: AppliedUserNotificationService) {
     this.currentDate = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
+
+  }
+
+
+
+  subscribeToProduct() {
+    this.singlarService.subscribeToProduct(this.Applies[0].jobId);
+  }
+
+
+  onChatTargetClick(targetUser: any): void {
+    this.chatTarget = targetUser;
+
   }
 
   getUserData() {
@@ -97,7 +110,6 @@ successmsg(){
   if (this.success) {
     setTimeout(() => {
       this.success = false;
-      window.location.reload();
     }, 1500);
   }
 }
@@ -115,7 +127,7 @@ successmsg(){
   }
   
   ChangeStatus() { 
-    this.Applies[0].status = "offers"
+    this.selectedhire.status = "offers"
     this.resetStatusAfterDelay();
   }
 

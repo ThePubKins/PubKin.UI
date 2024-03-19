@@ -36,7 +36,7 @@ export class JobPostComponent implements OnInit {
   selectedRate: string = 'Hourly';
   Rate: string = 'INR';
   Posts : any;
-  User = [{ firstName: '', lastName: '', email :'', id: '' }];
+  User : any;
   jobData : jobpost= {} as jobpost;
   selectedOption: string  = this.jobservice.jobData.complexity;
 
@@ -273,6 +273,14 @@ export class JobPostComponent implements OnInit {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.uploadedFileName = file ? file.name : ''; 
+  }
+
+  total :any;
+  calculateTotal(): any {
+    const num1 = parseInt(this.User[0].details || 0);
+    const num2 = parseInt(this.User[0].govtIdDetails || 0);
+    const num3 = parseInt(this.User[0].bankingDetails || 0);
+    const total = num1 + num2 + num3;
   }
 
 

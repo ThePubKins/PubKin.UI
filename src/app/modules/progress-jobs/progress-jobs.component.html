@@ -17,7 +17,7 @@
             <div class="col-4">
               <button class="rejectbtn" data-bs-toggle="modal" data-bs-target="#rejectmodel">Reject</button>
               <button class="viewJobbtn" data-bs-toggle="modal" data-bs-target="#acceptoffer"
-                (click)="ApplyModal(JobPost);">Accept Offer</button>
+                (click)="ApplyModal(JobPost);ChangeStatus();">Accept Offer</button>
             </div>
             <div class="row">
               <div class="col-8">
@@ -43,7 +43,7 @@
 
       <div class="modal-header " style="border-bottom: none;     padding: 20px 25px 12px 25px">
         <p class="rejecttxt">{{selectedhire.jobTitle}}</p>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-right: 10px;"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="ChangeStatusRevert()"></button>
       </div>
       <div class="modal-body" style="padding: 20px 100px 12px 100px">
 
@@ -83,11 +83,11 @@
         <div style="margin-top: 26px;">
           <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
             <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.id">
-            <input type="hidden" id="status" name="status" [(ngModel)]="Applies[0].status">
-            <input type="hidden" id="postBy" name="postBy" [(ngModel)]="Applies[0].postBy">
-            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="Applies[0].jobId">
-            <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="Applies[0].jobUniqueId">
-            <button (click)="submitNow();ChangeStatus();"  type="submit" class="rejectconfirm1">Accept Offer</button>
+            <input type="hidden" id="status" name="status" [(ngModel)]="selectedhire.status">
+            <input type="hidden" id="postBy" name="postBy" [(ngModel)]="selectedhire.postBy">
+            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
+            <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
+            <button (click)="submitNow();"  type="submit" class="rejectconfirm1">Accept Offer</button>
           </form>
           <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
             <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.jobId">

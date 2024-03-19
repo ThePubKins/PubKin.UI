@@ -31,7 +31,7 @@ export class AppliedUserNotificationService {
 
  
     showNotification(notification: AppliedUserNotification) {
-      this.toast.success({detail:notification.message,sticky:true, position: 'topRight'});
+      this.toast.success({detail:notification.message,sticky:false, position: 'topRight'});
     }
 
     public subscribeToProduct(jobId:string)
