@@ -59,7 +59,7 @@
             <p class="c22" id="exampleModalLabel5"><b>Do you want delete this post ?</b></p>
           </div>
           <div class="kksubbtn" *ngIf="selectedhire">
-            <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
+            <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal" (click)="toggleIcons(Posts)">Back</button>
             <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
               <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.id">
               <input type="hidden" id="status" name="status" [(ngModel)]="selectedhire.status">

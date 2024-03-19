@@ -617,10 +617,20 @@
 
 
 
-      <div class="container ">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
         <button class="btn kkempbtn1" routerLink="/freelancers"> Back</button>
+        </div>
+        <div class="col-4">
+
         <button class="btn skip">Skip for now</button>
+        </div>
+        <div class="col-4">
+
         <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button2')">Next</button>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -651,13 +661,13 @@
       </div>
 
 
-      <div class=" progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
+      <div class=" progress pgrssb" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
         aria-valuemax="80">
         <div class="progress-bar pgrssbar" style="width: 50%"></div>
       </div>
       <div class="container ">
         <button class="btn kkempbtn1" (click)="GoNextBtn('button1')"> Back</button>
-        <button class="btn skip" routerLink="/freelancers">skip for now</button>
+        <button class="btn skipa" routerLink="/freelancers">skip for now</button>
         <button class="btn kkempbtn2 kkempbtn3"
           (click)="GoNextBtn('button3');increseFreelancingPercentage();">Next</button>
       </div>
@@ -679,7 +689,7 @@
       </div>
 
 
-      <div class=" progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
+      <div class=" progress pgrssa" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
         aria-valuemax="80">
         <div class="progress-bar pgrssbar" style="width: 75%"></div>
       </div>
@@ -963,8 +973,8 @@
     </div>
 
     <div class="container ">
-      <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-      <button class="btn kkempbtn2" routerLink="/profile/payment" type="submit"
+      <button class="btn kkempbtn1b" routerLink="/freelancers">Back</button>
+      <button class="btn kkempbtn2b" routerLink="/profile/payment" type="submit"
         (click)="govtsubmit();PercentageSubmit()">Save
         Details</button>
     </div>
@@ -1472,7 +1482,7 @@
                     Only Characters are allowed
                   </span>
                 </span> -->
-                <select class="kkbilinput1" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard"
+                <select class="kkbilinput1 form-control" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard"
                   required>
                   <option value="" disabled selected>Select Card Name</option>
                   <option class="ddis" value="Visa">Visa</option>
