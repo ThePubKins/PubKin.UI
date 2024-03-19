@@ -7,7 +7,7 @@
            border: 0;
            color: #0F0F0F;
        font-family: 'League Spartan', sans-serif;
-       font-size: 20px;
+       font-size: 18px;
        font-style: normal;
        font-weight: 500;
        line-height: normal;
@@ -34,7 +34,7 @@
        .ddis {
            /* color: #0F0F0F; */
            font-family: League Spartan;
-           font-size: 20px;
+           font-size: 16px;
            font-style: normal;
            font-weight: 500;
            line-height: normal;
@@ -178,12 +178,8 @@
            }
        
            .prset { 
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: 100;
-            left: 0px;
-            top: 0px;
+            position: absolute;
+    right: 98px;
            }
            .viewapply { 
                display: inline-flex;
@@ -223,7 +219,7 @@
            border: 0;
            color: #0F0F0F;
        font-family: 'League Spartan', sans-serif;
-       font-size: 20px;
+       font-size: 18px;
        font-style: normal;
        font-weight: 500;
        line-height: normal;
@@ -250,7 +246,7 @@
        .ddis {
            /* color: #0F0F0F; */
            font-family: League Spartan;
-           font-size: 20px;
+           font-size: 16px;
            font-style: normal;
            font-weight: 500;
            line-height: normal;
@@ -403,12 +399,8 @@
            }
        
            .prset { 
-            position: fixed;
-             width: 100%;
-            height: 100%;
-            z-index: 100;
-            left: 0px;
-            top:0px;
+            position: absolute;
+    right: 98px;
            }
            .viewapply { 
                display: inline-flex;
@@ -447,8 +439,9 @@
 
 
     .kkcrd{
+        margin-top: 62px;
         /* margin-left: 100px; */
-        width: 235px;
+        width: 146%;
         height: auto;
         z-index: 111;
         flex-shrink: 0;
@@ -467,7 +460,9 @@
     
       }
     
-     
+      .kkcrd12{
+    display: flex;
+      }
     
     .kkprname{
         color: #000;
@@ -518,28 +513,3 @@
     }
 
     
-
-
-    @media only screen and (min-width:1601px){
-        .kkcrd12{
-            position: absolute;
-            right: 240px;
-            top:150px;
-              }
-    }
-
-    @media only screen and (min-width:1501px) and (max-width:1600px) {
-        .kkcrd12{
-            position: absolute;
-            right: 150px;
-            top:150px;
-              }
-    }
-
-    @media only screen and (min-width:1001px) and (max-width:1500px) {
-        .kkcrd12{
-            position: absolute;
-            right: 60px;
-            top:150px;
-              }
-    }

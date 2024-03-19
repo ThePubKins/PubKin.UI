@@ -131,7 +131,7 @@
           
 
             <div style="    width: 99%;margin-top: 18px;">
-                <mat-checkbox #myCheckbox [ngModel]="agreeNow" class="example-margin check123" name="myCheckbox" [disabled]="true"  required ></mat-checkbox>
+                <mat-checkbox class="example-margin check123" name="myCheckbox" ngModel required></mat-checkbox>
                 <span class="meme meme2">I have
                     read and accept pubkin’s</span> <span class="log log2" data-bs-toggle="modal"
                     data-bs-target="#myModal">User Agreement
@@ -140,7 +140,7 @@
 
             <!-- <div  > -->
             <br><br>
-            <button class="btn btnfr" (click)="popuphide(); GoNextBtn('button3')" [disabled]="form.invalid || !myCheckbox.checked"> Create
+            <button class="btn btnfr" (click)="popuphide(); GoNextBtn('button3')" [disabled]="form.invalid"> Create
                 Account</button>
         </div>
 
@@ -496,7 +496,7 @@
                     without
                     notice.</p>
                     <button type="button" style="    width: 100px;
-                    height: 50px;" class="btn btnfr6" (click)="AgreeNow();" data-bs-dismiss="modal">Agree</button>
+                    height: 50px;" class="btn btnfr6" data-bs-dismiss="modal">Agree</button>
             </div>
 
             <!-- Modal footer -->

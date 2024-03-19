@@ -6,10 +6,10 @@
     <img *ngIf="User[0].role === 'freelancer'" routerLink="/freelancers" src="./assets/Artboard 1 1.png" alt="Pubkin"
       class="rrpublogoimg1">
 
-    <!-- <img *ngIf="User[0].role === 'author'" src="./assets/_x letter_.png" alt="Pubkin"
+    <img *ngIf="hideprofileclose && User[0].role === 'author'" src="./assets/_x letter_.png" alt="Pubkin"
       class="float-end mt-5" routerLink="/authors">
-    <img *ngIf="User[0].role === 'freelancer'" src="./assets/_x letter_.png" alt="Pubkin"
-      class="float-end mt-5" routerLink="/freelancers"> -->
+    <img *ngIf="hideprofileclose && User[0].role === 'freelancer'" src="./assets/_x letter_.png" alt="Pubkin"
+      class="float-end mt-5" routerLink="/freelancers">
   </div>
 
   <!--Update Congrats Page-->
@@ -75,16 +75,14 @@
           </div>
         </div>
         <div class="container mt-5 savebtnalign1">
-          
-            <a class=" btn  savevv "  (click)="closeProfile();">Save</a>
-            <button type="submit" style="display:none" #firstButton>save</button>
+          <button class=" btn  savevv " type="submit" (click)="closeProfile();">Save</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- Employment History -->
-  <div *ngIf="contentName === 'employment-history'">
+  <div *ngIf="contentName === 'employment-history'">  
     <div>
       <div class="container">
         <div>
@@ -109,6 +107,14 @@
                   <div class="col-4">
                     <div class="rrpubcomcenalign1">
                       <div class="kkempcrd">
+                        <div class="kkeditdet12">
+                          <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                            edit
+                            </span>
+                            <span class="material-symbols-outlined"  style="color: red;">
+                              delete
+                              </span>
+                              </div>
                         <div class="text02">{{ workDetails.jobTitle }}</div>
                         <div class="text03">{{ workDetails.companyName }}</div>
                         <div class="text03">{{ workDetails.companyLocation }}</div>
@@ -289,6 +295,14 @@
           <div class="col-4" *ngIf="portfolio.userId == User[0].id">
             <div class="rrpubcomcenalign1">
               <div class="kkempcrd">
+                <div class="kkeditdet12">
+                <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                  edit
+                  </span>
+                  <span class="material-symbols-outlined"  style="color: red;">
+                    delete
+                    </span>
+                    </div>
                 <div class="text02">{{ portfolio.projectTitle }}</div>
                 <div class="text03">{{ portfolio.projectLink }}</div>
                 <div class="text05">{{ portfolio.description | slice:0:170 }}</div>
@@ -400,6 +414,14 @@
           <div class="col-4" *ngIf="educationDetails.usersId == User[0].id">
             <div class="rrpubcomcenalign1">
               <div class="kkempcrd">
+                <div class="kkeditdet12">
+                  <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                    edit
+                    </span>
+                    <span class="material-symbols-outlined"  style="color: red;">
+                      delete
+                      </span>
+                      </div>
                 <div class="text02">{{educationDetails.department}}</div>
                 <div class="text03">{{educationDetails.instituteName}} {{educationDetails.courseName}}</div>
                 <div class="text04">{{educationDetails.yearOfJoining}}-{{educationDetails.yearOfCompletion}}</div>
@@ -595,10 +617,20 @@
 
 
 
-      <div class="container ">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
         <button class="btn kkempbtn1" routerLink="/freelancers"> Back</button>
+        </div>
+        <div class="col-4">
+
         <button class="btn skip">Skip for now</button>
+        </div>
+        <div class="col-4">
+
         <button class="btn kkempbtn2 kkempbtn3" (click)="GoNextBtn('button2')">Next</button>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -629,13 +661,13 @@
       </div>
 
 
-      <div class=" progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
+      <div class=" progress pgrssb" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
         aria-valuemax="80">
         <div class="progress-bar pgrssbar" style="width: 50%"></div>
       </div>
       <div class="container ">
         <button class="btn kkempbtn1" (click)="GoNextBtn('button1')"> Back</button>
-        <button class="btn skip" routerLink="/freelancers">skip for now</button>
+        <button class="btn skipa" routerLink="/freelancers">skip for now</button>
         <button class="btn kkempbtn2 kkempbtn3"
           (click)="GoNextBtn('button3');increseFreelancingPercentage();">Next</button>
       </div>
@@ -657,7 +689,7 @@
       </div>
 
 
-      <div class=" progress pgrss" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
+      <div class=" progress pgrssa" role="progressbar" aria-label="Basic example" aria-valuenow="10" aria-valuemin="0"
         aria-valuemax="80">
         <div class="progress-bar pgrssbar" style="width: 75%"></div>
       </div>
@@ -693,6 +725,14 @@
           <div class="col-4" *ngIf="priceSkill.userId == User[0].id">
             <div class="rrpubcomcenalign1">
               <div class="kkempcrd">
+                <div class="kkeditdet12">
+                  <span class="material-symbols-outlined" style="color: rgb(195, 0, 255);">
+                    edit
+                    </span>
+                    <span class="material-symbols-outlined"  style="color: red;">
+                      delete
+                      </span>
+                      </div>
                 <div class="text02">{{ priceSkill.skillSet }}</div>
                 <div class="text03">{{ priceSkill.uom }}</div>
                 <div class="text03">{{ priceSkill.simplePrice }} - {{ priceSkill.mediumPrice }} - {{
@@ -704,10 +744,12 @@
         </ng-container>
       </div>
     </div>
+
     <div class="container ">
       <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
       <button class="btn kkempbtn2 rrextrawidthbtn1" routerLink="/freelancers">Save Details</button>
     </div>
+
     <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)">
       <div class="modal fade " data-bs-backdrop="static" data-bs-keyboard="false" id="exampleModal" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -756,40 +798,7 @@
                     <div *ngIf="!Rates">
                       <div class="container">
                         <div class="row">
-                          <div class="col-12">
-                            <p class="prateh" style="margin-left: 3px;">Simple</p>
-                            <textarea class="ratecard" ngModel name="simpleDescription" #simpleDescription="ngModel"
-                              id="simpleDescription" placeholder="Description" maxlength="150"
-                              [(ngModel)]="priceService.pricingSkillData.simpleDescription" required></textarea>
-                            <span *ngIf="!simpleDescription.valid && simpleDescription.touched">
-                              <span class="errormsg" *ngIf="simpleDescription.errors?.['required']">
-                                Description is required
-                              </span>
-                            </span>
-                          </div>
-                          <div class="col-12">
-                            <p class="prateh" style="margin-left: 3px;">Medium </p>
-                            <textarea class="ratecard" ngModel name="mediumDescription" #mediumDescription="ngModel"
-                              id="mediumDescription" placeholder="Description" maxlength="150"
-                              [(ngModel)]="priceService.pricingSkillData.mediumDescription" required></textarea>
-                            <span *ngIf="!mediumDescription.valid && mediumDescription.touched">
-                              <span class="errormsg" *ngIf="mediumDescription.errors?.['required']">
-                                Description is required
-                              </span>
-                            </span>
-                          </div>
-                          <div class="col-12">
-                            <p class="prateh" style="margin-left: 3px;">Complex</p>
-                            <textarea class="ratecard" ngModel name="complexDescription" #complexDescription="ngModel"
-                              id="complexDescription" placeholder="Description" maxlength="150"
-                              [(ngModel)]="priceService.pricingSkillData.complexDescription" required></textarea>
-                            <span *ngIf="!complexDescription.valid && complexDescription.touched">
-                              <span class="errormsg" *ngIf="complexDescription.errors?.['required']">
-                                Description is required
-                              </span>
-                            </span>
-                          </div>
-                          <!-- <div class="col-4">
+                          <div class="col-4">
                             <p class="prateh" style="margin-left: 3px;">Simple</p>
                             <textarea class="ratecard" ngModel name="simpleDescription" #simpleDescription="ngModel"
                               id="simpleDescription" placeholder="Description" maxlength="150"
@@ -822,7 +831,7 @@
                               </span>
 
                             </span>
-                          </div> -->
+                          </div>
                         </div>
                       </div>
                       <p class="prateh" style="margin-left: 17px;">Your Rates</p>
@@ -964,8 +973,8 @@
     </div>
 
     <div class="container ">
-      <button class="btn kkempbtn1" routerLink="/freelancers">Back</button>
-      <button class="btn kkempbtn2" routerLink="/profile/payment" type="submit"
+      <button class="btn kkempbtn1b" routerLink="/freelancers">Back</button>
+      <button class="btn kkempbtn2b" routerLink="/profile/payment" type="submit"
         (click)="govtsubmit();PercentageSubmit()">Save
         Details</button>
     </div>
@@ -1473,7 +1482,7 @@
                     Only Characters are allowed
                   </span>
                 </span> -->
-                <select class="kkbilinput1" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard"
+                <select class="kkbilinput1 form-control" id="nameoftheCard" name="nameoftheCard" [(ngModel)]="bankData.nameoftheCard"
                   required>
                   <option value="" disabled selected>Select Card Name</option>
                   <option class="ddis" value="Visa">Visa</option>

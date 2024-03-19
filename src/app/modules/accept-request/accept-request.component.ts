@@ -28,6 +28,7 @@ export class AcceptRequestComponent implements OnInit {
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
     public applyService: AppliedUserService, private datePipe: DatePipe, public singlarService: AppliedUserNotificationService) {
     this.currentDate = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
+
   }
 
 
@@ -39,6 +40,7 @@ export class AcceptRequestComponent implements OnInit {
 
   onChatTargetClick(targetUser: any): void {
     this.chatTarget = targetUser;
+
   }
 
   getUserData() {
@@ -57,7 +59,18 @@ export class AcceptRequestComponent implements OnInit {
     this.deleteProposal = Applies;
   }
 
- 
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  subscribeToProduct() {
+    this.singlarService.subscribeToProduct(this.Applies[0].jobId);
+  }
+
+
+  onChatTargetClick(targetUser: any): void {
+    this.chatTarget = targetUser;
+  }
 
 
   ngOnInit() {

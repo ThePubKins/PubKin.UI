@@ -31,6 +31,7 @@ export class FreelancerComponent implements OnInit {
 
   delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+
   }
 
   ShowMoreLess(index: number) {
@@ -78,11 +79,10 @@ export class FreelancerComponent implements OnInit {
     this.hide = !this.hide
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getUserData();
     this.getAllJobPosts();
     this.openDeliveryDialog();
-
   }
 
 

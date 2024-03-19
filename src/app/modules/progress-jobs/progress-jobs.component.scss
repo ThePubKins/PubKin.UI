@@ -4,7 +4,7 @@
 .applyhead { 
     color: #000;
     font-family: "League Spartan";
-    font-size: 36px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -26,9 +26,9 @@
 .jobtitle { 
     color: #000;
     font-family: "League Spartan";
-    font-size: 28px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 36px;
 
 }
@@ -36,17 +36,17 @@
 .jobDesc  { 
     color: #535353;
     font-family: "League Spartan";
-    font-size: 23px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 36px;
+    line-height: 28px;
 
 }  
 
 .aboutjob { 
     color: #535353;
     font-family: "League Spartan";
-    font-size: 24px;
+    font-size: 18px;
     font-style: normal;
     margin-top: 16px;
     font-weight: 500;
@@ -64,7 +64,7 @@
     color: #FFF;
     font-family: "League Spartan";
     float: right;
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -75,7 +75,7 @@
 .postedname {  
     color: #535353;
     font-family: "League Spartan";
-    font-size: 21px;
+    font-size: 16px;
     font-style: normal;
     float: right;
     font-weight: 500;
@@ -90,16 +90,16 @@
 }
 
 .applyhr { 
-    margin-top: 16px;
+    // margin-top: 16px;
     border: 1px solid;
 }
 
 .rejectbtn { 
     color: #000;
     font-family: "League Spartan";
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
-    margin-left: 62px;
+    margin-left: 112px;
     font-weight: 500;
     line-height: normal;
     display: inline-flex;
@@ -117,32 +117,32 @@
     color: #000;
     text-align: center;
     font-family: "League Spartan";
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 36px; /* 150% */
+    font-weight: 500;
+    line-height: 36px;
     margin-top: 20px;
 }
 .rejecttxt1 { 
     color: #000;
     text-align: center;
     font-family: "League Spartan";
-    font-size: 24px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: 36px; /* 150% */
-    margin-top: 20px;
+    line-height: 36px;
+    // margin-top: 20px;
     display: flex;
 }
 .rejecttxt2 { 
     color: #000;
     text-align: center;
     font-family: "League Spartan";
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 36px; /* 150% */
-    margin-top: 20px;
+    font-weight: 500;
+    line-height: 36px;
+    // margin-top: 20px;
 }
 .rejectcancel { 
     display: inline-flex;
@@ -180,20 +180,20 @@ border: 0px;
 }
 .rejectconfirm1 { 
     color: #FFF;
-font-family: "League Spartan";
-font-size: 18px;
-float: right;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-display: inline-flex;
-padding: 14px 32px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-border-radius: 4px;
-background: #A426D1;
-border: 0px;
+    font-family: "League Spartan";
+    font-size: 16px;
+    float: right;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: inline-flex;
+    padding: 14px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: #A426D1;
+    border: 0px;
 }
 .rate1{
 border-radius: 16px;
@@ -207,7 +207,7 @@ padding: 20px;
     .applyhead { 
         color: #000;
         font-family: "League Spartan";
-        font-size: 36px;
+        font-size: 30px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
@@ -229,9 +229,9 @@ padding: 20px;
     .jobtitle { 
         color: #000;
         font-family: "League Spartan";
-        font-size: 28px;
+        font-size: 20px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 500;
         line-height: 36px;
     
     }
@@ -239,17 +239,17 @@ padding: 20px;
     .jobDesc  { 
         color: #535353;
         font-family: "League Spartan";
-        font-size: 20px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
-        line-height: 36px;
+        line-height: 28px;
     
     }  
     
     .aboutjob { 
         color: #535353;
         font-family: "League Spartan";
-        font-size: 24px;
+        font-size: 18px;
         font-style: normal;
         margin-top: 16px;
         font-weight: 500;
@@ -278,7 +278,7 @@ padding: 20px;
     .postedname {  
         color: #535353;
         font-family: "League Spartan";
-        font-size: 21px;
+        font-size: 16px;
         font-style: normal;
         float: right;
         font-weight: 500;
@@ -293,7 +293,7 @@ padding: 20px;
     }
     
     .applyhr { 
-        margin-top: 16px;
+        // margin-top: 16px;
         border: 1px solid;
     }
     
@@ -320,32 +320,32 @@ padding: 20px;
         color: #000;
         text-align: center;
         font-family: "League Spartan";
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
-        font-weight: 600;
-        line-height: 36px; /* 150% */
+        font-weight: 500;
+        line-height: 36px;
         margin-top: 20px;
     }
     .rejecttxt1 { 
         color: #000;
         text-align: center;
         font-family: "League Spartan";
-        font-size: 24px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 400;
-        line-height: 36px; /* 150% */
-        margin-top: 20px;
+        line-height: 36px;
+        // margin-top: 20px;
         display: flex;
     }
     .rejecttxt2 { 
         color: #000;
         text-align: center;
         font-family: "League Spartan";
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
-        font-weight: 600;
-        line-height: 36px; /* 150% */
-        margin-top: 20px;
+        font-weight: 500;
+        line-height: 36px;
+        // margin-top: 20px;
     }
     .rejectcancel { 
         display: inline-flex;
@@ -383,20 +383,20 @@ padding: 20px;
     }
     .rejectconfirm1 { 
         color: #FFF;
-    font-family: "League Spartan";
-    font-size: 18px;
-    float: right;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    display: inline-flex;
-    padding: 14px 32px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 4px;
-    background: #A426D1;
-    border: 0px;
+        font-family: "League Spartan";
+        font-size: 16px;
+        float: right;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        display: inline-flex;
+        padding: 14px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        background: #A426D1;
+        border: 0px;
     }
     .rate1{
     border-radius: 16px;
@@ -409,7 +409,7 @@ padding: 20px;
     .applyhead { 
         color: #000;
         font-family: "League Spartan";
-        font-size: 36px;
+        font-size: 30px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
@@ -431,9 +431,9 @@ padding: 20px;
     .jobtitle { 
         color: #000;
         font-family: "League Spartan";
-        font-size: 28px;
+        font-size: 20px;
         font-style: normal;
-        font-weight: 400;
+        font-weight: 500;
         line-height: 36px;
     
     }
@@ -441,17 +441,17 @@ padding: 20px;
     .jobDesc  { 
         color: #535353;
         font-family: "League Spartan";
-        font-size: 20px;
+        font-size: 16px;
         font-style: normal;
         font-weight: 400;
-        line-height: 36px;
+        line-height: 28px;
     
     }  
     
     .aboutjob { 
         color: #535353;
         font-family: "League Spartan";
-        font-size: 24px;
+        font-size: 18px;
         font-style: normal;
         margin-top: 16px;
         font-weight: 500;
@@ -461,26 +461,26 @@ padding: 20px;
     
     .viewJobbtn { 
         display: inline-flex;
-    padding: 14px 20px;
-    justify-content: center;
-    border: 0px;
-    align-items: center;
-    gap: 0px;
-    color: #FFF;
-    font-family: "League Spartan";
-    float: right;
-    font-size: 23px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    border-radius: 4px;
-    background: #A426D1;
+        padding: 14px 20px;
+        justify-content: center;
+        border: 0px;
+        align-items: center;
+        gap: 0px;
+        color: #FFF;
+        font-family: "League Spartan";
+        float: right;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border-radius: 4px;
+        background: #A426D1;
     }
     
     .postedname {  
         color: #535353;
         font-family: "League Spartan";
-        font-size: 21px;
+        font-size: 16px;
         font-style: normal;
         float: right;
         font-weight: 500;
@@ -495,59 +495,59 @@ padding: 20px;
     }
     
     .applyhr { 
-        margin-top: 16px;
+        // margin-top: 16px;
         border: 1px solid;
     }
     
     .rejectbtn { 
         color: #000;
-        font-family: "League Spartan";
-        font-size: 20px;
-        font-style: normal;
-        margin-left: 62px;
-        font-weight: 500;
-        line-height: normal;
-        display: inline-flex;
-        padding: 14px 19px;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        border-radius: 4px;
-        border: 2px solid #FF7E7E;
-        background: #F9F9F9;
+    font-family: "League Spartan";
+    font-size: 16px;
+    font-style: normal;
+    margin-left: 102px;
+    font-weight: 500;
+    line-height: normal;
+    display: inline-flex;
+    padding: 14px 19px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    border: 2px solid #FF7E7E;
+    background: #F9F9F9;
     
     }
     
     .rejecttxt { 
         color: #000;
-        text-align: center;
-        font-family: "League Spartan";
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 36px; /* 150% */
-        margin-top: 20px;
+    text-align: center;
+    font-family: "League Spartan";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    margin-top: 20px;
     }
     .rejecttxt1 { 
         color: #000;
         text-align: center;
         font-family: "League Spartan";
-        font-size: 24px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 400;
-        line-height: 36px; /* 150% */
-        margin-top: 20px;
+        line-height: 36px;
+        // margin-top: 20px;
         display: flex;
     }
     .rejecttxt2 { 
         color: #000;
         text-align: center;
         font-family: "League Spartan";
-        font-size: 24px;
+        font-size: 20px;
         font-style: normal;
-        font-weight: 600;
-        line-height: 36px; /* 150% */
-        margin-top: 20px;
+        font-weight: 500;
+        line-height: 36px;
+        // margin-top: 20px;
     }
     .rejectcancel { 
         display: inline-flex;
@@ -585,20 +585,20 @@ padding: 20px;
     }
     .rejectconfirm1 { 
         color: #FFF;
-    font-family: "League Spartan";
-    font-size: 18px;
-    float: right;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    display: inline-flex;
-    padding: 14px 32px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 4px;
-    background: #A426D1;
-    border: 0px;
+        font-family: "League Spartan";
+        font-size: 16px;
+        float: right;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        display: inline-flex;
+        padding: 14px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        background: #A426D1;
+        border: 0px;
     }
     .rate1{
     border-radius: 16px;

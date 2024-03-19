@@ -40,7 +40,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   userEmail: string = '';
   userfirstName: string = '';
   userlastName: string = '';
-  agreeNow : boolean = false;
 
   constructor(public authService: SocialAuthService,public dialog: MatDialog, private route: ActivatedRoute, public userservice: UserService, public roleService: RoleService,
     public userregister: UserauthenticateService, private router: Router) { }
@@ -73,10 +72,6 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   fireSignupButton() {
     this.firebutton.nativeElement.click();
-  }
-
-  AgreeNow() { 
-    this.agreeNow = true;
   }
 
   verfy() {

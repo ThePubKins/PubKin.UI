@@ -1,6 +1,7 @@
 .rrpublogoimg1{
-    width: 139px;
-    height: 69px;
+    width: 100px;
+    height: 65px;
+    margin-top: 6px;
 }
 .rrcomcenalign1{
     display:flex;
@@ -23,7 +24,7 @@
         font-family: 'League Spartan', sans-serif;
         font-style: normal;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 18px;
         line-height: normal;
         cursor: pointer;
     }
@@ -33,7 +34,7 @@
     .kkfrnavse{
         color: #0F0F0F;
         font-family: 'League Spartan', sans-serif;
-        font-size: 20px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
@@ -75,7 +76,7 @@
 .ddis {  
     color: #0F0F0F;
     font-family: "League Spartan";
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -93,7 +94,9 @@
 
 
     .kkcrd{
-        width: 250px;
+        margin-top: 62px;
+        /* margin-left: 100px; */
+        width: 146%;
         height: auto;
         z-index: 111;
         flex-shrink: 0;
@@ -165,36 +168,6 @@
     }
 
     .prset { 
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        left: 0px;
-        top: 0px;
-       }
-
-
-
-       @media only screen and (min-width:1601px){
-        .kkcrd12{
-            position: absolute;
-            right: 240px;
-            top:150px;
-              }
-    }
-
-    @media only screen and (min-width:1501px) and (max-width:1600px) {
-        .kkcrd12{
-            position: absolute;
-            right: 150px;
-            top:150px;
-              }
-    }
-
-    @media only screen and (min-width:1001px) and (max-width:1500px) {
-        .kkcrd12{
-            position: absolute;
-            right: 60px;
-            top:150px;
-              }
+        position: absolute;
+right: 98px;
     }
