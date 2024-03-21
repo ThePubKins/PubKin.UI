@@ -16,8 +16,8 @@
 
 
   .rrdescarddes1 {
-    width: 300px;
-    height: 420px;
+    width: 220px;
+    height: 300px;
     border-radius: 16px;
     background: #FFF;
     box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04), 2px 4px 4px 0px rgba(118, 27, 153, 0.43);
@@ -27,18 +27,18 @@
   .kkcardsidtxt {
     color: #1C1C1C;
     text-align: left;
-    font-family: 'League Spartan', sans-serif;
-    font-size: 42px;
+    font-family: "League Spartan", sans-serif;
+    font-size: 30px;
     font-style: normal;
-    font-weight: 600;
-    margin-top: 43px;
+    font-weight: 500;
+    margin-top: 38px;
     line-height: normal;
   }
 
 
   .rrcattxt1 {
     color: #1C1C1C;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     font-family: "League Spartan", sans-serif;
@@ -56,34 +56,42 @@
   }
 
   .rrftcatalign1 {
-    height: 104px;
+    height: 90px;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #FAEDFF;
     margin-top: 30px;
   }
 
   .imgtr {
-    padding: 25px;
+    padding: 40px;
     width: 95%;
+    //  margin-left: -230px; 
+    //   object-fit: cover;
+    margin-right: 31px;
     height: 500px;
     border-radius: 36px;
-    object-fit: cover;
+   
+  }
+  .rrlogoimg {
+    width: 100px;
+    // height: 65px;
+    margin-top: 10px;
   }
 
 
   .kklaptxt {
     color: #1C1C1C;
     font-family: "League Spartan", sans-serif;
-    font-size: 42px;
+    font-size: 30px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .kklaptxt1 {
     color: #A426D1;
     font-family: "League Spartan", sans-serif;
-    font-size: 29px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -96,11 +104,11 @@
   .kklaptxt11 {
     color: #1C1C1C;
     font-family: "League Spartan", sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 300;
     line-height: 29px;
-    margin-top: 23px;
+    margin-top: 15px;
     padding-right: 62px;
   }
 
@@ -112,8 +120,8 @@
 
 
   .rrdescarddes1 {
-    width: 280px;
-    height: 440px;
+    width: 220px;
+    height: 300px;
     border-radius: 16px;
     background: #FFF;
     box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04), 2px 4px 4px 0px rgba(118, 27, 153, 0.43);
@@ -125,7 +133,7 @@
     color: #1C1C1C;
     text-align: left;
     font-family: 'League Spartan', sans-serif;
-    font-size: 35px;
+    font-size: 30px;
     font-style: normal;
     font-weight: 600;
     margin-top: 30px;
@@ -153,9 +161,9 @@
   }
 
   .rrftcatalign1 {
-    height: 84px;
+    height: 60px;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #FAEDFF;
     margin-top: 30px;
   }
@@ -217,7 +225,8 @@
 
   .rrlogoimg {
     width: 100px;
-    height: 65px;
+    // height: 65px;
+    margin-top: 10px;
   }
 
   .rrpubkincenteralign2 {
@@ -265,9 +274,9 @@
   }
 
   .kkelvatetxt {
-    font-family: 'League Spartan', sans-serif;
-    font-weight: 800;
-    font-size: 50px;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    font-size: 45px;
     margin-top: 65px;
     text-align: center;
   }
@@ -279,17 +288,17 @@
   .kksubtxt1 {
     font-family: 'League Spartan', sans-serif;
     font-weight: 300;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
-    margin-top: 35px;
+    margin-top: 22px;
   }
 
   .kkelvtxtbtn {
-    margin-top: 31px;
+    margin-top: 20px;
   }
 
   .kkelvtxtbtn1 {
-    padding: 5px 32px;
+    padding: 5px 20px;
     background-color: #A426D1;
     color: #fff;
     border-radius: 4px;
@@ -300,7 +309,7 @@
   }
 
   .kkelvtxtbtn2 {
-    padding: 5px 32px;
+    padding: 5px 20px;
     border: 2px solid #A426D1;
     color: black;
     background-color: #fff;
@@ -322,15 +331,15 @@
 
   .lineimg1 {
     position: absolute;
-    top: 120px;
-    left: 0px;
+    top: 97px;
+    left: 111px;
     rotate: 10deg;
   }
 
   .lineimg2 {
     position: absolute;
-    right: 54px;
-    top: 150px;
+    right: 89px;
+    top: 130px;
   }
 
   .rrlineimg3 {
@@ -343,9 +352,10 @@
   }
 
   .rrdesimg1 {
-    margin-top: 35px;
-    height: 520px;
-    width: 90%;
+    margin-top: 37px;
+    height: 366px;
+    width: 54%;
+    margin-left: 89px;
   }
 
   .rrcomabscen1 {
@@ -358,20 +368,20 @@
   .rrchead {
     color: #000;
     font-family: "League Spartan", sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     margin-top: 15px;
     margin-left: 10px;
     line-height: normal;
   }
 
   .rrimgcard1 {
-    width: 108px;
-    height: 108px;
+    width: 80px;
+    height: 80px;
     flex-shrink: 0;
     align-self: center;
-    margin-top: 35px;
+    margin-top: 17px;
   }
 
 
@@ -386,30 +396,30 @@
     color: #1C1C1C;
     text-align: center;
     font-family: "League Spartan", sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
 
   .rrfulldesstarimg1 {
-    width: 160px;
-    height: 32px;
+    width: 129px;
+    height: 28px;
   }
 
   .rect {
     width: 90px;
-    height: 23px;
+    height: 18px;
     flex-shrink: 0;
     margin-top: 21px;
     border-radius: 90px;
     background: #F8E4FF;
-    margin-left: 30px;
+    margin-left: 32px;
   }
 
   .rect1 {
-    width: 80%;
-    height: 23px;
+    width: 70%;
+    height: 18px;
     flex-shrink: 0;
     border-radius: 90px;
     margin-top: 21px;
@@ -421,49 +431,49 @@
   }
 
   .rrinrimg1 {
-    width: 42px;
-    height: 42px;
-    margin-right: 10px;
-    margin-left: -8px;
-    margin-top: 5px;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+    margin-left: -3px;
+    margin-top: 9px;
   }
 
   .rrinrimg2 {
-    width: 26px;
-    height: 33px;
-    margin-right: 20px;
+    width: 22px;
+    height: 27px;
+    margin-right: 23px;
     margin-top: 10px;
   }
 
   .rrinrimg3 {
-    width: 31px;
-    height: 27px;
-    margin-right: 15px;
+    width: 27px;
+    height: 24px;
+    margin-right: 19px;
     margin-top: 12px;
   }
 
   .rrnocosttxt1 {
     color: #1C1C1C;
-    font-family: 'League Spartan', sans-serif;
-    font-size: 29px;
+    font-family: "League Spartan", sans-serif;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-top: 10px
+    margin-top: 13px;
   }
 
   .rrnocosttxt2 {
     color: #1C1C1C;
-    font-family: 'League Spartan', sans-serif;
-    font-size: 24px;
+    font-family: "League Spartan", sans-serif;
+    font-size: 16px;
     font-style: normal;
     font-weight: 300;
     line-height: 36px;
   }
 
   .kkfitltxt {
-    font-size: 35px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 500;
     font-family: "League Spartan", sans-serif;
     margin-top: 80px;
 
@@ -473,14 +483,14 @@
   .kkbrtx {
     color: #A426D1;
     font-family: "League Spartan", sans-serif;
-    font-size: 29px;
+    font-size: 25px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     margin-left: auto;
     cursor: pointer;
-    width: 87px;
-    margin-top: -40px;
+    width: 98px;
+    margin-top: -30px;
 
   }
 
@@ -568,16 +578,16 @@
     font-family: 'League Spartan', sans-serif;
     padding: 5px 30px;
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 16px;
     -webkit-box-shadow: 0 2px 5px 2px rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
     box-shadow: 0 2px 5px 2px rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
   }
 
   .kktesttxt {
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'League Spartan', sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 80px;
   }
 
@@ -590,30 +600,30 @@
     color: #1C1C1C;
     text-align: center;
     font-family: "League Spartan", sans-serif;
-    font-size: 29px;
+    font-size: 25px;
     font-style: normal;
     font-weight: 300;
     line-height: 44px;
-    margin-top: 30px;
+    margin-top: 10px;
   }
 
   .rrextradesimg1 {
     position: absolute;
-    top: 45px;
-    left: -5px;
+    top: 25px;
+    left: 105px;
     rotate: 20deg;
   }
 
   .rrextradesimg2 {
     position: absolute;
-    top: 200px;
-    right: 1px;
+    top: 140px;
+    right: 103px;
     rotate: 1deg;
   }
 
   .rrkkwktltxt {
-    font-size: 35px;
-    font-weight: 600;
+    font-size: 32px;
+    font-weight: 500;
     font-family: "League Spartan", sans-serif;
     margin-top: 80px;
     padding-bottom: 30px;
@@ -625,7 +635,7 @@
 
   .rrworktalents1 {
     width: 80%;
-    height: 300px;
+    height: 233px;
     border-radius: 12px;
     background: #FAEDFF;
   }
@@ -637,8 +647,8 @@
   }
 
   .rrrouniimg1 {
-    width: 82%;
-    margin-top: 32px;
+    width: 79%;
+    margin-top: 30px;
     align-self: center;
     border-radius: 12px;
   }
@@ -650,17 +660,17 @@
   .rrprojnamtxt1 {
     color: #1C1C1C;
     font-family: "League Spartan", sans-serif;
-    font-size: 29px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: normal;
-    margin-top: 30px
+    margin-top: 22px
   }
 
   .rrprojnamtxt2 {
     color: #1C1C1C;
     font-family: "League Spartan";
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
@@ -710,7 +720,7 @@
   .rrworktalents1 {
     padding: 0px 0px;
     text-align: center;
-    min-height: 300px;
+    min-height: 100px;
   }
 
   .rrworktalents1 {
@@ -726,7 +736,7 @@
     -webkit-transform: translateY(-5px);
     -ms-transform: translateY(-5px);
     transform: translateY(-5px);
-    box-shadow: 0 12px 23px rgba(0, 0, 0, 0.32);
+    box-shadow: 0 12px 23px rgba(164, 4, 204, 0.32);
     cursor: pointer;
     border-radius: 5px;
   }
