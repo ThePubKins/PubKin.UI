@@ -27,7 +27,7 @@
     <div class="container"  *ngFor="let Post of Posts  | jobsearch : searchTerm; ">
         <div *ngIf="Post.userId == UserData[0].id && Post.status === 'Open'">
         <div class="row" >
-            <div [routerLink]="['/authors/accept-a-request/pick-now', Post.id]"  class="col-8 phead" >
+            <div [routerLink]="['/authors/accept-a-request/pick-now', Post.id]"  target="_blank" class="col-8 phead" >
                {{Post.jobTitle}}
             </div>
             <div class="col-3"></div>

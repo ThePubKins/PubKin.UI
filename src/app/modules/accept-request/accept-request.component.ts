@@ -32,17 +32,6 @@ export class AcceptRequestComponent implements OnInit {
   }
 
 
-
-  subscribeToProduct() {
-    this.singlarService.subscribeToProduct(this.Applies[0].jobId);
-  }
-
-
-  onChatTargetClick(targetUser: any): void {
-    this.chatTarget = targetUser;
-
-  }
-
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
     if (Email) {
