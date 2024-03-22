@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./forget-password.component.scss']
 })
 export class ForgetPasswordComponent {
+  passshow:boolean=false;
 
+  pasword1(){
+    this.passshow=!this.passshow;
+  }
 }

@@ -510,11 +510,8 @@ margin-top: 14px;
 width: 690px
 }
 .kkeditdet12{
-  display: flex !important;
-  align-items: flex-end;
-  gap: 12px;
-  flex-direction: row;
-  justify-content: flex-end;
+  position: absolute;
+  right: 10px;
 }
 .portfoltitlevv {
 color: #1c1c1c;
@@ -940,7 +937,7 @@ gap:30px;
 
 .rrpublogoimg1{
   width: 100px;
-  height: 65px;
+  // height: 65px;
   margin-top:30px;
   margin-left: -15px;
 }
@@ -969,7 +966,8 @@ gap:30px;
   // margin-top: 30px;
   font-size: 30px;
   font-family: "League Spartan", sans-serif;
-  font-weight: 500;   
+  font-weight: 500;
+  margin-top: 26px; 
  }
 
  .showProfiles{ 
@@ -1013,7 +1011,6 @@ gap:30px;
   justify-content: center;
   width: 110px;
   height:45px;
-  position: absolute;
   margin-top: 20px;
  }
  .kkempbtn2{
@@ -1027,9 +1024,8 @@ gap:30px;
   align-items: center;
   justify-content: center;
   width: 120px;
+  float: right;
   height: 45px;
-  position: absolute;
-  right: 118px;
   margin-top: 20px;
  } 
  
@@ -1075,6 +1071,7 @@ gap:30px;
       background: #FBF1FF;
       width:90%;
       height:250px;
+      position: relative;
       padding:20px;
   }
 
@@ -1298,6 +1295,7 @@ gap:30px;
   height: 9px;
   margin-top: 180px;
 }
+
 .pgrssa{
   padding: 0px;
   width: 100%;
@@ -1312,6 +1310,12 @@ gap:30px;
 }
   .pgrssbar { 
       background-color: #A426D1;
+  }
+
+  .pgressbackbutton {
+    position: absolute;
+    bottom: 0px;
+    padding-bottom: 12px;
   }
 
   .skip { 
@@ -1531,8 +1535,7 @@ box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(208, 0, 255, 0.6)
 
 
 .detscrol{
-height: 500px;
-    overflow-y:scroll;
+  max-height: 450px;    overflow-y:scroll;
     scrollbar-width: thin; 
     scrollbar-color: transparent transparent; 
     
