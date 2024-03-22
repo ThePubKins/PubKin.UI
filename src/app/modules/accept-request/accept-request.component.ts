@@ -32,9 +32,6 @@ export class AcceptRequestComponent implements OnInit {
   }
 
 
-
-
-
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
     if (Email) {

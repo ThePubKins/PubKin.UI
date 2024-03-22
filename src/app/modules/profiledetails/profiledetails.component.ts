@@ -116,8 +116,17 @@ export class ProfiledetailsComponent implements OnInit {
     { img_url: '/assets/animoji-18.png' }
   ]
 
+  @ViewChild('firstButton') firstButton: ElementRef;
+
+
   closeProfile() {
-    this.hideprofileclose = true
+      this.firstButton.nativeElement.click();
+      if(this.User[0].role === 'freelancer'){
+        this.router.navigate(['/freelancers']);
+      }
+      if(this.User[0].role === 'author'){
+        this.router.navigate(['/authors']);
+      }
   }
 
   selectedImage: string;
