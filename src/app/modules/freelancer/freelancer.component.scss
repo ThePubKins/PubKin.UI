@@ -84,21 +84,14 @@
 }
 
 .kkjbbx {
-
     border: 1px solid #C1C1C1;
     height: auto;
-
     border-radius: 16px;
     flex-shrink: 0;
-    margin-left: 10px;
 }
 
 .kkjbbx1 {
-
-
     height: auto;
-    width: 272px;
-
 }
 
 
@@ -238,6 +231,8 @@
 
 .kkcrtalign {
     font-family: "League Spartan", sans-serif;
+    display: flex;
+    justify-content: space-around;
 }
 
 .kkfrname {

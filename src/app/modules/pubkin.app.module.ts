@@ -40,6 +40,7 @@ import { RoleComponent } from './role/role.component';
 import { OngoingJobsComponent } from './ongoing-jobs/ongoing-jobs.component';
 import { FootertagComponent } from './footertag/footertag.component';
 import { PaymentComponent } from './payment/payment.component';
+import { NewPasswordComponent } from './forget-password/new-password/new-password.component';
 import { GooglesigninComponent } from './signup/googlesignin/googlesignin.component';
 import { GoogleloginComponent } from './signup/googlelogin/googlelogin.component';
 import { NgToastModule } from 'ng-angular-popup';
@@ -54,6 +55,7 @@ import {
     declarations: [
         SignupComponent,
         HomeComponent,
+        NewPasswordComponent,
         FreelancerComponent,
         FreeprofileComponent,
         PaymentComponent,

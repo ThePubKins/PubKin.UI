@@ -323,7 +323,52 @@
 
     </div>
 </div>
+<div *ngIf="action === 'login'">
+    <div *ngIf="GoNext === 'button1'">
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-3">
+                    <img routerLink="/" src="./assets/logo.png" class="rrlogoimg" alt="Pubkin">
+                </div>
+                <div class="col-9">
+                </div>
+            </div>
+        </div>
 
+        <p class="head">
+            Log in to Pubkin
+        </p>
+        <div class="text-center flx">
+            <div class="back1 ">
+                <div class="rolebox ">
+                    <p class="role">Please select your role</p>
+                </div><br>
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="selectedRole">
+                    <mat-radio-button color="primary" value="freelancer" (click)="googlehide()"><span
+                            class="cont">Freelancer</span></mat-radio-button>
+                    <mat-radio-button color="primary" class="radio1" value="author" (click)="googlehide()"><span
+                            class="cont">Author</span></mat-radio-button>
+                </mat-radio-group>
+                <br>
+                <div *ngIf="googledown">
+                    <div class="flx">
+                        <div class="google">
+
+                            <p class="goo"> <app-googlesignin
+                                    (loginWithGoogle)="googleSignin($event)"></app-googlesignin></p>
+
+                        </div>
+                    </div>
+                    <p class="meme1">Or</p>
+                    <div class="create"  (click)="GoNextBtn('login')">
+                        <p class="cre">Login</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <div *ngIf="action === 'freelancer'">
     <div *ngIf="GoNext === 'button1'">
