@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { PubKinAppModule } from './modules';
 import { AppliedUserNotificationService } from './shared/services/applied-user-notification.service';

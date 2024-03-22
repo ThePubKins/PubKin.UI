@@ -1,7 +1,7 @@
 <div class="container kkfrnavbar">
   <div class="row kkfrnavbar1">
     <div class="col-2">
-      <img src="../assets/logo.png" class="" routerLink="/freelancers">
+      <img src="../assets/logo.png" class="rrlogoimg" routerLink="/freelancers">
     </div>
     <div class="col-3 disnoneele"></div>
 
@@ -103,14 +103,15 @@
           <p class="kkprname">{{User[0].firstName}} <img *ngIf="calculateTotal() === 100"
               src="../assets/Verified Check_.png" alt="pubkins" style="margin-top: -6px;"> </p>
           <p class="kkprname1">Freelancer</p>
-          <p class="kkprbtn1" routerLink="/setting/wallet" routerLinkActive="active" (click)="hidden()"><span
-              class="material-symbols-outlined">
+          <p class="kkprbtn1" routerLink="/setting/wallet" routerLinkActive="active"><span
+              class="material-symbols-outlined kknavicon">
               account_balance_wallet
             </span>Wallet</p>
-          <p class="kkprbtn1" routerLink="/setting/billing-&-payment" (click)="hidden()"><span class="material-symbols-outlined">
+          <p class="kkprbtn1" routerLink="/setting/billing-&-payment"><span class="material-symbols-outlined kknavicon">
               settings
             </span>Settings</p>
-          <button type="button" class="btn kkprbtn2" (click)="logout()" (click)="hidden()">Logout <span class="material-symbols-outlined">
+          <button type="button" class="btn kkprbtn2" (click)="logout()">Logout <span class="material-symbols-outlined kknavicon">
+
               logout
             </span></button>
         </div>

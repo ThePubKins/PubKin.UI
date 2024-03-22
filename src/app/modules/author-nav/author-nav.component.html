@@ -72,13 +72,14 @@
         <div class="kkpname">
             <p class="kkprname">{{User[0].firstName}} <img  *ngIf="calculateTotal() === 100" src="../assets/Verified Check_.png" alt="pubkins" style="margin-top: -6px;"> </p>
             <p class="kkprname1">Author</p>
-            <p class="kkprbtn1" routerLink="/setting/wallet" (click)="hidden()"><span class="material-symbols-outlined">
+            <p class="kkprbtn1" routerLink="/setting/wallet"><span class="material-symbols-outlined kknavicon">
               account_balance_wallet
               </span>Wallet</p>
-              <p class="kkprbtn1" routerLink="/setting/billing-&-payment" (click)="hidden()"><span class="material-symbols-outlined">
+              <p class="kkprbtn1" routerLink="/setting/billing-&-payment"><span class="material-symbols-outlined kknavicon">
                 settings
                 </span>Setting</p>
-            <button type="button"class="btn kkprbtn2" (click)="logout()" (click)="hidden()">Logout <span class="material-symbols-outlined">
+            <button type="button"class="btn kkprbtn2" (click)="logout()">Logout <span class="material-symbols-outlined kknavicon">
+
                 logout
                 </span></button>
         </div>

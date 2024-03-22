@@ -9,6 +9,7 @@
           <p class="rrpubkintxt1" (click)="navigateToProfile('freelancer')">Find Talent</p>
           <p class="rrpubkintxt1" (click)="navigateToProfile('author')">Find Work</p>
           <p class="rrpubkintxt1" routerLink="/WhatisPubKin?">Why us?</p>
+          <p class="rrpubkintxt1" style="color:#A426D1;" (click)="navigateToProfile('all')">Login</p>
           <button type="button" class="btn kksignbtn waves-effect waves-light" (click)="navigateToProfile('all')">Sign
             up</button>
         </div>
@@ -36,7 +37,7 @@
   </div>
   </div>
 
-  <div>
+  <div class="container">
     <img src="./assets/Frame5.png" class='rrlineimg3'>
   </div>
 
@@ -188,7 +189,7 @@
 
 
   <div class="text-center mt-4" *ngIf="!hide">
-    <svg style="cursor: pointer;" (click)="hide1()" xmlns="http://www.w3.org/2000/svg" width="36" height="18"
+    <svg style="cursor: pointer;" (click)="hide1()" xmlns="http://www.w3.org/2000/svg" width="30" height="12"
       viewBox="0 0 36 18" fill="none">
       <path
         d="M35.785 2.96702C35.7863 3.34885 35.702 3.72612 35.5384 4.07111C35.3747 4.41609 35.1358 4.72003 34.8393 4.96058L19.5043 17.3053C19.0469 17.6812 18.4733 17.8867 17.8813 17.8867C17.2893 17.8867 16.7157 17.6812 16.2584 17.3053L0.923303 4.52609C0.401358 4.09226 0.0731251 3.46886 0.0108144 2.79303C-0.0514964 2.1172 0.157219 1.4443 0.591043 0.92235C1.02487 0.400406 1.64827 0.072174 2.3241 0.0098628C2.99993 -0.0524484 3.67283 0.156265 4.19478 0.590092L17.8941 12.0147L31.5934 0.973467C31.9686 0.660931 32.4254 0.462401 32.9098 0.401368C33.3943 0.340336 33.8861 0.419354 34.3271 0.629076C34.768 0.838797 35.1397 1.17044 35.398 1.58477C35.6564 1.9991 35.7907 2.47877 35.785 2.96702Z"
@@ -198,7 +199,7 @@
 
   <div *ngIf="hide">
     <div class="text-center mt-4" (click)="hide1()">
-      <svg style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="36" height="18" viewBox="0 0 36 18"
+      <svg style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="30" height="12" viewBox="0 0 36 18"
         fill="none">
         <path
           d="M0.000175654 14.9197C-0.00112135 14.5379 0.0831491 14.1606 0.246796 13.8156C0.410443 13.4706 0.649307 13.1667 0.945839 12.9261L16.2809 0.581424C16.7382 0.205506 17.3118 2.20292e-07 17.9038 2.13233e-07C18.4958 2.06173e-07 19.0695 0.205506 19.5268 0.581424L34.8619 13.3606C35.3838 13.7945 35.712 14.4179 35.7743 15.0937C35.8367 15.7695 35.6279 16.4424 35.1941 16.9644C34.7603 17.4863 34.1369 17.8145 33.4611 17.8769C32.7852 17.9392 32.1123 17.7305 31.5904 17.2966L17.8911 5.87202L4.19175 16.9133C3.8166 17.2258 3.35976 17.4243 2.87531 17.4854C2.39085 17.5464 1.89904 17.4674 1.45809 17.2576C1.01714 17.0479 0.645489 16.7163 0.387119 16.3019C0.12875 15.8876 -0.00552731 15.4079 0.000175654 14.9197Z"
@@ -210,8 +211,8 @@
 
 
 
-  <div class="kklapdiv">
-    <div class="container-fluid">
+  <div class="">
+    <div class="container kklapdiv">
       <div class="row d-flex align-items-center">
         <div class="col-xl-7 col-lg-7">
           <div class="rrpubkinendalign1">
@@ -255,7 +256,7 @@
 
   <div class="container rrallpronameal1">
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <div class="rrworktalents1 hover-div">
           <div class="rrpubkincenteralign1">
             <img src="./assets/wrk1.png" class="rrrouniimg1">
@@ -268,7 +269,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="rrpubkincenteralign1">
           <div class="rrworktalents1 hover-div">
             <div class="rrpubkincenteralign1">
@@ -283,7 +284,22 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
+        <div class="rrpubkinendalign1">
+          <div class="rrworktalents1 hover-div">
+            <div class="rrpubkincenteralign1">
+              <img src="./assets/wrk3.png" class="rrrouniimg1">
+            </div>
+            <div class="rrpubkincenteralign1">
+              <div class="rrprojnamal1">
+                <p class="rrprojnamtxt1">Project Name</p>
+                <p class="rrprojnamtxt2">Details</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
         <div class="rrpubkinendalign1">
           <div class="rrworktalents1 hover-div">
             <div class="rrpubkincenteralign1">
@@ -303,7 +319,7 @@
 
   <div class="container rrallpronameal1">
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <div class="rrworktalents1 hover-div">
           <div class="rrpubkincenteralign1">
             <img src="./assets/wrk4.png" class="rrrouniimg1">
@@ -316,7 +332,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <div class="rrpubkincenteralign1">
           <div class="rrworktalents1  hover-div">
             <div class="rrpubkincenteralign1">
@@ -331,7 +347,22 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-3">
+        <div class="rrpubkinendalign1 ">
+          <div class="rrworktalents1 hover-div">
+            <div class="rrpubkincenteralign1">
+              <img src="./assets/wrk6.png" class="rrrouniimg1">
+            </div>
+            <div class="rrpubkincenteralign1">
+              <div class="rrprojnamal1">
+                <p class="rrprojnamtxt1">Project Name</p>
+                <p class="rrprojnamtxt2">Details</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3">
         <div class="rrpubkinendalign1 ">
           <div class="rrworktalents1 hover-div">
             <div class="rrpubkincenteralign1">
