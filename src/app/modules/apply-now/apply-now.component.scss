@@ -615,14 +615,14 @@ $pubmainfont: League Spartan;
 }
 
 .kkhead {
-  font-size: 28px;
-  margin-left: 24px;
+  font-size: 22px;
   font-weight: 400;
   color: #a426d1;
+  margin-top: 10px;
 }
 
 .liscontentvv {
-  padding: 4px 183px 0px 0px;
+  padding: 4px 20px 0px 0px;
   line-height: 35px;
   font-weight: 400;
 }
@@ -642,21 +642,21 @@ $pubmainfont: League Spartan;
 }
 
 .btnfr {
-  width: 100px;
-  gap: 8px;
-  cursor: pointer;
-  color: #fff;
-  font-family: "League Spartan", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  margin-top: 38px;
-  line-height: normal;
-  height: 50px;
-  float: right;
-  border-radius: 8px;
-  border: 3px solid #a426d1;
-  background: #a426d1;
+  width: 95px;
+    gap: 8px;
+    cursor: pointer;
+    color: #fff;
+    font-family: "League Spartan", sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 27px;
+    line-height: normal;
+    height: 40px;
+    float: right;
+    border-radius: 5px;
+    border: 3px solid #a426d1;
+    background: #a426d1;
 }
 
 .btnfr::placeholder {
@@ -761,3 +761,15 @@ select:focus {
   --mdc-checkbox-unselected-hover-state-layer-color: blueviolet;
   --mdc-checkbox-unselected-pressed-state-layer-color: blueviolet;
 }
+
+
+.termssidecont{  
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 13px;
+}
+
+.termsandconditioncont { 
+  font-weight: 500;
+  color: #a426d1;
+  font-size: 18px;}
