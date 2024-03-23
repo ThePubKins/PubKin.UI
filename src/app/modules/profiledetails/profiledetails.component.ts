@@ -42,6 +42,7 @@ export class ProfiledetailsComponent implements OnInit {
   bankDetails: any;
   portfolios: any
   uploadedFileName: string = '';
+  isFileUploaded: boolean = false;
   selectedFiles: string[] = [];
   combinedSkills: string[] = [];
   dateFormatted: any;
@@ -301,6 +302,18 @@ export class ProfiledetailsComponent implements OnInit {
       }, 1500);
     }
   }
+
+
+  //GovtId File Upload
+  onFileSelected(event: any) {
+    this.isFileUploaded = true;
+    const selectedFile = event.target.files[0];
+    this.selectedFiles.push(selectedFile.name);
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    this.uploadedFileName = file ? file.name : ''; 
+  }
+
 
   //GovtID Details Submit to Post Function
   onSubmitGovtIdDetails(form: NgForm) {

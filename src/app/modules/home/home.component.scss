@@ -349,21 +349,19 @@
 
   .rrcomrel {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .rrdesimg1 {
     margin-top: 37px;
     height: 366px;
-    width: 54%;
-    margin-left: 89px;
   }
 
   .rrcomabscen1 {
     position: absolute;
-    top: 50%;
-    left: 42%;
-    transform: translate(-45%, -45%);
-  }
+    margin-top: 30px;  }
 
   .rrchead {
     color: #000;

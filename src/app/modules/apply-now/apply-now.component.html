@@ -232,7 +232,12 @@
       >
 Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendisse. Pulvinar tellus metus mattis hendrerit in nam. Amet ut et commodo odio leo duis proin. Cursus magna dolor lectus turpis varius sem. Et in quisque feugiat sed aliquet semper.</textarea
       >
-      <div *ngIf="applyCoverLetter.invalid && (applyCoverLetter.dirty || applyCoverLetter.touched)">
+      <div
+        *ngIf="
+          applyCoverLetter.invalid &&
+          (applyCoverLetter.dirty || applyCoverLetter.touched)
+        "
+      >
         <span *ngIf="applyCoverLetter.errors?.['required']" class="errormsg">
           Cover Letter is required
         </span>
@@ -485,21 +490,46 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
       </div>
       <!-- Modal body -->
       <div class="modal-body">
-        <ul class="list-unstyled float-end px-5 text-end h5">
+        <ul
+          class="list-unstyled float-end px-5 text-end termssidecont"
+          style="font-size: 17px"
+        >
           <li>Pubkin</li>
           <li>Address</li>
           <li>Chennai - 6300001, <br />TamiNadu</li>
           <li>{{ currentDate | date }}</li>
         </ul>
-        <ul class="list-unstyled float-end px-5 text-start h5">
+        <ul class="list-unstyled float-end px-5 text-start termssidecont">
+          <li>
+            This Non-Disclosure Agreement (the "Agreement") is entered into by
+            and between:
+          </li>
+          <br>
+          <li class="text-decoration-underline termsandconditioncont">
+            Disclosing Party:
+          </li>
+          <li>{{ JobPost.createdBy }}</li>
+          <li>
+            <span *ngIf="JobPost.currency === 'INR'">India</span>
+            <span *ngIf="JobPost.currency === 'USD'">America</span>
+            <span *ngIf="JobPost.currency === 'AED'">United Arab Emirates</span>
+            <span *ngIf="JobPost.currency === 'ANG'">Netherland</span>
+            <span *ngIf="JobPost.currency === 'AOA'">Central Africa</span>
+            <span *ngIf="JobPost.currency === 'ARS'">Argentina</span>
+            <span *ngIf="JobPost.currency === 'OMR'">Oman</span>
+            <span *ngIf="JobPost.currency === 'SAR'">Saudi Arabia</span>
+          </li>
+          <!-- <li>[City, State, ZIP Code]</li><br> -->
+          <br />
+          <li class="text-decoration-underline termsandconditioncont">
+            Receiving Party:
+          </li>
           <li>{{ UserData[0].firstName }} {{ UserData[0].lastName }}</li>
           <li>{{ UserData[0].country }}</li>
           <!-- <li>[City, State, ZIP Code]</li><br> -->
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+
+          <li class="text-decoration-underline termsandconditioncont">
             Purpose:
           </li>
           <li class="liscontentvv">
@@ -509,10 +539,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             confidential information to the Receiving Party.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Confidential Information:
           </li>
           <li class="liscontentvv">
@@ -524,10 +551,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             by the Disclosing Party.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Obligations
           </li>
           <li class="liscontentvv">The Receiving Party agrees to:</li>
@@ -541,10 +565,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             party without prior written consent from the Disclosing Party.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Exceptions:
           </li>
           <li class="liscontentvv">
@@ -558,10 +579,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             Receiving Party from a third party without restriction.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Payment Terms:
           </li>
           <li class="liscontentvv">
@@ -570,10 +588,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             Agreement.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Service Level Agreement (SLA):
           </li>
           <li class="liscontentvv">
@@ -583,10 +598,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             procedures.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Duration:
           </li>
           <li class="liscontentvv">
@@ -600,10 +612,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             Parties.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Termination:
           </li>
           <li class="liscontentvv">
@@ -611,24 +620,26 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
             other Party breaches any material provision of this Agreement.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Governing Law:
           </li>
           <li class="liscontentvv">
             This Agreement shall be governed by and construed in accordance with
             the laws of
-            <span style="color: #a426d1">{{ UserData[0].country }}</span
+            <span >
+              <span *ngIf="JobPost.currency === 'INR'" style="color: #a426d1">India</span>
+              <span *ngIf="JobPost.currency === 'USD'" style="color: #a426d1">America</span>
+              <span *ngIf="JobPost.currency === 'AED'" style="color: #a426d1">United Arab Emirates</span>
+              <span *ngIf="JobPost.currency === 'ANG'" style="color: #a426d1">Netherland</span>
+              <span *ngIf="JobPost.currency === 'AOA'" style="color: #a426d1">Central Africa</span>
+              <span *ngIf="JobPost.currency === 'ARS'" style="color: #a426d1">Argentina</span>
+              <span *ngIf="JobPost.currency === 'OMR'" style="color: #a426d1">Oman</span>
+              <span *ngIf="JobPost.currency === 'SAR'" style="color: #a426d1">Saudi Arabia</span>
+              </span
             >.
           </li>
           <br />
-          <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline"
-            class="text-decoration-underline"
-          >
+          <li class="text-decoration-underline termsandconditioncont">
             Entire Agreement:
           </li>
           <li class="liscontentvv">
@@ -640,8 +651,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
           </li>
           <br />
           <li
-            style="font-weight: 500; color: #a426d1"
-            class="text-decoration-underline float-end text-start"
+            class="text-decoration-underline termsandconditioncont float-end text-start"
           >
             Freelancer:
           </li>

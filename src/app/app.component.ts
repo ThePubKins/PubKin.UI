@@ -18,8 +18,8 @@ export class AppComponent {
   jobUniqueId: any;
 
    constructor(private singlarService:AppliedUserNotificationService) {
-       this.singlarService.startConnection();
-     this.singlarService.addProductListener(); 
+    //   this.singlarService.startConnection();
+    // this.singlarService.addProductListener(); 
    }
   
    delay(ms: number) {

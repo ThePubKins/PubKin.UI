@@ -65,9 +65,8 @@ margin-top: 36px;
 
 
 .kkadedudt{
-  width: 700px;
   height: auto;
-
+width: 700px;
 background: #FFF;
 }
 
@@ -963,11 +962,15 @@ gap:30px;
 
 
 .kkemphus{
-  // margin-top: 30px;
   font-size: 30px;
   font-family: "League Spartan", sans-serif;
   font-weight: 500;
-  margin-top: 26px; 
+  margin-top: 34px;
+ }
+
+
+ .freelancingHead { 
+   margin-top: 70px;
  }
 
  .showProfiles{ 
@@ -1038,14 +1041,11 @@ gap:30px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 110px;
-  height:45px;
-  position: absolute;
-  margin-top: 100px;
+  height: 45px;
+  margin-top: 60px;
  }
+
  .kkempbtn2b{
   border-radius: 4px;
   background: #A426D1;
@@ -1053,14 +1053,10 @@ gap:30px;
   font-family: "League Spartan", sans-serif;
   font-size: 18px;
   font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 120px;
   height: 45px;
-  position: absolute;
-  right: 178px;
-  margin-top: 100px;
+  float: right;
+  margin-top: 60px;
  } 
 /*Employment history */
 
@@ -1185,6 +1181,9 @@ gap:30px;
    }
 
    .govtupload { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 80%;
     height: 365px;
     border-radius: 24px;
@@ -1334,17 +1333,17 @@ gap:30px;
     }
     .skipa { 
       color: #A426D1;
-      font-family: 'League Spartan', sans-serif;
+      font-family: "League Spartan", sans-serif;
       font-size: 20px;
       font-style: normal;
       cursor: pointer;
       font-weight: 600;
       line-height: normal;
+      /* float: right; */
       position: absolute;
-      // bottom: 65px;
-      right: 205px;
+      right: 93px;
       margin-top: 48px;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
   }
     .circlin { 
       width: 71%;
