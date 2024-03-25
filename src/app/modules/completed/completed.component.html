@@ -15,10 +15,10 @@
                 <p class="jobtitle">{{Apply.jobTitle}}</p>
               </div>
               <div class="col-4">
-                <p class="aboutjob">Rate: <span style="color: black;">₹ 2000</span></p>
+                <p class="aboutjob">Rate: <span style="color: black;">₹ {{Apply.biddingRate}}</span></p>
               </div>
               <div class="col-8">
-                <p class="postedname">posted by <span style="color: #A426D1;">Mr. John Doe</span></p>
+                <p class="postedname">posted by <span style="color: #A426D1;">{{Apply.postBy}}</span></p>
               </div>
               <div class="col-4">
                 <button class="viewJobbtn" (click)="showJobDetails(Apply.jobId)">View</button>

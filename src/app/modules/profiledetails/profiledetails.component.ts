@@ -2,7 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { BankDetailsService, EducationService, PortfolioService, UserService, UserauthenticateService, WorkdetailsService, portfolio, PricingSkillService } from '../../shared';
+import * as bootstrap from 'bootstrap';
+import { BankDetailsService, EducationService, PortfolioService, UserService, UserauthenticateService, WorkdetailsService, portfolio, PricingSkillService, educationdetails } from '../../shared';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -149,6 +150,7 @@ export class ProfiledetailsComponent implements OnInit {
 
   }
 
+
   //Work Submit to Post Function
   onSubmitWork(form: NgForm) {
     if (form.valid && this.workservice.workData) {
@@ -166,17 +168,44 @@ export class ProfiledetailsComponent implements OnInit {
   //Education Details Submit to Post Function
   onSubmitEducation(form: NgForm) {
     if (form.valid && this.educationservice.educationData) {
+    //   if (this.educationservice.educationData.id) {
+    //   this.educationservice.putEducation(form.value).subscribe();
+    //   this.contentName = 'whoopee'; 
+    //   setTimeout(() => {
+    //     if (this.contentName === 'whoopee') {
+    //       this.contentName = 'education-details';
+    //       window.location.reload();
+    //       }
+    //       //form.resetForm();
+    //   }, 3000);
+    
+    // } else { 
       this.educationservice.postEducation(form.value).subscribe();
-      this.contentName = 'whoopee';
+      this.contentName = 'whoopee'; 
       setTimeout(() => {
         if (this.contentName === 'whoopee') {
           this.contentName = 'education-details';
           window.location.reload();
+        //  form.resetForm();
           }
       }, 3000);
+     
+    // }
     }
   }
 
+  // editEducation(educationDetails: educationdetails) {
+  //   this.educationservice.educationData = educationDetails;
+  // }
+
+  // deleteEducation(form: NgForm) {
+  //   if (this.educationservice.educationData.id) {
+  //     this.educationservice.deleteEducation(this.educationservice.educationData.id).subscribe(() => {
+  //       setTimeout(() => { }, 300);window.location.reload();
+  //     });
+  //   }
+  // }
+  
   //PortFolio Details Submit to Post Function
   onSubmitPortfolio(form: NgForm) {
     if (form.valid && this.portfolioService.portfolioFormData) {

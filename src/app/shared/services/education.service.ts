@@ -21,4 +21,12 @@ export class EducationService {
   geteducation(): Observable<educationdetails[]> {
     return this.apiService.get(`Education`);
   }
+
+  // putEducation(educationData: any): Observable<any> {
+  //   return this.apiService.put(`Education/educationdetails_updated`, educationData);
+  // }  
+
+  // deleteEducation(id: any): Observable<any> {
+  //   return this.apiService.delete(`Education/${id}`);
+  // }  
 }

@@ -141,7 +141,8 @@
   <div *ngIf="contentName === 'choose-your-picutre-now'">
     <div class="container">
       <p class="kkemphusprof">Choose Your Profile Now</p>
-      <form novalidate
+      <form
+        novalidate
         #profileForm="ngForm"
         (ngSubmit)="
           onSubmitProfile(profileForm); onSubmitBankDetails(profileForm)
@@ -548,7 +549,10 @@
                     #description="ngModel"
                     maxlength="150"
                     (input)="onInputChangeForOtherTextarea(description.value)"
-                    [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
+                    [ngClass]="{
+                      'character-limit-exceeded':
+                        charactersLeftOtherTextarea < 0
+                    }"
                     required
                   ></textarea>
                   <span *ngIf="!description.valid && description.touched">
@@ -558,7 +562,6 @@
                     >
                       Description is required
                     </span>
-                   
                   </span>
                   <div class="errormsg float-start">
                     {{ charactersLeftOtherTextarea }} characters left
@@ -652,7 +655,8 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form novalidate
+        <form
+          novalidate
           #portfolioForm="ngForm"
           (ngSubmit)="onSubmitPortfolio(portfolioForm)"
         >
@@ -717,11 +721,13 @@
                   class="form-control placvv"
                   id="description"
                   name="description"
-                  #description = "ngModel"
+                  #description="ngModel"
                   [(ngModel)]="portfolioService.portfolioFormData.description"
                   maxlength="150"
                   (input)="onInputChangeForOtherTextarea(description.value)"
-                  [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
+                  [ngClass]="{
+                    'character-limit-exceeded': charactersLeftOtherTextarea < 0
+                  }"
                   required
                   placeholder="Brief explanation of your project in 350 word"
                   rows="3"
@@ -822,10 +828,21 @@
                   <span
                     class="material-symbols-outlined"
                     style="color: rgb(195, 0, 255)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+               
                   >
+                  <!-- (click)="editEducation(educationDetails)" -->
                     edit
                   </span>
-                  <span class="material-symbols-outlined" style="color: red">
+                  <span
+                    class="material-symbols-outlined"
+                    style="color: red"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteModal"
+                 
+                  >
+                  <!-- (click)="editEducation(educationDetails)" -->
                     delete
                   </span>
                 </div>
@@ -863,6 +880,68 @@
         </div>
       </div>
     </div>
+
+    <!--Delete Form for the Education -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button
+            class="deleteclosemodalbtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+          </button>
+          <div class="modal-paddingdelete">
+            <div class="modal-hed">
+              <p class="deleteLabel" id="deleteModalLabel">
+                Do you want to delete this detail?
+              </p>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="button"
+                    class="btn backModalbtn"
+                    data-bs-dismiss="modal"
+                  >
+                    Back
+                  </button>
+                </div>
+                <div class="col-6">
+                  <form
+                    #educationForm="ngForm"
+                    
+                  >
+                  <!-- (ngSubmit)="deleteEducation(educationDetail)" -->
+                    <input
+                      type="hidden"
+                      id="id"
+                      name="id"
+                      [(ngModel)]="educationservice.educationData.id"
+                    />
+                    <button type="submit" class="btn confirmModalbtn"
+                    data-bs-dismiss="modal"
+                    aria-label="Close">
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update and Post Form for the Education -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -890,38 +969,39 @@
             </button>
           </div>
           <div class="modal-body">
-            <form novalidate
+            <form
+              novalidate
               autocomplete="off"
               #educationForm="ngForm"
               (ngSubmit)="onSubmitEducation(educationForm)"
             >
               <div>
                 <input
-                  type="hidden"
+                  type="text"
                   id="id"
                   name="id"
-                  [(ngModel)]="portfolioService.portfolioFormData.id"
+                  [(ngModel)]="educationservice.educationData.id"
                 />
                 <input
-                  type="hidden"
+                  type="text"
                   id="createdBy"
                   name="createdBy"
                   [(ngModel)]="User[0].firstName"
                 />
                 <input
-                  type="hidden"
+                  type="text"
                   id="dateCreated"
                   name="dateCreated"
                   [(ngModel)]="educationservice.educationData.dateCreated"
                 />
                 <input
-                  type="hidden"
+                  type="text"
                   id="usersId"
                   name="usersId"
                   [(ngModel)]="User[0].id"
                 />
                 <input
-                  type="hidden"
+                  type="text"
                   id="boardUniversity"
                   name="boardUniversity"
                   [(ngModel)]="educationservice.educationData.boardUniversity"
@@ -1074,7 +1154,10 @@
                       [(ngModel)]="educationservice.educationData.description"
                       maxlength="150"
                       (input)="onInputChangeForOtherTextarea(description.value)"
-                      [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
+                      [ngClass]="{
+                        'character-limit-exceeded':
+                          charactersLeftOtherTextarea < 0
+                      }"
                       required
                     ></textarea>
                     <span *ngIf="!description.valid && description.touched">
@@ -1116,7 +1199,8 @@
 
   <!-- Freelancing-details -->
   <div class="container" *ngIf="contentName === 'freelancing-details'">
-    <form novalidate
+    <form
+      novalidate
       #experienceForm="ngForm"
       (ngSubmit)="onSubmitExperienceDetails(experienceForm)"
     >
@@ -1604,7 +1688,7 @@
                                   simpleDescription.value
                                 )
                               "
-                              [ngClass]="getCharacterCountClass('SimpleDesc')"            
+                              [ngClass]="getCharacterCountClass('SimpleDesc')"
                               required
                             ></textarea>
 
@@ -1814,7 +1898,11 @@
       <p class="kkemphus1">Please provide government approved ID</p>
     </div>
 
-    <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)" novalidate>
+    <form
+      #govtIdForm="ngForm"
+      (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)"
+      novalidate
+    >
       <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id" />
       <input
         type="hidden"
@@ -2016,7 +2104,8 @@
           some more details.
         </div>
         <div class="col-6">
-          <form novalidate
+          <form
+            novalidate
             #personalForm="ngForm"
             (ngSubmit)="
               onSubmitPersonal(personalForm); onSubmitpercentage(personalForm)
@@ -2216,7 +2305,8 @@
     </div>
 
     <div class="container rrpubaligntop1">
-      <form novalidate
+      <form
+        novalidate
         #govtIdForm="ngForm"
         (ngSubmit)="
           onSubmitGovtIdDetails(govtIdForm); onSubmitpercentage(govtIdForm)
@@ -2683,7 +2773,8 @@
           <p class="kkbnktx6">Add UPI Details</p>
           <div *ngFor="let bankData of bankDetails">
             <div *ngIf="User[0].id === bankData.id">
-              <form novalidate
+              <form
+                novalidate
                 #upiDetailsform="ngForm"
                 (ngSubmit)="
                   onSubmitUpiDetails(upiDetailsform);
@@ -3033,7 +3124,8 @@
           <p class="kkbnktx6">Add Card Details</p>
           <div *ngFor="let bankData of bankDetails">
             <div *ngIf="User[0].id === bankData.id">
-              <form novalidate
+              <form
+                novalidate
                 #bankDetailsform="ngForm"
                 (ngSubmit)="
                   onSubmitCardDetails(bankDetailsform);

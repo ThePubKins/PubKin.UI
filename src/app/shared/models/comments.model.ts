@@ -7,6 +7,7 @@ export interface comments {
   jobId: string;
   Comments: string;
   fileUrl: string;
+  fileName: string;
   File: string;
   commentDateTime : string;
 }
