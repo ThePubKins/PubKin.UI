@@ -140,6 +140,7 @@ export class ProfiledetailsComponent implements OnInit {
 
   selectImage(image: any) {
     this.selectedImage = image.img_url;
+    this.User[0].profileUrl = this.selectedImage;
   }
 
   selectedImage2: string;
