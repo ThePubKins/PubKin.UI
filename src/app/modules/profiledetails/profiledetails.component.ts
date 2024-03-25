@@ -168,43 +168,43 @@ export class ProfiledetailsComponent implements OnInit {
   //Education Details Submit to Post Function
   onSubmitEducation(form: NgForm) {
     if (form.valid && this.educationservice.educationData) {
-    //   if (this.educationservice.educationData.id) {
-    //   this.educationservice.putEducation(form.value).subscribe();
-    //   this.contentName = 'whoopee'; 
-    //   setTimeout(() => {
-    //     if (this.contentName === 'whoopee') {
-    //       this.contentName = 'education-details';
-    //       window.location.reload();
-    //       }
-    //       //form.resetForm();
-    //   }, 3000);
-    
-    // } else { 
-      this.educationservice.postEducation(form.value).subscribe();
+      if (this.educationservice.educationData.id) {
+      this.educationservice.putEducation(this.educationservice.educationData).subscribe();
       this.contentName = 'whoopee'; 
       setTimeout(() => {
         if (this.contentName === 'whoopee') {
           this.contentName = 'education-details';
           window.location.reload();
-        //  form.resetForm();
+          }
+          form.resetForm();
+      }, 3000);
+    
+    } else { 
+      this.educationservice.postEducation(this.educationservice.educationData).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'education-details';
+          window.location.reload();
           }
       }, 3000);
-     
-    // }
+      form.resetForm();
     }
+    }
+        
   }
 
-  // editEducation(educationDetails: educationdetails) {
-  //   this.educationservice.educationData = educationDetails;
-  // }
+  editEducation(educationDetails: educationdetails) {
+    this.educationservice.educationData = educationDetails;
+  }
 
-  // deleteEducation(form: NgForm) {
-  //   if (this.educationservice.educationData.id) {
-  //     this.educationservice.deleteEducation(this.educationservice.educationData.id).subscribe(() => {
-  //       setTimeout(() => { }, 300);window.location.reload();
-  //     });
-  //   }
-  // }
+  deleteEducation(form: NgForm) {
+    if (this.educationservice.educationData.id) {
+      this.educationservice.deleteEducation(this.educationservice.educationData.id).subscribe(() => {
+        setTimeout(() => { }, 300);window.location.reload();
+      });
+    }
+  }
   
   //PortFolio Details Submit to Post Function
   onSubmitPortfolio(form: NgForm) {
@@ -223,6 +223,7 @@ export class ProfiledetailsComponent implements OnInit {
   FetchDetails() {
     this.portfolioService.portfolioFormData.userId = this.User[0].id;
     this.portfolioService.portfolioFormData.createdBy = this.User[0].firstName;
+    this.educationservice.educationData.usersId = this.User[0].id;
   }
 
   //Pricing and Skillset Details Submit to Post Function

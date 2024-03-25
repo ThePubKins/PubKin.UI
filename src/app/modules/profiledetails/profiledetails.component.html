@@ -830,9 +830,8 @@
                     style="color: rgb(195, 0, 255)"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
-               
+                    (click)="editEducation(educationDetails)"
                   >
-                  <!-- (click)="editEducation(educationDetails)" -->
                     edit
                   </span>
                   <span
@@ -840,9 +839,8 @@
                     style="color: red"
                     data-bs-toggle="modal"
                     data-bs-target="#deleteModal"
-                 
+                    (click)="editEducation(educationDetails)"
                   >
-                  <!-- (click)="editEducation(educationDetails)" -->
                     delete
                   </span>
                 </div>
@@ -918,9 +916,9 @@
                 <div class="col-6">
                   <form
                     #educationForm="ngForm"
-                    
+                    (ngSubmit)="deleteEducation(educationDetail)"
                   >
-                  <!-- (ngSubmit)="deleteEducation(educationDetail)" -->
+                
                     <input
                       type="hidden"
                       id="id"
@@ -977,31 +975,31 @@
             >
               <div>
                 <input
-                  type="text"
+                  type="hidden"
                   id="id"
                   name="id"
                   [(ngModel)]="educationservice.educationData.id"
                 />
                 <input
-                  type="text"
+                  type="hidden"
                   id="createdBy"
                   name="createdBy"
                   [(ngModel)]="User[0].firstName"
                 />
                 <input
-                  type="text"
+                  type="hidden"
                   id="dateCreated"
                   name="dateCreated"
                   [(ngModel)]="educationservice.educationData.dateCreated"
                 />
                 <input
-                  type="text"
+                  type="hidden"
                   id="usersId"
                   name="usersId"
                   [(ngModel)]="User[0].id"
                 />
                 <input
-                  type="text"
+                  type="hidden"
                   id="boardUniversity"
                   name="boardUniversity"
                   [(ngModel)]="educationservice.educationData.boardUniversity"
