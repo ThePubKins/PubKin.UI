@@ -21,6 +21,7 @@ export class ProfiledetailsComponent implements OnInit {
   Freelancers: any[] = [
     { SimpleDesc: '', MediumDesc: '', ComplexDesc: '' }
   ];
+  
   Freelancer: any;
   GoNext: string = "button1";
   selectedButton: string = "";
@@ -29,6 +30,7 @@ export class ProfiledetailsComponent implements OnInit {
   Author: any;
   chatTarget: any;
   maxCharacters = 50;
+  maxCharactersForOtherTextarea = 150;
   inputText = '';
   charactersLeft: number;
   charactersLeft1: number;
@@ -59,9 +61,6 @@ export class ProfiledetailsComponent implements OnInit {
     public router: Router,
     public priceService: PricingSkillService,
     public bankservice: BankDetailsService) {
-    this.calculateCharactersLeft('SimpleDesc');
-    this.calculateCharactersLeft('MediumDesc');
-    this.calculateCharactersLeft('ComplexDesc');
   }
 
   ngOnInit() {
@@ -124,9 +123,16 @@ export class ProfiledetailsComponent implements OnInit {
       this.firstButton.nativeElement.click();
       if(this.User[0].role === 'freelancer'){
         this.router.navigate(['/freelancers']);
+        setTimeout(() => {
+         
+          window.location.reload();
+    }, 500);
       }
       if(this.User[0].role === 'author'){
         this.router.navigate(['/authors']);
+        setTimeout(() => {         
+          window.location.reload();
+    }, 500);
       }
   }
 
@@ -153,7 +159,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'employment-history';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -167,7 +173,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'education-details';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -181,7 +187,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'portfolio';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -200,7 +206,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'payment';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -273,7 +279,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'banking-details';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -286,7 +292,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'banking-details';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -299,7 +305,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'banking-details';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -339,7 +345,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'author-profile';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -353,7 +359,7 @@ export class ProfiledetailsComponent implements OnInit {
           this.contentName = 'freelancing-details';
           window.location.reload();
           }
-      }, 1500);
+      }, 3000);
     }
   }
 
@@ -442,9 +448,11 @@ export class ProfiledetailsComponent implements OnInit {
   // If you want to handle changes on dropdown selection:
   onSelectionChange(event: Event) {
     // You can handle the selection change event h
-
-
 }
+
+
+
+
 
   skills = [
     'Lorem Ipsum 1',
@@ -490,29 +498,33 @@ export class ProfiledetailsComponent implements OnInit {
     this.Rates = true;
   }
 
-  charactersLeftSimple: number = 0;
-  charactersLeftMedium: number = 0;
-  charactersLeftComplex: number = 0;
+  //Character limit 
+  charactersLeftOtherTextarea: number = this.maxCharactersForOtherTextarea;
+  charactersLeftSimple: number = this.maxCharacters;
+  charactersLeftMedium: number = this.maxCharacters;
+  charactersLeftComplex: number = this.maxCharacters;
 
-  onInputChange(textarea: string) {
-    this.calculateCharactersLeft(textarea);
+  onInputChangeForOtherTextarea(value: string) {
+    this.charactersLeftOtherTextarea = this.maxCharactersForOtherTextarea - value.length;
   }
+  
 
-  private calculateCharactersLeft(textarea: string) {
+  onInputChange(textarea: string, value: string) {
     switch (textarea) {
       case 'SimpleDesc':
-        this.charactersLeftSimple = this.maxCharacters - this.Freelancers[0].SimpleDesc.length;
+        this.charactersLeftSimple = this.maxCharacters - value.length;
         break;
       case 'MediumDesc':
-        this.charactersLeftMedium = this.maxCharacters - this.Freelancers[0].MediumDesc.length;
+        this.charactersLeftMedium = this.maxCharacters - value.length;
         break;
       case 'ComplexDesc':
-        this.charactersLeftComplex = this.maxCharacters - this.Freelancers[0].ComplexDesc.length;
+        this.charactersLeftComplex = this.maxCharacters - value.length;
         break;
       default:
         break;
     }
   }
+  
 
   isTextareaDisabled(textarea: string) {
     switch (textarea) {
@@ -548,7 +560,7 @@ export class ProfiledetailsComponent implements OnInit {
   ];
 
   // Extend the list of years
-  years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, ]; 
+  years = [1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, ]; 
   selectedYear1: number | null;
   selectedYear2: number | null;
 

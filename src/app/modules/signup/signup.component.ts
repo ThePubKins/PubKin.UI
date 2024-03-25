@@ -35,6 +35,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   googledown: boolean;
   selectedRole: string;
   verify: boolean = false;
+  AgreeNow: boolean = false;
   errorMessage: string = '';
   emails: any;
   userEmail: string = '';
@@ -73,6 +74,11 @@ export class SignupComponent implements OnInit, OnDestroy {
   fireSignupButton() {
     this.firebutton.nativeElement.click();
   }
+
+  Agree() { 
+     this.AgreeNow = true;
+  }
+
 
   verfy() {
     this.verify = true;

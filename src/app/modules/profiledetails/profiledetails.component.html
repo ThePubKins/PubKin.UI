@@ -141,7 +141,7 @@
   <div *ngIf="contentName === 'choose-your-picutre-now'">
     <div class="container">
       <p class="kkemphusprof">Choose Your Profile Now</p>
-      <form
+      <form novalidate
         #profileForm="ngForm"
         (ngSubmit)="
           onSubmitProfile(profileForm); onSubmitBankDetails(profileForm)
@@ -546,6 +546,9 @@
                     name="Description"
                     [(ngModel)]="workservice.workData.description"
                     #description="ngModel"
+                    maxlength="150"
+                    (input)="onInputChangeForOtherTextarea(description.value)"
+                    [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
                     required
                   ></textarea>
                   <span *ngIf="!description.valid && description.touched">
@@ -555,7 +558,11 @@
                     >
                       Description is required
                     </span>
+                   
                   </span>
+                  <div class="errormsg float-start">
+                    {{ charactersLeftOtherTextarea }} characters left
+                  </div>
                 </div>
                 <button
                   type="submit"
@@ -645,7 +652,7 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form
+        <form novalidate
           #portfolioForm="ngForm"
           (ngSubmit)="onSubmitPortfolio(portfolioForm)"
         >
@@ -710,11 +717,18 @@
                   class="form-control placvv"
                   id="description"
                   name="description"
+                  #description = "ngModel"
                   [(ngModel)]="portfolioService.portfolioFormData.description"
+                  maxlength="150"
+                  (input)="onInputChangeForOtherTextarea(description.value)"
+                  [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
                   required
                   placeholder="Brief explanation of your project in 350 word"
                   rows="3"
                 ></textarea>
+                <div class="errormsg">
+                  {{ charactersLeftOtherTextarea }} characters left
+                </div>
               </div>
               <div class="mb-3">
                 <label
@@ -876,7 +890,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form
+            <form novalidate
               autocomplete="off"
               #educationForm="ngForm"
               (ngSubmit)="onSubmitEducation(educationForm)"
@@ -1058,6 +1072,9 @@
                       #description="ngModel"
                       id="description"
                       [(ngModel)]="educationservice.educationData.description"
+                      maxlength="150"
+                      (input)="onInputChangeForOtherTextarea(description.value)"
+                      [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
                       required
                     ></textarea>
                     <span *ngIf="!description.valid && description.touched">
@@ -1074,6 +1091,9 @@
                         You reached the maximum length (100 characters)
                       </span>
                     </span>
+                    <div class="errormsg float-start">
+                      {{ charactersLeftOtherTextarea }} characters left
+                    </div>
                   </div>
                 </div>
                 <button
@@ -1096,7 +1116,7 @@
 
   <!-- Freelancing-details -->
   <div class="container" *ngIf="contentName === 'freelancing-details'">
-    <form
+    <form novalidate
       #experienceForm="ngForm"
       (ngSubmit)="onSubmitExperienceDetails(experienceForm)"
     >
@@ -1465,7 +1485,7 @@
       </div>
     </div>
 
-    <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)">
+    <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)" novalidate>
       <div
         class="modal fade"
         data-bs-backdrop="static"
@@ -1577,12 +1597,17 @@
                               #simpleDescription="ngModel"
                               id="simpleDescription"
                               placeholder="Description"
-                              maxlength="150"
-                              [(ngModel)]="
-                                priceService.pricingSkillData.simpleDescription
+                              maxlength="50"
+                              (input)="
+                                onInputChange(
+                                  'SimpleDesc',
+                                  simpleDescription.value
+                                )
                               "
+                              [ngClass]="getCharacterCountClass('SimpleDesc')"            
                               required
                             ></textarea>
+
                             <span
                               *ngIf="
                                 !simpleDescription.valid &&
@@ -1596,6 +1621,9 @@
                                 Description is required
                               </span>
                             </span>
+                            <div class="errormsg">
+                              {{ charactersLeftSimple }} characters left
+                            </div>
                           </div>
                           <div class="col-4">
                             <p class="prateh" style="margin-left: 3px">
@@ -1608,10 +1636,14 @@
                               #mediumDescription="ngModel"
                               id="mediumDescription"
                               placeholder="Description"
-                              maxlength="150"
-                              [(ngModel)]="
-                                priceService.pricingSkillData.mediumDescription
+                              maxlength="50"
+                              (input)="
+                                onInputChange(
+                                  'MediumDesc',
+                                  mediumDescription.value
+                                )
                               "
+                              [ngClass]="getCharacterCountClass('MediumDesc')"
                               required
                             ></textarea>
                             <span
@@ -1627,6 +1659,9 @@
                                 Description is required
                               </span>
                             </span>
+                            <div class="errormsg">
+                              {{ charactersLeftMedium }} characters left
+                            </div>
                           </div>
                           <div class="col-4">
                             <p class="prateh" style="margin-left: 3px">
@@ -1639,10 +1674,14 @@
                               #complexDescription="ngModel"
                               id="complexDescription"
                               placeholder="Description"
-                              maxlength="150"
-                              [(ngModel)]="
-                                priceService.pricingSkillData.complexDescription
+                              maxlength="50"
+                              (input)="
+                                onInputChange(
+                                  'ComplexDesc',
+                                  complexDescription.value
+                                )
                               "
+                              [ngClass]="getCharacterCountClass('ComplexDesc')"
                               required
                             ></textarea>
                             <span
@@ -1658,9 +1697,13 @@
                                 Description is required
                               </span>
                             </span>
+                            <div class="errormsg">
+                              {{ charactersLeftComplex }} characters left
+                            </div>
                           </div>
                         </div>
                       </div>
+
                       <p class="prateh" style="margin-left: 17px">Your Rates</p>
                       <div class="container">
                         <div class="row">
@@ -1771,7 +1814,7 @@
       <p class="kkemphus1">Please provide government approved ID</p>
     </div>
 
-    <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)">
+    <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)" novalidate>
       <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id" />
       <input
         type="hidden"
@@ -1889,21 +1932,36 @@
         <div class="col-6">
           <div class="rrpubcomendalign1">
             <div class="govtupload">
-              <label class="w-100 d-flex justify-content-center" >
+              <label class="w-100 d-flex justify-content-center">
                 <input
-                #fileInput
-                type="file"
-                class="d-none"
-                id="attachfile"
-                name="attachfile"
-                (change)="onFileSelected($event)"
-                required
-              />
-                <div *ngIf="isFileUploaded"  class="d-flex justify-content-center align-items-center flex-column">
-                  <svg xmlns="http://www.w3.org/2000/svg" height="60" width="60" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#a426d1" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>                  <br>
-               <br>
-                <span class="uplohead mt-1">{{ uploadedFileName }}</span>
-              </div>                
+                  #fileInput
+                  type="file"
+                  class="d-none"
+                  id="attachfile"
+                  name="attachfile"
+                  (change)="onFileSelected($event)"
+                  required
+                />
+                <div
+                  *ngIf="isFileUploaded"
+                  class="d-flex justify-content-center align-items-center flex-column"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="60"
+                    width="60"
+                    viewBox="0 0 512 512"
+                  >
+                    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                    <path
+                      fill="#a426d1"
+                      d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                    />
+                  </svg>
+                  <br />
+                  <br />
+                  <span class="uplohead mt-1">{{ uploadedFileName }}</span>
+                </div>
                 <div *ngIf="!uploadedFileName">
                   <div class="rrpubcomcenalign1 d-flex justify-content-center">
                     <img
@@ -1958,7 +2016,7 @@
           some more details.
         </div>
         <div class="col-6">
-          <form
+          <form novalidate
             #personalForm="ngForm"
             (ngSubmit)="
               onSubmitPersonal(personalForm); onSubmitpercentage(personalForm)
@@ -2158,7 +2216,7 @@
     </div>
 
     <div class="container rrpubaligntop1">
-      <form
+      <form novalidate
         #govtIdForm="ngForm"
         (ngSubmit)="
           onSubmitGovtIdDetails(govtIdForm); onSubmitpercentage(govtIdForm)
@@ -2344,15 +2402,22 @@
     </div>
 
     <div class="container">
-      <button class="btn kkempbtn1" routerLink="/authors">Back</button>
-      <button
-        class="btn kkempbtn2"
-        type="submit"
-        (click)="govtsubmit()"
-        routerLink="/authors"
-      >
-        Save Details
-      </button>
+      <div class="row">
+        <div class="col-4">
+          <button class="btn kkempbtn1b" routerLink="/authors">Back</button>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-4">
+          <button
+            class="btn kkempbtn2b"
+            type="submit"
+            (click)="govtsubmit()"
+            routerLink="/authors"
+          >
+            Save Details
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -2618,7 +2683,7 @@
           <p class="kkbnktx6">Add UPI Details</p>
           <div *ngFor="let bankData of bankDetails">
             <div *ngIf="User[0].id === bankData.id">
-              <form
+              <form novalidate
                 #upiDetailsform="ngForm"
                 (ngSubmit)="
                   onSubmitUpiDetails(upiDetailsform);
@@ -2968,7 +3033,7 @@
           <p class="kkbnktx6">Add Card Details</p>
           <div *ngFor="let bankData of bankDetails">
             <div *ngIf="User[0].id === bankData.id">
-              <form
+              <form novalidate
                 #bankDetailsform="ngForm"
                 (ngSubmit)="
                   onSubmitCardDetails(bankDetailsform);
