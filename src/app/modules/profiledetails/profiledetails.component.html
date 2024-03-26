@@ -218,12 +218,18 @@
                           <span
                             class="material-symbols-outlined"
                             style="color: rgb(195, 0, 255)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            (click)="editWorkDetails(workDetails)"
                           >
                             edit
                           </span>
                           <span
                             class="material-symbols-outlined"
                             style="color: red"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            (click)="editWorkDetails(workDetails)"
                           >
                             delete
                           </span>
@@ -269,6 +275,71 @@
         </div>
       </div>
 
+      <!-- delete the data Modal  -->
+      <div
+        class="modal fade"
+        id="deleteModal"
+        tabindex="-1"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        aria-labelledby="deleteModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <button
+              class="deleteclosemodalbtn"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+            </button>
+            <div class="modal-paddingdelete">
+              <div class="modal-hed">
+                <p class="deleteLabel" id="deleteModalLabel">
+                  Do you want to delete this detail?
+                </p>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-6">
+                    <button
+                      type="button"
+                      class="btn backModalbtn"
+                      data-bs-dismiss="modal"
+                    >
+                      Back
+                    </button>
+                  </div>
+                  <div class="col-6">
+                    <form
+                      #workDetailsForm="ngForm"
+                      (ngSubmit)="deleteWorkDetails(workDetailsForm)"
+                    >
+                      <input
+                        type="hidden"
+                        id="id"
+                        name="id"
+                        [(ngModel)]="workservice.workData.id"
+                      />
+                      <button
+                        type="submit"
+                        class="btn confirmModalbtn"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        Confirm
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update and Post the Data -->
       <div
         class="modal fade"
         id="exampleModal"
@@ -612,10 +683,19 @@
                   <span
                     class="material-symbols-outlined"
                     style="color: rgb(195, 0, 255)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                    (click)="editPortfolio(portfolio)"
                   >
                     edit
                   </span>
-                  <span class="material-symbols-outlined" style="color: red">
+                  <span
+                    class="material-symbols-outlined"
+                    style="color: red"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteModal"
+                    (click)="editPortfolio(portfolio)"
+                  >
                     delete
                   </span>
                 </div>
@@ -645,6 +725,71 @@
       </div>
     </div>
 
+    <!-- delete the data Modal  -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button
+            class="deleteclosemodalbtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+          </button>
+          <div class="modal-paddingdelete">
+            <div class="modal-hed">
+              <p class="deleteLabel" id="deleteModalLabel">
+                Do you want to delete this detail?
+              </p>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="button"
+                    class="btn backModalbtn"
+                    data-bs-dismiss="modal"
+                  >
+                    Back
+                  </button>
+                </div>
+                <div class="col-6">
+                  <form
+                    #portfolioForm="ngForm"
+                    (ngSubmit)="deletePortfolio(portfolioForm)"
+                  >
+                    <input
+                      type="hidden"
+                      id="id"
+                      name="id"
+                      [(ngModel)]="portfolioService.portfolioFormData.id"
+                    />
+                    <button
+                      type="submit"
+                      class="btn confirmModalbtn"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update and New Data Form Modal -->
     <div
       class="modal fade"
       id="staticBackdrop"
@@ -844,10 +989,13 @@
                     delete
                   </span>
                 </div>
-                <div class="text02">{{ educationDetails.department }}</div>
+                <div class="text02">
+                  {{ educationDetails.department }} ({{
+                    educationDetails.courseName
+                  }})
+                </div>
                 <div class="text03">
                   {{ educationDetails.instituteName }}
-                  {{ educationDetails.courseName }}
                 </div>
                 <div class="text04">
                   {{ educationDetails.yearOfJoining }}-{{
@@ -884,6 +1032,8 @@
       class="modal fade"
       id="deleteModal"
       tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
       aria-labelledby="deleteModalLabel"
       aria-hidden="true"
     >
@@ -918,16 +1068,18 @@
                     #educationForm="ngForm"
                     (ngSubmit)="deleteEducation(educationDetail)"
                   >
-                
                     <input
                       type="hidden"
                       id="id"
                       name="id"
                       [(ngModel)]="educationservice.educationData.id"
                     />
-                    <button type="submit" class="btn confirmModalbtn"
-                    data-bs-dismiss="modal"
-                    aria-label="Close">
+                    <button
+                      type="submit"
+                      class="btn confirmModalbtn"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
                       Confirm
                     </button>
                   </form>
@@ -1491,7 +1643,7 @@
           </div>
           <div class="col-2">
             <button
-              class="btn kkempbtn2 kkempbtn3"
+              class="btn kkempbtn2 kkempbtn3" (click)="profilesubmit()"
               routerLink="/profile/govtId-details"
             >
               Next
@@ -1531,11 +1683,13 @@
                 <div class="kkeditdet12">
                   <span
                     class="material-symbols-outlined"
-                    style="color: rgb(195, 0, 255)"
+                    style="color: rgb(195, 0, 255)"  data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" (click)="editPricingSkill(priceSkill)"
                   >
                     edit
                   </span>
-                  <span class="material-symbols-outlined" style="color: red">
+                  <span class="material-symbols-outlined" style="color: red" data-bs-toggle="modal"
+                  data-bs-target="#deleteModal" (click)="editPricingSkill(priceSkill)">
                     delete
                   </span>
                 </div>
@@ -1567,6 +1721,71 @@
       </div>
     </div>
 
+    <!-- delete the data Modal  -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button
+            class="deleteclosemodalbtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+          </button>
+          <div class="modal-paddingdelete">
+            <div class="modal-hed">
+              <p class="deleteLabel" id="deleteModalLabel">
+                Do you want to delete this detail?
+              </p>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="button"
+                    class="btn backModalbtn"
+                    data-bs-dismiss="modal"
+                  >
+                    Back
+                  </button>
+                </div>
+                <div class="col-6">
+                  <form
+                    #pricingDetailsForm="ngForm"
+                    (ngSubmit)="deletePricingSkill(pricingDetailsForm)"
+                  >
+                    <input
+                      type="hidden"
+                      id="id"
+                      name="id"
+                      [(ngModel)]="priceService.pricingSkillData.id"
+                    />
+                    <button
+                      type="submit"
+                      class="btn confirmModalbtn"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update and Post Modal -->
     <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)" novalidate>
       <div
         class="modal fade"
@@ -1679,6 +1898,7 @@
                               #simpleDescription="ngModel"
                               id="simpleDescription"
                               placeholder="Description"
+                              [(ngModel)]="priceService.pricingSkillData.simpleDescription"
                               maxlength="50"
                               (input)="
                                 onInputChange(
@@ -1719,6 +1939,7 @@
                               id="mediumDescription"
                               placeholder="Description"
                               maxlength="50"
+                              [(ngModel)]="priceService.pricingSkillData.mediumDescription"
                               (input)="
                                 onInputChange(
                                   'MediumDesc',
@@ -1755,6 +1976,7 @@
                               name="complexDescription"
                               #complexDescription="ngModel"
                               id="complexDescription"
+                              [(ngModel)]="priceService.pricingSkillData.complexDescription"
                               placeholder="Description"
                               maxlength="50"
                               (input)="

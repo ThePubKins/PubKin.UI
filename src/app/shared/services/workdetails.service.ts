@@ -20,4 +20,12 @@ export class WorkdetailsService {
   getWorkDetails() : Observable<workdetails[]> { 
     return this.apiService.get(`WorkDetails`)
   }
+
+  putWorkDetails(workData: any): Observable<any> {
+    return this.apiService.put(`WorkDetails/workdetails_updated`, workData);
+  }  
+
+  deleteWorkDetails(id: any): Observable<any> {
+    return this.apiService.delete(`WorkDetails/${id}`);
+  } 
 }
