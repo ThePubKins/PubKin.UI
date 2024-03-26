@@ -20,4 +20,12 @@ export class PortfolioService {
   getPortfolios() : Observable<portfolio[]> { 
     return this.apiService.get(`Portfolio`)
   }
+
+  putPortfolio(portfolioFormData: any): Observable<any> {
+    return this.apiService.put(`Portfolio/portfoliodetails_updated`, portfolioFormData);
+  }  
+
+  deletePortfolio(id: any): Observable<any> {
+    return this.apiService.delete(`Portfolio/${id}`);
+  }  
 }
