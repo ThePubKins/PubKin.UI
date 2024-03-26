@@ -21,4 +21,12 @@ export class PricingSkillService {
   getSkillPricing(): Observable<pricingSkillDetails[]> {
     return this.apiService.get(`PricingSkill`);
   }
+
+  putSkillPricing(pricingSkillData: any): Observable<any> {
+    return this.apiService.put(`PricingSkill/pricingdetails_updated`, pricingSkillData);
+  }  
+
+  deleteSkillPricing(id: any): Observable<any> {
+    return this.apiService.delete(`PricingSkill/${id}`);
+  } 
 }

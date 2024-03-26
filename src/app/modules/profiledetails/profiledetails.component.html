@@ -141,7 +141,8 @@
   <div *ngIf="contentName === 'choose-your-picutre-now'">
     <div class="container">
       <p class="kkemphusprof">Choose Your Profile Now</p>
-      <form novalidate
+      <form
+        novalidate
         #profileForm="ngForm"
         (ngSubmit)="
           onSubmitProfile(profileForm); onSubmitBankDetails(profileForm)
@@ -156,10 +157,15 @@
           [(ngModel)]="userservice.userData.profileUrl"
         />
         <div class="text-center">
+          <!-- <img class="profileimg" *ngIf="User[0].profileUrl" src={{User[0].profileUrl}}>
+          <img class="profileimg" *ngIf="!User[0].profileUrl" src="../assets/animoji.png">
           <img
             [src]="selectedImage ? selectedImage : 'assets/animoji.png'"
             class="profileimg"
-          />
+          /> -->
+          <!-- <img [src]="selectedImage ? selectedImage : 'assets/animoji.png'" class="profileimg" (click)="selectImage('assets/animoji.png')" /> -->
+<img *ngIf="User[0].profileUrl" class="profileimg" [src]="User[0].profileUrl" (click)="selectImage(User[0].profileUrl)" />
+
         </div>
         <div class="container text-center mt-5">
           <div class="row">
@@ -217,12 +223,18 @@
                           <span
                             class="material-symbols-outlined"
                             style="color: rgb(195, 0, 255)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            (click)="editWorkDetails(workDetails)"
                           >
                             edit
                           </span>
                           <span
                             class="material-symbols-outlined"
                             style="color: red"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                            (click)="editWorkDetails(workDetails)"
                           >
                             delete
                           </span>
@@ -268,6 +280,71 @@
         </div>
       </div>
 
+      <!-- delete the data Modal  -->
+      <div
+        class="modal fade"
+        id="deleteModal"
+        tabindex="-1"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        aria-labelledby="deleteModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <button
+              class="deleteclosemodalbtn"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+            </button>
+            <div class="modal-paddingdelete">
+              <div class="modal-hed">
+                <p class="deleteLabel" id="deleteModalLabel">
+                  Do you want to delete this detail?
+                </p>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-6">
+                    <button
+                      type="button"
+                      class="btn backModalbtn"
+                      data-bs-dismiss="modal"
+                    >
+                      Back
+                    </button>
+                  </div>
+                  <div class="col-6">
+                    <form
+                      #workDetailsForm="ngForm"
+                      (ngSubmit)="deleteWorkDetails(workDetailsForm)"
+                    >
+                      <input
+                        type="hidden"
+                        id="id"
+                        name="id"
+                        [(ngModel)]="workservice.workData.id"
+                      />
+                      <button
+                        type="submit"
+                        class="btn confirmModalbtn"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        Confirm
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update and Post the Data -->
       <div
         class="modal fade"
         id="exampleModal"
@@ -548,7 +625,10 @@
                     #description="ngModel"
                     maxlength="150"
                     (input)="onInputChangeForOtherTextarea(description.value)"
-                    [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
+                    [ngClass]="{
+                      'character-limit-exceeded':
+                        charactersLeftOtherTextarea < 0
+                    }"
                     required
                   ></textarea>
                   <span *ngIf="!description.valid && description.touched">
@@ -558,7 +638,6 @@
                     >
                       Description is required
                     </span>
-                   
                   </span>
                   <div class="errormsg float-start">
                     {{ charactersLeftOtherTextarea }} characters left
@@ -609,10 +688,19 @@
                   <span
                     class="material-symbols-outlined"
                     style="color: rgb(195, 0, 255)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                    (click)="editPortfolio(portfolio)"
                   >
                     edit
                   </span>
-                  <span class="material-symbols-outlined" style="color: red">
+                  <span
+                    class="material-symbols-outlined"
+                    style="color: red"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteModal"
+                    (click)="editPortfolio(portfolio)"
+                  >
                     delete
                   </span>
                 </div>
@@ -642,6 +730,71 @@
       </div>
     </div>
 
+    <!-- delete the data Modal  -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button
+            class="deleteclosemodalbtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+          </button>
+          <div class="modal-paddingdelete">
+            <div class="modal-hed">
+              <p class="deleteLabel" id="deleteModalLabel">
+                Do you want to delete this detail?
+              </p>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="button"
+                    class="btn backModalbtn"
+                    data-bs-dismiss="modal"
+                  >
+                    Back
+                  </button>
+                </div>
+                <div class="col-6">
+                  <form
+                    #portfolioForm="ngForm"
+                    (ngSubmit)="deletePortfolio(portfolioForm)"
+                  >
+                    <input
+                      type="hidden"
+                      id="id"
+                      name="id"
+                      [(ngModel)]="portfolioService.portfolioFormData.id"
+                    />
+                    <button
+                      type="submit"
+                      class="btn confirmModalbtn"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update and New Data Form Modal -->
     <div
       class="modal fade"
       id="staticBackdrop"
@@ -652,7 +805,8 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-lg modal-dialog-centered">
-        <form novalidate
+        <form
+          novalidate
           #portfolioForm="ngForm"
           (ngSubmit)="onSubmitPortfolio(portfolioForm)"
         >
@@ -717,11 +871,13 @@
                   class="form-control placvv"
                   id="description"
                   name="description"
-                  #description = "ngModel"
+                  #description="ngModel"
                   [(ngModel)]="portfolioService.portfolioFormData.description"
                   maxlength="150"
                   (input)="onInputChangeForOtherTextarea(description.value)"
-                  [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
+                  [ngClass]="{
+                    'character-limit-exceeded': charactersLeftOtherTextarea < 0
+                  }"
                   required
                   placeholder="Brief explanation of your project in 350 word"
                   rows="3"
@@ -822,17 +978,29 @@
                   <span
                     class="material-symbols-outlined"
                     style="color: rgb(195, 0, 255)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    (click)="editEducation(educationDetails)"
                   >
                     edit
                   </span>
-                  <span class="material-symbols-outlined" style="color: red">
+                  <span
+                    class="material-symbols-outlined"
+                    style="color: red"
+                    data-bs-toggle="modal"
+                    data-bs-target="#deleteModal"
+                    (click)="editEducation(educationDetails)"
+                  >
                     delete
                   </span>
                 </div>
-                <div class="text02">{{ educationDetails.department }}</div>
+                <div class="text02">
+                  {{ educationDetails.department }} ({{
+                    educationDetails.courseName
+                  }})
+                </div>
                 <div class="text03">
                   {{ educationDetails.instituteName }}
-                  {{ educationDetails.courseName }}
                 </div>
                 <div class="text04">
                   {{ educationDetails.yearOfJoining }}-{{
@@ -863,6 +1031,72 @@
         </div>
       </div>
     </div>
+
+    <!--Delete Form for the Education -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button
+            class="deleteclosemodalbtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+          </button>
+          <div class="modal-paddingdelete">
+            <div class="modal-hed">
+              <p class="deleteLabel" id="deleteModalLabel">
+                Do you want to delete this detail?
+              </p>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="button"
+                    class="btn backModalbtn"
+                    data-bs-dismiss="modal"
+                  >
+                    Back
+                  </button>
+                </div>
+                <div class="col-6">
+                  <form
+                    #educationForm="ngForm"
+                    (ngSubmit)="deleteEducation(educationDetail)"
+                  >
+                    <input
+                      type="hidden"
+                      id="id"
+                      name="id"
+                      [(ngModel)]="educationservice.educationData.id"
+                    />
+                    <button
+                      type="submit"
+                      class="btn confirmModalbtn"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update and Post Form for the Education -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -890,7 +1124,8 @@
             </button>
           </div>
           <div class="modal-body">
-            <form novalidate
+            <form
+              novalidate
               autocomplete="off"
               #educationForm="ngForm"
               (ngSubmit)="onSubmitEducation(educationForm)"
@@ -900,7 +1135,7 @@
                   type="hidden"
                   id="id"
                   name="id"
-                  [(ngModel)]="portfolioService.portfolioFormData.id"
+                  [(ngModel)]="educationservice.educationData.id"
                 />
                 <input
                   type="hidden"
@@ -1074,7 +1309,10 @@
                       [(ngModel)]="educationservice.educationData.description"
                       maxlength="150"
                       (input)="onInputChangeForOtherTextarea(description.value)"
-                      [ngClass]="{ 'character-limit-exceeded': charactersLeftOtherTextarea < 0 }"
+                      [ngClass]="{
+                        'character-limit-exceeded':
+                          charactersLeftOtherTextarea < 0
+                      }"
                       required
                     ></textarea>
                     <span *ngIf="!description.valid && description.touched">
@@ -1116,7 +1354,8 @@
 
   <!-- Freelancing-details -->
   <div class="container" *ngIf="contentName === 'freelancing-details'">
-    <form novalidate
+    <form
+      novalidate
       #experienceForm="ngForm"
       (ngSubmit)="onSubmitExperienceDetails(experienceForm)"
     >
@@ -1409,7 +1648,7 @@
           </div>
           <div class="col-2">
             <button
-              class="btn kkempbtn2 kkempbtn3"
+              class="btn kkempbtn2 kkempbtn3" (click)="profilesubmit()"
               routerLink="/profile/govtId-details"
             >
               Next
@@ -1449,11 +1688,13 @@
                 <div class="kkeditdet12">
                   <span
                     class="material-symbols-outlined"
-                    style="color: rgb(195, 0, 255)"
+                    style="color: rgb(195, 0, 255)"  data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" (click)="editPricingSkill(priceSkill)"
                   >
                     edit
                   </span>
-                  <span class="material-symbols-outlined" style="color: red">
+                  <span class="material-symbols-outlined" style="color: red" data-bs-toggle="modal"
+                  data-bs-target="#deleteModal" (click)="editPricingSkill(priceSkill)">
                     delete
                   </span>
                 </div>
@@ -1485,6 +1726,71 @@
       </div>
     </div>
 
+    <!-- delete the data Modal  -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <button
+            class="deleteclosemodalbtn"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <img class="deleteimg" src="../assets/x letter_.png" alt="" />
+          </button>
+          <div class="modal-paddingdelete">
+            <div class="modal-hed">
+              <p class="deleteLabel" id="deleteModalLabel">
+                Do you want to delete this detail?
+              </p>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="button"
+                    class="btn backModalbtn"
+                    data-bs-dismiss="modal"
+                  >
+                    Back
+                  </button>
+                </div>
+                <div class="col-6">
+                  <form
+                    #pricingDetailsForm="ngForm"
+                    (ngSubmit)="deletePricingSkill(pricingDetailsForm)"
+                  >
+                    <input
+                      type="hidden"
+                      id="id"
+                      name="id"
+                      [(ngModel)]="priceService.pricingSkillData.id"
+                    />
+                    <button
+                      type="submit"
+                      class="btn confirmModalbtn"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Confirm
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update and Post Modal -->
     <form #priceForm="ngForm" (ngSubmit)="onSubmitPrice(priceForm)" novalidate>
       <div
         class="modal fade"
@@ -1597,6 +1903,7 @@
                               #simpleDescription="ngModel"
                               id="simpleDescription"
                               placeholder="Description"
+                              [(ngModel)]="priceService.pricingSkillData.simpleDescription"
                               maxlength="50"
                               (input)="
                                 onInputChange(
@@ -1604,7 +1911,7 @@
                                   simpleDescription.value
                                 )
                               "
-                              [ngClass]="getCharacterCountClass('SimpleDesc')"            
+                              [ngClass]="getCharacterCountClass('SimpleDesc')"
                               required
                             ></textarea>
 
@@ -1637,6 +1944,7 @@
                               id="mediumDescription"
                               placeholder="Description"
                               maxlength="50"
+                              [(ngModel)]="priceService.pricingSkillData.mediumDescription"
                               (input)="
                                 onInputChange(
                                   'MediumDesc',
@@ -1673,6 +1981,7 @@
                               name="complexDescription"
                               #complexDescription="ngModel"
                               id="complexDescription"
+                              [(ngModel)]="priceService.pricingSkillData.complexDescription"
                               placeholder="Description"
                               maxlength="50"
                               (input)="
@@ -1814,7 +2123,11 @@
       <p class="kkemphus1">Please provide government approved ID</p>
     </div>
 
-    <form #govtIdForm="ngForm" (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)" novalidate>
+    <form
+      #govtIdForm="ngForm"
+      (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)"
+      novalidate
+    >
       <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id" />
       <input
         type="hidden"
@@ -2016,7 +2329,8 @@
           some more details.
         </div>
         <div class="col-6">
-          <form novalidate
+          <form
+            novalidate
             #personalForm="ngForm"
             (ngSubmit)="
               onSubmitPersonal(personalForm); onSubmitpercentage(personalForm)
@@ -2104,7 +2418,7 @@
               [(ngModel)]="User[0].paymentVerify"
             />
             <input
-              type="text"
+              type="hidden"
               [value]="selectedSkills.join(', ')"
               ngModel
               id="description"
@@ -2133,7 +2447,7 @@
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="17"
-                    height="18"
+                    height="15"
                     viewBox="0 0 17 18"
                     fill="none"
                   >
@@ -2216,7 +2530,8 @@
     </div>
 
     <div class="container rrpubaligntop1">
-      <form novalidate
+      <form
+        novalidate
         #govtIdForm="ngForm"
         (ngSubmit)="
           onSubmitGovtIdDetails(govtIdForm); onSubmitpercentage(govtIdForm)
@@ -2379,21 +2694,55 @@
           <div class="col-6">
             <div class="rrpubcomendalign1">
               <div class="govtupload">
-                <div class="rrpubcomcenalign1 d-flex justify-content-center">
-                  <img
-                    class="govtimg"
-                    src="../assets/govt upload.png"
-                    alt="Govt Id"
+                <label class="w-100 d-flex justify-content-center">
+                  <input
+                    #fileInput
+                    type="file"
+                    class="d-none"
+                    id="attachfile"
+                    name="attachfile"
+                    (change)="onFileSelected($event)"
+                    required
                   />
-                </div>
-                <div class="rrpubcomcenalign1 d-flex justify-content-center">
-                  <p class="uplohead">Upload or Drag your ID image</p>
-                </div>
-                <div class="rrpubcomcenalign1">
-                  <p class="uplocont">
-                    Upload in png, jpeg and pdf files<br />Max size 1mb
-                  </p>
-                </div>
+                  <div
+                    *ngIf="isFileUploaded"
+                    class="d-flex justify-content-center align-items-center flex-column"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="60"
+                      width="60"
+                      viewBox="0 0 512 512"
+                    >
+                      <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                      <path
+                        fill="#a426d1"
+                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                      />
+                    </svg>
+                    <br />
+                    <br />
+                    <span class="uplohead mt-1">{{ uploadedFileName }}</span>
+                  </div>
+                  <div *ngIf="!uploadedFileName">
+                    <div class="rrpubcomcenalign1 d-flex justify-content-center">
+                      <img
+                        class="govtimg"
+                        src="../assets/govt upload.png"
+                        alt="Govt Id"
+                      />
+                    </div>
+  
+                    <div class="rrpubcomcenalign1 d-flex justify-content-center">
+                      <p class="uplohead">Upload your ID image</p>
+                    </div>
+                    <div class="rrpubcomcenalign1">
+                      <p class="uplocont">
+                        Upload in png, jpeg and pdf files<br />Max size 1mb
+                      </p>
+                    </div>
+                  </div>
+                </label>
               </div>
             </div>
           </div>
@@ -2683,7 +3032,8 @@
           <p class="kkbnktx6">Add UPI Details</p>
           <div *ngFor="let bankData of bankDetails">
             <div *ngIf="User[0].id === bankData.id">
-              <form novalidate
+              <form
+                novalidate
                 #upiDetailsform="ngForm"
                 (ngSubmit)="
                   onSubmitUpiDetails(upiDetailsform);
@@ -3033,7 +3383,8 @@
           <p class="kkbnktx6">Add Card Details</p>
           <div *ngFor="let bankData of bankDetails">
             <div *ngIf="User[0].id === bankData.id">
-              <form novalidate
+              <form
+                novalidate
                 #bankDetailsform="ngForm"
                 (ngSubmit)="
                   onSubmitCardDetails(bankDetailsform);

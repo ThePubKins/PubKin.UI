@@ -2,7 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { BankDetailsService, EducationService, PortfolioService, UserService, UserauthenticateService, WorkdetailsService, portfolio, PricingSkillService } from '../../shared';
+import * as bootstrap from 'bootstrap';
+import { BankDetailsService, EducationService, PortfolioService, UserService, UserauthenticateService, WorkdetailsService, portfolio, PricingSkillService, educationdetails, workdetails, pricingSkillDetails } from '../../shared';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -140,6 +141,7 @@ export class ProfiledetailsComponent implements OnInit {
 
   selectImage(image: any) {
     this.selectedImage = image.img_url;
+    this.User[0].profileUrl = this.selectedImage;
   }
 
   selectedImage2: string;
@@ -149,10 +151,12 @@ export class ProfiledetailsComponent implements OnInit {
 
   }
 
+
   //Work Submit to Post Function
   onSubmitWork(form: NgForm) {
     if (form.valid && this.workservice.workData) {
-      this.workservice.postWorkDetails(form.value).subscribe();
+      if (this.workservice.workData.id) {
+      this.workservice.putWorkDetails(this.workservice.workData).subscribe();
       this.contentName = 'whoopee';
       setTimeout(() => {
         if (this.contentName === 'whoopee') {
@@ -161,12 +165,48 @@ export class ProfiledetailsComponent implements OnInit {
           }
       }, 3000);
     }
+    else { 
+      this.workservice.postWorkDetails(this.workservice.workData).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'employment-history';
+          window.location.reload();
+          }
+      }, 3000);
+    }
+    }
   }
+
+  editWorkDetails(WorkDetails: workdetails) {
+    this.workservice.workData = WorkDetails;
+  }
+
+  deleteWorkDetails(form: NgForm) {
+    if (this.workservice.workData.id) {
+      this.workservice.deleteWorkDetails(this.workservice.workData.id).subscribe(() => {
+        setTimeout(() => { }, 300);window.location.reload();
+      });
+    }
+  }
+
 
   //Education Details Submit to Post Function
   onSubmitEducation(form: NgForm) {
     if (form.valid && this.educationservice.educationData) {
-      this.educationservice.postEducation(form.value).subscribe();
+      if (this.educationservice.educationData.id) {
+      this.educationservice.putEducation(this.educationservice.educationData).subscribe();
+      this.contentName = 'whoopee'; 
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'education-details';
+          window.location.reload();
+          }
+          form.resetForm();
+      }, 3000);
+    
+    } else { 
+      this.educationservice.postEducation(this.educationservice.educationData).subscribe();
       this.contentName = 'whoopee';
       setTimeout(() => {
         if (this.contentName === 'whoopee') {
@@ -174,13 +214,29 @@ export class ProfiledetailsComponent implements OnInit {
           window.location.reload();
           }
       }, 3000);
+      form.resetForm();
     }
+    }
+        
   }
 
+  editEducation(educationDetails: educationdetails) {
+    this.educationservice.educationData = educationDetails;
+  }
+
+  deleteEducation(form: NgForm) {
+    if (this.educationservice.educationData.id) {
+      this.educationservice.deleteEducation(this.educationservice.educationData.id).subscribe(() => {
+        setTimeout(() => { }, 300);window.location.reload();
+      });
+    }
+  }
+  
   //PortFolio Details Submit to Post Function
   onSubmitPortfolio(form: NgForm) {
     if (form.valid && this.portfolioService.portfolioFormData) {
-      this.portfolioService.postPortfolios(form.value).subscribe();
+      if (this.portfolioService.portfolioFormData.id) {
+        this.portfolioService.putPortfolio(this.portfolioService.portfolioFormData).subscribe();
       this.contentName = 'whoopee';
       setTimeout(() => {
         if (this.contentName === 'whoopee') {
@@ -188,18 +244,48 @@ export class ProfiledetailsComponent implements OnInit {
           window.location.reload();
           }
       }, 3000);
+      }
+      else { 
+        this.portfolioService.postPortfolios(this.portfolioService.portfolioFormData).subscribe();
+        this.contentName = 'whoopee';
+        setTimeout(() => {
+          if (this.contentName === 'whoopee') {
+            this.contentName = 'portfolio';
+            window.location.reload();
+            }
+        }, 3000);
+      }
     }
   }
 
-  FetchDetails() {
-    this.portfolioService.portfolioFormData.userId = this.User[0].id;
-    this.portfolioService.portfolioFormData.createdBy = this.User[0].firstName;
+  editPortfolio(portfolioDetails: portfolio) {
+    this.portfolioService.portfolioFormData = portfolioDetails;
   }
 
-  //Pricing and Skillset Details Submit to Post Function
-  onSubmitPrice(form: NgForm) {
+  deletePortfolio(form: NgForm) {
+    if (this.portfolioService.portfolioFormData.id) {
+      this.portfolioService.deletePortfolio(this.portfolioService.portfolioFormData.id).subscribe(() => {
+        setTimeout(() => { }, 300);window.location.reload();
+      });
+    }
+  }
+
+
+   //Pricing and Skillset Details Submit to Post Function
+   onSubmitPrice(form: NgForm) {
     if (form.valid && this.priceService.pricingSkillData) {
-      this.priceService.postSkillPricing(form.value).subscribe();
+      if (this.priceService.pricingSkillData.id) {
+      this.priceService.putSkillPricing(this.priceService.pricingSkillData).subscribe();
+      this.contentName = 'whoopee';
+      setTimeout(() => {
+        if (this.contentName === 'whoopee') {
+          this.contentName = 'payment';
+          window.location.reload();
+          }
+      }, 3000);
+    }
+    else { 
+      this.priceService.postSkillPricing(this.priceService.pricingSkillData).subscribe();
       this.contentName = 'whoopee';
       setTimeout(() => {
         if (this.contentName === 'whoopee') {
@@ -209,6 +295,28 @@ export class ProfiledetailsComponent implements OnInit {
       }, 3000);
     }
   }
+  }
+
+  editPricingSkill(pricingSkillDetails: pricingSkillDetails) {
+    this.priceService.pricingSkillData = pricingSkillDetails;
+  }
+
+  deletePricingSkill(form: NgForm) {
+    if (this.priceService.pricingSkillData.id) {
+      this.priceService.deleteSkillPricing(this.priceService.pricingSkillData.id).subscribe(() => {
+        setTimeout(() => { }, 300);window.location.reload();
+      });
+    }
+  }
+
+
+  FetchDetails() {
+    this.portfolioService.portfolioFormData.userId = this.User[0].id;
+    this.portfolioService.portfolioFormData.createdBy = this.User[0].firstName;
+    this.educationservice.educationData.usersId = this.User[0].id;
+  }
+
+ 
 
   // Profile Percentage Submit to Post Function
   onSubmitpercentage(form: NgForm) {
