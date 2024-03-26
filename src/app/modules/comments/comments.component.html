@@ -274,7 +274,7 @@
           <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
             <input type="hidden" id="id" name="id" [(ngModel)]="jobPost.id">
             <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
-          <button type="button" class="btn kkkbtncn" type="submit">Confirm</button>
+          <button type="button" class="btn kkkbtncn" type="submit"  data-bs-dismiss="modal" aria-label="Close">Confirm</button>
         </form>
         </div>
       </div>

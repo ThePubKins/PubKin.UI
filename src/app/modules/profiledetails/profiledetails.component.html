@@ -157,10 +157,15 @@
           [(ngModel)]="userservice.userData.profileUrl"
         />
         <div class="text-center">
+          <!-- <img class="profileimg" *ngIf="User[0].profileUrl" src={{User[0].profileUrl}}>
+          <img class="profileimg" *ngIf="!User[0].profileUrl" src="../assets/animoji.png">
           <img
             [src]="selectedImage ? selectedImage : 'assets/animoji.png'"
             class="profileimg"
-          />
+          /> -->
+          <!-- <img [src]="selectedImage ? selectedImage : 'assets/animoji.png'" class="profileimg" (click)="selectImage('assets/animoji.png')" /> -->
+<img *ngIf="User[0].profileUrl" class="profileimg" [src]="User[0].profileUrl" (click)="selectImage(User[0].profileUrl)" />
+
         </div>
         <div class="container text-center mt-5">
           <div class="row">
@@ -2413,7 +2418,7 @@
               [(ngModel)]="User[0].paymentVerify"
             />
             <input
-              type="text"
+              type="hidden"
               [value]="selectedSkills.join(', ')"
               ngModel
               id="description"
@@ -2442,7 +2447,7 @@
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="17"
-                    height="18"
+                    height="15"
                     viewBox="0 0 17 18"
                     fill="none"
                   >
@@ -2689,21 +2694,55 @@
           <div class="col-6">
             <div class="rrpubcomendalign1">
               <div class="govtupload">
-                <div class="rrpubcomcenalign1 d-flex justify-content-center">
-                  <img
-                    class="govtimg"
-                    src="../assets/govt upload.png"
-                    alt="Govt Id"
+                <label class="w-100 d-flex justify-content-center">
+                  <input
+                    #fileInput
+                    type="file"
+                    class="d-none"
+                    id="attachfile"
+                    name="attachfile"
+                    (change)="onFileSelected($event)"
+                    required
                   />
-                </div>
-                <div class="rrpubcomcenalign1 d-flex justify-content-center">
-                  <p class="uplohead">Upload or Drag your ID image</p>
-                </div>
-                <div class="rrpubcomcenalign1">
-                  <p class="uplocont">
-                    Upload in png, jpeg and pdf files<br />Max size 1mb
-                  </p>
-                </div>
+                  <div
+                    *ngIf="isFileUploaded"
+                    class="d-flex justify-content-center align-items-center flex-column"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="60"
+                      width="60"
+                      viewBox="0 0 512 512"
+                    >
+                      <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                      <path
+                        fill="#a426d1"
+                        d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                      />
+                    </svg>
+                    <br />
+                    <br />
+                    <span class="uplohead mt-1">{{ uploadedFileName }}</span>
+                  </div>
+                  <div *ngIf="!uploadedFileName">
+                    <div class="rrpubcomcenalign1 d-flex justify-content-center">
+                      <img
+                        class="govtimg"
+                        src="../assets/govt upload.png"
+                        alt="Govt Id"
+                      />
+                    </div>
+  
+                    <div class="rrpubcomcenalign1 d-flex justify-content-center">
+                      <p class="uplohead">Upload your ID image</p>
+                    </div>
+                    <div class="rrpubcomcenalign1">
+                      <p class="uplocont">
+                        Upload in png, jpeg and pdf files<br />Max size 1mb
+                      </p>
+                    </div>
+                  </div>
+                </label>
               </div>
             </div>
           </div>

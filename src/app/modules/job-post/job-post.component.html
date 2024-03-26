@@ -46,7 +46,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/logo.png" alt="Job a post Now">
+                 <img src="./assets/logo.png" class="rrlogoimg">
             </div>
             <div class="col-9">
 
@@ -102,7 +102,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/logo.png" alt="Job a post Now">
+                 <img src="./assets/logo.png" class="rrlogoimg">
             </div>
             <div class="col-9">
 
@@ -117,7 +117,7 @@
                 <div class="col-3 mt-4" *ngFor="let selectedSkill of selectedSkills; let i = index">
                     <div class="addsk1" (click)="removeSkill(i)">
                         {{ selectedSkill }} &nbsp;
-                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="15" viewBox="0 0 17 18" fill="none">
                             <path d="M12.728 4.75684L4.24275 13.2421" stroke="white" stroke-width="2"
                                 stroke-linecap="round" />
                             <path d="M4.24268 4.75684L12.728 13.2421" stroke="white" stroke-width="2"
@@ -131,7 +131,7 @@
             <div class="row">
                 <div class="col-3 mt-4" *ngFor="let skill of skills; let i = index">
                     <div class="addsk" (click)="addSkill(skill)">
-                        {{ skill }} &nbsp; <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                        {{ skill }} &nbsp; <svg xmlns="http://www.w3.org/2000/svg" width="14" height="10"
                             viewBox="0 0 14 14" fill="none">
                             <path d="M7 1V13" stroke="black" stroke-width="2" stroke-linecap="round" />
                             <path d="M1 7L13 7" stroke="black" stroke-width="2" stroke-linecap="round" />
@@ -173,7 +173,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/logo.png" alt="Job a post Now">
+                 <img src="./assets/logo.png" class="rrlogoimg">
             </div>
             <div class="col-9">
 
@@ -217,7 +217,8 @@
                 </div>
             </div>
             <div class="col-2">
-                <img (click)="hideclick()" style=" float: right;" src="../assets/Frame 193.png" alt="Post a Job">
+                <img (click)="hideclick()" style=" float: right; margin-top: 5px;
+                width: 35px;" src="../assets/Frame 193.png" alt="Post a Job">
             </div>
         </div>
 
@@ -230,7 +231,8 @@
                 </div>
             </div>
             <div class="col-2">
-                <img (click)="hide()" style=" float: right;" src="../assets/Frame 193.png" alt="Post a Job">
+                <img (click)="hide()" style=" float: right; margin-top: 5px;
+                width: 35px;" src="../assets/Frame 193.png" alt="Post a Job">
             </div>
         </div>
         <div class="que2" *ngIf="complex1 && !hide2">
@@ -247,8 +249,12 @@
                 <option class="kkin1">Days</option>
                 <option class="kkin1">Hours</option>
             </select>
-            <img (click)="hide1()" style=" float: right;" src="../assets/Frame 193.png" alt="Post a Job">
-            <img (click)="hide1()" style=" float: right; margin-right: 20px;" src="../assets/tick dura.png"
+            <img (click)="hide1()" style=" float: right; margin-top: 5px;
+            width: 35px;" src="../assets/Frame 193.png" alt="Post a Job">
+            <img (click)="hide1()" style="     float: right;
+            margin-right: 20px;
+            margin-top: 5px;
+            width: 35px;" src="../assets/tick dura.png"
                 alt="Post a Job">
         </div>
         <div class="row que2" *ngIf="hide2">
@@ -259,7 +265,8 @@
                 </div>
             </div>
             <div class="col-2">
-                <img (click)="hide1()" style=" float: right;" src="../assets/Frame 193.png" alt="Post a Job">
+                <img (click)="hide1()" style=" float: right; margin-top: 5px;
+                width: 35px;" src="../assets/Frame 193.png" alt="Post a Job">
             </div>
         </div>
         <div class="row que2" *ngIf="!complex2">
@@ -269,7 +276,8 @@
                 </div>
             </div>
             <div class="col-2">
-                <img (click)="hideclick23()" style=" float: right;" src="../assets/Frame 193.png" alt="Post a Job">
+                <img (click)="hideclick23()" style=" float: right; margin-top: 5px;
+                width: 35px;" src="../assets/Frame 193.png" alt="Post a Job">
             </div>
         </div>
         <div *ngIf="complex2 && !complex3">
@@ -301,7 +309,8 @@
                 </div>
             </div>
             <div class="col-2">
-                <img (click)="hideclick13()" style=" float: right;" src="../assets/Frame 193.png" alt="Post a Job">
+                <img (click)="hideclick13()" style=" float: right; margin-top: 5px;
+                width: 35px;" src="../assets/Frame 193.png" alt="Post a Job">
             </div>
         </div>
     </div>
@@ -336,7 +345,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/logo.png" alt="Job a post Now">
+                 <img src="./assets/logo.png" class="rrlogoimg">
             </div>
             <div class="col-9">
 
@@ -354,7 +363,7 @@
             Maximum Length is 65 Characters
         </span>
         <textarea (input)="onInputChange()"  [(ngModel)]="inputText"
-            [ngClass]="getCharacterCountClass()" class="des" placeholder="Description" name="description"
+            [ngClass]="getCharacterCountClass()" class="des" placeholder="Description" name="description" maxlength="450"
             #description="ngModel" [(ngModel)]="jobservice.jobData.description"></textarea>
         <p class="remain" [ngClass]="getCharacterCountClass()">{{ charactersLeft }} Characters remaining
         </p>
@@ -363,7 +372,7 @@
             <!-- <input  class="d-none" type="file" (change)="onFileSelected($event)"/> -->
             <input #fileInput type="file" class="d-none" id="attachfile" name="attachfile"
                 (change)="onFileSelected($event)" required>
-            <span *ngIf="!uploadedFileName"> Drag or&nbsp;</span> <span class="up1">{{ uploadedFileName ?
+            <span *ngIf="!uploadedFileName"></span> <span class="up1">{{ uploadedFileName ?
                 uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
         </label>
         <p class="cat">You may attach upto 25 mb of file. </p>
@@ -395,7 +404,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/logo.png" alt="Job a post Now">
+                 <img src="./assets/logo.png" class="rrlogoimg">
             </div>
             <div class="col-9">
             </div>
@@ -482,7 +491,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img src="../assets/logo.png" alt="Job a post Now">
+                 <img src="./assets/logo.png" class="rrlogoimg">
             </div>
             <div class="col-9">
 
