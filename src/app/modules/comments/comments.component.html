@@ -251,7 +251,7 @@
         <div>
           <div class="modal-fot">
             <button type="button" class="but1 but2" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="but but1"  data-bs-dismiss="modal" aria-label="Close">Send</button>
+            <button type="submit" class="but btn but1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="!commentForm.valid">Send</button>
           </div>
         </div>
       </form>
