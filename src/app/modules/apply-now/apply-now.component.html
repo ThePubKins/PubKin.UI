@@ -469,7 +469,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
         >Terms of Use.</span
       > </span
     ><br />
-    <button class="aplbtn" type="submit">Apply Now</button>
+    <button class="aplbtn" type="submit" (click)="notifyNow();">Apply Now</button>
   </form>
   <button class="sabtn" data-bs-toggle="modal" data-bs-target="#savejob">
     Save as Draft
@@ -674,3 +674,15 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
     </div>
   </div>
 </div>
+
+
+
+<!-- Notification Form -->
+
+<form #notificationForm="ngForm" (ngSubmit)="onSubmitNotification(notificationForm)">
+  <input type="text" id="id" name="id" [(ngModel)]="notificationsService.notificationData.id">
+  <input type="text" id="userId" name="userId" [(ngModel)]="notificationsService.notificationData.userId">
+  <input type="text" id="notification" name="notification" [(ngModel)]="notificationsService.notificationData.notification">
+  <input type="text" id="notificationDate" name="notificationDate" [(ngModel)]="notificationsService.notificationData.notificationDate">
+  <button type="submit" class="d-none" #notificationButton>Save</button>
+ </form>

@@ -1,7 +1,8 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppliedUserService, JobpostService, UserauthenticateService } from '../../shared';
+import { AppliedUserService, JobpostService, UserauthenticateService, NotificationService } from '../../shared';
 import { NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-progress-jobs',
@@ -18,11 +19,15 @@ export class ProgressJobsComponent {
   currentUser: any;
   selectedhire: any;
   jobPosts: any;
+  currentDate: any = new Date();
+  dateFormatted: any;
 
   constructor(
     public userService: UserauthenticateService,
     public router: Router,
+    public datePipe: DatePipe,
     public jobService: JobpostService,
+    public notificationsService: NotificationService,
     public appliedService: AppliedUserService,
   ) { }
 
@@ -34,8 +39,11 @@ export class ProgressJobsComponent {
 
 
   @ViewChild('submitbutton') submitbutton: ElementRef;
+  @ViewChild('notificationButton') notificationButton: ElementRef;
+
   submitNow() {
     this.submitbutton.nativeElement.click();
+    this.notificationButton.nativeElement.click();
   }
 
   getUserData() {
@@ -92,6 +100,12 @@ export class ProgressJobsComponent {
     }
   }
 
+  onSubmitNotification(form: NgForm) {
+    if (form.valid && this.notificationsService.notificationData) {
+      this.notificationsService.postNotification(form.value).subscribe();
+    }
+  }
+
   getJobPosts() {
     this.jobService.getJobPost().subscribe((data) => {
       this.jobPosts = data;
@@ -105,6 +119,10 @@ export class ProgressJobsComponent {
   ChangeStatus() {
     this.selectedhire.status = "accepted";
     this.jobPosts[0].status = "Ongoing";
+    this.notificationsService.notificationData.userId = this.jobPosts[0].userId;
+    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
+    this.notificationsService.notificationData.notificationDate = this.dateFormatted;
+    this.notificationsService.notificationData.notification = "Yours " + this.selectedhire.jobUniqueId  + " offer accepeted by " + this.selectedhire.userEmail ;
   }
 
 

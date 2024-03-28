@@ -23,6 +23,7 @@
     "@angular/router": "^17.1.0",
     "@microsoft/signalr": "^8.0.0",
     "@splidejs/splide": "^4.1.4",
+    "aws-sdk": "^2.1586.0",
     "bootstrap": "^5.3.3",
     "ng-angular-popup": "^0.5.2",
     "ngx-lightbox": "^3.0.0",

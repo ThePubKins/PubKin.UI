@@ -89,6 +89,13 @@
             <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
             <button (click)="submitNow();"  type="submit" class="rejectconfirm1">Accept Offer</button>
           </form>
+          <form #notificationForm="ngForm" (ngSubmit)="onSubmitNotification(notificationForm)">
+            <input type="hidden" id="id" name="id" [(ngModel)]="notificationsService.notificationData.id">
+            <input type="hidden" id="userId" name="userId" [(ngModel)]="notificationsService.notificationData.userId">
+            <input type="hidden" id="notification" name="notification" [(ngModel)]="notificationsService.notificationData.notification">
+            <input type="hidden" id="notificationDate" name="notificationDate" [(ngModel)]="notificationsService.notificationData.notificationDate">
+            <button type="submit" class="d-none" #notificationButton>Save</button>
+           </form>
           <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
             <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.jobId">
             <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
