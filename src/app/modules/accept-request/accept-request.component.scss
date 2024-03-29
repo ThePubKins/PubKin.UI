@@ -15,7 +15,7 @@ $pumaincolor:#A426D1;
     margin-top: 20px;
 }
 .kkprimg{
-    width: 80px;
+    width: 64px;
     margin-left: auto;
     margin-right: auto;
     // margin-top: 12px;
@@ -210,7 +210,7 @@ $pumaincolor:#A426D1;
 
 .hire {
     display: inline-flex;
-    padding: 14px 32px;
+    padding: 8px 32px;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -241,9 +241,9 @@ $pumaincolor:#A426D1;
 
 .sho1 {
     float: right;
-    margin-top: 9px;
+    width: 4px;
+    margin-top: 6px;
     cursor: pointer;
-    // margin-right: 25px;
 }
 
 .modal-header {
@@ -880,10 +880,11 @@ margin-left: 47px;
 
 
 .EDITDEL{
-    margin-top: 95px;
-    margin-left: -27px;
+    margin-top: 88px;
+    margin-left: -19px;
     position: absolute;
     display: flex;
+    width: 45px;
     flex-direction: column;
 }
 .EDITDEL1{
@@ -963,7 +964,7 @@ margin-left: 47px;
         margin-top: 20px;
     }
     .kkprimg{
-        width: 100px;
+        width: 60px;
         margin-left: auto;
         margin-right: auto;
         margin-top: 12px;
@@ -1081,7 +1082,7 @@ margin-left: 47px;
     
     .deta {
         width: 100%;
-        height: 240px;
+        height: 180px;
         flex-shrink: 0;
         border-bottom: 1px solid #A1A1A1;
         background: #ffffff;
@@ -1134,7 +1135,7 @@ margin-left: 47px;
     .rate {
         color: #A426D1;
     font-family: League Spartan;
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 36px;
@@ -1181,7 +1182,7 @@ margin-left: 47px;
         font-family: League Spartan;
         font-size: 18px;
         font-style: normal;
-        margin-top: 30px;
+        margin-top: 14px;
         font-weight: 500;
         line-height: 36px;
         float: right;
@@ -1191,8 +1192,8 @@ margin-left: 47px;
     .sho1 {
         float: right;
         margin-top: 38px;
+        width: 4px;
         cursor: pointer;
-        // margin-right: 25px;
     }
     
     .modal-header {
@@ -1830,6 +1831,7 @@ margin-left: 47px;
     .EDITDEL{
         margin-top: 137px;
         margin-left: -27px;
+        width: 45px;
         position: absolute;
         display: flex;
         flex-direction: column;

@@ -51,7 +51,9 @@ export class CommentsComponent implements OnInit {
   showViewedWork() {
     this.viewwork = true;
   }
-
+  filterCommentsWithFileUrl(comments: any[]): any[] {
+    return comments.filter(comment => comment.fileUrl && comment.fileUrl.trim() !== '');
+}
   getPosts() {
     this.route.params.subscribe((params) => {
       const jobId = params['id'];
