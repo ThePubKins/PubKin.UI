@@ -1,26 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { UserauthenticateService } from '../../shared/services/userauthenticate.service';
+import { Component, OnInit } from "@angular/core";
+import { UserauthenticateService } from "../../shared/services/userauthenticate.service";
+import { NotificationService } from "../../shared";
 
 @Component({
-  selector: 'app-author-nav',
-  templateUrl: './author-nav.component.html',
-  styleUrls: ['./author-nav.component.scss']
+  selector: "app-author-nav",
+  templateUrl: "./author-nav.component.html",
+  styleUrls: ["./author-nav.component.scss"],
 })
-export class AuthorNavComponent implements OnInit{
-  hide : boolean;
-  User : any;
-  
+export class AuthorNavComponent implements OnInit {
+  hide: boolean;
+  User: any;
+  notifications: any;
+  showNotifications: boolean = false;
+
   hidden() {
-    this.hide = !this.hide
+    this.hide = !this.hide;
   }
-  constructor(public userauthservice:UserauthenticateService) {}
+
+  constructor(
+    public notificationService: NotificationService,
+    public userauthservice: UserauthenticateService
+  ) {}
+
   ngOnInit(): void {
-   this.getUserData();
+    this.getUserData();
+    this.getNotification();
   }
-  
+
   //get the Current User Details
   getUserData() {
-    const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
+    const Email =
+      this.userauthservice.getUserEmail() ?? sessionStorage.getItem("email");
     if (Email) {
       this.userauthservice.getUserData().subscribe({
         next: (data) => {
@@ -30,8 +40,14 @@ export class AuthorNavComponent implements OnInit{
     } else {
     }
   }
-  
-  logout(): void { 
+
+  getNotification() {
+    this.notificationService.getNotificaions().subscribe((data: any[]) => {
+      this.notifications = data;
+    });
+  }
+
+  logout(): void {
     this.userauthservice.logout();
   }
 
@@ -46,5 +62,8 @@ export class AuthorNavComponent implements OnInit{
     const total = num1 + num2 + num3 + num4 + num5 + num6;
     return total;
   }
-  
+
+  showNotification() {
+    this.showNotifications = !this.showNotifications;
+  }
 }

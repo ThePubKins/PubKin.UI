@@ -472,4 +472,74 @@
       <p class="">Please open in desktop</p>
     </div>
   </div>
-</div> -->
+</div> 
+
+
+
+<!-- <form #Form="ngForm" (ngSubmit)="onSubmit(Form)">
+  <div>
+    <label for="jobId">Job ID:</label>
+    <input type="text" id="jobId" name="jobId" [(ngModel)]="commentService.commentData.jobId" required>
+  </div>
+  <div>
+    <label for="comments">Comments:</label>
+    <textarea id="comments" name="comments" [(ngModel)]="commentService.commentData.comments" required></textarea>
+  </div>
+  <div>
+    <label for="createdBy">Created By:</label>
+    <input type="text" id="createdBy" name="createdBy" [(ngModel)]="commentService.commentData.createdBy" required>
+  </div>
+  <div>
+    <label for="dateCreated">Date Created:</label>
+    <input type="date" id="dateCreated" name="dateCreated" [(ngModel)]="commentService.commentData.dateCreated" required>
+  </div>
+  <div>
+    <label for="commentDateTime">Comment Date Time:</label>
+    <input type="datetime-local" id="commentDateTime" name="commentDateTime" [(ngModel)]="commentService.commentData.commentDateTime" required>
+  </div>
+  <div>
+    <label for="fileName">File Name:</label>
+    <input type="text" id="fileName" name="fileName" [(ngModel)]="commentService.commentData.fileName" required>
+  </div>
+  <div>
+    <label for="file">Upload File:</label>
+    <input type="file" id="file" name="file" (change)="onFileSelected($event)">
+  </div>
+  <button type="submit">Submit</button>
+</form> -->
+
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" enctype="multipart/form-data">
+  <div>
+    <label for="jobId">Job ID:</label>
+    <input type="text" id="jobId" name="jobId" [(ngModel)]="commentService.commentData.jobId" required>
+  </div>
+  <div>
+    <label for="comments">Comments:</label>
+    <textarea id="comments" name="comments" [(ngModel)]="commentService.commentData.comments" required></textarea>
+  </div>
+  <div>
+    <label for="createdBy">Created By:</label>
+    <input type="text" id="createdBy" name="createdBy" [(ngModel)]="commentService.commentData.createdBy" required>
+  </div>
+  <div>
+    <label for="dateCreated">Date Created:</label>
+    <input type="date" id="dateCreated" name="dateCreated" [(ngModel)]="commentService.commentData.dateCreated" required>
+  </div>
+  <div>
+    <label for="commentDateTime">Comment Date Time:</label>
+    <input type="datetime-local" id="commentDateTime" name="commentDateTime" [(ngModel)]="commentService.commentData.commentDateTime" required>
+  </div>
+  <div>
+    <label for="fileName">File Name:</label>
+    <input type="text" id="fileName" name="fileName" [(ngModel)]="commentService.commentData.fileName" required>
+  </div>
+  <div>
+    <label for="file">Upload File:</label>
+    <input type="file" id="file" name="file" (change)="onFileSelected($event)">
+  </div>
+  <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>
+
+
+
+

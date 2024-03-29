@@ -1,209 +1,238 @@
-.rrpublogoimg1{
-    width: 100px;
-    // height: 65px;
-    margin-top: 14px;
+.rrpublogoimg1 {
+  width: 100px;
+  // height: 65px;
+  margin-top: 14px;
 }
-.rrcomcenalign1{
-    display:flex;
-    align-items: center;
-    justify-content: center; 
+.rrcomcenalign1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.rrcomendalign1{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+.rrcomendalign1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
-.rrheadalign1{
-    display:flex;
-    align-items: center;
-    height:80px;
+.rrheadalign1 {
+  display: flex;
+  align-items: center;
+  height: 80px;
 }
-@media only screen and (min-width:999px) and (max-width:1400px) {
-    .kkfrnavse{
-        color: #0F0F0F;
-        font-family: 'League Spartan', sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: normal;
-        cursor: pointer;
-    }
-}
-
-@media only screen and (min-width:1401px) {
-    .kkfrnavse{
-        color: #0F0F0F;
-        font-family: 'League Spartan', sans-serif;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        cursor: pointer;
-        margin-right: 30px;
-    }
-}
-
-
-
-.kkfrnavse:hover { 
-    color: #A426D1;
-}
-.rrmessalign1{
-    text-decoration: none; 
-}
-
-
-.rriconalign1{
-    display:flex;
-    align-items: center;
-    justify-content: flex-end;
-    height:80px;
-}
-.rrcomposrelalign1{
-    position: relative;
-}
-
-.rrbellimg1{
-    width: 24px;
-    height: 29px;
-    margin-right: 30px;
-}
-.rrpersonimg1{
-   width:42px;
-   height:42px;
-}
-
-.ddis {  
-    color: #0F0F0F;
-    font-family: "League Spartan";
-    font-size: 16px;
+@media only screen and (min-width: 999px) and (max-width: 1400px) {
+  .kkfrnavse {
+    color: #0f0f0f;
+    font-family: "League Spartan", sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 18px;
     line-height: normal;
+    cursor: pointer;
+  }
 }
 
-.ddis:hover{  
- color: #A426D1;
-}
-.ddis:active{
-    background-color:  #A426D1;
-    color : white;
-    }
-
-    
-
-
-    .kknavicon{
-        font-size: 18px;
-    }
-
-    .kkcrd{
-            width: 210px;
-            height: auto;
-            z-index: 111;
-            flex-shrink: 0;
-            padding-bottom: 12px;
-            border-radius: 16px;
-            background: #FFF;
-        box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04), -1px 6px 15px 0px rgba(118, 27, 153, 0.43);
-      }
-
-
-     
-    
-      .kkprimg{
-        width: 105px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: -25px;
-        filter: drop-shadow(0px 10px 10px rgba(123, 119, 121, 0.31) );
-    
-      }
-    
-   
-    
-    .kkprname{
-        color: #000;
-        margin-top: 20px;
-        font-family: "League Spartan";
-        font-size: 20px;
-        font-style: normal;
-        text-align: center;
-        font-weight: 500;
-    }
-    
-    .kkprname1{
-        color: #787878;
-    font-family: "League Spartan";
-    font-size: 16px;
+@media only screen and (min-width: 1401px) {
+  .kkfrnavse {
+    color: #0f0f0f;
+    font-family: "League Spartan", sans-serif;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 400;
-    }
-    .kkprbtn1{
-      display: flex;
-      align-items: center;
-      font-size: 16px;
-      gap: 10px;
-      cursor: pointer;
-      font-family: "League Spartan";
-      margin-left: 64px;
-      color: black;
-    }
-    .kkprbtn1:active{
-      color: #A426D1;
-      font-size: 16px;
-      font-family: "League Spartan";
-    }
-    .kkprbtn2{
-      font-family: "League Spartan";
-      font-size: 16px;
-    //   margin-top: 10px;
-      cursor: pointer;
-      background-color: #A426D1;
-      color: #FFF;
-        display: inline-flex;
-        padding: 5px;
-    align-items: center;
-    gap: 5px;
-        -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
-        box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
-    
-    }
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+    margin-right: 30px;
+  }
+}
 
+.kkfrnavse:hover {
+  color: #a426d1;
+}
+.rrmessalign1 {
+  text-decoration: none;
+}
 
-    .prset { 
-        position: fixed;
-        width: 100%;
-       height: 100%;
-       z-index: 100;
-       left: 0px;
-       top:0px;
-       }
+.rriconalign1 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 80px;
+}
+.rrcomposrelalign1 {
+  position: relative;
+}
 
+.rrbellimg1 {
+  width: 24px;
+  height: 29px;
+  margin-right: 30px;
+}
+.rrpersonimg1 {
+  width: 42px;
+  height: 42px;
+}
 
+.ddis {
+  color: #0f0f0f;
+  font-family: "League Spartan";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-       @media only screen and (min-width:1601px){
-        .kkcrd12{
-            position: absolute;
-            right: 240px;
-            top:150px;
-              }
-    }
+.ddis:hover {
+  color: #a426d1;
+}
+.ddis:active {
+  background-color: #a426d1;
+  color: white;
+}
 
-    @media only screen and (min-width:1501px) and (max-width:1600px) {
-        .kkcrd12{
-            position: absolute;
-            right: 150px;
-            top:150px;
-              }
-    }
+.kknavicon {
+  font-size: 18px;
+}
 
-    @media only screen and (min-width:1001px) and (max-width:1500px) {
-        .kkcrd12{
-            position: absolute;
-            right: 60px;
-            top:150px;
-              }
+.kkcrd {
+  width: 210px;
+  height: auto;
+  z-index: 111;
+  flex-shrink: 0;
+  padding-bottom: 12px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 2px 5px 29px 0px rgba(123, 43, 154, 0.04),
+    -1px 6px 15px 0px rgba(118, 27, 153, 0.43);
+}
 
+.kkprimg {
+  width: 105px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -25px;
+  filter: drop-shadow(0px 10px 10px rgba(123, 119, 121, 0.31));
+}
 
-            }
+.kkprname {
+  color: #000;
+  margin-top: 20px;
+  font-family: "League Spartan";
+  font-size: 20px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 500;
+}
+
+.kkprname1 {
+  color: #787878;
+  font-family: "League Spartan";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+.kkprbtn1 {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  gap: 10px;
+  cursor: pointer;
+  font-family: "League Spartan";
+  margin-left: 64px;
+  color: black;
+}
+.kkprbtn1:active {
+  color: #a426d1;
+  font-size: 16px;
+  font-family: "League Spartan";
+}
+.kkprbtn2 {
+  font-family: "League Spartan";
+  font-size: 16px;
+  //   margin-top: 10px;
+  cursor: pointer;
+  background-color: #a426d1;
+  color: #fff;
+  display: inline-flex;
+  padding: 5px;
+  align-items: center;
+  gap: 5px;
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18),
+    0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.prset {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  left: 0px;
+  top: 0px;
+}
+
+@media only screen and (min-width: 1601px) {
+  .kkcrd12 {
+    position: absolute;
+    right: 240px;
+    top: 150px;
+  }
+}
+
+@media only screen and (min-width: 1501px) and (max-width: 1600px) {
+  .kkcrd12 {
+    position: absolute;
+    right: 150px;
+    top: 150px;
+  }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1500px) {
+  .kkcrd12 {
+    position: absolute;
+    right: 60px;
+    top: 150px;
+  }
+}
+
+//Notifications
+.notification-card {
+  display: flex;
+  width: 291px;
+  padding: 21px 20px 20px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid #e9adff;
+  background: #fff;
+  color: #000;
+  font-family: "League Spartan";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.notification-card:hover {
+  color: #a426d1;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.notification-head {
+  display: flex;
+  border-bottom: 1px solid #a426d1;
+  padding: 8px;
+  line-height: 19px;
+}
+
+.notification-view {
+  color: #a426d1;
+  font-size: 14px;
+  display: flex;
+}
+
+.notification-arrow {
+  margin-left: 11px;
+  margin-top: 2px;
+}

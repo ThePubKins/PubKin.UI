@@ -13,6 +13,7 @@ export class JobPostComponent implements OnInit {
   form: any;
   Author = [{ AuthorsFirstName: '', AuthorsLastName: '', AuthorsEmail :'' }];
   currentDate: any = new Date();
+  dateFormatted: any;
   maxCount = 1000;
   private _count = 0;
   count = 0;
@@ -22,7 +23,7 @@ export class JobPostComponent implements OnInit {
   uploadedFileName: string = ''; 
   selectedFiles: string[] = [];
   maxCharacters = 450;
-  dateFormatted: any;
+
   inputText = '';
   charactersLeft: number;
   complex = false;

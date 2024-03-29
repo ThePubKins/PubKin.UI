@@ -5,9 +5,9 @@ export interface comments {
   lastModifiedBy: string;
   dateLastModified: string;
   jobId: string;
-  Comments: string;
+  comments: string;
   fileUrl: string;
-  fileName: string;
-  File: string;
+  fileName: string ;
+  file: File;
   commentDateTime : string;
 }

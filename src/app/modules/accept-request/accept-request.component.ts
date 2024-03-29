@@ -28,7 +28,6 @@ export class AcceptRequestComponent implements OnInit {
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
     public applyService: AppliedUserService, private datePipe: DatePipe, public singlarService: AppliedUserNotificationService) {
     this.currentDate = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
-
   }
 
 
@@ -78,13 +77,22 @@ export class AcceptRequestComponent implements OnInit {
   getApplies(jobId: string): void {
     this.applyService.getAppliedUserById(jobId).subscribe({
       next: (result: any) => {
+        result.sort((a: any, b: any) => {
+          const dateA = this.parseDate(a.applyDate);
+          const dateB = this.parseDate(b.applyDate);
+          return dateA.getTime() - dateB.getTime();
+        });
         this.Applies = result;
-        console.log(this.Applies);
       },
       error: (err: any) => {
         console.error('Error fetching applied users:', err);
       }
     });
+  }
+
+  private parseDate(dateString: string): Date {
+    const parts = dateString.split('-');
+    return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
   }
 
   onSubmitStatus(form: NgForm) {
