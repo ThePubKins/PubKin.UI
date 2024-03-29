@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { comments } from '../models';
+import * as AWS from 'aws-sdk';
 import { ApiService } from '../../core';
 
 @Injectable({

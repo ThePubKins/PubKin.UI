@@ -132,9 +132,18 @@ export class FreelancerComponent implements OnInit {
 
   //Get the all Job Posts
   getAllJobPosts() {
-    this.jobService.getJobPost().subscribe(data => {
-      this.Posts = data;
-    })
+    this.jobService.getJobPost().subscribe((data: any[]) => {
+      this.Posts = data.sort((a, b) => {
+        const dateA: Date = this.parseDate(a.postDate);
+        const dateB: Date = this.parseDate(b.postDate);
+        return dateB.getTime() - dateA.getTime();
+      });
+    });
+  }
+  
+  parseDate(dateString: string): Date {
+    const [day, month, year] = dateString.split('-').map(Number);
+    return new Date(Date.UTC(year, month - 1, day));
   }
 
   //Pagination for JobPosts

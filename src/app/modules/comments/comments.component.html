@@ -236,24 +236,25 @@
       <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
       <form novalidate #commentForm="ngForm" autocomplete="off" (ngSubmit)="submitForm(commentForm)">
         <div class="pad1">
-          <div class="">
-            <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="commentData.dateCreated">
-            <input type="hidden" id="id" name="id" [(ngModel)]="commentData.id">
-            <input type="hidden" id="commentDateTime" name="commentDateTime" [(ngModel)]="commentData.commentDateTime">
-            <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="commentData.createdBy">
-            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="commentData.jobId">
+            <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="commentservice.commentData.dateCreated">
+            <input type="text" id="id" name="id" [(ngModel)]="commentservice.commentData.id">
+            <input type="text" id="commentDateTime" name="commentDateTime" [(ngModel)]="commentservice.commentData.commentDateTime">
+            <input type="text" id="createdBy" name="createdBy" [(ngModel)]="commentservice.commentData.createdBy">
+            <input type="text" id="jobId" name="jobId" [(ngModel)]="commentservice.commentData.jobId">
+            <input type="text" id="fileName" name="fileName" [(ngModel)]="commentservice.commentData.fileName">
             <p class="c2" id="exampleModalLabel">Please add your comments</p>
-          </div>
-          <textarea (click)="showDetails();" class="form-control h1" aria-label="With textarea" name="comments"
-            [(ngModel)]="commentData.Comments" required></textarea>
+          <textarea (change)="showDetails();" class="form-control h1" aria-label="With textarea" name="comments"
+            [(ngModel)]="commentservice.commentData.comments" required></textarea>
           <input type="file" id="file" name="file" class="fileupload-comments" (change)="onFileSelected($event)" required>
+          <!-- <input type="file" id="File" name="File" class="fileupload-comments" (change)="onFileSelected($event)" > -->
         </div>
         <div>
           <div class="modal-fot">
             <button type="button" class="but1 but2" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="but but1"  data-bs-dismiss="modal" aria-label="Close">Send</button>
+            <button type="submit" class="but btn but1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="!commentForm.valid">Send</button>
           </div>
         </div>
+         <!-- data-bs-dismiss="modal" aria-label="Close -->
       </form>
     </div>
   </div>
@@ -346,5 +347,9 @@
   <!-- <label for="fileInput" *ngIf="selectedFile">{{ selectedFile.name }}</label>
 <input type="file" id="fileInput" (change)="onFileSelected12($event)" >
 <button (click)="selectFile()">Select File</button> -->
+
+
+
+
 
 

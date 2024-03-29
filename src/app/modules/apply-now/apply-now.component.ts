@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import { AppliedUserService, CommentsService, JobpostService, UserauthenticateService, applied_user } from '../../shared';
+import { AppliedUserService, CommentsService, JobpostService, NotificationService, UserauthenticateService, applied_user } from '../../shared';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class ApplyNowComponent {
 
   jobpostData: applied_user = {} as applied_user;
   filesdetails: any;
-  constructor(public datePipe: DatePipe, private route: ActivatedRoute,
+  constructor(public datePipe: DatePipe, private route: ActivatedRoute, public notificationsService : NotificationService,
   public userservice: UserauthenticateService, public commentservice: CommentsService,
     public appliedservice: AppliedUserService, public jobservice: JobpostService,public router: Router) { this.calculateCharactersLeft(); }
 
@@ -135,6 +135,10 @@ export class ApplyNowComponent {
     this.appliedservice.applyData.postBy = this.JobPost.createdBy;
     this.appliedservice.applyData.applideUserProfile=this.UserData[0].profileUrl;
     this.appliedservice.applyData.jobUniqueId=this.JobPost.jobUniqueId;
+    this.notificationsService.notificationData.userId = this.JobPost.userId;
+    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
+    this.notificationsService.notificationData.notificationDate = this.dateFormatted;
+    this.notificationsService.notificationData.notification = "Yours " + this.JobPost.jobUniqueId  + "have a new applied by" + this.JobPost.userEmail ;
   }
 
 
@@ -209,4 +213,19 @@ export class ApplyNowComponent {
       this.checkbox1 = false;
     }
   }
+
+  //Notification 
+   onSubmitNotification(form: NgForm) {
+    if (form.valid && this.notificationsService.notificationData) {
+      this.notificationsService.postNotification(form.value).subscribe();
+    }
+  }
+
+
+  @ViewChild('notificationButton') notificationButton: ElementRef;
+  
+  notifyNow() {
+    this.notificationButton.nativeElement.click();
+  }
+
 }

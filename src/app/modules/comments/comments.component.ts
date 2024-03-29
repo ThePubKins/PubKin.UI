@@ -23,6 +23,7 @@ export class CommentsComponent implements OnInit {
   hideFolderIcon: boolean = false;
   viewwork: boolean = false;
   submitwork: boolean = false;
+  selectedFile: File | null = null;
   selectedFiles: string[] = [];
   selectedFiles1: string[] = [];
   User: any;
@@ -50,7 +51,9 @@ export class CommentsComponent implements OnInit {
   showViewedWork() {
     this.viewwork = true;
   }
-
+  filterCommentsWithFileUrl(comments: any[]): any[] {
+    return comments.filter(comment => comment.fileUrl && comment.fileUrl.trim() !== '');
+}
   getPosts() {
     this.route.params.subscribe((params) => {
       const jobId = params['id'];
@@ -63,9 +66,6 @@ export class CommentsComponent implements OnInit {
         });
     });
   }
-
-
-  selectedFile: File | null = null;
 
   onFileSelected12(event: any) {
     const file: File = event.target.files[0];
@@ -82,17 +82,7 @@ export class CommentsComponent implements OnInit {
     this.hideFolderIcon = true;
   }
 
-  getCommentNow() {
-    this.commentservice.getComments().subscribe(data => {
-      this.comments = data;
-      this.comments.sort((a: { commentDateTime: string | number | Date; }, b: { commentDateTime: string | number | Date; }) => {
-        const dateA = new Date(a.commentDateTime);
-        const dateB = new Date(b.commentDateTime);
-        return dateA.getTime() - dateB.getTime();
-      });
-    });
-  }
-  
+
   getWorkFiles() {
     this.workfileservice.getfile().subscribe(data => {
       this.workFile = data;
@@ -128,32 +118,19 @@ export class CommentsComponent implements OnInit {
     } else {
     }
   }
+
+
   submitForm(form: NgForm) {
-    // const formData = new FormData();
-    // formData.append('id', this.commentData.id);
-    // formData.append('Comments', this.commentData.Comments);
-    // formData.append('createdBy', this.commentData.createdBy);
-    // if (this.commentData.File) {
-    //   formData.append('File', this.commentData.File);
-    // }
-
-    // this.commentservice.postComments(formData).subscribe(
-    //   response => {
-    //     console.log('Comment added successfully:', response);
-    //     this.commentData = {} as comments;
-    //   },
-    //   error => {
-    //     console.error('Error adding comment:', error);
-    //   }
-    // );
-
     if (form.valid && this.commentservice.commentData) {
       this.commentservice.postComments(form.value).subscribe();
-      setTimeout(() => {
-        window.location.reload();
-      }, 50);
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 50);
     }
   }
+
+
+  
 
   submitform1() {
     const formData1 = new FormData();
@@ -182,12 +159,13 @@ export class CommentsComponent implements OnInit {
     this.fileInput.nativeElement.click();
   }
 
+
+
   onFileSelected(event: any) {
     const selectedFile = event.target.files[0];
-    console.log('Selected file:', selectedFile);
     this.selectedFiles.push(selectedFile.name);
-    console.log('Selected files array:', this.selectedFiles);
-    this.commentData.File = selectedFile;
+    this.commentservice.commentData.file = selectedFile;
+    this.commentservice.commentData.fileName = selectedFile.name;
     this.workfileData.FileName = selectedFile.name;
   }
 
@@ -208,9 +186,9 @@ export class CommentsComponent implements OnInit {
 
   showDetails() {
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'MMM dd hh:mma');
-    this.commentData.commentDateTime = this.dateFormatted;
-    this.commentData.jobId = this.jobPost.id;
-    this.commentData.createdBy = this.User[0].firstName;
+    this.commentservice.commentData.commentDateTime = this.dateFormatted;
+    this.commentservice.commentData.jobId = this.jobPost.id;
+    this.commentservice.commentData.createdBy = this.User[0].firstName;
   }
 
   getPostStatus(postDate: string): string {
@@ -246,4 +224,44 @@ export class CommentsComponent implements OnInit {
       return diffYears + ' years ago';
     }
   }
+
+
+  //Sorting the Comments
+  getCommentNow() {
+    this.commentservice.getComments().subscribe(data => {
+      this.comments = data;
+      // Sort comments based on commentDateTime in ascending order
+      this.comments.sort((a: { commentDateTime: string; }, b: { commentDateTime: string; }) => {
+        const dateA = this.parseCustomDate(a.commentDateTime).getTime();
+        const dateB = this.parseCustomDate(b.commentDateTime).getTime();
+        console.log("Date A:", dateA);
+        console.log("Date B:", dateB);
+        return dateA - dateB; // Sort in ascending order (oldest first)
+      });
+      console.log("Sorted Comments:", this.comments);
+    });
+  }
+  
+  parseCustomDate(dateString: string): Date {
+    const parts = dateString.split(' ');
+    const monthAbbrev = parts[0];
+    const day = parseInt(parts[1]);
+    const timeParts = parts[2].split(':');
+    let hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1].slice(0, 2));
+    const ampm = timeParts[1].slice(2);
+
+    // Convert to 24-hour format
+    if (ampm === 'PM' && hours < 12) {
+      hours += 12;
+    } else if (ampm === 'AM' && hours === 12) {
+      hours = 0;
+    }
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames.indexOf(monthAbbrev);
+
+    return new Date(0, 0, day, hours, minutes);
+  }
+
 }
