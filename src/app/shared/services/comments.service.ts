@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { comments } from '../models';
-import * as AWS from 'aws-sdk';
 import { ApiService } from '../../core';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { ApiService } from '../../core';
 })
 export class CommentsService {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {}
 
   commentData: comments = {} as comments;
   list: comments[] = [];
@@ -21,4 +20,5 @@ export class CommentsService {
   postComments(commentData: any) {
     return this.apiService.post(`Comment`, commentData)
   }
+
 }

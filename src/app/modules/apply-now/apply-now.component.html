@@ -675,11 +675,10 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
 
 
 <!-- Notification Form -->
-
-<form #notificationForm="ngForm" (ngSubmit)="onSubmitNotification(notificationForm)">
-  <input type="text" id="id" name="id" [(ngModel)]="notificationsService.notificationData.id">
-  <input type="text" id="userId" name="userId" [(ngModel)]="notificationsService.notificationData.userId">
-  <input type="text" id="notification" name="notification" [(ngModel)]="notificationsService.notificationData.notification">
-  <input type="text" id="notificationDate" name="notificationDate" [(ngModel)]="notificationsService.notificationData.notificationDate">
-  <button type="submit" class="d-none" #notificationButton>Save</button>
- </form>
+<!-- <form #notificationForm="ngForm" (ngSubmit)="onSubmitNotification(notificationForm)">
+  <input type="hidden" id="id" name="id" [(ngModel)]="notificationsService.notificationData.id">
+  <input type="hidden" id="userId" name="userId" [(ngModel)]="notificationsService.notificationData.userId">
+  <input type="hidden" id="notification" name="notification" [(ngModel)]="notificationsService.notificationData.notification">
+  <input type="hidden" id="notificationDate" name="notificationDate" [(ngModel)]="notificationsService.notificationData.notificationDate">
+  <button type="submit"  class="d-none"  #notificationButton>Save</button>
+ </form> -->

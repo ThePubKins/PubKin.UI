@@ -100,9 +100,9 @@ export class ProgressJobsComponent {
     }
   }
 
-  onSubmitNotification(form: NgForm) {
+  onSubmitNotification(form: NgForm, userId:string) {
     if (form.valid && this.notificationsService.notificationData) {
-      this.notificationsService.postNotification(form.value).subscribe();
+      this.notificationsService.postNotification(userId, form.value).subscribe();
     }
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserauthenticateService } from '../../shared/services/userauthenticate.service';
 import { NgClass } from '@angular/common';
+import { NotificationService } from '../../shared';
 
 @Component({
   selector: 'app-freelancernav',
@@ -11,8 +12,12 @@ export class FreelancernavComponent implements OnInit {
   hide: any;
   selectedButton: any;
   User : any;
+  showNotifications=false;
+  notifications:any;
   imageUrl: string = 'https://localhost:7172';
-  constructor(public userauthservice:UserauthenticateService) {}
+  constructor(public userauthservice:UserauthenticateService,
+    public notificationService: NotificationService,
+    ) {}
 
   ngOnInit(): void {
    this.getUserData();
@@ -55,4 +60,19 @@ export class FreelancernavComponent implements OnInit {
       return total;
     }
   
+
+     showNotification() {
+         this.showNotifications = !this.showNotifications;
+    }
+
+    getNotification() {
+
+      
+
+      this.notificationService.getNotificaions().subscribe((data: any[]) => {
+        this.notifications = data;
+      });
+    }
+
+
 }

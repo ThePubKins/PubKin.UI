@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AppliedUserNotificationService, AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
+import { AppliedUserNotificationService, AppliedUserService, BankDetailsService, NotificationService, UserauthenticateService } from '../../shared';
 import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-accept-request',
@@ -26,7 +26,8 @@ export class AcceptRequestComponent implements OnInit {
   filteredData: any[];
 
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
-    public applyService: AppliedUserService, private datePipe: DatePipe, public singlarService: AppliedUserNotificationService) {
+    public applyService: AppliedUserService, public datePipe: DatePipe,
+    public notificationsService:NotificationService, public singlarService: AppliedUserNotificationService) {
     this.currentDate = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
   }
 
@@ -103,6 +104,7 @@ export class AcceptRequestComponent implements OnInit {
 
 success:boolean=false;
 successmsg(){
+  this.notificationButton.nativeElement.click();
   this.success = !this.success;
   if (this.success) {
     setTimeout(() => {
@@ -121,6 +123,15 @@ successmsg(){
     setTimeout(() => {
       this.Applies[0].status = "";
     }, 3000);
+  }
+  dateFormated1:any;
+  dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
+  showNotificationDetails() {
+    
+    this.dateFormated1= this.dateFormatted;
+    this.notificationsService.notificationData.userId = this.selectedhire.userId;
+    this.notificationsService.notificationData.notificationDate =  this.dateFormated1;
+    this.notificationsService.notificationData.notification = "You got the new offer for "  + this.selectedhire.jobUniqueId;
   }
   
   ChangeStatus() { 
@@ -165,6 +176,14 @@ successmsg(){
     };
   }
 
+
+    //Notifications Form 
+    onSubmitNotification(form: NgForm, userId:string) {
+      if (form.valid && this.notificationsService.notificationData) {
+        this.notificationsService.postNotification(userId, form.value).subscribe();      }
+    }
+  
+    @ViewChild('notificationButton') notificationButton: ElementRef;   
 }
 
 
