@@ -306,9 +306,10 @@
                 <input type="hidden" id="postBy" name="postBy" [(ngModel)]="selectedhire.postBy">
                 <input type="hidden" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
                 <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
-                <button class="cpay" type="submit" data-bs-toggle="modal" data-bs-target="#saveModal"
-                  (click)="ChangeStatus();successmsg();">Confirm & Pay</button>
+                <button class="cpay" type="submit" 
+                  (click)="ChangeStatus();">Confirm & Pay</button>
               </form>
+              <!-- data-bs-toggle="modal" data-bs-target="#saveModal" -->
               <p class="disclaimer">*This payment will be add on your wallet</p>
             </div>
           </div>
@@ -511,3 +512,4 @@
         <button type="submit" class="d-none" #notificationButton>Save</button>
       </form> -->
  
+      <button (click)="sendNotification();sendNotifications();">asdbsaddbasdb</button>

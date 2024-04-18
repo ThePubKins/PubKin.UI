@@ -466,8 +466,9 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
         >Terms of Use.</span
       > </span
     ><br />
-    <button class="btn aplbtn" [disabled]="!applyForm.valid" type="submit" (click)="notifyNow();">Apply Now</button>
+    <button class="btn aplbtn" [disabled]="applyForm.invalid" type="submit">Apply Now</button>
   </form>
+  <!-- (click)="notifyNow();" -->
   <button class="sabtn" data-bs-toggle="modal" data-bs-target="#savejob">
     Save as Draft
   </button>

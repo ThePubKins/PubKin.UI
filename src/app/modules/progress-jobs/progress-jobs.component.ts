@@ -38,13 +38,19 @@ export class ProgressJobsComponent {
   }
 
 
-  @ViewChild('submitbutton') submitbutton: ElementRef;
+  @ViewChild('updateForm') updateForm: NgForm;
+  @ViewChild('jobUpdateForm') jobUpdateForm: NgForm;
   @ViewChild('notificationButton') notificationButton: ElementRef;
 
-  submitNow() {
-    this.submitbutton.nativeElement.click();
-    this.notificationButton.nativeElement.click();
+  // submitNow() {
+  //   this.notificationButton.nativeElement.click();
+  // }
+
+  submitBothForms() {
+    this.onSubmitStatus(this.updateForm);
+    this.onSubmitJobStatus(this.jobUpdateForm);
   }
+
 
   getUserData() {
     const Email = this.userService.getUserEmail() ?? sessionStorage.getItem('email');

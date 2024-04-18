@@ -34,15 +34,14 @@ export class SignalrService {
     });
   }
 
-  public addNotificationListener = () => {
+  public addNotificationListener = (userId: string) => {
     this.hubConnection.on("SendMessage", (notification: AppliedUserNotification) => {
-      this.showNotification(notification);
+      if (notification.productID === userId) {
+        this.showNotification(notification);
+      }   
     });
   };
 
-  public subscribeToNotification() {
-    this.hubConnection.invoke("SuscribeToProduct");
-  }
 
 
   public sendNotification(message: string) {

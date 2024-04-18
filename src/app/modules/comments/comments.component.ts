@@ -135,8 +135,29 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  // submitForm1() {
+  //   const formData = new FormData();
+  //   formData.append('Id', this.commentData.id);
+  //   formData.append('fileName', this.commentData.fileName);
+  //   formData.append('fileUrl', this.commentData.fileUrl);
+  //   formData.append('jobId', this.commentData.jobId);
+  //   formData.append('comments', this.commentData.comments);
+  //   formData.append('commentDateTime', this.commentData.commentDateTime);
 
-  
+  //   if (this.commentData.fileUrl) {
+  //     formData.append('File', this.commentData.File);
+  //   }
+
+  //   this.commentservice.postComments(this.commentData).subscribe(
+  //     response => {
+  //       console.log('Comment added successfully:', response);
+  //       this.commentData = {} as comments;
+  //     },
+  //     error => {
+  //       console.error('Error adding comment:', error);
+  //     }
+  //   );
+  // }
 
   submitform1() {
     const formData1 = new FormData();
@@ -166,9 +187,8 @@ export class CommentsComponent implements OnInit {
   }
 
 
-
   onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
+    const selectedFile = event.target.files[0] as File;
     this.selectedFiles.push(selectedFile.name);
     this.commentservice.commentData.file = selectedFile;
     this.commentservice.commentData.fileName = selectedFile.name;

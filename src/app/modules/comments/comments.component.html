@@ -370,46 +370,46 @@
         novalidate
         #commentForm="ngForm"
         autocomplete="off"
-        (ngSubmit)="submitForm(commentForm)"
+        (ngSubmit)="submitForm(commentForm);"
       >
         <div class="pad1">
           <input
-            type="hidden"
+            type="text"
             id="dateCreated"
             name="dateCreated"
             [(ngModel)]="commentservice.commentData.dateCreated"
             [value]="commentservice.commentData.dateCreated"
           />
           <input
-            type="hidden"
+            type="text"
             id="id"
             name="id"
             [(ngModel)]="commentservice.commentData.id"
             [value]="commentservice.commentData.id"
           />
           <input
-            type="hidden"
+            type="text"
             id="commentDateTime"
             name="commentDateTime"
             [(ngModel)]="commentservice.commentData.commentDateTime"
             [value]="commentservice.commentData.commentDateTime"
           />
           <input
-            type="hidden"
+            type="text"
             id="createdBy"
             name="createdBy"
             [(ngModel)]="commentservice.commentData.createdBy"
             [value]="commentservice.commentData.createdBy"
           />
           <input
-            type="hidden"
+            type="text"
             id="jobId"
             name="jobId"
             [(ngModel)]="commentservice.commentData.jobId"
             [value]="commentservice.commentData.jobId"
           />
           <input
-            type="hidden"
+            type="text"
             id="fileName"
             name="fileName"
             [(ngModel)]="commentservice.commentData.fileName"
@@ -424,16 +424,15 @@
             [(ngModel)]="commentservice.commentData.comments"
             required
           ></textarea>
-          <input
+          <!-- <input
             type="file"
             id="file"
             name="file"
             class="fileupload-comments"
             (change)="onFileSelected($event)"
             required
-          />
-          <!-- <input type="file" id="File" name="File" class="fileupload-comments" (change)="onFileSelected($event)" > -->
-        </div>
+          /> -->
+          <input type="file" id="file" name="file" (change)="onFileSelected($event)">        </div>
         <div>
           <div class="modal-fot">
             <button type="button" class="but1 but2" data-bs-dismiss="modal">
@@ -443,17 +442,15 @@
               type="submit"
               class="but btn but1"
               data-bs-dismiss="modal"
-              aria-label="Close"
-              [disabled]="!commentForm.valid"
-              (click)="notifyNow();"
+              aria-label="Close"         
             >
+            <!-- [disabled]="!commentForm.valid"
+               (click)="notifyNow();" -->
               Send
             </button>
           </div>
         </div>
-        <!-- data-bs-dismiss="modal" aria-label="Close -->
       </form>
-
     </div>
   </div>
 </div>
@@ -619,7 +616,6 @@
           name="id"
           [(ngModel)]="notificationsService.notificationData.id"
           [value]="notificationsService.notificationData.id"
-
         />
         <input
           type="hidden"
@@ -645,3 +641,4 @@
         />
         <button type="submit" class="d-none" #notificationButton>Save</button>
       </form> -->
+      
