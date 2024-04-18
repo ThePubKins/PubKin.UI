@@ -1,111 +1,152 @@
 <div *ngIf="User[0].role == 'freelancer'">
-<app-freelancernav></app-freelancernav>
+  <app-freelancernav></app-freelancernav>
 </div>
 <div *ngIf="User[0].role == 'author'">
   <app-author-nav></app-author-nav>
-  </div>
+</div>
 <div *ngIf="!viewwork">
   <div *ngIf="!submitwork">
-    <div style="height: auto;">
+    <div style="height: auto">
       <div class="container kkjbcon1">
-        <div class="row" style="padding-bottom: 36px;">
+        <div class="row" style="padding-bottom: 36px">
           <p class="kkjbdls">Jobs Details</p>
           <div class="col-8 kkjbdetli1">
             <div>
-              <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br>{{jobPost.description | slice:0:43
+              <p class="kkjbtxtb1">
+                {{ jobPost.jobUniqueId }} - {{ jobPost.jobTitle }} <br />{{
+                  jobPost.description | slice : 0 : 43
                 }}...
               </p>
-              <p class="kkjbtxtb11">Job Posted at {{ jobPost.postDate}}</p>
-              <hr class="kkline1">
+              <p class="kkjbtxtb11">Job Posted at {{ jobPost.postDate }}</p>
+              <hr class="kkline1" />
             </div>
             <div class="kkjbdiv2">
-              <p class="kktxtjbdt1">{{jobPost.description}}</p>
+              <p class="kktxtjbdt1">{{ jobPost.description }}</p>
             </div>
-            <hr class="kkline1">
-            <div class="container ">
+            <hr class="kkline1" />
+            <div class="container">
               <div class="row kkjbdiv3">
                 <div class="col-4">
-                  <p class="kktag"><img src="../assets/clock.png">&nbsp;&nbsp;
-                    {{jobPost.projectStartDate}}-{{jobPost.projectEndDate}}
-                    {{jobPost.durationOfProject}}</p>
+                  <p class="kktag">
+                    <img src="../assets/clock.png" />&nbsp;&nbsp;
+                    {{ jobPost.projectStartDate }}-{{ jobPost.projectEndDate }}
+                    {{ jobPost.durationOfProject }}
+                  </p>
                 </div>
                 <div class="col-4">
-                  <p class="kktag"><img src="../assets/chart.png">&nbsp; {{jobPost.experience}}</p>
+                  <p class="kktag">
+                    <img src="../assets/chart.png" />&nbsp;
+                    {{ jobPost.experience }}
+                  </p>
                 </div>
                 <div class="col-4">
-                  <p class="kktag"><img src="../assets/money.png">&nbsp; <span
-                      *ngIf="jobPost.currency === 'INR'">₹</span>
+                  <p class="kktag">
+                    <img src="../assets/money.png" />&nbsp;
+                    <span *ngIf="jobPost.currency === 'INR'">₹</span>
                     <span *ngIf="jobPost.currency === 'USD'">$</span>
                     <span *ngIf="jobPost.currency === 'AED'">د.إ</span>
                     <span *ngIf="jobPost.currency === 'ANG'">ƒ</span>
                     <span *ngIf="jobPost.currency === 'AOA'">Kz</span>
                     <span *ngIf="jobPost.currency === 'ARS  '">$</span>
                     <span *ngIf="jobPost.currency === 'OMR'">ر.ع.</span>
-                    <span *ngIf="jobPost.currency === 'SAR'">.س</span> {{jobPost.fromBudget}}-{{jobPost.toBudget}} / {{jobPost.rateBasis}}
+                    <span *ngIf="jobPost.currency === 'SAR'">.س</span>
+                    {{ jobPost.fromBudget }}-{{ jobPost.toBudget }} /
+                    {{ jobPost.rateBasis }}
                   </p>
                 </div>
               </div>
             </div>
-            <br>
-            <hr class="kkline1">
+            <br />
+            <hr class="kkline1" />
             <div class="kkjbdiv4">
               <p class="kkskilltxt">Skills Needed</p>
-              <div class="container kksilltagcn" >
+              <div class="container kksilltagcn">
                 <!-- <div class="kksilltag" >{{skill}}</div> -->
-                <div class="kksilltag" >{{jobPost.skillSet}}</div>
+                <div class="kksilltag">{{ jobPost.skillSet }}</div>
               </div>
             </div>
-            <br>
-
-
+            <br />
           </div>
           <div class="col-4 kkjbdetlis1 text-center">
             <span *ngIf="User[0].role == 'freelancer'" class="examplerework">
-              <button class="btn kkjbdtbtn2" (click)="submitworks();">Submit Work</button>
-              <button class="btn kkjbdtbtn1" data-bs-toggle="modal" data-bs-target="#exampleModal">Comments</button>
+              <button class="btn kkjbdtbtn2" (click)="submitworks();showWorkNotification()">
+                Submit Work
+              </button>
+              <button
+                class="btn kkjbdtbtn1"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                (click)="showCommentDetails()"
+              >
+                Comments
+              </button>
             </span>
             <span *ngIf="User[0].role == 'author'" class="examplerework">
-              <button class="btn kkjbdtbtn2" (click)="showViewedWork()">Rework Needed</button>
-              <button class="btn kkjbdtbtn1" data-bs-toggle="modal" data-bs-target="#exampleModal">Comments</button>
+              <button class="btn kkjbdtbtn2" (click)="showViewedWork()">
+                Rework Needed
+              </button>
+              <button
+                class="btn kkjbdtbtn1"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                (click)="showCommentDetails()"
+              >
+                Comments
+              </button>
             </span>
             <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
           </div>
-
         </div>
       </div>
-
     </div>
-<!-- List the Comments -->
+    <!-- List the Comments -->
     <div class="container text-center pb-5">
       <p class="kkjbdls text-start mt-3">Comments</p>
       <div class="kkcmdbx1">
-        <div class="container ">
+        <div class="container">
           <div class="row">
             <div class="col-8">
               <div class="kkcmdbx2">
                 <ul *ngFor="let comment of comments">
-                  <li class="kkcmdbox1 position-relative" *ngIf="jobPost.id == comment.jobId">
-                    <p class="kkcmdtx1" >{{comment.createdBy}} :</p>
-                    <p class=" kkcmdbox kkcmdtx">{{comment.comments}}</p>
-                    <p class="commentdateshows">{{ comment.commentDateTime}}</p>
-                    <hr>
+                  <li
+                    class="kkcmdbox1 position-relative"
+                    *ngIf="jobPost.id == comment.jobId"
+                  >
+                    <p class="kkcmdtx1">{{ comment.createdBy }} :</p>
+                    <p class="kkcmdbox kkcmdtx">{{ comment.comments }}</p>
+                    <p class="commentdateshows">
+                      {{ comment.commentDateTime }}
+                    </p>
+                    <hr />
                   </li>
                 </ul>
               </div>
             </div>
-            
+
             <div class="col-4">
               <div class="kkcmdbx3">
                 <p class="kkcmdtx2">Files:</p>
-                <ul class="kkcmdbx4" *ngFor="let comment of comments; let i=index">
-                 <li class=" kkcmdtx3" *ngIf="jobPost.id == comment.jobId">
+                <ul
+                  class="kkcmdbx4"
+                  *ngFor="let comment of comments; let i = index"
+                >
+                  <li class="kkcmdtx3" *ngIf="jobPost.id == comment.jobId">
                     <div class="container img-fluid mt-3">
-                      <a [href]="imageUrl + comment.fileUrl" target="_blank" download class="no-underline">
-                        <p class="imageShows">{{i+1}}. {{comment.fileUrl.split('_')[1]}}</p>
+                      <a
+                        [href]="imageUrl + comment.fileUrl"
+                        target="_blank"
+                        download
+                        class="no-underline"
+                      >
+                        <p class="imageShows">
+                          {{ i + 1 }}. {{ comment.fileUrl.split("_")[1] }}
+                        </p>
                       </a>
-                      <hr>
+                      <hr />
                       <!-- <img class="imageShows" src={{imageUrl}}{{comment.fileUrl}} /> -->
-                      <p *ngIf="!comment.FileUrl === null">No image available</p>
+                      <p *ngIf="!comment.FileUrl === null">
+                        No image available
+                      </p>
                     </div>
                   </li>
                 </ul>
@@ -114,21 +155,25 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 
 <div *ngIf="submitwork">
   <div class="container">
-    <p class="hed1">Lorem ipsum dolor sit amet consectetur. </p>
-    <br>
-    <form novalidate autocomplete="off" #form="ngForm" (ngSubmit)="submitform1()">
+    <p class="hed1">{{jobPost.jobTitle}}</p>
+    <br />
+    <form
+      novalidate
+      autocomplete="off"
+      #form="ngForm"
+      (ngSubmit)="submitform1()"
+    >
       <div class="row">
         <div class="col-8">
           <div class="box1">
             <p class="hed">Work Files</p>
-            <hr class="codu1">
+            <hr class="codu1" />
             <div class="d-flex justify-content-center position-relative">
               <!-- <div *ngIf="selectedFiles.length > 0" class="scrollfiles">
                 <div *ngFor="let fileName of selectedFiles; let i=index;">
@@ -157,16 +202,31 @@
                 </svg>
               </div> -->
               <div *ngIf="selectedFiles.length > 0" class="scrollfiles">
-                <div *ngFor="let fileName of selectedFiles; let i=index;">
-                  <div class="foldericon" >
+                <div *ngFor="let fileName of selectedFiles; let i = index">
+                  <div class="foldericon">
                     <ul>
                       <li>
                         <div class="w-100">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" viewBox="0 0 35 30" fill="none">
-                            <path d="M30.625 29.9997H4.375C3.23157 30.0138 2.12916 29.5705 1.30917 28.7668C0.489182 27.9631 0.0184324 26.8645 0 25.7115V4.28847C0.0184324 3.13552 0.489182 2.03691 1.30917 1.2332C2.12916 0.429486 3.23157 -0.0138263 4.375 0.000328855H12.425C12.6835 0.00205255 12.9384 0.0614977 13.1714 0.174392C13.4044 0.287286 13.6097 0.450825 13.7725 0.653256L18.3225 6.2649H30.5725C31.1431 6.25084 31.7108 6.35087 32.2428 6.55921C32.7748 6.76755 33.2607 7.08007 33.6723 7.47874C34.0839 7.87741 34.4132 8.35433 34.641 8.88199C34.8689 9.40965 34.9909 9.97759 35 10.553V25.7115C34.9816 26.8645 34.5108 27.9631 33.6908 28.7668C32.8708 29.5705 31.7684 30.0138 30.625 29.9997Z" fill="#E8A9FF"/>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="35"
+                            height="30"
+                            viewBox="0 0 35 30"
+                            fill="none"
+                          >
+                            <path
+                              d="M30.625 29.9997H4.375C3.23157 30.0138 2.12916 29.5705 1.30917 28.7668C0.489182 27.9631 0.0184324 26.8645 0 25.7115V4.28847C0.0184324 3.13552 0.489182 2.03691 1.30917 1.2332C2.12916 0.429486 3.23157 -0.0138263 4.375 0.000328855H12.425C12.6835 0.00205255 12.9384 0.0614977 13.1714 0.174392C13.4044 0.287286 13.6097 0.450825 13.7725 0.653256L18.3225 6.2649H30.5725C31.1431 6.25084 31.7108 6.35087 32.2428 6.55921C32.7748 6.76755 33.2607 7.08007 33.6723 7.47874C34.0839 7.87741 34.4132 8.35433 34.641 8.88199C34.8689 9.40965 34.9909 9.97759 35 10.553V25.7115C34.9816 26.8645 34.5108 27.9631 33.6908 28.7668C32.8708 29.5705 31.7684 30.0138 30.625 29.9997Z"
+                              fill="#E8A9FF"
+                            />
                           </svg>
-                          <span class="dropname3">{{ i + 1 }}. {{ fileName }}</span>
-                          <img src="../assets/con _x letter_.svg" class="closeicon" alt="">
+                          <span class="dropname3"
+                            >{{ i + 1 }}. {{ fileName }}</span
+                          >
+                          <img
+                            src="../assets/con _x letter_.svg"
+                            class="closeicon"
+                            alt=""
+                          />
                         </div>
                       </li>
                     </ul>
@@ -174,24 +234,72 @@
                 </div>
               </div>
               <div class="foldericon" *ngIf="hideFolderIcon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="94" height="80" viewBox="0 0 94 80" fill="none">
-                  <path d="M82.0026 79.758H12.0026C8.95345 79.7955 6.0137 78.6231 3.82706 76.4977C1.64042 74.3723 0.385091 71.467 0.335938 68.418V11.7647C0.385091 8.71571 1.64042 5.81043 3.82706 3.68502C6.0137 1.55961 8.95345 0.387265 12.0026 0.424698H33.4693C34.1586 0.429256 34.8383 0.586459 35.4596 0.885008C36.0809 1.18356 36.6284 1.61604 37.0626 2.15136L49.1959 16.9914H81.8626C83.3841 16.9542 84.8979 17.2187 86.3167 17.7697C87.7354 18.3206 89.031 19.1471 90.1287 20.2014C91.2264 21.2557 92.1044 22.5169 92.7121 23.9123C93.3197 25.3077 93.6451 26.8096 93.6693 28.3314V68.418C93.6201 71.467 92.3648 74.3723 90.1781 76.4977C87.9915 78.6231 85.0518 79.7955 82.0026 79.758Z" fill="#E8A9FF"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="94"
+                  height="80"
+                  viewBox="0 0 94 80"
+                  fill="none"
+                >
+                  <path
+                    d="M82.0026 79.758H12.0026C8.95345 79.7955 6.0137 78.6231 3.82706 76.4977C1.64042 74.3723 0.385091 71.467 0.335938 68.418V11.7647C0.385091 8.71571 1.64042 5.81043 3.82706 3.68502C6.0137 1.55961 8.95345 0.387265 12.0026 0.424698H33.4693C34.1586 0.429256 34.8383 0.586459 35.4596 0.885008C36.0809 1.18356 36.6284 1.61604 37.0626 2.15136L49.1959 16.9914H81.8626C83.3841 16.9542 84.8979 17.2187 86.3167 17.7697C87.7354 18.3206 89.031 19.1471 90.1287 20.2014C91.2264 21.2557 92.1044 22.5169 92.7121 23.9123C93.3197 25.3077 93.6451 26.8096 93.6693 28.3314V68.418C93.6201 71.467 92.3648 74.3723 90.1781 76.4977C87.9915 78.6231 85.0518 79.7955 82.0026 79.758Z"
+                    fill="#E8A9FF"
+                  />
                 </svg>
               </div>
-              
             </div>
-            <input type="hidden" id="id" name="id" [(ngModel)]="workfileData.id">
-            <input type="hidden" id="FileUrl" name="FileUrl" [(ngModel)]="workfileData.FileUrl" ngModel #ngModel=""
-              required>
-            <input type="hidden" id="fileName" name="fileName" [(ngModel)]="workfileData.FileName">
-            <input type="hidden" id="JobId" name="JobId" [(ngModel)]="workfileData.JobId">
-            <input type="hidden" id="UserId" name="UserId" [(ngModel)]="workfileData.UserId">
-            <p class="d-flex justify-content-center dropname">Drop Files your files here and Submit</p>
+            <input
+              type="hidden"
+              id="id"
+              name="id"
+              [(ngModel)]="workfileData.id"
+            />
+            <input
+              type="hidden"
+              id="FileUrl"
+              name="FileUrl"
+              [(ngModel)]="workfileData.FileUrl"
+              ngModel
+              #ngModel=""
+              required
+            />
+            <input
+              type="hidden"
+              id="fileName"
+              name="fileName"
+              [(ngModel)]="workfileData.FileName"
+            />
+            <input
+              type="hidden"
+              id="JobId"
+              name="JobId"
+              [(ngModel)]="workfileData.JobId"
+            />
+            <input
+              type="hidden"
+              id="UserId"
+              name="UserId"
+              [(ngModel)]="workfileData.UserId"
+            />
+            <p class="d-flex justify-content-center dropname">
+              Drop Files your files here and Submit
+            </p>
             <div class="d-flex justify-content-center pb-5">
-              <input type="file" class="d-none" id="file" #fileInput name="file" (change)="onFileSelected1($event)"
-                required>
-              <div class="uploadbtn" class="uploadbtn" (click)="openFileUploadDialog();hideFolder()">
-                <img src="../assets/upload share_.png" alt="upload"  > Upload
+              <input
+                type="file"
+                class="d-none"
+                id="file"
+                #fileInput
+                name="file"
+                (change)="onFileSelected1($event)"
+                required
+              />
+              <div
+                class="uploadbtn"
+                class="uploadbtn"
+                (click)="openFileUploadDialog(); hideFolder()"
+              >
+                <img src="../assets/upload share_.png" alt="upload" /> Upload
               </div>
             </div>
           </div>
@@ -199,12 +307,16 @@
         <div class="col-4">
           <div class="box2">
             <p class="hed">Submit For Payment</p>
-            <hr class="codu2">
+            <hr class="codu2" />
             <ul>
-              <li class="subtex">Please check for all client requirement before Submitting</li>
-              <li class="subtex">Your Payment will be approved once client confirms it.</li>
+              <li class="subtex">
+                Please check for all client requirement before Submitting
+              </li>
+              <li class="subtex">
+                Your Payment will be approved once client confirms it.
+              </li>
             </ul>
-            <hr class="codu2">
+            <hr class="codu2" />
             <div class="d-flex justify-content-center">
               <div class="container">
                 <div class="row">
@@ -217,10 +329,19 @@
                 </div>
               </div>
             </div>
-            <hr class="codu2">
-            <br>
-            <div class="d-flex justify-content-center" style="padding-bottom: 31px;">
-              <button type="submit" (click)="showWorkDetails();" class="btn subbut">Submit Work</button>
+            <hr class="codu2" />
+            <br />
+            <div
+              class="d-flex justify-content-center"
+              style="padding-bottom: 31px"
+            >
+              <button
+                type="submit"
+                (click)="showWorkDetails();notifyNow();"
+                class="btn subbut"
+              >
+                Submit Work
+              </button>
             </div>
           </div>
         </div>
@@ -230,85 +351,204 @@
 </div>
 
 <!-- Comments Form  -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
-      <form novalidate #commentForm="ngForm" autocomplete="off" (ngSubmit)="submitForm(commentForm)">
+      <button
+        type="button"
+        class="btn-close e1"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+      <form
+        novalidate
+        #commentForm="ngForm"
+        autocomplete="off"
+        (ngSubmit)="submitForm(commentForm);"
+      >
         <div class="pad1">
-            <input type="text" id="dateCreated" name="dateCreated" [(ngModel)]="commentservice.commentData.dateCreated">
-            <input type="text" id="id" name="id" [(ngModel)]="commentservice.commentData.id">
-            <input type="text" id="commentDateTime" name="commentDateTime" [(ngModel)]="commentservice.commentData.commentDateTime">
-            <input type="text" id="createdBy" name="createdBy" [(ngModel)]="commentservice.commentData.createdBy">
-            <input type="text" id="jobId" name="jobId" [(ngModel)]="commentservice.commentData.jobId">
-            <input type="text" id="fileName" name="fileName" [(ngModel)]="commentservice.commentData.fileName">
-            <p class="c2" id="exampleModalLabel">Please add your comments</p>
-          <textarea (change)="showDetails();" class="form-control h1" aria-label="With textarea" name="comments"
-            [(ngModel)]="commentservice.commentData.comments" required></textarea>
-          <input type="file" id="file" name="file" class="fileupload-comments" (change)="onFileSelected($event)" required>
-          <!-- <input type="file" id="File" name="File" class="fileupload-comments" (change)="onFileSelected($event)" > -->
-        </div>
+          <input
+            type="text"
+            id="dateCreated"
+            name="dateCreated"
+            [(ngModel)]="commentservice.commentData.dateCreated"
+            [value]="commentservice.commentData.dateCreated"
+          />
+          <input
+            type="text"
+            id="id"
+            name="id"
+            [(ngModel)]="commentservice.commentData.id"
+            [value]="commentservice.commentData.id"
+          />
+          <input
+            type="text"
+            id="commentDateTime"
+            name="commentDateTime"
+            [(ngModel)]="commentservice.commentData.commentDateTime"
+            [value]="commentservice.commentData.commentDateTime"
+          />
+          <input
+            type="text"
+            id="createdBy"
+            name="createdBy"
+            [(ngModel)]="commentservice.commentData.createdBy"
+            [value]="commentservice.commentData.createdBy"
+          />
+          <input
+            type="text"
+            id="jobId"
+            name="jobId"
+            [(ngModel)]="commentservice.commentData.jobId"
+            [value]="commentservice.commentData.jobId"
+          />
+          <input
+            type="text"
+            id="fileName"
+            name="fileName"
+            [(ngModel)]="commentservice.commentData.fileName"
+            [value]="commentservice.commentData.fileName"
+          />
+          <p class="c2" id="exampleModalLabel">Please add your comments</p>
+          <textarea
+           
+            class="form-control h1"
+            aria-label="With textarea"
+            name="comments"
+            [(ngModel)]="commentservice.commentData.comments"
+            required
+          ></textarea>
+          <!-- <input
+            type="file"
+            id="file"
+            name="file"
+            class="fileupload-comments"
+            (change)="onFileSelected($event)"
+            required
+          /> -->
+          <input type="file" id="file" name="file" (change)="onFileSelected($event)">        </div>
         <div>
           <div class="modal-fot">
-            <button type="button" class="but1 but2" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="but btn but1"  data-bs-dismiss="modal" aria-label="Close" [disabled]="!commentForm.valid">Send</button>
+            <button type="button" class="but1 but2" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button
+              type="submit"
+              class="but btn but1"
+              data-bs-dismiss="modal"
+              aria-label="Close"         
+            >
+            <!-- [disabled]="!commentForm.valid"
+               (click)="notifyNow();" -->
+              Send
+            </button>
           </div>
         </div>
-         <!-- data-bs-dismiss="modal" aria-label="Close -->
       </form>
     </div>
   </div>
 </div>
 
 <!-- Mark as completed Work Modal -->
-<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal5"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel5"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
+      <button
+        type="button"
+        class="btn-close e1"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
       <div class="pad1">
         <div class="">
-
-          <p class="c22" id="exampleModalLabel5"><b>Do you want mark this as Completed?</b></p>
+          <p class="c22" id="exampleModalLabel5">
+            <b>Do you want mark this as Completed?</b>
+          </p>
         </div>
         <div class="kksubbtn">
-          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
-          <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
-            <input type="hidden" id="id" name="id" [(ngModel)]="jobPost.id">
-            <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
-          <button type="button" class="btn kkkbtncn" type="submit"  data-bs-dismiss="modal" aria-label="Close">Confirm</button>
-        </form>
+          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">
+            Back
+          </button>
+          <form
+            #jobUpdateForm="ngForm"
+            (ngSubmit)="onSubmitJobStatus(jobUpdateForm)"
+          >
+            <input type="hidden" id="id" name="id" [(ngModel)]="jobPost.id" />
+            <input
+              type="hidden"
+              id="status"
+              name="status"
+              [(ngModel)]="jobPosts[0].status"
+            />
+            <button
+              type="button"
+              class="btn kkkbtncn"
+              type="submit"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Confirm
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
-
 <div *ngIf="viewwork">
   <div class="container">
-    <p class="hed1">Lorem ipsum dolor sit amet consectetur. </p>
-    <br>
+    <p class="hed1">{{jobPost.jobTitle}}</p>
+    <br />
     <div class="row mt-5">
       <div class="col-8">
         <div class="box1">
           <p class="hed">Work Files</p>
-          <hr class="codu1">
+          <hr class="codu1" />
           <div class="d-flex justify-content-center position-relative">
             <div class="scrollfiles">
-              <div *ngFor="let fileName of workFile; let i=index;">
+              <div *ngFor="let fileName of workFile; let i = index">
                 <div class="foldericon" *ngIf="jobPost.jobId == fileName.jobId">
                   <ul>
                     <li>
-                      <div class="  w-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="30" viewBox="0 0 35 30" fill="none">
+                      <div class="w-100">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="35"
+                          height="30"
+                          viewBox="0 0 35 30"
+                          fill="none"
+                        >
                           <path
                             d="M30.625 29.9997H4.375C3.23157 30.0138 2.12916 29.5705 1.30917 28.7668C0.489182 27.9631 0.0184324 26.8645 0 25.7115V4.28847C0.0184324 3.13552 0.489182 2.03691 1.30917 1.2332C2.12916 0.429486 3.23157 -0.0138263 4.375 0.000328855H12.425C12.6835 0.00205255 12.9384 0.0614977 13.1714 0.174392C13.4044 0.287286 13.6097 0.450825 13.7725 0.653256L18.3225 6.2649H30.5725C31.1431 6.25084 31.7108 6.35087 32.2428 6.55921C32.7748 6.76755 33.2607 7.08007 33.6723 7.47874C34.0839 7.87741 34.4132 8.35433 34.641 8.88199C34.8689 9.40965 34.9909 9.97759 35 10.553V25.7115C34.9816 26.8645 34.5108 27.9631 33.6908 28.7668C32.8708 29.5705 31.7684 30.0138 30.625 29.9997Z"
-                            fill="#E8A9FF" />
-                        </svg> <span class="dropname3"> {{fileName.fileUrl.split('_')[1]}}</span>
-                        <a [href]="imageUrl + fileName.fileUrl" target="_blank" download> <img
-                            src="../assets/download_icon.svg" class="closeicon1" alt=""></a>
+                            fill="#E8A9FF"
+                          />
+                        </svg>
+                        <span class="dropname3">
+                          {{ fileName.fileUrl.split("_")[1] }}</span
+                        >
+                        <a
+                          [href]="imageUrl + fileName.fileUrl"
+                          target="_blank"
+                          download
+                        >
+                          <img
+                            src="../assets/download_icon.svg"
+                            class="closeicon1"
+                            alt=""
+                        /></a>
                       </div>
                     </li>
                   </ul>
@@ -317,39 +557,88 @@
             </div>
           </div>
 
-
           <div class="text-center">
-            <button class="uploadbtn5"><img style="margin-top: -4px;" src="../assets/upload.png" alt="upload">Download
-              All</button>
+            <button class="uploadbtn5">
+              <img
+                style="margin-top: -4px"
+                src="../assets/upload.png"
+                alt="upload"
+              />Download All
+            </button>
           </div>
         </div>
       </div>
       <div class="col-4">
         <div class="box2">
           <p class="hed">Submit For Payment</p>
-          <hr class="codu2">
+          <hr class="codu2" />
           <ul>
-            <li class="subtex">Please check if all your requirements are completed</li>
-            <li class="subtex">Once approved project is completed there will be no rework</li>
+            <li class="subtex">
+              Please check if all your requirements are completed
+            </li>
+            <li class="subtex">
+              Once approved project is completed there will be no rework
+            </li>
           </ul>
-          <div class="d-flex justify-content-center" style="padding-bottom: 31px;">
-            <button class="btn subbut" data-bs-toggle="modal" data-bs-target="#exampleModal5" (click)="ChangeStatus();">Mark as
-              completed</button>
+          <div
+            class="d-flex justify-content-center"
+            style="padding-bottom: 31px"
+          >
+            <button
+              class="btn subbut"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal5"
+              (click)="ChangeStatus()"
+            >
+              Mark as completed
+            </button>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
-
 
   <!-- <label for="fileInput" *ngIf="selectedFile">{{ selectedFile.name }}</label>
 <input type="file" id="fileInput" (change)="onFileSelected12($event)" >
 <button (click)="selectFile()">Select File</button> -->
+</div>
 
 
 
-
-
-
+      <!-- Notification Form -->
+      <!-- <form
+        #notificationForm="ngForm"
+        (ngSubmit)="onSubmitNotification(notificationForm)"
+      >
+        <input
+          type="hidden"
+          id="id"
+          name="id"
+          [(ngModel)]="notificationsService.notificationData.id"
+          [value]="notificationsService.notificationData.id"
+        />
+        <input
+          type="hidden"
+          id="userId"
+          name="userId"
+          [(ngModel)]="notificationsService.notificationData.userId"
+          [value]="notificationsService.notificationData.userId"
+          
+        />
+        <input
+          type="hidden"
+          id="notification"
+          name="notification"
+          [(ngModel)]="notificationsService.notificationData.notification"
+          [value]="notificationsService.notificationData.notification"
+        />
+        <input
+          type="hidden"
+          id="notificationDate"
+          name="notificationDate"
+          [(ngModel)]="notificationsService.notificationData.notificationDate"
+          [value]="notificationsService.notificationData.notificationDate"
+        />
+        <button type="submit" class="d-none" #notificationButton>Save</button>
+      </form> -->
+      

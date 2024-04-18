@@ -1,5 +1,5 @@
 export class AppliedUserNotification {
-    public jobId!: string;
-    public jobUniqueId!: string;
+    public productID!: string;
+    public productName!: string;
     public message!: string;
 }

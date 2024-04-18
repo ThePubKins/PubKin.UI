@@ -193,7 +193,7 @@
   <div *ngIf="contentName === 'employment-history'">
     <div>
       <div class="container">
-        <div>
+        <div (click)="FetchDetails();">
           <p class="kkemphus">Add your Employment History</p>
           <p class="kkemphus1">Showcase your past experience and projects</p>
         </div>
@@ -215,7 +215,7 @@
               </div>
 
               <ng-container *ngFor="let workDetails of workDetail">
-                <ng-container *ngIf="workDetails.userId == User[0].id">
+                <ng-container *ngIf="workDetails.userId === User[0].id">
                   <div class="col-4">
                     <div class="rrpubcomcenalign1">
                       <div class="kkempcrd">
@@ -225,7 +225,7 @@
                             style="color: rgb(195, 0, 255)"
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
-                            (click)="editWorkDetails(workDetails)"
+                            (click)="editWorkDetails(workDetails) "
                           >
                             edit
                           </span>
@@ -397,12 +397,15 @@
                   [(ngModel)]="workservice.workData.dateCreated"
                 />
                 <input
-                  type="hidden"
-                  id="UserId"
-                  name="UserId"
-                  [(ngModel)]="User[0].id"
+                  type="text"
+                  id="userId"
+                  name="userId"
+                  [(ngModel)]="workservice.workData.userId"
+                  [value]="workservice.workData.userId"
                 />
-                <div>
+
+                
+                <div >
                   <p class="kkeduhdtg kkeduhdtg1">Job Title*</p>
                   <input
                     class="kkin1"
@@ -649,7 +652,7 @@
                   [disabled]="workdetailsform.invalid"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                  (click)="PercentageSubmit()"
+                  (click)="PercentageSubmit();FetchDetails()"
                 >
                   Save
                 </button>
@@ -938,7 +941,7 @@
                 class="btn savevv"
                 data-bs-dismiss="modal"
                 [disabled]="portfolioForm.invalid"
-                (click)="PercentageSubmit()"
+                (click)="PercentageSubmit();FetchDetails()"
               >
                 Save
               </button>
@@ -1024,9 +1027,9 @@
         <div class="col-4">
           <button
             class="btn kkempbtn2"
-            routerLink="/profile/employment-history"
+            routerLink="/profile/employment-history" 
           >
-            Save Details
+           Next
           </button>
         </div>
       </div>
@@ -1170,7 +1173,6 @@
                       placeholder="eg: ABC University"
                       ngModel
                       name="instituteName"
-                      minlength="0"
                       maxlength="90"
                       #instituteName="ngModel"
                       id="instituteName"
@@ -1194,7 +1196,6 @@
                       placeholder="eg: Bachelors"
                       ngModel
                       name="department"
-                      minlength="0"
                       maxlength="35"
                       #department="ngModel"
                       id="department"
@@ -1249,7 +1250,6 @@
                             "
                             required
                             [(ngModel)]="workservice.workData.joiningYear"
-                            required
                           >
                             <option *ngFor="let year of years" [value]="year">
                               {{ year }}
@@ -1302,8 +1302,6 @@
                       placeholder="Describe your study, awards, recognistion"
                       ngModel
                       name="description"
-                      minlength="0"
-                      maxlength="100"
                       #description="ngModel"
                       id="description"
                       [(ngModel)]="educationservice.educationData.description"
@@ -1339,8 +1337,8 @@
                   type="submit"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                  [disabled]="educationForm.invalid"
-                  (click)="PercentageSubmit()"
+                  [disabled]="!educationForm.invalid"
+                  (click)="PercentageSubmit();FetchDetails()"
                 >
                   Save
                 </button>
@@ -1684,7 +1682,7 @@
         <ng-container *ngFor="let priceSkill of priceSkills">
           <div class="col-4" *ngIf="priceSkill.userId == User[0].id">
             <div class="rrpubcomcenalign1">
-              <div class="kkempcrd">
+              <div class="kkempcrd" (click)="FetchDetails();">
                 <div class="kkeditdet12">
                   <span
                     class="material-symbols-outlined"
@@ -1841,7 +1839,7 @@
                 type="hidden"
                 id="userId"
                 name="userId"
-                [(ngModel)]="User[0].id"
+                [(ngModel)]="priceService.pricingSkillData.userId"
               />
               <div>
                 <div class="kkeduhdtg">
@@ -2100,7 +2098,7 @@
                           data-bs-dismiss="modal"
                           type="submit"
                           [disabled]="priceForm.invalid"
-                          (click)="PercentageSubmit()"
+                          (click)="PercentageSubmit();FetchDetails()"
                         >
                           Save
                         </button>
@@ -2508,6 +2506,7 @@
               class="btn mat-button saveauth"
               type="submit"
               [disabled]="personalForm.invalid"
+              (click)="FetchDetails()"
             >
               Save
             </button>

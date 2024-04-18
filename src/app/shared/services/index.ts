@@ -14,3 +14,4 @@ export * from './wallet.service';
 export * from './payment.service';
 export * from './applied-user-notification.service';
 export * from './notification.service';
+export * from './signalr.service';

@@ -42,7 +42,7 @@
               <p class="bid">Bidding rate : <span class="rate">${{Apply.biddingRate}}/ hour</span></p>
               <!-- <button class="msg">Message</button> -->
               <button class="hire" data-bs-toggle="modal" data-bs-target="#hireModal"
-                (click)="ApplyModal(Apply)">Hire</button>
+                (click)="ApplyModal(Apply);showNotificationDetails();">Hire</button>
               <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Apply)">View
                 Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
             </div>
@@ -102,7 +102,7 @@
 
                 <!-- <img class="p-2" src="./assets/shortlist.png" data-bs-toggle="modal" data-bs-target="#deletmodel2"> -->
 
-                <img class="p-2" (click)="ApplyDeleteModal(Apply)" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
+                <img class="p-2" (click)="ApplyDeleteModal(Apply);showNotificationDetails();" src="./assets/deleteico.png" data-bs-toggle="modal" data-bs-target="#deletmodel1">
 
               </div>
             </div>
@@ -142,7 +142,7 @@
       <div class="col-3">
         <p class="bid">Bidding rate : <span class="rate">${{Apply.biddingRate}}/ hour</span></p>
         <button class="msg">Message</button><button class="hire" data-bs-toggle="modal" data-bs-target="#hireModal"
-          (click)="ApplyModal(Apply)">Hire</button>
+          (click)="ApplyModal(Apply);showNotificationDetails();">Hire</button>
         <p class="cov" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="openModal(Apply)">View
           Cover Letter <img src="../assets/Vector 26.png" alt="Welcome Pubkin"> </p>
       </div>
@@ -306,9 +306,10 @@
                 <input type="hidden" id="postBy" name="postBy" [(ngModel)]="selectedhire.postBy">
                 <input type="hidden" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
                 <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
-                <button class="cpay" type="submit" data-bs-toggle="modal" data-bs-target="#saveModal"
-                  (click)="ChangeStatus();successmsg();subscribeToProduct();">Confirm & Pay</button>
+                <button class="cpay" type="submit" 
+                  (click)="ChangeStatus();">Confirm & Pay</button>
               </form>
+              <!-- data-bs-toggle="modal" data-bs-target="#saveModal" -->
               <p class="disclaimer">*This payment will be add on your wallet</p>
             </div>
           </div>
@@ -473,3 +474,42 @@
 
 <!-- <ng-toast [style]="{ width: '300px', paddingTop: '30px' }"></ng-toast> -->
 
+      <!-- Notification Form -->
+      <!-- <form
+        #notificationForm="ngForm"
+        (ngSubmit)="onSubmitNotification(notificationForm)"
+      >
+        <input
+          type="hidden"
+          id="id"
+          name="id"
+          [(ngModel)]="notificationsService.notificationData.id"
+          [value]="notificationsService.notificationData.id"
+
+        />
+        <input
+          type="hidden"
+          id="userId"
+          name="userId"
+          [(ngModel)]="notificationsService.notificationData.userId"
+          [value]="notificationsService.notificationData.userId"
+          
+        />
+        <input
+          type="hidden"
+          id="notification"
+          name="notification"
+          [(ngModel)]="notificationsService.notificationData.notification"
+          [value]="notificationsService.notificationData.notification"
+        />
+        <input
+          type="hidden"
+          id="notificationDate"
+          name="notificationDate"
+          [(ngModel)]="notificationsService.notificationData.notificationDate"
+
+        />
+        <button type="submit" class="d-none" #notificationButton>Save</button>
+      </form> -->
+ 
+      <button (click)="sendNotification();sendNotifications();">asdbsaddbasdb</button>

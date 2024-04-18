@@ -78,7 +78,7 @@ export class JobPostComponent implements OnInit {
 
   getAllPosts() {
     return this.jobservice.getJobPost().pipe(
-        map(data => data.length) // Assuming data is an array, this counts its length
+        map(data => data.length)
     );
 }
 

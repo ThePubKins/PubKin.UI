@@ -1,6 +1,22 @@
 <router-outlet></router-outlet>
 
 
-
+<button (click)="sendNotification();sendNotifications();">Send Notification</button>
 
 <ng-toast [style]="{ width: '300px', paddingTop: '30px' }"></ng-toast>
+
+  
+<div>
+    <input type="text" [(ngModel)]="comment.fileName" placeholder="File Name"><br>
+    <input type="text" [(ngModel)]="comment.dateLastModified" placeholder="Date Last Modified"><br>
+    <input type="text" [(ngModel)]="comment.fileUrl" placeholder="File URL"><br>
+    <input type="text" [(ngModel)]="comment.comments" placeholder="Comments"><br>
+    <input type="text" [(ngModel)]="comment.lastModifiedBy" placeholder="Last Modified By"><br>
+    <input type="text" [(ngModel)]="comment.jobId" placeholder="Job ID"><br>
+    <input type="text" [(ngModel)]="comment.commentDateTime" placeholder="Comment Date Time"><br>
+    <input type="text" [(ngModel)]="comment.dateCreated" placeholder="Date Created"><br>
+    <input type="text" [(ngModel)]="comment.id" placeholder="ID"><br>
+    <input type="file" (change)="onFileSelected($event)"><br>
+    <input type="text" [(ngModel)]="comment.createdBy" placeholder="Created By"><br>
+    <button (click)="onSubmit()">Submit</button>
+  </div>

@@ -4,7 +4,7 @@ export interface workdetails  {
   dateCreated: string;
   lastModifiedBy: string;
   dateLastModified: string;
-  UserId : string ;
+  userId : string ;
   jobTitle:  string;
   companyName : string;
   companyLocation : string;
