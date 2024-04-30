@@ -1,19 +1,14 @@
+<form #commentForm="ngForm" (ngSubmit)="submitComment(commentForm)">
+  <input type="text" name="FileName" [(ngModel)]="commentData.FileName" >
+  <input type="text" name="DateLastModified" [(ngModel)]="commentData.DateLastModified"  placeholder="DateLastModified">
+  <input type="text" name="FileUrl" [(ngModel)]="commentData.FileUrl" >
+  <input type="text" name="Comments" [(ngModel)]="commentData.Comments" >
+  <input type="text" name="LastModifiedBy" [(ngModel)]="commentData.LastModifiedBy" >
+  <input type="text" name="JobId" [(ngModel)]="commentData.JobId" >
+  <input type="text" name="CommentDateTime" [(ngModel)]="commentData.CommentDateTime" >
+  <input type="text" name="DateCreated" [(ngModel)]="commentData.DateCreated"  placeholder="dateCreated">
+  <input type="text" name="Id" [(ngModel)]="commentData.Id"  placeholder="id">
+  <input type="file" name="File" (change)="onFileSelected($event)" >
 
-<div>
-    <label for="year1">Select Year 1:</label>
-    <select id="year1" [(ngModel)]="selectedYear1" (change)="updateSelectedYears('year1')">
-      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-    </select>
-    <br>
-    <label for="year2">Select Year 2:</label>
-    <select id="year2" [(ngModel)]="selectedYear2" (change)="updateSelectedYears('year2')">
-      <option *ngFor="let year of getAvailableYears()" [value]="year">{{ year }}</option>
-    </select>
-  
-    <div *ngIf="selectedYear1 || selectedYear2">
-      <p>Selected Years: {{ selectedYear1 || 'Not selected' }} TO {{ selectedYear2 || 'Not selected' }}</p>
-    </div>
-  
-    <app-accordion [items]="accordionItems"></app-accordion>
-  </div>
-  
+  <button type="submit">Submit</button>
+</form>

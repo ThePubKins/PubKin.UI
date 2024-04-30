@@ -1,24 +1,12 @@
-export interface comments {
-  // id: string;
-  // createdBy: string;
-  // dateCreated: string;
-  // lastModifiedBy: string;
-  // dateLastModified: string;
-  // jobId: string;
-  // comments: string;
-  // fileUrl: string;
-  // fileName: string ;
-  // file: File;
-  // commentDateTime : string;
-
+export interface Comment {
   fileName: string;
   dateLastModified: string;
   fileUrl: string;
-  comments: string;
+  Comments: string;
   lastModifiedBy: string;
   jobId: string;
   commentDateTime: string;
-  dateCreated: string;
+  dateCreated: string | null;
   id: string;
   file: File;
   createdBy: string;

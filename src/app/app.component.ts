@@ -4,14 +4,14 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { PubKinAppModule } from './modules';
 import { NgToastModule } from 'ng-angular-popup';
 import { FormsModule, NgForm } from '@angular/forms';
-import { CommentsService, NotificationService, SignalrService, comments } from './shared';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { CommentsService, NotificationService, SignalrService, Comment } from './shared';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   providers: [],
-  imports: [CommonModule, RouterOutlet, RouterModule, RouterLink, PubKinAppModule, NgToastModule, FormsModule],
+  imports: [CommonModule, RouterOutlet, RouterModule, RouterLink, PubKinAppModule, NgToastModule, FormsModule,HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -31,11 +31,7 @@ export class AppComponent {
 
   selectedFile: File;
   commentData: any = {};
- 
 
-  onFileSelected(event: any) {
-    this.commentService.commentData.file = event.target.files[0];
-  }
 
    sendNotification() {
      const notificationData = { 
@@ -57,61 +53,7 @@ export class AppComponent {
 
   comments: any[] = [];
 
-  ngOnInit() {
-    this.getData();
-  }
-
-  getData() {
-    this.commentService.getComments().subscribe(response => {
-      this.comments = response;
-    });
-  }
-
-  // @ViewChild('fileInput') fileInput!: ElementRef;
-
-  // onSubmit() {
-  //   const formData = new FormData();
-  //   formData.append('FileName', this.fileName);
-  //   formData.append('DateLastModified', this.dateLastModified);
-  //   formData.append('FileUrl', this.fileUrl);
-  //   formData.append('Comments', this.comments);
-  //   formData.append('LastModifiedBy', this.lastModifiedBy);
-  //   formData.append('JobId', this.jobId);
-  //   formData.append('CommentDateTime', this.commentDateTime);
-  //   formData.append('DateCreated', this.dateCreated);
-  //   formData.append('Id', this.id);
-  //   formData.append('File', this.file);
-  //   formData.append('CreatedBy', this.createdBy);
-
-  //   this.yourService.postData(formData).subscribe(response => {
-  //     console.log(response); // Handle the response here
-  //   });
-  // }
-
-  // onFileSelected(event: any) {
-  //   this.file = event.target.files[0];
-  // }
 
 
   
-  comment: comments = {
-    fileName: '',
-    dateLastModified: '',
-    fileUrl: '',
-    comments: '',
-    lastModifiedBy: '',
-    jobId: '',
-    commentDateTime: '',
-    dateCreated: '',
-    id: '',
-    file: {} as File, 
-    createdBy: ''
-  };
-
-
-  onSubmit() {
-    this.commentService.postData(this.comment, this.comment.file).subscribe(response => {
-      console.log(response); // Handle the response here
-    });
-  }
 }

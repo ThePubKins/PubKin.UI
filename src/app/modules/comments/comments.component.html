@@ -366,12 +366,12 @@
         data-bs-dismiss="modal"
         aria-label="Close"
       ></button>
-      <form
+      <!-- <form
         novalidate
         #commentForm="ngForm"
         autocomplete="off"
-        (ngSubmit)="submitForm(commentForm);"
-      >
+      
+      >  (ngSubmit)="submitForm(commentForm);"
         <div class="pad1">
           <input
             type="text"
@@ -424,14 +424,14 @@
             [(ngModel)]="commentservice.commentData.comments"
             required
           ></textarea>
-          <!-- <input
+           <input
             type="file"
             id="file"
             name="file"
             class="fileupload-comments"
             (change)="onFileSelected($event)"
             required
-          /> -->
+          /> 
           <input type="file" id="file" name="file" (change)="onFileSelected($event)">        </div>
         <div>
           <div class="modal-fot">
@@ -444,13 +444,13 @@
               data-bs-dismiss="modal"
               aria-label="Close"         
             >
-            <!-- [disabled]="!commentForm.valid"
-               (click)="notifyNow();" -->
+             [disabled]="!commentForm.valid"
+               (click)="notifyNow();" 
               Send
             </button>
           </div>
         </div>
-      </form>
+      </form> -->
     </div>
   </div>
 </div>

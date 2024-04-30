@@ -347,9 +347,6 @@ export class ProfiledetailsComponent implements OnInit {
    
   }
 
-
-
-
   // Profile Percentage Submit to Post Function
   onSubmitpercentage(form: NgForm) {
     if (form.valid && this.userservice.userData) {

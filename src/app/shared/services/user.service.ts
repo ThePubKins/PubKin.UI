@@ -29,6 +29,12 @@ export class UserService {
     return this.apiService.put(`User/profilepicture`, userData);
   }
 
+
+  UpdatePassword(userData: any): Observable<any> {
+    return this.apiService.put(`User/updatepassword`, userData);
+  }
+
+
   putProfilePercentage(formData: any): Observable<any> {
     return this.apiService.put(`User/profilepercentage`, formData);
   }
