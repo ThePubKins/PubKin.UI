@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   constructor(
-    private http: HttpClient
+    private http: HttpClient  
   ) { }
 
   private formatErrors(error: any): Observable<never> {
@@ -27,12 +27,14 @@ export class ApiService {
     ).pipe(catchError(this.formatErrors));
   }
 
-  post(path: string, body: Object = {}): Observable<any> {
+  post(path: string, body: Object = {}, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
     return this.http.post(
       `${environment.baseApiURL}${path}`,
-      JSON.stringify(body)
+      JSON.stringify(body),
+      { headers }
     ).pipe(catchError(this.formatErrors));
   }
+  
 
   delete(path: string): Observable<any> {
     return this.http.delete(

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AppliedUserNotificationService, AppliedUserService, BankDetailsService, UserauthenticateService } from '../../shared';
+import { AppliedUserNotificationService, AppliedUserService, BankDetailsService, NotificationService, SignalrService, UserauthenticateService } from '../../shared';
 import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-accept-request',
@@ -26,7 +26,8 @@ export class AcceptRequestComponent implements OnInit {
   filteredData: any[];
 
   constructor(public route: ActivatedRoute, public userauthservice: UserauthenticateService, public bankservice: BankDetailsService,
-    public applyService: AppliedUserService, private datePipe: DatePipe, public singlarService: AppliedUserNotificationService) {
+    public applyService: AppliedUserService, public datePipe: DatePipe, public singlarService:SignalrService,
+    public notificationsService:NotificationService) {
     this.currentDate = this.datePipe.transform(new Date(), 'dd-MM-yyyy');
   }
 
@@ -46,15 +47,6 @@ export class AcceptRequestComponent implements OnInit {
   ApplyDeleteModal(Applies: any) {
     this.deleteProposal = Applies;
   }
-
-  delay(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  subscribeToProduct() {
-    this.singlarService.subscribeToProduct(this.Applies[0].jobId);
-  }
-
 
   onChatTargetClick(targetUser: any): void {
     this.chatTarget = targetUser;
@@ -103,6 +95,7 @@ export class AcceptRequestComponent implements OnInit {
 
 success:boolean=false;
 successmsg(){
+  this.notificationButton.nativeElement.click();
   this.success = !this.success;
   if (this.success) {
     setTimeout(() => {
@@ -110,7 +103,7 @@ successmsg(){
     }, 1500);
   }
 }
-  //Banking Details Submit to Post Function
+//Banking Details Submit to Post Function
   onSubmitBankDetails(form: NgForm) {
     if (form.valid && this.bankservice.bankData) {
       this.bankservice.postBankDetails(form.value).subscribe();
@@ -121,6 +114,17 @@ successmsg(){
     setTimeout(() => {
       this.Applies[0].status = "";
     }, 3000);
+  }
+
+  dateFormated1:any;
+  dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
+
+  showNotificationDetails() {  
+    this.dateFormated1= this.dateFormatted;
+    this.notificationsService.notificationData.userId = this.selectedhire.userId;
+    sessionStorage.setItem("userId", this.notificationsService.notificationData.userId);
+    this.notificationsService.notificationData.notificationDate =  this.dateFormated1;
+    this.notificationsService.notificationData.notification = "You got the new offer for "  + this.selectedhire.jobUniqueId;
   }
   
   ChangeStatus() { 
@@ -152,6 +156,7 @@ successmsg(){
       }
     }
   }
+
   calculateFees() {
     const platformFeePercentage = 2;
     const taxesPercentage = 6;
@@ -165,6 +170,34 @@ successmsg(){
     };
   }
 
+
+    //Notifications Form 
+    // onSubmitNotification(form: NgForm, userId:string) {
+    //   if (form.valid && this.notificationsService.notificationData) {
+    //     this.notificationsService.postNotification(userId, form.value).subscribe();      }
+    // }
+  
+    @ViewChild('notificationButton') notificationButton: ElementRef;   
+
+
+    userId =sessionStorage.getItem('authorId')?.toString() || '';;
+ 
+ sendNotification() {
+   const notificationData = { 
+    notification: 'Your notification message here', };
+   this.notificationsService.postNotification(this.userId, notificationData)
+     .subscribe(response => {
+       console.log('Notification posted successfully:', response);
+     }, error => {
+       console.error('Error posting notification:', error);
+     });
+ }
+
+
+  sendNotifications() {
+   const message = 'Your notification message here';
+   this.singlarService.sendNotification(message);
+ }
 }
 
 

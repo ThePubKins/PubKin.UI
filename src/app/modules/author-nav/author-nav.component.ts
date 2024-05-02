@@ -31,10 +31,13 @@ export class AuthorNavComponent implements OnInit {
   getUserData() {
     const Email =
       this.userauthservice.getUserEmail() ?? sessionStorage.getItem("email");
+     
     if (Email) {
       this.userauthservice.getUserData().subscribe({
         next: (data) => {
           this.User = data?.filter((User: any) => User.email === Email);
+          const userId = this.User[0].id;
+          sessionStorage.setItem("authorId", userId);
         },
       });
     } else {

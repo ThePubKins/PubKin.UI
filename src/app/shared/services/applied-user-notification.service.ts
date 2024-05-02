@@ -11,16 +11,16 @@ export class AppliedUserNotificationService {
   constructor(private toast: NgToastService) {}
   private hubConnection!: signalR.HubConnection;
  
-    public startConnection = () => {
-      this.hubConnection = new signalR.HubConnectionBuilder()
-                              .withUrl('https://localhost:7172/Notify',{ skipNegotiation: true,
-                              transport: signalR.HttpTransportType.WebSockets})
-                              .build();
-      this.hubConnection
-        .start()
-        .then(() => console.log('Connection started'))
-        .catch(err => console.log('Error while starting connection: ' + err))
-    }
+    // public startConnection = () => {
+    //   this.hubConnection = new signalR.HubConnectionBuilder()
+    //                           .withUrl('https://localhost:7172/Notify',{ skipNegotiation: true,
+    //                           transport: signalR.HttpTransportType.WebSockets})
+    //                           .build();
+    //   this.hubConnection
+    //     .start()
+    //     .then(() => console.log('Connection started'))
+    //     .catch(err => console.log('Error while starting connection: ' + err))
+    // }
     
     public addProductListener = () => {
       this.hubConnection.on('SendMessage', (notification: AppliedUserNotification) => {

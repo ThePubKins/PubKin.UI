@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-example',
@@ -7,41 +9,48 @@ import { Component } from '@angular/core';
 })
 
 export class ExampleComponent {
+  commentData = {
+    FileName: '',
+    DateLastModified: '',
+    FileUrl: '',
+    Comments: '',
+    LastModifiedBy: '',
+    JobId: '',
+    CommentDateTime: '',
+    DateCreated: '',
+    Id: '',
+    File: null as any  // Adjusted to explicitly set it as a File type
+  };
 
+  constructor(private http: HttpClient) {}
 
-  accordionItems = [
-    { title: 'Section 1', content: 'Content for Section 1 goes here.', active: false },
-    { title: 'Section 2', content: 'Content for Section 2 goes here.', active: false },
-    // Add more sections as needed
-  ];
+  submitComment(form: NgForm) {
+    const formData = new FormData();
+    formData.append('FileName', this.commentData.FileName);
+    formData.append('DateLastModified', this.commentData.DateLastModified);
+    formData.append('FileUrl', this.commentData.FileUrl);
+    formData.append('Comments', this.commentData.Comments);
+    formData.append('LastModifiedBy', this.commentData.LastModifiedBy);
+    formData.append('JobId', this.commentData.JobId);
+    formData.append('CommentDateTime', this.commentData.CommentDateTime);
+    formData.append('DateCreated', this.commentData.DateCreated);
+    formData.append('Id', this.commentData.Id);
+    formData.append('File', this.commentData.File, this.commentData.File.name); // Add file with filename
 
-  // Extend the list of years
-  years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, ]; 
-  selectedYear1: number | null;
-  selectedYear2: number | null;
-
-  updateSelectedYears(dropdown: string) {
-    // Check if the selected years are the same and handle accordingly
-    if (dropdown === 'year1' && this.selectedYear1 === this.selectedYear2) {
-      // Handle the case when the selected years in Section 1 and Section 2 are the same
-      this.selectedYear1 = null;
-      alert("Please select different years in Section 1 and Section 2.");
-    } else if (dropdown === 'year2' && this.selectedYear1 === this.selectedYear2) {
-      // Handle the case when the selected years in Section 1 and Section 2 are the same
-      this.selectedYear2 = null;
-      alert("Please select different years in Section 1 and Section 2.");
-    }
+    this.http.post('https://localhost:7172/api/1.0/Comment', formData)
+      .subscribe(response => {
+        console.log('Comment submitted successfully:', response);
+        // Reset form after successful submission if needed
+        form.resetForm();
+      }, error => {
+        console.error('Error submitting comment:', error);
+      });
   }
 
-  // Return the list of years excluding the already selected year in Section 1
-  getAvailableYears(): number[] {
-    if (this.selectedYear1 !== null && this.selectedYear1 !== undefined) {
-      // If a starting year is selected, exclude that year and the years before it
-      return this.years.filter(year => year > this.selectedYear1!);
-    } else {
-      return this.years;
-    }
+  onFileSelected(event:any) {
+    this.commentData.File = event.target.files[0];
   }
+
 }
 
 

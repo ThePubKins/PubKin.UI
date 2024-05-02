@@ -138,9 +138,8 @@ export class ApplyNowComponent {
     this.notificationsService.notificationData.userId = this.JobPost.userId;
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
     this.notificationsService.notificationData.notificationDate = this.dateFormatted;
-    this.notificationsService.notificationData.notification = "Yours " + this.JobPost.jobUniqueId  + "have a new applied by" + this.JobPost.userEmail ;
+    this.notificationsService.notificationData.notification = "Your job applied by " + this.UserData[0].firstName + " (" +this.JobPost.jobUniqueId+")" ;
   }
-
 
   //Submit  the form data 
   OnSubmitApply(form: NgForm) {
@@ -215,10 +214,9 @@ export class ApplyNowComponent {
   }
 
   //Notification 
-   onSubmitNotification(form: NgForm) {
+   onSubmitNotification(form: NgForm, userId:string) {
     if (form.valid && this.notificationsService.notificationData) {
-      this.notificationsService.postNotification(form.value).subscribe();
-    }
+      this.notificationsService.postNotification(userId, form.value).subscribe();    }
   }
 
 
