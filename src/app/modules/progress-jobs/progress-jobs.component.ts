@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppliedUserService, JobpostService, UserauthenticateService, NotificationService } from '../../shared';
+import { AppliedUserService, JobpostService, UserauthenticateService, NotificationService, SignalrService } from '../../shared';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
@@ -27,6 +27,7 @@ export class ProgressJobsComponent {
     public router: Router,
     public datePipe: DatePipe,
     public jobService: JobpostService,
+    private singlarService: SignalrService,
     public notificationsService: NotificationService,
     public appliedService: AppliedUserService,
   ) { }
@@ -154,5 +155,25 @@ export class ProgressJobsComponent {
   showJobDetails(jobUniqueId: string): void {
     this.router.navigate(['/freelancers/job-details', jobUniqueId]);
   }
+
+  userId =sessionStorage.getItem('authorId')?.toString() || '';
+
+ sendNotification() {
+  const notificationData = { 
+   notification: 'Your notification message here',
+   userId :  '9c268f74-fcab-4f5a-b802-4f957bb35f5a' };
+  this.notificationsService.postNotification(this.userId, notificationData)
+    .subscribe(response => {
+      console.log('Notification posted successfully:', response);
+    }, error => {
+      console.error('Error posting notification:', error);
+    });
+}
+
+
+ sendNotifications() {
+  const message = 'Your notification message here';
+  this.singlarService.sendNotification(message);
+}
 
 }

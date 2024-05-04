@@ -1,8 +1,6 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { HttpHeaders } from "@angular/common/http";
-import { CommentsService, Comment } from "../../shared";
+import { CommentsService } from "../../shared";
 import { NgForm } from "@angular/forms";
 import { DatePipe } from "@angular/common";
 
@@ -14,7 +12,6 @@ import { DatePipe } from "@angular/common";
 export class HomeComponent {
   constructor(
     private router: Router,
-    public http: HttpClient,
     public commentService: CommentsService,
     private datePipe: DatePipe
   ) {}
@@ -38,89 +35,37 @@ export class HomeComponent {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // onSubmit(form: NgForm) {
-  //   if (form.valid && this.commentService.commentData) {
-  //     const headers = new HttpHeaders();
-  //     headers.set('Content-Type', 'multipart/form-data');
-  //     this.commentService.commentData.dateCreated = this.datePipe.transform(this.commentService.commentData.dateCreated, 'yyyy-MM-ddTHH:mm:ss');
-  //     this.commentService.addComment(this.commentService.commentData, headers).subscribe();
-  //     console.log(form)
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  // submitComment(commentForm: NgForm) {
+  //   const formData: FormData = new FormData();
+  //   formData.append('FileName', commentForm.value.FileName);
+  //   formData.append('DateLastModified', commentForm.value.DateLastModified);
+  //   formData.append('FileUrl', commentForm.value.FileUrl);
+  //   formData.append('Comments', commentForm.value.Comments);
+  //   formData.append('LastModifiedBy', commentForm.value.LastModifiedBy);
+  //   formData.append('JobId', commentForm.value.JobId);
+  //   formData.append('CommentDateTime', commentForm.value.CommentDateTime);
+  //   formData.append('DateCreated', commentForm.value.DateCreated);
+  //   formData.append('Id', commentForm.value.Id);
+  //   if (this.selectedFile) {
+  //     formData.append('file', this.selectedFile);
   //   }
-  // }
+  //   formData.append('CreatedBy', commentForm.value.CreatedBy);
 
-  // onSubmit(form: NgForm) {
-  //   if (form.valid && this.commentService.commentData) {
-  //     this.commentService.commentData.dateCreated = this.datePipe.transform(
-  //       this.commentService.commentData.dateCreated, "yyyy-MM-ddTHH:mm:ss");
-
-  //     const formData = new FormData();
-  //     formData.append(
-  //       "commentDateTime",
-  //       this.commentService.commentData.commentDateTime
+  //   this.commentService.submitComment(formData)
+  //     .subscribe(
+  //       (response) => {
+  //         console.log('Comment submitted successfully: ', response);
+  //       },
+  //       (error) => {
+  //         console.error('Error submitting comment: ', error);
+  //       }
   //     );
-  //     formData.append("createdBy", this.commentService.commentData.createdBy);
-  //     formData.append("jobId", this.commentService.commentData.jobId);
-  //     formData.append("comments", this.commentService.commentData.Comments);
-
-  //     if (this.commentService.commentData.file) {
-  //       formData.append("file", this.commentService.commentData.file);
-  //     }
-
-  //     const headers = new HttpHeaders();
-
-  //     this.commentService
-  //       .addComment(this.commentService.commentData, headers)
-  //       .subscribe(
-  //         (response) => {
-  //           console.log("Response from server:", response);
-  //         },
-  //         (error) => {
-  //           console.error("Error occurred:", error);
-  //         }
-  //       );
-  //   }
   // }
 
-  onSubmit(form: NgForm) {
-    if (form.valid && this.commentService.commentData) {
-      this.commentService.commentData.dateCreated = this.datePipe.transform(
-        this.commentService.commentData.dateCreated, "yyyy-MM-ddTHH:mm:ss");
-  
-      const formData = new FormData();
-      formData.append("commentDateTime", this.commentService.commentData.commentDateTime);
-      formData.append("createdBy", this.commentService.commentData.createdBy);
-      formData.append("jobId", this.commentService.commentData.jobId);
-      formData.append("comments", this.commentService.commentData.Comments);
-      formData.append("fileName", this.commentService.commentData.fileName);
-  
-      if (this.commentService.commentData.file) {
-        formData.append("file", this.commentService.commentData.file, this.commentService.commentData.fileName);
-      }
-  
-      const headers = new HttpHeaders();
-          headers.set('Content-Type', 'multipart/form-data');
-      
-          this.commentService
-        .addComment(this.commentService.commentData, headers)
-        .subscribe(
-          (response) => {
-            console.log("Response from server:", response);
-          },
-          (error) => {
-            console.error("Error occurred:", error);
-          }
-        );
-    }
-  }
-
-  onFileSelected(event: any): void {
-    const selectedFile = event.target.files[0];
-    if (selectedFile) {
-      this.commentService.commentData.file = selectedFile;
-      this.commentService.commentData.fileName = selectedFile.name; 
-    }
-  }
-
-
-  
 }

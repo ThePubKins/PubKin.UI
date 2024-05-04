@@ -1,23 +1,33 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "../../core";
 import { Comment } from "../models";
-import { HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
 })
 export class CommentsService {
-  constructor(private apiService: ApiService) { }
-
+  constructor(private apiService: ApiService, private http: HttpClient) { }
   
   commentData: Comment = {} as Comment;
   list: Comment[] = [];
 
-  // addComment(commentData: any) {
-  //   return this.apiService.post(`Comment`, this.commentData);
-  // }
-
-  addComment(commentData: any, headers: HttpHeaders) {
-    return this.apiService.post(`Comment`, commentData,  headers);
+  getComments(): Observable<Comment[]> {
+    return this.apiService.get(`Comment`);
   }
+
+  postComments(commentData: any) {
+    return this.apiService.post(`Comment`, this.commentData);
+  }
+
+  // submitComment(formData: FormData): Observable<any> {
+  //   let httpOptions = new HttpHeaders({
+  //     'accept': '*/*'
+  //   });
+
+  //   httpOptions = httpOptions.append('Content-Type', 'multipart/form-data');
+
+  //   return this.apiService.post(`Comment`, formData, httpOptions);
+  // }
 }

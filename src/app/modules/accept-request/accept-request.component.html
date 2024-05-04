@@ -307,7 +307,7 @@
                 <input type="hidden" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
                 <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
                 <button class="cpay" type="submit" 
-                  (click)="ChangeStatus();">Confirm & Pay</button>
+                  (click)="ChangeStatus();sendNotification();sendNotifications();">Confirm & Pay</button>
               </form>
               <!-- data-bs-toggle="modal" data-bs-target="#saveModal" -->
               <p class="disclaimer">*This payment will be add on your wallet</p>
@@ -474,10 +474,10 @@
 
 <!-- <ng-toast [style]="{ width: '300px', paddingTop: '30px' }"></ng-toast> -->
 
-      <!-- Notification Form -->
-      <!-- <form
+      <!-- Notification Form
+      <form
         #notificationForm="ngForm"
-        (ngSubmit)="onSubmitNotification(notificationForm)"
+        (ngSubmit)="onSubmitNotification(notificationForm, userId)"
       >
         <input
           type="hidden"
@@ -510,6 +510,6 @@
 
         />
         <button type="submit" class="d-none" #notificationButton>Save</button>
-      </form> -->
+      </form>  -->
  
       <button (click)="sendNotification();sendNotifications();">asdbsaddbasdb</button>

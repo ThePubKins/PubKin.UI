@@ -125,14 +125,14 @@ export class CommentsComponent implements OnInit {
   }
 
 
-  // submitForm(form: NgForm) {
-  //   if (form.valid && this.commentservice.commentData) {
-  //     this.commentservice.postComments(this.commentservice.commentData).subscribe();
-  //     // setTimeout(() => {
-  //     //   window.location.reload();
-  //     // }, 50);
-  //   }
-  // }
+  submitForm(form: NgForm) {
+    if (form.valid && this.commentservice.commentData) {
+      this.commentservice.postComments(this.commentservice.commentData).subscribe();
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 50);
+    }
+  }
 
   // submitForm1() {
   //   const formData = new FormData();
@@ -211,9 +211,9 @@ export class CommentsComponent implements OnInit {
 
   showCommentDetails() {
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'MMM dd hh:mma');
-    // this.commentservice.commentData.commentDateTime = this.dateFormatted;
-    // this.commentservice.commentData.jobId = this.jobPost.id;
-    // this.commentservice.commentData.createdBy = this.User[0].firstName;
+    this.commentservice.commentData.CommentDateTime = this.dateFormatted;
+    this.commentservice.commentData.JobId = this.jobPost.id;
+    this.commentservice.commentData.CreatedBy = this.User[0].firstName;
     this.notificationsService.notificationData.userId = this.jobPost.userId;
     this.dateFormatted1 = this.datePipe.transform(this.currentDate, 'dd MMM');
     this.notificationsService.notificationData.notificationDate = this.dateFormatted1;
@@ -271,20 +271,20 @@ export class CommentsComponent implements OnInit {
 
 
   // //Sorting the Comments
-  // getCommentNow() {
-  //   this.commentservice.getComments().subscribe(data => {
-  //     this.comments = data;
-  //     // Sort comments based on commentDateTime in ascending order
-  //     this.comments.sort((a: { commentDateTime: string; }, b: { commentDateTime: string; }) => {
-  //       const dateA = this.parseCustomDate(a.commentDateTime).getTime();
-  //       const dateB = this.parseCustomDate(b.commentDateTime).getTime();
-  //       console.log("Date A:", dateA);
-  //       console.log("Date B:", dateB);
-  //       return dateA - dateB; // Sort in ascending order (oldest first)
-  //     });
-  //     console.log("Sorted Comments:", this.comments);
-  //   });
-  // }
+  getCommentNow() {
+    this.commentservice.getComments().subscribe(data => {
+      this.comments = data;
+      // Sort comments based on commentDateTime in ascending order
+      this.comments.sort((a: { commentDateTime: string; }, b: { commentDateTime: string; }) => {
+        const dateA = this.parseCustomDate(a.commentDateTime).getTime();
+        const dateB = this.parseCustomDate(b.commentDateTime).getTime();
+        console.log("Date A:", dateA);
+        console.log("Date B:", dateB);
+        return dateA - dateB; // Sort in ascending order (oldest first)
+      });
+      console.log("Sorted Comments:", this.comments);
+    });
+  }
   
   parseCustomDate(dateString: string): Date {
     const parts = dateString.split(' ');

@@ -21,8 +21,5 @@ export class NotificationService {
 
   postNotification(userId: string, notificationData: any) {
     return this.apiService.post(`Notification?userId=${userId}`, notificationData);
-  }
-
-
-  
+  }  
 }

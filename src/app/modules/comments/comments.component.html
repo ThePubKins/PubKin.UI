@@ -366,54 +366,54 @@
         data-bs-dismiss="modal"
         aria-label="Close"
       ></button>
-      <!-- <form
+      <form
         novalidate
         #commentForm="ngForm"
         autocomplete="off"
-      
-      >  (ngSubmit)="submitForm(commentForm);"
+        (ngSubmit)="submitForm(commentForm);"
+      >  
         <div class="pad1">
           <input
             type="text"
             id="dateCreated"
             name="dateCreated"
-            [(ngModel)]="commentservice.commentData.dateCreated"
-            [value]="commentservice.commentData.dateCreated"
+            [(ngModel)]="commentservice.commentData.DateCreated"
+            [value]="commentservice.commentData.DateCreated"
           />
           <input
             type="text"
             id="id"
             name="id"
-            [(ngModel)]="commentservice.commentData.id"
-            [value]="commentservice.commentData.id"
+            [(ngModel)]="commentservice.commentData.Id"
+            [value]="commentservice.commentData.Id"
           />
           <input
             type="text"
             id="commentDateTime"
             name="commentDateTime"
-            [(ngModel)]="commentservice.commentData.commentDateTime"
-            [value]="commentservice.commentData.commentDateTime"
+            [(ngModel)]="commentservice.commentData.CommentDateTime"
+            [value]="commentservice.commentData.CommentDateTime"
           />
           <input
             type="text"
             id="createdBy"
             name="createdBy"
-            [(ngModel)]="commentservice.commentData.createdBy"
-            [value]="commentservice.commentData.createdBy"
+            [(ngModel)]="commentservice.commentData.CreatedBy"
+            [value]="commentservice.commentData.CreatedBy"
           />
           <input
             type="text"
             id="jobId"
             name="jobId"
-            [(ngModel)]="commentservice.commentData.jobId"
-            [value]="commentservice.commentData.jobId"
+            [(ngModel)]="commentservice.commentData.JobId"
+            [value]="commentservice.commentData.JobId"
           />
           <input
             type="text"
             id="fileName"
             name="fileName"
-            [(ngModel)]="commentservice.commentData.fileName"
-            [value]="commentservice.commentData.fileName"
+            [(ngModel)]="commentservice.commentData.FileName"
+            [value]="commentservice.commentData.FileName"
           />
           <p class="c2" id="exampleModalLabel">Please add your comments</p>
           <textarea
@@ -421,7 +421,7 @@
             class="form-control h1"
             aria-label="With textarea"
             name="comments"
-            [(ngModel)]="commentservice.commentData.comments"
+            [(ngModel)]="commentservice.commentData.Comments"
             required
           ></textarea>
            <input
@@ -450,7 +450,7 @@
             </button>
           </div>
         </div>
-      </form> -->
+      </form>
     </div>
   </div>
 </div>

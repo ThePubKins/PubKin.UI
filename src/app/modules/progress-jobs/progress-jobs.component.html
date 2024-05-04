@@ -89,7 +89,8 @@
             <input type="text" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
             <button type="submit" class="">Accept Offer</button>
           </form>
-          <button  (click)="submitBothForms();"  class="btn rejectconfirm1">Accept Offer</button>
+          <!-- submitBothForms(); -->
+          <button  (click)="sendNotification();sendNotifications();"  class="btn rejectconfirm1">Accept Offer</button>
           <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
             <input type="text" id="id" name="id" [(ngModel)]="selectedhire.jobId">
             <input type="text" id="status" name="status" [(ngModel)]="jobPosts[0].status">

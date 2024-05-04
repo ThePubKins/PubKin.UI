@@ -21,6 +21,7 @@ export class FreelancernavComponent implements OnInit {
 
   ngOnInit(): void {
    this.getUserData();
+   this.getNotification();
   }
   
   //get the Current User Details
@@ -66,9 +67,6 @@ export class FreelancernavComponent implements OnInit {
     }
 
     getNotification() {
-
-      
-
       this.notificationService.getNotificaions().subscribe((data: any[]) => {
         this.notifications = data;
       });

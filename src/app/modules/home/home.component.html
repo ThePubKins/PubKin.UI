@@ -613,23 +613,44 @@
   </div>
 </div>
 
-<form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)">
-  <div class="pad1">
-    <input type="text" id="dateCreated" placeholder="Date Created" name="dateCreated" [(ngModel)]="commentService.commentData.dateCreated" /><br />
-    <input type="text" id="id" placeholder="ID" name="id" [(ngModel)]="commentService.commentData.id" /><br />
-    <input type="text" id="commentDateTime" placeholder="Date Time" name="commentDateTime" [(ngModel)]="commentService.commentData.commentDateTime" /><br />
-    <input type="text" id="createdBy" placeholder="Created By" name="createdBy" [(ngModel)]="commentService.commentData.createdBy" /><br />
-    <input type="text" id="jobId" placeholder="Job ID" name="jobId" [(ngModel)]="commentService.commentData.jobId" /><br />
-    <input type="text" id="fileName" placeholder="File Name" name="fileName" [(ngModel)]="commentService.commentData.fileName" /><br />
-    <p class="p1" id="">Please add your comments</p>
-    <textarea class="form-control h1" aria-label="With textarea" id="Comments" name="Comments" placeholder="Comments" [(ngModel)]="commentService.commentData.Comments" required></textarea>
-    <input type="file" id="file" name="file" (change)="onFileSelected($event)" />
-  </div>
-  <div>
-    <div class="modal-fot">
-      <button type="submit" class="but btn but1">Send</button>
-    </div>
-  </div>
-</form>
+
+
+<!-- <form #commentForm="ngForm" (ngSubmit)="submitComment(commentForm)">
+  <label for="FileName">File Name:</label>
+  <input type="text" id="FileName" name="FileName" ngModel>
+
+  <label for="DateLastModified">Date Last Modified:</label>
+  <input type="text" id="DateLastModified" name="DateLastModified" ngModel>
+
+  <label for="FileUrl">File URL:</label>
+  <input type="text" id="FileUrl" name="FileUrl" ngModel>
+
+  <label for="Comments">Comments:</label>
+  <input type="text" id="Comments" name="Comments" ngModel>
+
+  <label for="LastModifiedBy">Last Modified By:</label>
+  <input type="text" id="LastModifiedBy" name="LastModifiedBy" ngModel>
+
+  <label for="JobId">Job ID:</label>
+  <input type="text" id="JobId" name="JobId" ngModel>
+
+  <label for="CommentDateTime">Comment Date Time:</label>
+  <input type="text" id="CommentDateTime" name="CommentDateTime" ngModel>
+
+  <label for="DateCreated">Date Created:</label>
+  <input type="text" id="DateCreated" name="DateCreated" ngModel>
+
+  <label for="Id">ID:</label>
+  <input type="text" id="Id" name="Id" ngModel>
+
+  <label for="file">File:</label>
+  <input type="file" id="file" name="file" (change)="onFileSelected($event)">
+
+  <label for="CreatedBy">Created By:</label>
+  <input type="text" id="CreatedBy" name="CreatedBy" ngModel>
+
+  <button type="submit">Submit</button>
+</form> -->
+
 
 

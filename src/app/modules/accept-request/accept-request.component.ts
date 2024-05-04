@@ -172,19 +172,20 @@ successmsg(){
 
 
     //Notifications Form 
-    // onSubmitNotification(form: NgForm, userId:string) {
-    //   if (form.valid && this.notificationsService.notificationData) {
-    //     this.notificationsService.postNotification(userId, form.value).subscribe();      }
-    // }
+    onSubmitNotification(form: NgForm, userId:string) {
+      if (form.valid && this.notificationsService.notificationData) {
+        this.notificationsService.postNotification(userId, form.value).subscribe();      }
+    }
   
     @ViewChild('notificationButton') notificationButton: ElementRef;   
 
 
-    userId =sessionStorage.getItem('authorId')?.toString() || '';;
+    userId =sessionStorage.getItem('authorId')?.toString() || '';
  
  sendNotification() {
    const notificationData = { 
-    notification: 'Your notification message here', };
+    notification: 'Your notification message here',
+    userId :  this.selectedhire.userId };
    this.notificationsService.postNotification(this.userId, notificationData)
      .subscribe(response => {
        console.log('Notification posted successfully:', response);
@@ -202,10 +203,6 @@ successmsg(){
 
 
 
-interface Proposal {
-  id: string;
-  name: string;
-  date: Date;
-}
+
 
 

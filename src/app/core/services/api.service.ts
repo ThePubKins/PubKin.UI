@@ -4,6 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 import { catchError } from 'rxjs/operators';
+import { HTTPOptions } from 'aws-sdk';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -27,11 +28,10 @@ export class ApiService {
     ).pipe(catchError(this.formatErrors));
   }
 
-  post(path: string, body: Object = {}, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
+  post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
       `${environment.baseApiURL}${path}`,
-      JSON.stringify(body),
-      { headers }
+      JSON.stringify(body)
     ).pipe(catchError(this.formatErrors));
   }
   
