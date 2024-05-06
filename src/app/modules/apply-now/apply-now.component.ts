@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import { AppliedUserService, CommentsService, JobpostService, NotificationService, UserauthenticateService, applied_user } from '../../shared';
+import { AppliedUserService, CommentsService, JobpostService, NotificationService, SignalrService, UserauthenticateService, applied_user } from '../../shared';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class ApplyNowComponent {
   jobpostData: applied_user = {} as applied_user;
   filesdetails: any;
   constructor(public datePipe: DatePipe, private route: ActivatedRoute, public notificationsService : NotificationService,
-  public userservice: UserauthenticateService, public commentservice: CommentsService,
+  public userservice: UserauthenticateService, public commentservice: CommentsService, private singlarService:SignalrService,
     public appliedservice: AppliedUserService, public jobservice: JobpostService,public router: Router) { this.calculateCharactersLeft(); }
 
   ngOnInit(): void {
@@ -135,7 +135,7 @@ export class ApplyNowComponent {
     this.appliedservice.applyData.postBy = this.JobPost.createdBy;
     this.appliedservice.applyData.applideUserProfile=this.UserData[0].profileUrl;
     this.appliedservice.applyData.jobUniqueId=this.JobPost.jobUniqueId;
-    this.notificationsService.notificationData.userId = this.JobPost.userId;
+    this.notificationsService.notificationData.userId = this.JobPost.usersId;
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
     this.notificationsService.notificationData.notificationDate = this.dateFormatted;
     this.notificationsService.notificationData.notification = "Your job applied by " + this.UserData[0].firstName + " (" +this.JobPost.jobUniqueId+")" ;
@@ -214,8 +214,9 @@ export class ApplyNowComponent {
   }
 
   //Notification 
-   onSubmitNotification(form: NgForm, userId:string) {
+   onSubmitNotification(form: NgForm) {
     if (form.valid && this.notificationsService.notificationData) {
+      const userId = this.notificationsService.notificationData.userId; 
       this.notificationsService.postNotification(userId, form.value).subscribe();    }
   }
 
@@ -224,6 +225,27 @@ export class ApplyNowComponent {
   
   notifyNow() {
     this.notificationButton.nativeElement.click();
+  }
+
+  
+  userId =sessionStorage.getItem('authorId')?.toString() || '';
+ 
+  sendNotification() {
+    const notificationData = { 
+     notification: 'Your job applied by " + this.UserData[0].firstName + " (" +this.JobPost.jobUniqueId+")',
+     userId :  this.JobPost.usersId };
+    this.notificationsService.postNotification(this.userId, notificationData)
+      .subscribe(response => {
+        console.log('Notification posted successfully:', response);
+      }, error => {
+        console.error('Error posting notification:', error);
+      });
+  }
+ 
+ 
+   sendNotifications() {
+    const message = 'Your notification message here';
+    this.singlarService.sendNotification(message);
   }
 
 }

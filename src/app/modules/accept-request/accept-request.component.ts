@@ -124,7 +124,7 @@ successmsg(){
     this.notificationsService.notificationData.userId = this.selectedhire.userId;
     sessionStorage.setItem("userId", this.notificationsService.notificationData.userId);
     this.notificationsService.notificationData.notificationDate =  this.dateFormated1;
-    this.notificationsService.notificationData.notification = "You got the new offer for "  + this.selectedhire.jobUniqueId;
+    this.notificationsService.notificationData.notification = "New offer received from "  + this.selectedhire.jobUniqueId;
   }
   
   ChangeStatus() { 
@@ -184,7 +184,7 @@ successmsg(){
  
  sendNotification() {
    const notificationData = { 
-    notification: 'Your notification message here',
+    notification: "New offer received from "  + this.selectedhire.postBy,
     userId :  this.selectedhire.userId };
    this.notificationsService.postNotification(this.userId, notificationData)
      .subscribe(response => {

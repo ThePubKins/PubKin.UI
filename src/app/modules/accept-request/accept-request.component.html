@@ -307,9 +307,8 @@
                 <input type="hidden" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
                 <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
                 <button class="cpay" type="submit" 
-                  (click)="ChangeStatus();sendNotification();sendNotifications();">Confirm & Pay</button>
+                  (click)="ChangeStatus();sendNotification();sendNotifications();" data-bs-toggle="modal" data-bs-target="#saveModal">Confirm & Pay</button>
               </form>
-              <!-- data-bs-toggle="modal" data-bs-target="#saveModal" -->
               <p class="disclaimer">*This payment will be add on your wallet</p>
             </div>
           </div>

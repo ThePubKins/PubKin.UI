@@ -27,7 +27,7 @@ export class AuthorsOngoingJobsComponent implements OnInit {
 
 
 getCurrentUserOpenJobs(): any[] {
-  const userOpenJobs = this.Posts.some((Post: { status: string; userId:string; }) => Post.status === 'Ongoing' && Post.userId === this.UserData[0].id);
+  const userOpenJobs = this.Posts.some((Post: { status: string; usersId:string; }) => Post.status === 'Ongoing' && Post.usersId === this.UserData[0].id);
   return userOpenJobs ? userOpenJobs : [];
 }
 

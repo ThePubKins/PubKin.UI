@@ -26,7 +26,6 @@
     </div>
   </div>
 
-
   <div class="container rrraligntop1">
     <div class="row">
       <div class="col-8">
@@ -77,7 +76,7 @@
     </div>
   </div>
   <div class="container " *ngFor="let JobPost of Posts  | jobsearch : searchTerm ">
-    <div class="borderboxv" *ngIf=" JobPost.userId == UserData[0].id && JobPost.status == 'Open'" >
+    <div class="borderboxv" *ngIf=" JobPost.usersId == UserData[0].id && JobPost.status == 'Open'" >
       <div class="row" >
         <br>
         <div class="col-10">

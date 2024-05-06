@@ -219,7 +219,7 @@ export class JobPostComponent implements OnInit {
         this.jobservice.jobData.postDate = this.dateFormatted;
         this.jobservice.jobData.userEmail = this.User[0].email;
         this.jobservice.jobData.status = 'Open';
-        this.jobservice.jobData.userId = this.User[0].id;
+        this.jobservice.jobData.usersId = this.User[0].id;
         this.jobservice.jobData.createdBy = `${this.User[0].firstName} ${this.User[0].lastName}`;
         this.firstName = (this.User[0].firstName || '').toUpperCase().slice(0, 1);
         this.lastName = (this.User[0].lastName || '').toUpperCase().slice(0, 2);
@@ -235,7 +235,7 @@ export class JobPostComponent implements OnInit {
       formData.append('createdBy', this.jobservice.jobData.createdBy);
       formData.append('id', this.jobservice.jobData.id);
       formData.append('jobUniqueId', this.jobservice.jobData.jobUniqueId);
-      formData.append('userId', this.jobservice.jobData.userId);
+      formData.append('userId', this.jobservice.jobData.usersId);
       formData.append('jobTitle', this.jobservice.jobData.jobTitle);
       formData.append('description', this.jobservice.jobData.description);
       formData.append('skillSet', this.jobservice.jobData.skillSet);

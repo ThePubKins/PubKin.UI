@@ -66,8 +66,7 @@ export class ViewFreelancersComponent implements OnInit {
   }
 
   getCurrentUserOpenJobs(): any[] {
-
-    const userOpenJobs = this.Posts.filter((Post: { status: string; userId: string }) => Post.status === 'Open' && Post.userId === this.UserData[0].id);
+    const userOpenJobs = this.Posts.filter((Post: { status: string; usersId: string }) => Post.status === 'Open' && Post.usersId === this.UserData[0].id);
     return userOpenJobs ? userOpenJobs : [];
   }
   

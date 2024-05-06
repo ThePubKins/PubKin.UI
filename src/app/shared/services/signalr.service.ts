@@ -30,7 +30,8 @@ export class SignalrService {
     this.toast.success({
       detail: notification.message,
       sticky: false,
-      position: "topRight",
+      position: "bottomRight",
+      duration: 6000,
     });
   }
 
