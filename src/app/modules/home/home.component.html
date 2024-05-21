@@ -613,44 +613,42 @@
   </div>
 </div>
 
+<!-- 
 
-
-<!-- <form #commentForm="ngForm" (ngSubmit)="submitComment(commentForm)">
+ <form #commentForm="ngForm" (ngSubmit)="submitForm(commentForm)">
   <label for="FileName">File Name:</label>
-  <input type="text" id="FileName" name="FileName" ngModel>
+  <input type="text" id="FileName" name="FileName" ngModel  [(ngModel)]="commentService.commentData.FileName">
 
   <label for="DateLastModified">Date Last Modified:</label>
-  <input type="text" id="DateLastModified" name="DateLastModified" ngModel>
+  <input type="text" id="DateLastModified" name="DateLastModified" ngModel  [(ngModel)]="commentService.commentData.DateLastModified">
 
   <label for="FileUrl">File URL:</label>
-  <input type="text" id="FileUrl" name="FileUrl" ngModel>
+  <input type="text" id="FileUrl" name="FileUrl" ngModel  [(ngModel)]="commentService.commentData.FileUrl">
 
   <label for="Comments">Comments:</label>
-  <input type="text" id="Comments" name="Comments" ngModel>
+  <input type="text" id="Comments" name="Comments" ngModel  [(ngModel)]="commentService.commentData.Comments">
 
   <label for="LastModifiedBy">Last Modified By:</label>
-  <input type="text" id="LastModifiedBy" name="LastModifiedBy" ngModel>
+  <input type="text" id="LastModifiedBy" name="LastModifiedBy" ngModel  [(ngModel)]="commentService.commentData.LastModifiedBy">
 
   <label for="JobId">Job ID:</label>
-  <input type="text" id="JobId" name="JobId" ngModel>
+  <input type="text" id="JobId" name="JobId" ngModel  [(ngModel)]="commentService.commentData.JobId">
 
   <label for="CommentDateTime">Comment Date Time:</label>
-  <input type="text" id="CommentDateTime" name="CommentDateTime" ngModel>
+  <input type="text" id="CommentDateTime" name="CommentDateTime" ngModel  [(ngModel)]="commentService.commentData.CommentDateTime">
 
   <label for="DateCreated">Date Created:</label>
-  <input type="text" id="DateCreated" name="DateCreated" ngModel>
+  <input type="text" id="DateCreated" name="DateCreated" ngModel  [(ngModel)]="commentService.commentData.DateCreated">
 
   <label for="Id">ID:</label>
-  <input type="text" id="Id" name="Id" ngModel>
+  <input type="text" id="Id" name="Id" ngModel  [(ngModel)]="commentService.commentData.Id">
 
   <label for="file">File:</label>
   <input type="file" id="file" name="file" (change)="onFileSelected($event)">
 
   <label for="CreatedBy">Created By:</label>
-  <input type="text" id="CreatedBy" name="CreatedBy" ngModel>
+  <input type="text" id="CreatedBy" name="CreatedBy" ngModel  [(ngModel)]="commentService.commentData.CreatedBy">
 
   <button type="submit">Submit</button>
-</form> -->
-
-
-
+</form> 
+ -->

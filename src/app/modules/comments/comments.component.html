@@ -175,7 +175,7 @@
             <p class="hed">Work Files</p>
             <hr class="codu1" />
             <div class="d-flex justify-content-center position-relative">
-              <!-- <div *ngIf="selectedFiles.length > 0" class="scrollfiles">
+               <div *ngIf="selectedFiles.length > 0" class="scrollfiles">
                 <div *ngFor="let fileName of selectedFiles; let i=index;">
                   <div class="foldericon" >
                     <ul>
@@ -200,10 +200,10 @@
                     d="M82.0026 79.758H12.0026C8.95345 79.7955 6.0137 78.6231 3.82706 76.4977C1.64042 74.3723 0.385091 71.467 0.335938 68.418V11.7647C0.385091 8.71571 1.64042 5.81043 3.82706 3.68502C6.0137 1.55961 8.95345 0.387265 12.0026 0.424698H33.4693C34.1586 0.429256 34.8383 0.586459 35.4596 0.885008C36.0809 1.18356 36.6284 1.61604 37.0626 2.15136L49.1959 16.9914H81.8626C83.3841 16.9542 84.8979 17.2187 86.3167 17.7697C87.7354 18.3206 89.031 19.1471 90.1287 20.2014C91.2264 21.2557 92.1044 22.5169 92.7121 23.9123C93.3197 25.3077 93.6451 26.8096 93.6693 28.3314V68.418C93.6201 71.467 92.3648 74.3723 90.1781 76.4977C87.9915 78.6231 85.0518 79.7955 82.0026 79.758Z"
                     fill="#E8A9FF" />
                 </svg>
-              </div> -->
+              </div> 
               <div *ngIf="selectedFiles.length > 0" class="scrollfiles">
                 <div *ngFor="let fileName of selectedFiles; let i = index">
-                  <div class="foldericon">
+                  <div class="foldericon" >
                     <ul>
                       <li>
                         <div class="w-100">
@@ -372,44 +372,45 @@
         autocomplete="off"
         (ngSubmit)="submitForm(commentForm);"
       >  
+      <!--  -->
         <div class="pad1">
           <input
-            type="text"
+            type="hidden"
             id="dateCreated"
             name="dateCreated"
             [(ngModel)]="commentservice.commentData.DateCreated"
             [value]="commentservice.commentData.DateCreated"
           />
           <input
-            type="text"
+            type="hidden"
             id="id"
             name="id"
             [(ngModel)]="commentservice.commentData.Id"
             [value]="commentservice.commentData.Id"
           />
           <input
-            type="text"
+            type="hidden"
             id="commentDateTime"
             name="commentDateTime"
             [(ngModel)]="commentservice.commentData.CommentDateTime"
             [value]="commentservice.commentData.CommentDateTime"
           />
           <input
-            type="text"
+            type="hidden"
             id="createdBy"
             name="createdBy"
             [(ngModel)]="commentservice.commentData.CreatedBy"
             [value]="commentservice.commentData.CreatedBy"
           />
           <input
-            type="text"
+            type="hidden"
             id="jobId"
             name="jobId"
             [(ngModel)]="commentservice.commentData.JobId"
             [value]="commentservice.commentData.JobId"
           />
           <input
-            type="text"
+            type="hidden"
             id="fileName"
             name="fileName"
             [(ngModel)]="commentservice.commentData.FileName"
@@ -417,22 +418,14 @@
           />
           <p class="c2" id="exampleModalLabel">Please add your comments</p>
           <textarea
-           
             class="form-control h1"
             aria-label="With textarea"
             name="comments"
             [(ngModel)]="commentservice.commentData.Comments"
             required
           ></textarea>
-           <input
-            type="file"
-            id="file"
-            name="file"
-            class="fileupload-comments"
-            (change)="onFileSelected($event)"
-            required
-          /> 
-          <input type="file" id="file" name="file" (change)="onFileSelected($event)">        </div>
+ 
+          <input type="file" id="file" style="    margin-left: 26px;" name="file" (change)="onFileSelected($event)">        </div>
         <div>
           <div class="modal-fot">
             <button type="button" class="but1 but2" data-bs-dismiss="modal">
@@ -444,8 +437,8 @@
               data-bs-dismiss="modal"
               aria-label="Close"         
             >
-             [disabled]="!commentForm.valid"
-               (click)="notifyNow();" 
+             <!-- [disabled]="!commentForm.valid"
+               (click)="notifyNow();"  -->
               Send
             </button>
           </div>
@@ -481,17 +474,15 @@
           <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">
             Back
           </button>
-          <form
-            #jobUpdateForm="ngForm"
+          <form  #jobUpdateForm="ngForm"
             (ngSubmit)="onSubmitJobStatus(jobUpdateForm)"
           >
             <input type="hidden" id="id" name="id" [(ngModel)]="jobPost.id" />
-            <input
-              type="hidden"
-              id="status"
-              name="status"
-              [(ngModel)]="jobPosts[0].status"
-            />
+            <input type="hidden" id="id" name="id" [(ngModel)]="jobPosts[0].id">
+            <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
+            <input type="hidden" id="postBy" name="postBy" [(ngModel)]="jobPosts[0].postBy">
+            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="jobPosts[0].jobId">
+            <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobPosts[0].jobUniqueId">
             <button
               type="button"
               class="btn kkkbtncn"
@@ -520,7 +511,7 @@
           <div class="d-flex justify-content-center position-relative">
             <div class="scrollfiles">
               <div *ngFor="let fileName of workFile; let i = index">
-                <div class="foldericon" *ngIf="jobPost.jobId == fileName.jobId">
+                <!-- <div class="foldericon" *ngIf="jobPost.jobId == fileName.jobId">
                   <ul>
                     <li>
                       <div class="w-100">
@@ -552,7 +543,7 @@
                       </div>
                     </li>
                   </ul>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

@@ -35,7 +35,14 @@ export class ApiService {
     ).pipe(catchError(this.formatErrors));
   }
   
-
+  // post(path: string, body: Object = {}, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
+  //   return this.http.post(
+  //     `${environment.baseApiURL}${path}`,
+  //     JSON.stringify(body),
+  //     { headers } // Pass headers as an object
+  //   ).pipe(catchError(this.formatErrors));
+  // }
+  
   delete(path: string): Observable<any> {
     return this.http.delete(
       `${environment.baseApiURL}${path}`

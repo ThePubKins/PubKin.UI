@@ -10,7 +10,7 @@
             No Completed jobs are available for you!
           </div>
           <div *ngFor="let Apply of  jobPosts;">
-            <div class="row" style="margin-top: 17px;" *ngIf="Apply.status === 'completed' && Apply.userId === currentUser[0].id" >
+            <div class="row" style="margin-top: 17px;" *ngIf="Apply.status === 'completed' && Apply.usersId === currentUser[0].id" >
               <div class="col-8">
                 <p class="jobtitle">{{Apply.jobTitle}}</p>
               </div>

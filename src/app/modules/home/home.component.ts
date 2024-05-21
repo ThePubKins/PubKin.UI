@@ -39,33 +39,51 @@ export class HomeComponent {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    
   }
 
-  // submitComment(commentForm: NgForm) {
-  //   const formData: FormData = new FormData();
-  //   formData.append('FileName', commentForm.value.FileName);
-  //   formData.append('DateLastModified', commentForm.value.DateLastModified);
-  //   formData.append('FileUrl', commentForm.value.FileUrl);
-  //   formData.append('Comments', commentForm.value.Comments);
-  //   formData.append('LastModifiedBy', commentForm.value.LastModifiedBy);
-  //   formData.append('JobId', commentForm.value.JobId);
-  //   formData.append('CommentDateTime', commentForm.value.CommentDateTime);
-  //   formData.append('DateCreated', commentForm.value.DateCreated);
-  //   formData.append('Id', commentForm.value.Id);
-  //   if (this.selectedFile) {
-  //     formData.append('file', this.selectedFile);
-  //   }
-  //   formData.append('CreatedBy', commentForm.value.CreatedBy);
+  submitForm(form: NgForm) {
+    if (form.valid && this.commentService.commentData) {
+      this.commentService.postComments(this.commentService.commentData).subscribe();
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 50);
+    }
+  }
 
-  //   this.commentService.submitComment(formData)
-  //     .subscribe(
+
+
+  // submitComment(commentForm: NgForm) {
+  //   if (commentForm.valid) {
+  //     const formData: FormData = new FormData();
+  //     formData.append("FileName", commentForm.value.FileName || "");
+  //     formData.append(
+  //       "DateLastModified",
+  //       commentForm.value.DateLastModified || ""
+  //     );
+  //     formData.append("FileUrl", commentForm.value.FileUrl || "");
+  //     formData.append("Comments", commentForm.value.Comments || "");
+  //     formData.append("LastModifiedBy", commentForm.value.LastModifiedBy || "");
+  //     formData.append("JobId", commentForm.value.JobId || "");
+  //     formData.append(
+  //       "CommentDateTime",
+  //       commentForm.value.CommentDateTime || ""
+  //     );
+  //     formData.append("DateCreated", commentForm.value.DateCreated || "");
+  //     formData.append("Id", commentForm.value.Id || "");
+  //     if (this.selectedFile) {
+  //       formData.append("file", this.selectedFile);
+  //     }
+  //     formData.append("CreatedBy", commentForm.value.CreatedBy || "");
+
+  //     this.commentService.postComments(formData).subscribe(
   //       (response) => {
-  //         console.log('Comment submitted successfully: ', response);
+  //         console.log("Comment submitted successfully: ", response);
   //       },
   //       (error) => {
-  //         console.error('Error submitting comment: ', error);
+  //         console.error("Error submitting comment: ", error);
   //       }
   //     );
+  //   }
   // }
-
 }

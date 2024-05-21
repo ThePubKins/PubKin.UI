@@ -76,7 +76,7 @@
     </div>
   </div>
   <div class="container " *ngFor="let JobPost of Posts  | jobsearch : searchTerm ">
-    <div class="borderboxv" *ngIf=" JobPost.usersId == UserData[0].id && JobPost.status == 'Open'" >
+    <div class="borderboxv" *ngIf=" JobPost.usersId == UserData[0].id" >
       <div class="row" >
         <br>
         <div class="col-10">
@@ -87,7 +87,7 @@
             <circle cx="16.5" cy="16.5" r="16.5" transform="rotate(90 16.5 16.5)" fill="#F6DCFF" />
             <path d="M13 10L20 16L13 22" stroke="#AD2DDB" stroke-width="3col-lg-3" stroke-linecap="round" />
           </svg></div>
-        <p class="recenvv2">New Applications: 0</p>
+        <p class="recenvv2">New Applications: 0 </p>
       </div>
     </div>
   </div>

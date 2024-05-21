@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { CommentsService, JobpostService, NotificationService, UserauthenticateService, WorkfileService, Comment, workfile } from '../../shared';
+import { CommentsService, JobpostService, NotificationService, UserauthenticateService, WorkfileService, Comment, workfile, AppliedUserService } from '../../shared';
 import { NgForm } from '@angular/forms';
 
 
@@ -31,10 +31,11 @@ export class CommentsComponent implements OnInit {
   imageUrl: string = 'https://localhost:7172';
   jobPosts: any;
   notificationData:any;
+  applies: import("d:/Sathish Software/ThePubkins/ThePubkins-UI/src/app/shared/index").applied_user[];
 
 
   constructor(private route: ActivatedRoute, public datePipe: DatePipe,public notificationsService : NotificationService, public userauthservice: UserauthenticateService,
-    public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: WorkfileService) { }
+    public appliedService:AppliedUserService,public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: WorkfileService) { }
 
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
 
@@ -43,7 +44,7 @@ export class CommentsComponent implements OnInit {
     this.getWorkFiles();
     this.getUserData();
     this.getJobPosts();
-   // this.getCommentNow();
+    this.getCommentNow();
     this.showCommentDetails();
   }
 
@@ -107,8 +108,22 @@ export class CommentsComponent implements OnInit {
     });
   }
 
+
+  getapplies() {
+    this.appliedService.getAppliedUsers().subscribe((data) => {
+      this.applies = data;
+    });
+  }
+
   ChangeStatus() {
     this.jobPosts[0].status = "completed";
+  }
+
+
+  onSubmitStatus(form: NgForm) {
+    if (form.valid && this.appliedService.applyData) {
+      this.appliedService.PutStatus(form.value).subscribe();
+    }
   }
 
 
@@ -321,6 +336,5 @@ export class CommentsComponent implements OnInit {
   notifyNow() {
     this.notificationButton.nativeElement.click();
   }
- 
  
 }

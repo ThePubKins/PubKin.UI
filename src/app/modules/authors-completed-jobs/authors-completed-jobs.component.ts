@@ -38,7 +38,7 @@ export class AuthorsCompletedJobsComponent {
   }
 
   getCurrentUserOpenJobs(): any[] {
-    const userOpenJobs = this.jobPosts.some((jobPost: { status: string;userId:string; }) => jobPost.status === 'completed' && jobPost.userId === this.currentUser[0].id);
+    const userOpenJobs = this.jobPosts.some((jobPost: { status: string;usersId:string; }) => jobPost.status === 'completed' && jobPost.usersId === this.currentUser[0].id);
     return userOpenJobs ? userOpenJobs : [];
 }
 

@@ -55,7 +55,6 @@
 
                   <img class="p-2" (click)="ApplyDeleteModal(Apply)" src="./assets/deleteico.png" data-bs-toggle="modal"
                     data-bs-target="#deletmodel1">
-
                 </div>
               </div>
             </div>
@@ -63,7 +62,6 @@
         </div>
       </div>
     </div>
-
     </div>
     </div>
 
@@ -195,7 +193,7 @@
           <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
             <input type="hidden" id="id" name="id" [(ngModel)]="deleteProposal.id">
             <input type="hidden" id="status" name="status" [(ngModel)]="deleteProposal.status">
-            <button type="submit" class="btn kkkbtncn" (click)="DeleteStatus()">Confirm</button>
+            <button type="submit" class="btn kkkbtncn" (click)="DeleteStatus();RejectNotifications(); RejectNotification();" data-bs-dismiss="modal" aria-label="Close">Confirm</button>
           </form>
         </div>
       </div>
@@ -306,7 +304,7 @@
                 <input type="hidden" id="postBy" name="postBy" [(ngModel)]="selectedhire.postBy">
                 <input type="hidden" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
                 <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
-                <button class="cpay" type="submit" 
+                <button class="cpay" type="submit"
                   (click)="ChangeStatus();sendNotification();sendNotifications();" data-bs-toggle="modal" data-bs-target="#saveModal">Confirm & Pay</button>
               </form>
               <p class="disclaimer">*This payment will be add on your wallet</p>
@@ -510,5 +508,4 @@
         />
         <button type="submit" class="d-none" #notificationButton>Save</button>
       </form>  -->
- 
-      <button (click)="sendNotification();sendNotifications();">asdbsaddbasdb</button>
+<!-- <button (click)="sendNotification();sendNotifications();">asdbsaddbasdb</button> -->
