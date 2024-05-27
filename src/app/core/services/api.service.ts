@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-
 import { catchError } from 'rxjs/operators';
-import { HTTPOptions } from 'aws-sdk';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
@@ -30,19 +28,13 @@ export class ApiService {
 
   post(path: string, body: Object = {}): Observable<any> {
     return this.http.post(
-      `${environment.baseApiURL}${path}`,
-      JSON.stringify(body)
+      `${environment.baseApiURL}${path}`,body
     ).pipe(catchError(this.formatErrors));
   }
+
   
-  // post(path: string, body: Object = {}, headers: HttpHeaders = new HttpHeaders()): Observable<any> {
-  //   return this.http.post(
-  //     `${environment.baseApiURL}${path}`,
-  //     JSON.stringify(body),
-  //     { headers } // Pass headers as an object
-  //   ).pipe(catchError(this.formatErrors));
-  // }
-  
+
+
   delete(path: string): Observable<any> {
     return this.http.delete(
       `${environment.baseApiURL}${path}`

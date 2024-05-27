@@ -30,12 +30,12 @@ export class CommentsComponent implements OnInit {
   User: any;
   imageUrl: string = 'https://localhost:7172';
   jobPosts: any;
+  uploadedFileName: string = ''; 
   notificationData:any;
   applies: import("d:/Sathish Software/ThePubkins/ThePubkins-UI/src/app/shared/index").applied_user[];
 
-
   constructor(private route: ActivatedRoute, public datePipe: DatePipe,public notificationsService : NotificationService, public userauthservice: UserauthenticateService,
-    public appliedService:AppliedUserService,public jobservice: JobpostService, private router: Router, public commentservice: CommentsService, public workfileservice: WorkfileService) { }
+    public appliedService:AppliedUserService,public jobservice: JobpostService, private router: Router, public commentService: CommentsService, public workfileservice: WorkfileService) { }
 
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
 
@@ -88,7 +88,6 @@ export class CommentsComponent implements OnInit {
     this.hideFolderIcon = true;
   }
 
-
   getWorkFiles() {
     this.workfileservice.getfile().subscribe(data => {
       this.workFile = data;
@@ -108,6 +107,12 @@ export class CommentsComponent implements OnInit {
     });
   }
 
+  UploadFileName(event:any) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    this.uploadedFileName = file ? file.name : ''; 
+  }
+  
 
   getapplies() {
     this.appliedService.getAppliedUsers().subscribe((data) => {
@@ -138,97 +143,98 @@ export class CommentsComponent implements OnInit {
     } else {
     }
   }
-
-
-  submitForm(form: NgForm) {
-    if (form.valid && this.commentservice.commentData) {
-      this.commentservice.postComments(this.commentservice.commentData).subscribe();
-      // setTimeout(() => {
-      //   window.location.reload();
-      // }, 50);
+   
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
     }
   }
 
-  // submitForm1() {
-  //   const formData = new FormData();
-  //   formData.append('Id', this.commentData.id);
-  //   formData.append('fileName', this.commentData.fileName);
-  //   formData.append('fileUrl', this.commentData.fileUrl);
-  //   formData.append('jobId', this.commentData.jobId);
-  //   formData.append('comments', this.commentData.comments);
-  //   formData.append('commentDateTime', this.commentData.commentDateTime);
 
-  //   if (this.commentData.fileUrl) {
-  //     formData.append('File', this.commentData.File);
-  //   }
+    submitComment(): void {
+    if (this.selectedFile) {
+      const formData: FormData = new FormData();
+      formData.append('FileName', this.commentService.commentData.FileName);
+      formData.append('DateLastModified', this.commentService.commentData.DateLastModified);
+      formData.append('FileUrl', this.commentService.commentData.FileUrl);
+      formData.append('Comments', this.commentService.commentData.Comments);
+      formData.append('LastModifiedBy', this.commentService.commentData.LastModifiedBy);
+      formData.append('JobId', this.commentService.commentData.JobId);
+      formData.append('CommentDateTime', this.commentService.commentData.CommentDateTime);
+      formData.append('DateCreated', this.commentService.commentData.DateCreated);
+      formData.append('Id', this.commentService.commentData.Id);
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+      formData.append('File', this.selectedFile, this.selectedFile.name);
+      formData.append('CreatedBy', this.commentService.commentData.CreatedBy);
 
-  //   this.commentservice.postComments(this.commentData).subscribe(
-  //     response => {
-  //       console.log('Comment added successfully:', response);
-  //       this.commentData = {} as comments;
-  //     },
-  //     error => {
-  //       console.error('Error adding comment:', error);
-  //     }
-  //   );
-  // }
-
-  submitform1() {
-    const formData1 = new FormData();
-    formData1.append('Id', this.workfileData.id);
-    formData1.append('FileName', this.workfileData.FileName);
-    formData1.append('FileUrl', this.workfileData.FileUrl);
-    formData1.append('JobId', this.workfileData.JobId);
-    formData1.append('UserId', this.workfileData.UserId);
-
-    if (this.workfileData.FileUrl) {
-      formData1.append('File', this.workfileData.File);
+      this.commentService.postComments(formData).subscribe(
+        response => {
+          console.log('Upload successful', response);
+          window.location.reload();
+        },
+        error => {
+          console.error('Upload failed', error);
+        }
+    
+      );
+    } else {
+      console.error('No file selected');
     }
-
-    this.workfileservice.postFile(formData1).subscribe(
-      response => {
-        console.log('Comment added successfully:', response);
-        this.workfileData = {} as workfile;
-      },
-      error => {
-        console.error('Error adding comment:', error);
-      }
-    );
   }
+
+
+  
+  onSubmitWorkFiles(): void {
+    if (this.selectedFile) {
+      const formData1: FormData = new FormData();
+      formData1.append('Id', "0e74a6a1-ad35-4ded-977a-069546c32345");
+      formData1.append('FileName', this.workfileservice.fileData.FileName);
+      formData1.append('FileUrl', this.workfileservice.fileData.FileUrl);
+      formData1.append('JobId', this.workfileservice.fileData.JobId);
+      formData1.append('UserId', this.workfileservice.fileData.UserId);
+      formData1.append('file', this.selectedFile, this.selectedFile.name);
+      formData1.append('File', this.selectedFile, this.selectedFile.name);
+
+      this.workfileservice.postFile(formData1).subscribe(
+        response => {
+          console.log('Upload successful', response);
+          window.location.reload();
+        },
+        error => {
+          console.error('Upload failed', error);
+        }
+    
+      );
+    } else {
+      console.error('No file selected');
+    }
+  }
+
+
 
   openFileUploadDialog() {
     this.fileInput.nativeElement.click();
   }
 
 
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0] as File;
-    this.selectedFiles.push(selectedFile.name);
-    // this.commentservice.commentData.file = selectedFile;
-    // this.commentservice.commentData.fileName = selectedFile.name;
-    this.workfileData.FileName = selectedFile.name;
-  }
-
-  onFileSelected1(event: any) {
-    const selectedFile = event.target.files[0];
-    this.selectedFiles1.push(selectedFile.name);
-    this.workfileData.File = selectedFile;
-  }
-
   showWorkDetails() {
     // this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy');
     // this.workfileData.CreateDate = this.dateFormatted;
-    this.workfileData.JobId = this.jobPost.jobId;
-    this.workfileData.FileUrl = 'Hello'
-    this.workfileData.UserId = 'KarthiKeyan';
+    this.workfileservice.fileData.JobId = this.jobPost.id;
+    this.workfileservice.fileData.FileUrl = 'Hello';
+    this.workfileservice.fileData.UserId = 'KarthiKeyan';
   }
 
 
   showCommentDetails() {
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'MMM dd hh:mma');
-    this.commentservice.commentData.CommentDateTime = this.dateFormatted;
-    this.commentservice.commentData.JobId = this.jobPost.id;
-    this.commentservice.commentData.CreatedBy = this.User[0].firstName;
+    this.commentService.commentData.CommentDateTime = this.dateFormatted;
+    this.commentService.commentData.JobId = this.jobPost.id;
+    this.commentService.commentData.Id = this.jobPost.id;
+    this.commentService.commentData.DateLastModified = "0001-01-01 00:00:00";
+    this.commentService.commentData.DateCreated = "0001-01-01 00:00:00";
+    this.commentService.commentData.CreatedBy = this.User[0].firstName;
     this.notificationsService.notificationData.userId = this.jobPost.userId;
     this.dateFormatted1 = this.datePipe.transform(this.currentDate, 'dd MMM');
     this.notificationsService.notificationData.notificationDate = this.dateFormatted1;
@@ -285,19 +291,15 @@ export class CommentsComponent implements OnInit {
   }
 
 
-  // //Sorting the Comments
+   //Sorting the Comments
   getCommentNow() {
-    this.commentservice.getComments().subscribe(data => {
+    this.commentService.getComments().subscribe(data => {
       this.comments = data;
-      // Sort comments based on commentDateTime in ascending order
       this.comments.sort((a: { commentDateTime: string; }, b: { commentDateTime: string; }) => {
         const dateA = this.parseCustomDate(a.commentDateTime).getTime();
         const dateB = this.parseCustomDate(b.commentDateTime).getTime();
-        console.log("Date A:", dateA);
-        console.log("Date B:", dateB);
-        return dateA - dateB; // Sort in ascending order (oldest first)
+        return dateA - dateB; 
       });
-      console.log("Sorted Comments:", this.comments);
     });
   }
   

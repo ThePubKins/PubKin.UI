@@ -13,8 +13,8 @@ export class WorkfileService {
   fileData: workfile = {} as workfile;
   list: workfile[] = [];
 
-  postFile(fileData: any): Observable<any> {
-    return this.apiService.post(`Workfile`, this.fileData);
+  postFile(formData: FormData): Observable<any>  {
+    return this.apiService.post(`Workfile`, formData);
   }
 
   getfile(): Observable<workfile[]> {

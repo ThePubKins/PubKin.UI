@@ -46,11 +46,8 @@ export class AppAuthService {
     }
 
     purgeAuth() {
-        // Remove JWT from localstorage
         this.jwtService.destroyToken();
-        // Set current user to an empty object
         this.currentUserSubject.next({} as CurrentUser);
-        // Set auth status to false
         this.isAuthenticatedSubject.next(false);
     }
 
@@ -74,10 +71,8 @@ export class AppAuthService {
         return this.apiService
             .put('/user', { user })
             .pipe(map(data => {
-                // Update the currentUser observable
                 this.currentUserSubject.next(data.user);
                 return data.user;
             }));
     }
-
 }

@@ -1,6 +1,4 @@
-
-<!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
-    <form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
+    <form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="onSubmitJob()">
     <input type="hidden" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
     <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
     <input type="hidden" id="postDate" name="postDate" [(ngModel)]="jobservice.jobData.postDate">
@@ -175,11 +173,8 @@
             <div class="col-3">
                  <img src="./assets/logo.png" class="rrlogoimg">
             </div>
-            <div class="col-9">
-
-            </div>
+            <div class="col-9"></div>
         </div>
-
     </div>
 
     <div class="container">
@@ -371,7 +366,7 @@
         <label class="up">
             <!-- <input  class="d-none" type="file" (change)="onFileSelected($event)"/> -->
             <input #fileInput type="file" class="d-none" id="attachfile" name="attachfile"
-                (change)="onFileSelected($event)" required>
+                (change)="onFileSelected($event);UploadFileName($event)" required>
             <span *ngIf="!uploadedFileName"></span> <span class="up1">{{ uploadedFileName ?
                 uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
         </label>

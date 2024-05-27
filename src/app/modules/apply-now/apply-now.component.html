@@ -57,7 +57,7 @@
 <div class="container" *ngIf="JobPost && success">
   <form
     #applyForm="ngForm"
-    (ngSubmit)="onSubmitApply(applyForm); handleFormSubmission()"
+    (ngSubmit)="submitApplied(); handleFormSubmission()"
     novalidate
   >
     <input
@@ -261,7 +261,7 @@ Lorem ipsum dolor sit amet consectetur. Erat pellentesque eleifend at suspendiss
           class="d-none"
           id="file"
           name="file"
-          (change)="onFileSelected($event)"
+          (change)="onFileSelected($event);UploadFileName($event)"
           required
         />
         <span *ngIf="!uploadedFileName"> Drag or&nbsp;</span>

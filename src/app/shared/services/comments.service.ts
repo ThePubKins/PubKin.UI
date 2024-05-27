@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "../../core";
 import { Comment } from "../models";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -17,17 +17,7 @@ export class CommentsService {
     return this.apiService.get(`Comment`);
   }
 
-  postComments(commentData: any) {
-    return this.apiService.post(`Comment`, this.commentData);
+  postComments(formData: FormData): Observable<any> {
+    return this.apiService.post(`Comment`, formData);
   }
-
-  // submitComment(formData: FormData): Observable<any> {
-  //   let httpOptions = new HttpHeaders({
-  //     'accept': '*/*'
-  //   });
-
-  //   httpOptions = httpOptions.append('Content-Type', 'multipart/form-data');
-
-  //   return this.apiService.post(`Comment`, formData, httpOptions);
-  // }
 }

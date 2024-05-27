@@ -1,4 +1,36 @@
 $pubmainfont:'League Spartan', sans-serif;
+
+.samplefilehead{ 
+    font-family: League Spartan;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.downloadbox{
+    border: 1px solid #A426D1;
+    padding: 13px 14px;
+    border-radius: 20px;
+    width: 283px;
+}
+
+.sampledownloadicon { 
+    width: 30px;
+    display: flex;
+}
+
+.sampledownloadname { 
+    margin-top: 5px;
+    font-family: League Spartan;
+    font-size: 16px;
+    font-style: normal;
+    text-decoration: none;
+    font-weight: 500;
+    line-height: normal;
+    color: #0F0F0F;
+}
+
 @media only screen and (min-width:1201px){
 
     .kkfrnavbar{

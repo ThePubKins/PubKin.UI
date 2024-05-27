@@ -40,12 +40,64 @@ export class ApplyNowComponent {
   }
 
 
-  onSubmitApply(form: NgForm) {
-    if (this.appliedservice.applyData) {
-      this.appliedservice.postApply(form.value).subscribe();
+  // onSubmitApply(form: NgForm) {
+  //   if (this.appliedservice.applyData) {
+  //     this.appliedservice.postApply(form.value).subscribe();
+  //   }
+  // }
+
+
+  
+  selectedFile: File | null = null;
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
     }
   }
+               
+         
+    submitApplied(): void {
+    if (this.selectedFile) {
+      const formData: FormData = new FormData();
+      formData.append('Id', "08dc6ff1-4047-46ad-8146-6d5fa5960654");
+      formData.append('DateLastModified', "0001-01-01 00:00:00");
+      formData.append('LastModifiedBy', this.appliedservice.applyData.lastModifiedBy);
+      formData.append('DateCreated', "0001-01-01 00:00:00");
+      formData.append('CreatedBy', this.appliedservice.applyData.createdBy);
+      formData.append('UserId', this.appliedservice.applyData.userId);
+      formData.append('JobId', this.appliedservice.applyData.jobId);
+      formData.append('SkillSet', this.appliedservice.applyData.skillSet);
+      formData.append('JobTitle', this.appliedservice.applyData.jobTitle);
+      formData.append('ApplyCoverLetter', this.appliedservice.applyData.applyCoverLetter);   
+      formData.append('SkillSet', this.appliedservice.applyData.skillSet);
+      formData.append('BiddingRate', this.appliedservice.applyData.biddingRate.toString());
+      formData.append('UserEmail', this.appliedservice.applyData.userEmail);
+      formData.append('Status', this.appliedservice.applyData.status);
+      formData.append('JobDescription', this.appliedservice.applyData.jobDescription);
+      formData.append('Rate', this.appliedservice.applyData.rate);
+      formData.append('PostBy', this.appliedservice.applyData.postBy);
+      formData.append('FileUrl', this.appliedservice.applyData.fileUrl);
+      formData.append('JobUniqueId', this.appliedservice.applyData.jobUniqueId);
+      formData.append('applideUserProfile', this.appliedservice.applyData.applideUserProfile);
+      formData.append('ApplyDate', this.appliedservice.applyData.applyDate);
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+      formData.append('File', this.selectedFile, this.selectedFile.name);
 
+      this.appliedservice.postApply(formData).subscribe(
+        response => {
+          console.log('Upload successful', response);
+          this.SuccessModal();
+        },
+        error => {
+          console.error('Upload failed', error);
+        }
+    
+      );
+    } else {
+      console.error('No file selected');
+    }
+  }
 
 
   submitForm() {
@@ -79,10 +131,7 @@ export class ApplyNowComponent {
   uploadedFileName: string = '';
   selectedFiles: string[] = [];
   
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    this.selectedFiles.push(selectedFile.name);
-    this.jobpostData.AttachFile = selectedFile;
+  UploadFileName(event: any) {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.uploadedFileName = file ? file.name : '';

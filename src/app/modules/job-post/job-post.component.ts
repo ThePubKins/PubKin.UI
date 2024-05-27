@@ -53,9 +53,73 @@ export class JobPostComponent implements OnInit {
   }
 
    //Submit to Job Post  Function
-   onSubmitJob(form: NgForm) {
-    if (this.jobservice.jobData) {
-      this.jobservice.postJobPost(form.value).subscribe();
+  //  onSubmitJob(form: NgForm) {
+  //   if (this.jobservice.jobData) {
+  //     this.jobservice.postJobPost(form.value).subscribe();
+  //   }
+  // }
+
+
+  
+  selectedFile: File | null = null;
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
+  UploadFileName(event:any) {
+  const inputElement = event.target as HTMLInputElement;
+  const file = inputElement.files?.[0];
+  this.uploadedFileName = file ? file.name : ''; 
+}
+
+
+    onSubmitJob(): void {
+    if (this.selectedFile) {
+      const formData: FormData = new FormData();
+      formData.append('Id', "05be61ea-747a-4720-ac1e-b2436323f05a");
+      formData.append('DateLastModified', "0001-01-01T00:00:00");
+      formData.append('LastModifiedBy', this.jobservice.jobData.lastModifiedBy);
+      formData.append('DateCreated', "0001-01-01T00:00:00");
+      formData.append('CreatedBy', this.jobservice.jobData.createdBy);
+      formData.append('FileName', this.jobservice.jobData.fileName);
+      formData.append('JobUniqueId', this.jobservice.jobData.jobUniqueId);
+      formData.append('UsersId', this.jobservice.jobData.usersId);
+      formData.append('JobTitle', this.jobservice.jobData.jobTitle);
+      formData.append('Description', this.jobservice.jobData.description);   
+      formData.append('Status', this.jobservice.jobData.status);   
+      formData.append('SkillSet', this.jobservice.jobData.skillSet);
+      formData.append('Complexity', this.jobservice.jobData.complexity);
+      formData.append('ProjectStartDate', this.jobservice.jobData.projectStartDate);
+      formData.append('ProjectEndDate', this.jobservice.jobData.projectEndDate);
+      formData.append('DurationOfProject', this.jobservice.jobData.durationOfProject);
+      formData.append('Experience', this.jobservice.jobData.experience);
+      formData.append('RateBasis', this.jobservice.jobData.rateBasis);
+      formData.append('FromBudget', this.jobservice.jobData.fromBudget);
+      formData.append('ToBudget', this.jobservice.jobData.toBudget);
+      formData.append('Currency', this.jobservice.jobData.currency);
+      formData.append('UserEmail', this.jobservice.jobData.userEmail);
+      formData.append('Service', this.jobservice.jobData.service);
+      formData.append('AttachFile', this.jobservice.jobData.attachFile);
+      formData.append('PostDate', this.jobservice.jobData.postDate);
+      formData.append('AttachUrl', this.jobservice.jobData.attachUrl);
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+      formData.append('File', this.selectedFile, this.selectedFile.name);
+
+      this.jobservice.postJobPost(formData).subscribe(
+        response => {
+          console.log('Upload successful', response);
+          window.location.reload();
+        },
+        error => {
+          console.error('Upload failed', error);
+        }
+    
+      );
+    } else {
+      console.error('No file selected');
     }
   }
 
@@ -226,55 +290,6 @@ export class JobPostComponent implements OnInit {
         this.jobservice.jobData.jobUniqueId = `A${this.firstName}${this.lastName} - ${totalPosts}`;
     });
 }
-
-
- submitPostJob(form: NgForm) {
-    if (this.jobservice.jobData) {
-      const formData = new FormData();
-      formData.append('dateCreated', this.jobservice.jobData.dateCreated);
-      formData.append('createdBy', this.jobservice.jobData.createdBy);
-      formData.append('id', this.jobservice.jobData.id);
-      formData.append('jobUniqueId', this.jobservice.jobData.jobUniqueId);
-      formData.append('userId', this.jobservice.jobData.usersId);
-      formData.append('jobTitle', this.jobservice.jobData.jobTitle);
-      formData.append('description', this.jobservice.jobData.description);
-      formData.append('skillSet', this.jobservice.jobData.skillSet);
-      formData.append('complexity', this.jobservice.jobData.complexity);
-      formData.append('projectStartDate', this.jobservice.jobData.projectStartDate);
-      formData.append('experience', this.jobservice.jobData.experience);
-      formData.append('rateBasis', this.jobservice.jobData.rateBasis);
-      formData.append('fromBudget', this.jobservice.jobData.fromBudget);
-      formData.append('toBudget', this.jobservice.jobData.toBudget);
-      formData.append('currency', this.jobservice.jobData.currency);
-      formData.append('userEmail', this.jobservice.jobData.userEmail);
-      formData.append('service', this.jobservice.jobData.service);
-      formData.append('attachUrl', this.jobservice.jobData.attachUrl);
-      formData.append('fileName', this.jobservice.jobData.fileName);
-      formData.append('status', this.jobservice.jobData.status);
-  
-      if (this.jobservice.jobData.attachFile) {
-        formData.append('attachFile', this.jobservice.jobData.attachFile);
-      }
-  
-      this.jobservice.postJobPost(form.value).subscribe(
-        response => {
-          console.log('Job posted successfully:', response);
-          this.jobData = new this.JobPost();
-        }
-      );
-    }
-  }
-  
-  
-
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    this.selectedFiles.push(selectedFile.name);
-    this.jobservice.jobData.attachFile = selectedFile;
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    this.uploadedFileName = file ? file.name : ''; 
-  }
 
   total :any;
   calculateTotal(): any {
