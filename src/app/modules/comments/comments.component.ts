@@ -25,7 +25,7 @@ export class CommentsComponent implements OnInit {
   viewwork: boolean = false;
   submitwork: boolean = false;
   selectedFile: File | null = null;
-  selectedFiles: string[] = [];
+  selectedFiles: File[] = [];
   selectedFiles1: string[] = [];
   User: any;
   imageUrl: string = 'https://localhost:7172';
@@ -38,6 +38,7 @@ export class CommentsComponent implements OnInit {
     public appliedService:AppliedUserService,public jobservice: JobpostService, private router: Router, public commentService: CommentsService, public workfileservice: WorkfileService) { }
 
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
+  @ViewChild('workfileInput') workfileInput!: ElementRef;
 
   ngOnInit() {
     this.getPosts();
@@ -182,39 +183,63 @@ export class CommentsComponent implements OnInit {
       console.error('No file selected');
     }
   }
+ 
+  fileNames: string[] = [];
 
 
-  
-  onSubmitWorkFiles(): void {
-    if (this.selectedFile) {
-      const formData1: FormData = new FormData();
-      formData1.append('Id', "0e74a6a1-ad35-4ded-977a-069546c32345");
-      formData1.append('FileName', this.workfileservice.fileData.FileName);
-      formData1.append('FileUrl', this.workfileservice.fileData.FileUrl);
-      formData1.append('JobId', this.workfileservice.fileData.JobId);
-      formData1.append('UserId', this.workfileservice.fileData.UserId);
-      formData1.append('file', this.selectedFile, this.selectedFile.name);
-      formData1.append('File', this.selectedFile, this.selectedFile.name);
+  onWorkFileSelected(event: any): void {
+    const files: FileList = event.target.files;
 
-      this.workfileservice.postFile(formData1).subscribe(
-        response => {
-          console.log('Upload successful', response);
-          window.location.reload();
-        },
-        error => {
-          console.error('Upload failed', error);
-        }
-    
-      );
-    } else {
-      console.error('No file selected');
+    for (let i = 0; i < files.length; i++) {
+      this.selectedFiles.push(files[i]);
+      this.fileNames.push(files[i].name);
     }
   }
 
+  removeFile(index: number): void {
+    this.selectedFiles.splice(index, 1);
+    this.fileNames.splice(index, 1);
+    this.updateFileInput();
+  }
+
+  updateFileInput(): void {
+    this.workfileInput.nativeElement.value = '';
+    const dataTransfer = new DataTransfer();
+    this.selectedFiles.forEach(file => dataTransfer.items.add(file));
+    this.workfileInput.nativeElement.files = dataTransfer.files;
+  }
+
+  onSubmitWorkFiles(): void {
+    if (this.selectedFiles.length === 0) {
+      console.error('No files selected');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('UserId', this.workfileservice.fileData.UserId);
+    formData.append('FileName', this.workfileservice.fileData.FileName);
+    formData.append('DateLastModified', '0001-01-01 00:00:00');
+    formData.append('FileUrl', this.workfileservice.fileData.FileUrl);
+    formData.append('LastModifiedBy', this.workfileservice.fileData.lastModifiedBy);
+    formData.append('JobId', this.workfileservice.fileData.JobId);
+    formData.append('DateCreated', '0001-01-01 00:00:00');
+    formData.append('Id', 'a5f81def-2fbc-4bd5-b403-e09bab293e42');
+    formData.append('CreatedBy', this.workfileservice.fileData.createdBy);
+
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      formData.append('files', this.selectedFiles[i], this.selectedFiles[i].name);
+    }
+
+    this.workfileservice.postFile(formData).subscribe(response => {
+      console.log('Upload response:', response);
+    }, error => {
+      console.error('Upload error:', error);
+    });
+  }
 
 
   openFileUploadDialog() {
-    this.fileInput.nativeElement.click();
+    this.workfileInput.nativeElement.click();
   }
 
 

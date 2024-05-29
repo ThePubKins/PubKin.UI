@@ -177,12 +177,11 @@
             <p class="hed">Work Files</p>
             <hr class="codu1" />
             <div class="d-flex justify-content-center position-relative">
-              <div class="scrollfiles">
-                <div>
-                  <div class="foldericon" *ngIf="hideFolderIcon">
-                    <ul>
-                      <li>
-                        <div class="w-100">
+              <div class="scrollfiles" *ngIf="fileNames.length > 0">
+                <div  *ngFor="let fileName of fileNames; let i = index">
+                  <div class="foldericon container" *ngIf="hideFolderIcon" >
+                        <div class="w-100 row">
+                          <div class="col-2">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="35"
@@ -195,15 +194,18 @@
                               fill="#E8A9FF"
                             />
                           </svg>
-                          <span class="dropname3">{{ uploadedFileName }}</span>
-                          <img
+                        </div>
+                        <div class="col-8">
+                          <p class="dropname3">{{ fileName }}</p>
+                        </div>
+                        <div class="col-2">
+                          <img (click)="removeFile(i)"
                             src="../assets/con _x letter_.svg"
                             class="closeicon"
                             alt=""
                           />
                         </div>
-                      </li>
-                    </ul>
+                        </div>
                   </div>
                 </div>
               </div>
@@ -264,10 +266,8 @@
               <input
                 type="file"
                 class="d-none"
-                id="file"
-                #fileInput
-                name="file"
-                (change)="onFileSelected($event); UploadFileName($event)"
+                #workfileInput type="file" multiple
+                (change)="onWorkFileSelected($event); UploadFileName($event)"
                 required
               />
               <div
@@ -605,3 +605,16 @@
     </div>
   </div>
 </div>
+
+
+<!-- <div>
+  <p *ngIf="fileNames.length > 0">Selected files:</p>
+  <ul>
+    <li *ngFor="let fileName of fileNames; let i = index">
+      {{ fileName }}
+      <button (click)="removeFile(i)">Remove</button>
+    </li>
+  </ul>
+  <input #fileInput type="file" (change)="onFileSelected($event)" multiple>
+  <button (click)="onSubmit()">Upload</button>
+</div> -->
