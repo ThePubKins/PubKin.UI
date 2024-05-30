@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserauthenticateService } from '../../shared/services/userauthenticate.service';
 import { NgClass } from '@angular/common';
-import { NotificationService } from '../../shared';
+import { NotificationService, notification } from '../../shared';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-freelancernav',
@@ -14,6 +15,7 @@ export class FreelancernavComponent implements OnInit {
   User : any;
   showNotifications=false;
   notifications:any;
+  private subscription: Subscription;
   imageUrl: string = 'https://localhost:7172';
   constructor(public userauthservice:UserauthenticateService,
     public notificationService: NotificationService,
@@ -21,7 +23,14 @@ export class FreelancernavComponent implements OnInit {
 
   ngOnInit(): void {
    this.getUserData();
-   this.getNotification();
+   this.subscription = this.notificationService.getNotificationsPeriodically().subscribe(
+    (notifications: notification[]) => {
+      this.notifications = notifications;
+    },
+    (error) => {
+      console.error('Error fetching notifications:', error);
+    }
+  );
   }
   
   //get the Current User Details
@@ -66,11 +75,19 @@ export class FreelancernavComponent implements OnInit {
          this.showNotifications = !this.showNotifications;
     }
 
-    getNotification() {
-      this.notificationService.getNotificaions().subscribe((data: any[]) => {
-        this.notifications = data;
-      });
+    // getNotification() {
+    //   this.notificationService.getNotificaions().subscribe((data: any[]) => {
+    //     this.notifications = data;
+    //   });
+    // }
+
+
+
+
+  
+    ngOnDestroy(): void {
+      if (this.subscription) {
+        this.subscription.unsubscribe();
+      }
     }
-
-
 }

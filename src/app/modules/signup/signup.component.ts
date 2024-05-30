@@ -138,12 +138,10 @@ export class SignupComponent implements OnInit, OnDestroy {
     const email = document.getElementById('email') as HTMLInputElement;
     const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
     this.generatedOTP = Math.floor(Math.random() * 10000).toString();
-    let emailbody = `
-      <h1>Your Pubkin Email verification</h1> <br>
-      <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>
-    `;
+    let emailbody = `<h1>Your Pubkin Email verification</h1> <br>
+      <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
     Email.send({
-      SecureToken: "9e3aa5bd-d384-4a3b-81d9-7eff7ad704a1",
+      SecureToken: "78fb806c-b235-4250-8d61-89ffd97011af",
       To: email.value,
       From: "sathishkmr.s4s@gmail.com",
       Subject: "This is the subject",
@@ -155,6 +153,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   emailVerified: boolean = false;
 
   //verify the OTP

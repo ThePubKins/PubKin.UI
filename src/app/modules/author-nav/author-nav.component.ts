@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserauthenticateService } from "../../shared/services/userauthenticate.service";
-import { NotificationService } from "../../shared";
+import { NotificationService, notification } from "../../shared";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-author-nav",
@@ -12,7 +13,8 @@ export class AuthorNavComponent implements OnInit {
   User: any;
   notifications: any;
   showNotifications: boolean = false;
-
+  private subscription: Subscription;
+  
   hidden() {
     this.hide = !this.hide;
   }
@@ -24,7 +26,14 @@ export class AuthorNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserData();
-    this.getNotification();
+    this.subscription = this.notificationService.getNotificationsPeriodically().subscribe(
+      (notifications: notification[]) => {
+        this.notifications = notifications;
+      },
+      (error) => {
+        console.error('Error fetching notifications:', error);
+      }
+    );
   }
 
   //get the Current User Details
