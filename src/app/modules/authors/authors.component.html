@@ -75,7 +75,7 @@
       </div>
     </div>
   </div>
-  <div class="container " *ngFor="let JobPost of Posts  | jobsearch : searchTerm ">
+  <div class="container " *ngFor="let JobPost of paginatedDataList  | jobsearch : searchTerm ">
     <div class="borderboxv" *ngIf=" JobPost.usersId == UserData[0].id" >
       <div class="row" >
         <br>
@@ -95,14 +95,8 @@
   <div class="container">
     <div class="row mt-3 ">
       <div class="col-3">
-        <!-- <label for="colFormLabelSm" class="col-form-label col-form-label-sm c1">Jobs Per Page:</label> -->
       </div>
       <div class="col-1">
-        <!-- <select class="form-select" id="autoSizingSelect">
-  <option selected>10</option>
-  <option value="1">20</option>
-  <option value="2">50</option>
-  </select> -->
       </div>
       <div class="col-2"></div>
       <div class="col-3"></div>

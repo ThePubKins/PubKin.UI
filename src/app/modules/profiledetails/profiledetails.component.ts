@@ -31,7 +31,9 @@ export class ProfiledetailsComponent implements OnInit {
   freelancers: any;
   authors: any;
   Freelancers: any[] = [{ SimpleDesc: "", MediumDesc: "", ComplexDesc: "" }];
-
+  selectedFile: File | null = null;
+  selectedResumeFile: File | null = null;
+  uploadedResumeFileName: string = '';
   Freelancer: any;
   GoNext: string = "button1";
   selectedButton: string = "";
@@ -85,7 +87,6 @@ export class ProfiledetailsComponent implements OnInit {
     this.getEducationDetails();
     this.getPaymentDetails();
     this.getPortfolioDetails();
-    console.log(this.User[0].Id , "rahul the fighter");
   }
 
   @ViewChild("submitbutton") submitbutton: ElementRef;
@@ -447,7 +448,7 @@ export class ProfiledetailsComponent implements OnInit {
   }
 
   //GovtId File Upload
-  onFileSelected(event: any) {
+  onFileNameSelected(event: any) {
     this.isFileUploaded = true;
     const selectedFile = event.target.files[0];
     this.selectedFiles.push(selectedFile.name);
@@ -457,10 +458,57 @@ export class ProfiledetailsComponent implements OnInit {
   }
 
   //GovtID Details Submit to Post Function
-  onSubmitGovtIdDetails(form: NgForm) {
-    if (form.valid && this.userservice.userData) {
-      this.userservice.putGovtDetails(form.value).subscribe();
+          
+  onSubmitGovtIdDetails(): void {
+    if (this.selectedFile) {
+      const formData: FormData = new FormData();
+      formData.append('Id', this.User[0].id);
+      formData.append('DateLastModified', "0001-01-01 00:00:00");
+      formData.append('LastModifiedBy', this.User[0].lastModifiedBy);
+      formData.append('DateCreated', "0001-01-01 00:00:00");
+      formData.append('IdType', this.User[0].idType);
+      formData.append('IdNumber', this.User[0].idNumber);
+      formData.append('Country', this.User[0].country);
+      formData.append('FileName', this.User[0].fileName);
+      formData.append('FileUrl', this.User[0].fileUrl);
+      formData.append('Attachment', this.User[0].attachment);
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+      formData.append('File', this.selectedFile, this.selectedFile.name);
+
+      this.userservice.putGovtDetails(formData).subscribe(
+        response => {
+          console.log('Upload successful', response);
+        },
+        error => {
+          console.error('Upload failed', error);
+        }
+    
+      );
+    } else {
+      console.error('No file selected');
     }
+  }
+
+  //File Selected
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+
+  onResumeFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedResumeFile = file;
+    }
+  }
+
+
+  UploadResumeFileName(event: any) {
+    const inputElement = event.target as HTMLInputElement;
+    const file = inputElement.files?.[0];
+    this.uploadedResumeFileName = file ? file.name : '';
   }
 
   //Profile  Details Submit to Post Function
@@ -484,19 +532,49 @@ export class ProfiledetailsComponent implements OnInit {
     }
   }
 
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
+  triggerFileInput() {
+    this.fileInput.nativeElement.click();
+  }
+  
   //Experience Details Submit to Post Function
-  onSubmitExperienceDetails(form: NgForm) {
-    if (form.valid && this.userservice.userData) {
-      this.userservice.putFreelancingDetails(form.value).subscribe();
-      this.contentName = "whoopee";
+          
+  onSubmitExperienceDetails(): void {
+    if (this.selectedResumeFile) {
+      const formData: FormData = new FormData();
+      formData.append('Id', this.User[0].id);
+      formData.append('DateLastModified', "0001-01-01 00:00:00");
+      formData.append('LastModifiedBy', this.User[0].lastModifiedBy);
+      formData.append('DateCreated', "0001-01-01 00:00:00");
+      formData.append('Experience', this.User[0].experience);
+      formData.append('Description', this.User[0].description);
+      formData.append('ResumeFileName', this.User[0].resumeFileName);
+      formData.append('ResumeFileUrl', this.User[0].resumeFileUrl);
+      formData.append('file', this.selectedResumeFile, this.selectedResumeFile.name);
+      formData.append('File', this.selectedResumeFile, this.selectedResumeFile.name);
+
+      this.userservice.putFreelancingDetails(formData).subscribe(
+        response => {
+          this.contentName = "whoopee";
       setTimeout(() => {
         if (this.contentName === "whoopee") {
           this.contentName = "freelancing-details";
           window.location.reload();
         }
       }, 3000);
+          console.log('Upload successful', response);
+        },
+        error => {
+          console.error('Upload failed', error);
+        }
+    
+      );
+    } else {
+      console.error('No file selected');
     }
   }
+
 
   //get the Current User Details
   getUserData() {

@@ -100,34 +100,6 @@ export class ApplyNowComponent {
   }
 
 
-  submitForm() {
-    const formData = new FormData();
-    formData.append('dateCreated', this.jobpostData.dateCreated);
-    formData.append('userId', this.jobpostData.userId);
-    formData.append('jobId', this.jobpostData.jobId);
-    formData.append('skillSet', this.jobpostData.skillSet);
-    formData.append('applyCoverLetter', this.jobpostData.applyCoverLetter);
-    formData.append('biddingRate', this.jobpostData.biddingRate.toString());
-    formData.append('userEmail', this.jobpostData.userEmail);
-    formData.append('status', this.jobpostData.status);
-    formData.append('id', this.jobpostData.id);
-    formData.append('jobTitle', this.jobpostData.jobTitle);
-    formData.append('jobDescription', this.jobpostData.jobDescription);
-    formData.append('rate', this.jobpostData.rate);
-    formData.append('postBy', this.jobpostData.postBy);
-    formData.append('fileUrl', this.jobpostData.fileUrl);
-    if (this.jobpostData.AttachFile) {
-      formData.append('AttachFile', this.jobpostData.AttachFile);
-    }
-
-    this.appliedservice.postApply(formData).subscribe(
-      response => {
-        console.log('Comment added successfully:', response);
-        this.jobpostData = {} as applied_user;
-      }
-    );
-  }
-  
   uploadedFileName: string = '';
   selectedFiles: string[] = [];
   

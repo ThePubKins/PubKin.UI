@@ -13,7 +13,7 @@ export class UserService {
   userData: Users = {} as Users;
   list: Users[] = [];
 
-  putGovtDetails(userData: any): Observable<any> {
+  putGovtDetails(userData: FormData): Observable<any> {
     return this.apiService.put(`User/govt-id-details`, userData);
   }
 

@@ -41,6 +41,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   userEmail: string = '';
   userfirstName: string = '';
   userlastName: string = '';
+  emailVerified: boolean = false;
 
   constructor(public authService: SocialAuthService,public dialog: MatDialog, private route: ActivatedRoute, public userservice: UserService, public roleService: RoleService,
     public userregister: UserauthenticateService, private router: Router) { }
@@ -133,43 +134,98 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
   }
 
-  //Email OTP & verify function
-  sendOTP() {
-    const email = document.getElementById('email') as HTMLInputElement;
-    const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
-    this.generatedOTP = Math.floor(Math.random() * 10000).toString();
-    let emailbody = `<h1>Your Pubkin Email verification</h1> <br>
-      <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
-    Email.send({
-      SecureToken: "78fb806c-b235-4250-8d61-89ffd97011af",
-      To: email.value,
-      From: "sathishkmr.s4s@gmail.com",
-      Subject: "This is the subject",
-      Body: emailbody
-    }).then((message: string) => {
-      if (message === "OK") {
-        alert("OTP sent to your email " + email.value);
-        otpverify.style.display = "block";
-      }
-    });
-  }
-
-  emailVerified: boolean = false;
+  // //Email OTP & verify function
+  // sendOTP() {
+  //   const email = document.getElementById('email') as HTMLInputElement;
+  //   const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
+  //   this.generatedOTP = Math.floor(Math.random() * 10000).toString();
+  //   let emailbody = `<h1>Your Pubkin Email verification</h1> <br>
+  //     <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
+  //   Email.send({
+  //     SecureToken: "df5ec504-f600-4bdb-91e2-bbdf6920dc6a",
+  //     To: email.value,
+  //     From: "thepubkins@gmail.com",
+  //     Subject: "This is the subject",
+  //     Body: emailbody
+  //   }).then((message: string) => {
+  //     if (message === "OK") {
+  //       alert("OTP sent to your email " + email.value);
+  //       otpverify.style.display = "block";
+  //     }
+  //   });
+  // }
 
   //verify the OTP
-  verifyOTP() {
-    const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
-    if (otp_inp.value === this.generatedOTP) {
-      this.GoNext = 'button5';
-      setTimeout(() => {
-        this.router.navigate(['/role']);
-    }, 3000);
-      this.submitbutton.nativeElement.click();
+  // verifyOTP() {
+  //   const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
+  //   if (otp_inp.value === this.generatedOTP) {
+  //     this.GoNext = 'button5';
+  //     setTimeout(() => {
+  //       this.router.navigate(['/role']);
+  //   }, 3000);
+  //     this.submitbutton.nativeElement.click();
 
-    } else {
-      alert("Invalid OTP");
+  //   } else {
+  //     alert("Invalid OTP");
+  //   }
+  // }
+
+
+    // Email OTP & verify function
+    sendOTP() {
+      const email = document.getElementById('email') as HTMLInputElement;
+      const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
+      
+      if (!email || !email.value) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+  
+      this.generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
+      let emailbody = `<h1>Your Pubkin Email Verification</h1><br>
+        <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
+      
+      Email.send({
+        SecureToken: "99018773-29b0-46ef-ba19-195815ae6e52",
+        To: email.value,
+        From: "s4s.webui@gmail.com",
+        Subject: "Email Verification OTP",
+        Body: emailbody
+      }).then((message: string) => {
+        if (message === "OK") {
+          alert("OTP sent to your email " + email.value);
+          otpverify.style.display = "block";
+        } else {
+          console.error("Email sending failed:", message);
+          alert("Failed to send OTP. Please try again.");
+        }
+      }).catch((error: any) => {
+        console.error("Error sending email:", error);
+        alert("An error occurred while sending OTP. Please try again.");
+      });
     }
-  }
+  
+    // Verify the OTP
+    verifyOTP() {
+      const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
+      
+      if (!otp_inp || !otp_inp.value) {
+        alert("Please enter the OTP.");
+        return;
+      }
+  
+      if (otp_inp.value === this.generatedOTP) {
+        this.emailVerified = true;
+        alert("Email verified successfully!");
+        this.GoNext = 'button5';
+        setTimeout(() => {
+          this.router.navigate(['/role']);
+        }, 3000);
+        this.submitbutton.nativeElement.click();
+      } else {
+        alert("Invalid OTP. Please try again.");
+      }
+    }
 
 
   //User Register and MySql Database Functionality

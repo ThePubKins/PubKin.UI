@@ -3,6 +3,7 @@ import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { jobpost, JobpostService, UserauthenticateService } from '../../shared';
 import { map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job-post',
@@ -39,6 +40,7 @@ export class JobPostComponent implements OnInit {
   Posts : any;
   User : any;
   jobData : jobpost= {} as jobpost;
+  success: boolean = true;
   selectedOption: string  = this.jobservice.jobData.complexity;
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class JobPostComponent implements OnInit {
   }
 
   constructor(   public fb: FormBuilder,public datePipe: DatePipe,
-    public jobservice:JobpostService,
+    public jobservice:JobpostService, public router: Router,
     public userservice:UserauthenticateService) {
       this.calculateCharactersLeft();
   }
@@ -77,7 +79,6 @@ export class JobPostComponent implements OnInit {
 
 
     onSubmitJob(): void {
-    if (this.selectedFile) {
       const formData: FormData = new FormData();
       formData.append('Id', "05be61ea-747a-4720-ac1e-b2436323f05a");
       formData.append('DateLastModified', "0001-01-01T00:00:00");
@@ -105,22 +106,28 @@ export class JobPostComponent implements OnInit {
       formData.append('AttachFile', this.jobservice.jobData.attachFile);
       formData.append('PostDate', this.jobservice.jobData.postDate);
       formData.append('AttachUrl', this.jobservice.jobData.attachUrl);
+      if (this.selectedFile) {
       formData.append('file', this.selectedFile, this.selectedFile.name);
       formData.append('File', this.selectedFile, this.selectedFile.name);
+      }
 
       this.jobservice.postJobPost(formData).subscribe(
         response => {
           console.log('Upload successful', response);
-          window.location.reload();
         },
         error => {
           console.error('Upload failed', error);
         }
-    
       );
-    } else {
-      console.error('No file selected');
-    }
+      this.SuccessModal();
+  }
+
+
+  SuccessModal() {
+    this.success = false;
+    setTimeout(() => {
+      this.router.navigate(['/authors']);
+    }, 3000);
   }
 
   //Character Left for the description

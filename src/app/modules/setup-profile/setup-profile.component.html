@@ -364,13 +364,13 @@
               </div>
               <div class="col-4">
                 <br><br>
-                <span><button class="btn kkidverbtn1">Add Document</button></span>
+                <span ><button class="btn kkidverbtn1" *ngIf="UserData[0].fileName === null" routerLink="/profile/govtId-details">Add Document</button></span>
+                <span ><button class="btn kkidverbtn1" *ngIf="UserData[0].fileName != null" routerLink="/profile/govtId-details">{{UserData[0].fileName}}</button></span>
               </div>
             </div>
           </div>
-
           <br>
-          <div class="container">
+          <!-- <div class="container">
             <div class="row">
               <div class="col-8">
                 <p class="kkidvertg1">2.&nbsp;Visual Verification</p>
@@ -378,10 +378,10 @@
                   be shared</p>
               </div>
               <div class="col-4">
-                <span><button class="btn kkidverbtn1">Add image</button></span>
+                <span><button class="btn kkidverbtn1" routerLink="/profile/govtId-details">Add image</button></span>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -685,5 +685,5 @@
 </div>
 
 <div class="mobileview d-flex justify-content-center">
-  <img src="../assets/mbview.png" class="img-fluid" alt="">
+  <img src="../assets/mbview .png" class="img-fluid" alt="">
 </div>

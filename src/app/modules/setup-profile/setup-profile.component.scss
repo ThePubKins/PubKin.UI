@@ -118,7 +118,7 @@
       .kkidverbx{
         margin-top: 37px;
         width: 750px;
-        height: 285px;
+        height: 170px;
         flex-shrink: 0;
         border-radius: 20px;
         border: 1px solid #9E9E9E;
@@ -474,6 +474,9 @@
 
 @media only screen and (min-width:1201px) {
 
+  .mobileview {
+     display: none;
+  }
   .kksetsidhd
   {
     color: #000;
@@ -590,7 +593,7 @@
       .kkidverbx{
         margin-top: 37px;
         width: 750px;
-        height: 285px;
+        height: 170px;
         flex-shrink: 0;
         border-radius: 20px;
         border: 1px solid #9E9E9E;
@@ -959,6 +962,10 @@
   }
 }
 
+
+.mobileview { 
+  display: none;
+}
 
 .kkmodelbill{
   width: 450px;

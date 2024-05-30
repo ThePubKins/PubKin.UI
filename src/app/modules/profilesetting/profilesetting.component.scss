@@ -152,6 +152,9 @@
 
 @media only screen and  (min-width:1201px){
 
+   .mobileview1 { 
+      display: none;
+   }
    .kksrbar1{
        margin-top: 52px;
        margin-left: 16px;
@@ -303,7 +306,9 @@
 }
 
 
-
+   .mobileview1 { 
+   display: none;
+}
 
 .vvblhet {
   color: #000;
