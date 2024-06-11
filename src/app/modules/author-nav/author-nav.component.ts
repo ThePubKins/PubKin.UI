@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { UserauthenticateService } from "../../shared/services/userauthenticate.service";
 import { NotificationService, notification } from "../../shared";
 import { Subscription } from "rxjs";
@@ -14,6 +14,9 @@ export class AuthorNavComponent implements OnInit {
   notifications: any;
   showNotifications: boolean = false;
   private subscription: Subscription;
+  showDotIcon: boolean;
+  previousNotificationCount: number = 0;
+  
   
   hidden() {
     this.hide = !this.hide;
@@ -28,12 +31,31 @@ export class AuthorNavComponent implements OnInit {
     this.getUserData();
     this.subscription = this.notificationService.getNotificationsPeriodically().subscribe(
       (notifications: notification[]) => {
+        if (notifications.length > this.previousNotificationCount) {
+          this.showDotIcon = true;
+        } else {
+          this.showDotIcon = false;
+        }
         this.notifications = notifications;
+        this.previousNotificationCount = notifications.length;
       },
       (error) => {
         console.error('Error fetching notifications:', error);
       }
     );
+  }
+
+  getNotification() {
+    this.notificationService.getNotificaions().subscribe((data: any[]) => {
+      this.notifications = data;
+    });
+  }
+
+  showNotification() {
+    this.showNotifications = !this.showNotifications;
+    if (this.showNotifications) {
+      this.showDotIcon = false;
+    }
   }
 
   //get the Current User Details
@@ -52,13 +74,7 @@ export class AuthorNavComponent implements OnInit {
     } else {
     }
   }
-
-  getNotification() {
-    this.notificationService.getNotificaions().subscribe((data: any[]) => {
-      this.notifications = data;
-    });
-  }
-
+  
   logout(): void {
     this.userauthservice.logout();
   }
@@ -75,7 +91,5 @@ export class AuthorNavComponent implements OnInit {
     return total;
   }
 
-  showNotification() {
-    this.showNotifications = !this.showNotifications;
-  }
+
 }

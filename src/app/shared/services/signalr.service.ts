@@ -12,7 +12,7 @@ export class SignalrService {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl("http://13.232.215.57:5001/Notify", {
+      .withUrl("https://localhost:7172/Notify", {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
       })
@@ -22,8 +22,6 @@ export class SignalrService {
       .then(() => console.log("Connection started"))
       .catch((err) => console.log("Error while starting connection: " + err));
   };
-
- 
 
   showNotification(notification: AppliedUserNotification) {
     this.toast.success({
@@ -41,8 +39,6 @@ export class SignalrService {
       }   
     });
   };
-
-
 
   public sendNotification(message: string) {
     this.hubConnection.invoke('SendNotification', message)

@@ -397,7 +397,7 @@
                   [(ngModel)]="workservice.workData.dateCreated"
                 />
                 <input
-                  type="text"
+                  type="hidden"
                   id="userId"
                   name="userId"
                   [(ngModel)]="workservice.workData.userId"
@@ -2381,8 +2381,10 @@
       <div class="row">
         <div class="col-6 authprofhead">
           Almost done! We need <br />
-          some more details.
+          some more details. <br>
+          <button class="backbuttonPersonal" routerLink="/authors">Back</button>
         </div>
+  
         <div class="col-6">
           <form
             novalidate
@@ -2549,7 +2551,7 @@
             <input
               type="text"
               class="intLocAuth"
-              placeholder="Location "
+              placeholder="Location"
               id="nationality"
               required
               name="nationality"
@@ -3583,7 +3585,7 @@
                     id="expiryDate"
                     #expiryDate="ngModel"
                     minlength="1"
-                    maxlength="8"
+                    maxlength="7"
                     name="expiryDate"
                     [(ngModel)]="bankData.expiryDate"
                     required

@@ -58,7 +58,7 @@ export class ApplyNowComponent {
                
          
     submitApplied(): void {
-    if (this.selectedFile) {
+  
       const formData: FormData = new FormData();
       formData.append('Id', "08dc6ff1-4047-46ad-8146-6d5fa5960654");
       formData.append('DateLastModified', "0001-01-01 00:00:00");
@@ -81,12 +81,12 @@ export class ApplyNowComponent {
       formData.append('JobUniqueId', this.appliedservice.applyData.jobUniqueId);
       formData.append('applideUserProfile', this.appliedservice.applyData.applideUserProfile);
       formData.append('ApplyDate', this.appliedservice.applyData.applyDate);
+      if (this.selectedFile) {
       formData.append('file', this.selectedFile, this.selectedFile.name);
       formData.append('File', this.selectedFile, this.selectedFile.name);
-
+      }
       this.appliedservice.postApply(formData).subscribe(
         response => {
-          console.log('Upload successful', response);
           this.SuccessModal();
         },
         error => {
@@ -94,9 +94,6 @@ export class ApplyNowComponent {
         }
     
       );
-    } else {
-      console.error('No file selected');
-    }
   }
 
 

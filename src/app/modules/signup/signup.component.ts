@@ -126,106 +126,56 @@ export class SignupComponent implements OnInit, OnDestroy {
     if (this.email && this.password) {
       this.userregister.login(this.email, this.password).subscribe({
         next: (response) => {
-          this.userregister.setToken(response.token);
-          this.router.navigate(['/role']);
-        },
+          if(response.token === '') { 
+            this.errorMessage = 'Incorrect email or password.';
+          }
+          else { 
+            this.userregister.setToken(response.token);
+            this.router.navigate(['/role']);
+            
+          }
+        }
       }
       );
     }
   }
 
-  // //Email OTP & verify function
-  // sendOTP() {
-  //   const email = document.getElementById('email') as HTMLInputElement;
-  //   const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
-  //   this.generatedOTP = Math.floor(Math.random() * 10000).toString();
-  //   let emailbody = `<h1>Your Pubkin Email verification</h1> <br>
-  //     <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
-  //   Email.send({
-  //     SecureToken: "df5ec504-f600-4bdb-91e2-bbdf6920dc6a",
-  //     To: email.value,
-  //     From: "thepubkins@gmail.com",
-  //     Subject: "This is the subject",
-  //     Body: emailbody
-  //   }).then((message: string) => {
-  //     if (message === "OK") {
-  //       alert("OTP sent to your email " + email.value);
-  //       otpverify.style.display = "block";
-  //     }
-  //   });
-  // }
-
-  //verify the OTP
-  // verifyOTP() {
-  //   const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
-  //   if (otp_inp.value === this.generatedOTP) {
-  //     this.GoNext = 'button5';
-  //     setTimeout(() => {
-  //       this.router.navigate(['/role']);
-  //   }, 3000);
-  //     this.submitbutton.nativeElement.click();
-
-  //   } else {
-  //     alert("Invalid OTP");
-  //   }
-  // }
-
-
-    // Email OTP & verify function
-    sendOTP() {
-      const email = document.getElementById('email') as HTMLInputElement;
-      const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
-      
-      if (!email || !email.value) {
-        alert("Please enter a valid email address.");
-        return;
+  //Email OTP & verify function
+  sendOTP() {
+    const email = document.getElementById('email') as HTMLInputElement;
+    const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
+    this.generatedOTP = Math.floor(Math.random() * 10000).toString();
+    let emailbody = `<h1>Your Pubkin Email verification</h1> <br>
+      <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
+    Email.send({
+      SecureToken: "df5ec504-f600-4bdb-91e2-bbdf6920dc6a",
+      To: email.value,
+      From: "thepubkins@gmail.com",
+      Subject: "This is the subject",
+      Body: emailbody
+    }).then((message: string) => {
+      if (message === "OK") {
+        alert("OTP sent to your email " + email.value);
+        otpverify.style.display = "block";
       }
-  
-      this.generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
-      let emailbody = `<h1>Your Pubkin Email Verification</h1><br>
-        <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
-      
-      Email.send({
-        SecureToken: "99018773-29b0-46ef-ba19-195815ae6e52",
-        To: email.value,
-        From: "s4s.webui@gmail.com",
-        Subject: "Email Verification OTP",
-        Body: emailbody
-      }).then((message: string) => {
-        if (message === "OK") {
-          alert("OTP sent to your email " + email.value);
-          otpverify.style.display = "block";
-        } else {
-          console.error("Email sending failed:", message);
-          alert("Failed to send OTP. Please try again.");
-        }
-      }).catch((error: any) => {
-        console.error("Error sending email:", error);
-        alert("An error occurred while sending OTP. Please try again.");
-      });
+    });
+  }
+
+  // verify the OTP
+  verifyOTP() {
+    const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
+    if (otp_inp.value === this.generatedOTP) {
+      this.GoNext = 'button5';
+      setTimeout(() => {
+        this.router.navigate(['/role']);
+    }, 3000);
+      this.submitbutton.nativeElement.click();
+
+    } else {
+      alert("Invalid OTP");
     }
-  
-    // Verify the OTP
-    verifyOTP() {
-      const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
-      
-      if (!otp_inp || !otp_inp.value) {
-        alert("Please enter the OTP.");
-        return;
-      }
-  
-      if (otp_inp.value === this.generatedOTP) {
-        this.emailVerified = true;
-        alert("Email verified successfully!");
-        this.GoNext = 'button5';
-        setTimeout(() => {
-          this.router.navigate(['/role']);
-        }, 3000);
-        this.submitbutton.nativeElement.click();
-      } else {
-        alert("Invalid OTP. Please try again.");
-      }
-    }
+  } 
+
 
 
   //User Register and MySql Database Functionality

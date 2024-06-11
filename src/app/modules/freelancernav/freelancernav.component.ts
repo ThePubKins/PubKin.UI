@@ -15,6 +15,9 @@ export class FreelancernavComponent implements OnInit {
   User : any;
   showNotifications=false;
   notifications:any;
+  userNotifications: notification[] = [];
+  showDotIcon: boolean;
+  previousNotificationCount: number = 0;
   private subscription: Subscription;
   imageUrl: string = 'https://localhost:7172';
   constructor(public userauthservice:UserauthenticateService,
@@ -25,8 +28,15 @@ export class FreelancernavComponent implements OnInit {
    this.getUserData();
    this.subscription = this.notificationService.getNotificationsPeriodically().subscribe(
     (notifications: notification[]) => {
-      this.notifications = notifications;
-    },
+        if (notifications.length > this.previousNotificationCount) {
+          this.showDotIcon = true;
+        } else {
+          this.showDotIcon = false;
+        }
+        this.notifications = notifications;
+        this.previousNotificationCount = notifications.length;
+        this.userNotifications = this.notifications.filter((notification: { userId: any; }) => notification.userId === this.User[0].id);
+      },
     (error) => {
       console.error('Error fetching notifications:', error);
     }
@@ -73,6 +83,9 @@ export class FreelancernavComponent implements OnInit {
 
      showNotification() {
          this.showNotifications = !this.showNotifications;
+         if (this.showNotifications) {
+          this.showDotIcon = false;
+        }
     }
 
     // getNotification() {
@@ -80,14 +93,4 @@ export class FreelancernavComponent implements OnInit {
     //     this.notifications = data;
     //   });
     // }
-
-
-
-
-  
-    ngOnDestroy(): void {
-      if (this.subscription) {
-        this.subscription.unsubscribe();
-      }
-    }
-}
+  }

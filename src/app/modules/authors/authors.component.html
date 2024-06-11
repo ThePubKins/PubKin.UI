@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-xl-6 col-lg-8">
         <div class="rrcomposrelalign1">
-          <input type="text" class="rrinputsearch1" placeholder="Search Job posting" name="search" [(ngModel)]="searchTerm" (input)="onSearchChange($event)">
+          <input type="text" class="rrinputsearch1" placeholder="Search job posting" name="search" [(ngModel)]="searchTerm" (input)="onSearchChange($event)">
           <img class="rrsrchicon1" src="./assets/search.png" alt="pubkin Start a career now">
           <button class="btn  rralibtnall dropdown-toggle" type="button" id="dropdownMenuButton1"
             data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,13 +32,13 @@
         <div class="rrcomcenalign1 rrhirebestalign">
           <div>
             <div class="rrcomcenalign1">
-              <p class="kkprtag1">Hire the best Talent in the Market</p>
+              <p class="kkprtag1">Hire the best talent in the market</p>
             </div>
             <div class="rrcomcenalign1">
-              <p class="kkprtag2">Lorem ipsum dolor sit amet consectetur. Cursus nisi mauris rhoncus tortor.</p>
+              <p class="kkprtag2">Find, attract, and retain the best talent to drive your success</p>
             </div>
             <div class="rrcomcenalign1">
-              <button class="btn kkprbtn1" [disabled]="calculateTotal() < 69" routerLink="/post-a-job">Post A Job</button>
+              <button class="btn kkprbtn1" [disabled]="calculateTotal() < 69" routerLink="/post-a-job">Post a job</button>
             </div>
           </div>
         </div>
@@ -46,17 +46,17 @@
       <div class="col-lg-4">
         <div class="rrcomendalign1 ">
           <div class="rrkkprdetacn2">
-            <p class="rrkkprtag3">Profile Completeness:</p>
+            <p class="rrkkprtag3">Profile completeness:</p>
             <p class="rrkkprtag4">{{calculateTotal()}}% complete</p>
          <div class="progress pgrss" role="progressbar" aria-label="Basic example"
              [attr.aria-valuenow]="calculateTotal()" aria-valuemin="0" aria-valuemax="100">
              <div class="progress-bar pgrssbar" [style.width.%]="calculateTotal()"></div>
          </div>
             <div class="rrcomcenalign1" *ngIf="calculateTotal() < 99">
-              <button class="btn rrkkprbtn2" (click)="openDeliveryDialog();">Complete Profile</button>
+              <button class="btn rrkkprbtn2" (click)="openDeliveryDialog();">Complete profile</button>
             </div>
             <div class="rrcomcenalign1" *ngIf="calculateTotal() === 100">
-              <p class="rrkkprtag5">Your Profile is Verified Now!</p>
+              <p class="rrkkprtag5">Your Profile is verified now!</p>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <p class="vvrecnt">Your Recent Activity</p>
+        <p class="vvrecnt">Your recent activity</p>
       </div>
       <div class="col-lg-4"></div>
       <div class="col-2">

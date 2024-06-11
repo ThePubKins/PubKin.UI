@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { CommentsService, JobpostService, NotificationService, UserauthenticateService, WorkfileService, Comment, workfile, AppliedUserService } from '../../shared';
+import { CommentsService, JobpostService, NotificationService, UserauthenticateService, WorkfileService, Comment, workfile, AppliedUserService, SignalrService } from '../../shared';
 import { NgForm } from '@angular/forms';
 
 
@@ -31,11 +31,13 @@ export class CommentsComponent implements OnInit {
   imageUrl: string = 'https://localhost:7172';
   jobPosts: any;
   uploadedFileName: string = ''; 
+  selectedStatus : any;
   notificationData:any;
   applies: import("d:/Sathish Software/ThePubkins/ThePubkins-UI/src/app/shared/index").applied_user[];
 
   constructor(private route: ActivatedRoute, public datePipe: DatePipe,public notificationsService : NotificationService, public userauthservice: UserauthenticateService,
-    public appliedService:AppliedUserService,public jobservice: JobpostService, private router: Router, public commentService: CommentsService, public workfileservice: WorkfileService) { }
+    public appliedService:AppliedUserService,public jobservice: JobpostService,
+    private singlarService: SignalrService, private router: Router, public commentService: CommentsService, public workfileservice: WorkfileService) { }
 
   @ViewChild('fileInput') fileInput: ElementRef<HTMLInputElement>;
   @ViewChild('workfileInput') workfileInput!: ElementRef;
@@ -45,6 +47,7 @@ export class CommentsComponent implements OnInit {
     this.getWorkFiles();
     this.getUserData();
     this.getJobPosts();
+    this.getapplies();
     this.getCommentNow();
     this.showCommentDetails();
   }
@@ -96,9 +99,9 @@ export class CommentsComponent implements OnInit {
   }
 
 
-  onSubmitJobStatus(form: NgForm) {
-    if (form.valid && this.jobservice.jobData) {
-      this.jobservice.JobStatus(form.value).subscribe();
+  onSFreelancerubmitStatus(form: NgForm) {
+    if (form.valid && this.appliedService.applyData) {
+      this.appliedService.PutStatus(form.value).subscribe();
     }
   }
 
@@ -121,10 +124,23 @@ export class CommentsComponent implements OnInit {
     });
   }
 
-  ChangeStatus() {
-    this.jobPosts[0].status = "completed";
+  userId = sessionStorage.getItem('authorId')?.toString() || '';
+
+  selectForStatus(apply : any) {
+    this.selectedStatus =  apply;
+    this.jobservice.jobData.status = "completed";
+    this.appliedService.applyData.status = "completed";
   }
 
+  
+  @ViewChild('notificationButton') notificationButton: ElementRef;
+  @ViewChild("updateForm") updateForm: NgForm;
+  @ViewChild("jobUpdateForm") jobUpdateForm: NgForm;
+
+  submitBothForms() {
+    this.onSubmitStatus(this.updateForm);
+    this.onSubmitJobStatus(this.jobUpdateForm);
+  }
 
   onSubmitStatus(form: NgForm) {
     if (form.valid && this.appliedService.applyData) {
@@ -132,6 +148,11 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  onSubmitJobStatus(form: NgForm) {
+    if (form.valid && this.jobservice.jobData) {
+      this.jobservice.JobStatus(form.value).subscribe();
+    }
+  }
 
   getUserData() {
     const Email = this.userauthservice.getUserEmail() ?? sessionStorage.getItem('email');
@@ -152,9 +173,7 @@ export class CommentsComponent implements OnInit {
     }
   }
 
-
     submitComment(): void {
-    if (this.selectedFile) {
       const formData: FormData = new FormData();
       formData.append('FileName', this.commentService.commentData.FileName);
       formData.append('DateLastModified', this.commentService.commentData.DateLastModified);
@@ -165,9 +184,12 @@ export class CommentsComponent implements OnInit {
       formData.append('CommentDateTime', this.commentService.commentData.CommentDateTime);
       formData.append('DateCreated', this.commentService.commentData.DateCreated);
       formData.append('Id', this.commentService.commentData.Id);
+      formData.append('CreatedBy', this.commentService.commentData.CreatedBy);
+      if (this.selectedFile) {
       formData.append('file', this.selectedFile, this.selectedFile.name);
       formData.append('File', this.selectedFile, this.selectedFile.name);
-      formData.append('CreatedBy', this.commentService.commentData.CreatedBy);
+      }
+      
 
       this.commentService.postComments(formData).subscribe(
         response => {
@@ -179,9 +201,6 @@ export class CommentsComponent implements OnInit {
         }
     
       );
-    } else {
-      console.error('No file selected');
-    }
   }
  
   fileNames: string[] = [];
@@ -248,7 +267,7 @@ export class CommentsComponent implements OnInit {
     // this.workfileData.CreateDate = this.dateFormatted;
     this.workfileservice.fileData.JobId = this.jobPost.id;
     this.workfileservice.fileData.FileUrl = 'Hello';
-    this.workfileservice.fileData.UserId = 'KarthiKeyan';
+    this.workfileservice.fileData.UserId = this.applies[0].userId;
   }
 
 
@@ -356,12 +375,52 @@ export class CommentsComponent implements OnInit {
       this.notificationsService.postNotification(userId, form.value).subscribe();
     }
   }
-
-
-  @ViewChild('notificationButton') notificationButton: ElementRef;
   
-  notifyNow() {
-    this.notificationButton.nativeElement.click();
+   //Comment Notification
+  sendNotification() {
+    const notificationData = {
+      notification:
+        "Received a new comment from " ,
+      userId: this.jobPost.usersId,
+    };
+    this.notificationsService
+      .postNotification(this.userId, notificationData)
+      .subscribe(
+        (response) => {
+          console.log("Notification posted successfully:", response);
+        },
+        (error) => {
+          console.error("Error posting notification:", error);
+        }
+      );
   }
- 
+
+  sendNotifications() {
+    const message = "Your notification message here";
+    this.singlarService.sendNotification(message);
+  }
+
+   //Submit Work Notification
+   sendSubmitNotification() {
+    const notificationData = {
+      notification:
+        "New Work file received from this" + this.jobPost.jobUniqueId ,
+      userId: this.jobPost.usersId,
+    };
+    this.notificationsService
+      .postNotification(this.userId, notificationData)
+      .subscribe(
+        (response) => {
+          console.log("Notification posted successfully:", response);
+        },
+        (error) => {
+          console.error("Error posting notification:", error);
+        }
+      );
+  }
+
+  sendSubmitNotifications() {
+    const message = "Your notification message here";
+    this.singlarService.sendNotification(message);
+  }
 }

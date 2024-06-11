@@ -460,7 +460,7 @@ export class ProfiledetailsComponent implements OnInit {
   //GovtID Details Submit to Post Function
           
   onSubmitGovtIdDetails(): void {
-    if (this.selectedFile) {
+
       const formData: FormData = new FormData();
       formData.append('Id', this.User[0].id);
       formData.append('DateLastModified', "0001-01-01 00:00:00");
@@ -472,9 +472,10 @@ export class ProfiledetailsComponent implements OnInit {
       formData.append('FileName', this.User[0].fileName);
       formData.append('FileUrl', this.User[0].fileUrl);
       formData.append('Attachment', this.User[0].attachment);
+      if (this.selectedFile) {
       formData.append('file', this.selectedFile, this.selectedFile.name);
       formData.append('File', this.selectedFile, this.selectedFile.name);
-
+      }
       this.userservice.putGovtDetails(formData).subscribe(
         response => {
           console.log('Upload successful', response);
@@ -484,9 +485,6 @@ export class ProfiledetailsComponent implements OnInit {
         }
     
       );
-    } else {
-      console.error('No file selected');
-    }
   }
 
   //File Selected
@@ -665,14 +663,14 @@ export class ProfiledetailsComponent implements OnInit {
   }
 
   skills = [
-    "Lorem Ipsum 1",
-    "Lorem Ipsum 2",
-    "Lorem Ipsum 3",
-    "Lorem Ipsum 4",
-    "Lorem Ipsum 5",
-    "Lorem Ipsum 6",
-    "Lorem Ipsum 7",
-    "Lorem Ipsum 8",
+    "Book Typesetting",
+    "Template Design",
+    "Cover Design",
+    "Illustrator Works",
+    "Graphics Design",
+    "XML Specialist",
+    "Flyers Typesetting",
+    "Marketing",
   ];
 
   updateCombinedSkills(): void {

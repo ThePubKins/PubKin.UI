@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { notification } from '../models';
-import { Observable, startWith } from 'rxjs';
+import { BehaviorSubject, Observable, of, startWith } from 'rxjs';
 import { interval, switchMap } from 'rxjs';
 import { ApiService } from '../../core';
 
@@ -10,7 +10,6 @@ import { ApiService } from '../../core';
 export class NotificationService {
 
   constructor(private apiService: ApiService) { }
- 
   notificationData: notification = {} as notification;
   list: notification[] = [];
 
@@ -24,6 +23,7 @@ export class NotificationService {
       switchMap(() => this.getNotificaions())
     );
   }
+
 
   postNotification(userId: string, notificationData: any) {
     return this.apiService.post(`Notification?userId=${userId}`, notificationData);

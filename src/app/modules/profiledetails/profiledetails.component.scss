@@ -750,6 +750,7 @@ select {
   color: #a426d1;
   font-family: "League Spartan";
   font-size: 16px;
+  cursor: pointer;
   margin-right: 34px;
   float: right;
   margin-top: -10px;
@@ -1560,3 +1561,20 @@ select:focus {
     background-color: transparent;
   }
 }
+
+
+
+.backbuttonPersonal { 
+  border-radius: 7px;
+  background: #a426d1;
+  padding: 12px 44px;
+  color: #fff;
+  border: 0px;
+  font-family: "League Spartan", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 446px;
+  line-height: normal;
+}
+
