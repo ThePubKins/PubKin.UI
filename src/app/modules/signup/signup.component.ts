@@ -41,6 +41,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   userEmail: string = '';
   userfirstName: string = '';
   userlastName: string = '';
+  emailVerified: boolean = false;
 
   constructor(public authService: SocialAuthService,public dialog: MatDialog, private route: ActivatedRoute, public userservice: UserService, public roleService: RoleService,
     public userregister: UserauthenticateService, private router: Router) { }
@@ -125,9 +126,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     if (this.email && this.password) {
       this.userregister.login(this.email, this.password).subscribe({
         next: (response) => {
-          this.userregister.setToken(response.token);
-          this.router.navigate(['/role']);
-        },
+          if(response.token === '') { 
+            this.errorMessage = 'Incorrect email or password.';
+          }
+          else { 
+            this.userregister.setToken(response.token);
+            this.router.navigate(['/role']);
+            
+          }
+        }
       }
       );
     }
@@ -138,14 +145,12 @@ export class SignupComponent implements OnInit, OnDestroy {
     const email = document.getElementById('email') as HTMLInputElement;
     const otpverify = document.getElementsByClassName('otpverify')[0] as HTMLElement;
     this.generatedOTP = Math.floor(Math.random() * 10000).toString();
-    let emailbody = `
-      <h1>Your Pubkin Email verification</h1> <br>
-      <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>
-    `;
+    let emailbody = `<h1>Your Pubkin Email verification</h1> <br>
+      <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>`;
     Email.send({
-      SecureToken: "99018773-29b0-46ef-ba19-195815ae6e52",
+      SecureToken: "df5ec504-f600-4bdb-91e2-bbdf6920dc6a",
       To: email.value,
-      From: "s4s.webui@gmail.com",
+      From: "thepubkins@gmail.com",
       Subject: "This is the subject",
       Body: emailbody
     }).then((message: string) => {
@@ -155,9 +160,8 @@ export class SignupComponent implements OnInit, OnDestroy {
       }
     });
   }
-  emailVerified: boolean = false;
 
-  //verify the OTP
+  // verify the OTP
   verifyOTP() {
     const otp_inp = document.getElementById('otp_inp') as HTMLInputElement;
     if (otp_inp.value === this.generatedOTP) {
@@ -170,7 +174,8 @@ export class SignupComponent implements OnInit, OnDestroy {
     } else {
       alert("Invalid OTP");
     }
-  }
+  } 
+
 
 
   //User Register and MySql Database Functionality

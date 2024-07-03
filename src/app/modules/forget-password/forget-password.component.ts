@@ -37,9 +37,9 @@ export class ForgetPasswordComponent implements OnInit {
       <h2>Your OTP is </h2><h2>${this.generatedOTP}</h2>
     `;
     Email.send({
-      SecureToken: "99018773-29b0-46ef-ba19-195815ae6e52",
+      SecureToken: "aba854d5-8085-4a6f-8c32-ce4183f18fe5",
       To: email.value,
-      From: "s4s.webui@gmail.com",
+      From: "sathishkmr.s4s@gmail.com",
       Subject: "This is the subject",
       Body: emailbody,
     }).then((message: string) => {

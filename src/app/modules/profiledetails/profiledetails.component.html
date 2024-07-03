@@ -397,7 +397,7 @@
                   [(ngModel)]="workservice.workData.dateCreated"
                 />
                 <input
-                  type="text"
+                  type="hidden"
                   id="userId"
                   name="userId"
                   [(ngModel)]="workservice.workData.userId"
@@ -438,7 +438,7 @@
                   </span>
                   <p class="kkeduhdtg kkeduhdtg1">Company*</p>
                   <input
-                    class="kkin1"
+                    class="kkin1" 
                     type="text"
                     placeholder="eg: ABC solution"
                     ngModel
@@ -1337,7 +1337,7 @@
                   type="submit"
                   data-bs-dismiss="modal"
                   aria-label="Close"
-                  [disabled]="!educationForm.invalid"
+                  [disabled]="educationForm.invalid"
                   (click)="PercentageSubmit();FetchDetails()"
                 >
                   Save
@@ -1355,7 +1355,7 @@
     <form
       novalidate
       #experienceForm="ngForm"
-      (ngSubmit)="onSubmitExperienceDetails(experienceForm)"
+      (ngSubmit)="onSubmitExperienceDetails();"
     >
       <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id" />
       <input
@@ -1377,6 +1377,20 @@
         #experience="ngModel"
         [(ngModel)]="User[0].experience"
       />
+      <input
+      type="hidden"
+      id="resumeFileName "
+      name="resumeFileName"
+      #resumeFileName="ngModel"
+      [(ngModel)]="User[0].resumeFileName"
+    />
+    <input
+    type="hidden"
+    id="resumeFileUrl "
+    name="resumeFileUrl"
+    #resumeFileUrl="ngModel"
+    [(ngModel)]="User[0].resumeFileUrl"
+  />
       <input
         type="hidden"
         id="description"
@@ -1539,13 +1553,24 @@
                                 <img  src="../assets/_LinkedIn_.png" alt="linkedin in pubkin" class="rrpubimg1">
                                 <p class="rrlinkedinifl1">Import from LinkedIn</p>
                           </div> -->
-            <div class="circlin rrpubcomcenalign12">
+            <div class="circlin rrpubcomcenalign12" (click)="triggerFileInput();">
+              <input
+              #fileInput
+                  type="file"
+                  class="d-none"
+                  id="attachfile"
+                  name="attachfile"
+                  (change)="onResumeFileSelected($event); UploadResumeFileName($event);"
+                  required
+                />
               <img
                 src="../assets/_upload share_.png"
                 alt="Upload Resume"
                 class="rrpubimg1"
               />
-              <p class="rrlinkedinifl1">Upload your Resume</p>
+              <p class="rrlinkedinifl1" *ngIf="!uploadedResumeFileName && User[0].resumeFileName === null">Upload your Resume</p>
+              <p class="rrlinkedinifl1" *ngIf="!uploadedResumeFileName && User[0].resumeFileName != null">{{ User[0].resumeFileName}}</p>
+              <p class="rrlinkedinifl1">{{ uploadedResumeFileName}}</p>
             </div>
             <div
               class="circlin rrpubcomcenalign12"
@@ -2123,7 +2148,7 @@
 
     <form
       #govtIdForm="ngForm"
-      (ngSubmit)="onSubmitGovtIdDetails(govtIdForm)"
+      (ngSubmit)="onSubmitGovtIdDetails();"
       novalidate
     >
       <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id" />
@@ -2155,6 +2180,22 @@
         id="country"
         [(ngModel)]="User[0].country"
       />
+      <input
+      type="hidden"
+      ngModel
+      name="fileName"
+      #fileName="ngModel"
+      id="fileName"
+      [(ngModel)]="User[0].fileName"
+    />
+    <input
+    type="hidden"
+    ngModel
+    name="fileUrl"
+    #fileUrl="ngModel"
+    id="fileUrl"
+    [(ngModel)]="User[0].fileUrl"
+  />
       <input
         type="hidden"
         ngModel
@@ -2250,7 +2291,7 @@
                   class="d-none"
                   id="attachfile"
                   name="attachfile"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileNameSelected($event); onFileSelected($event);"
                   required
                 />
                 <div
@@ -2273,7 +2314,7 @@
                   <br />
                   <span class="uplohead mt-1">{{ uploadedFileName }}</span>
                 </div>
-                <div *ngIf="!uploadedFileName">
+                <div *ngIf="!uploadedFileName && User[0].fileName === null">
                   <div class="rrpubcomcenalign1 d-flex justify-content-center">
                     <img
                       class="govtimg"
@@ -2291,6 +2332,21 @@
                     </p>
                   </div>
                 </div>
+                <div *ngIf="!uploadedFileName && User[0].fileName != null"  class="d-flex justify-content-center align-items-center flex-column">
+                  <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="60"
+                  width="60"
+                  viewBox="0 0 512 512"
+                >
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path
+                    fill="#a426d1"
+                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"
+                  />
+                </svg>
+             <p class="uplohead mt-3" >{{User[0].fileName}}</p>   
+            </div>
               </label>
             </div>
           </div>
@@ -2307,9 +2363,10 @@
         <div class="col-4">
           <button
             class="btn kkempbtn2b"
-            routerLink="/profile/payment"
+            
             type="submit"
             (click)="govtsubmit(); PercentageSubmit()"
+            routerLink="/profile/payment"
           >
             Save Details
           </button>
@@ -2324,8 +2381,10 @@
       <div class="row">
         <div class="col-6 authprofhead">
           Almost done! We need <br />
-          some more details.
+          some more details. <br>
+          <button class="backbuttonPersonal" routerLink="/authors">Back</button>
         </div>
+  
         <div class="col-6">
           <form
             novalidate
@@ -2492,7 +2551,7 @@
             <input
               type="text"
               class="intLocAuth"
-              placeholder="Location "
+              placeholder="Location"
               id="nationality"
               required
               name="nationality"
@@ -2533,7 +2592,7 @@
         novalidate
         #govtIdForm="ngForm"
         (ngSubmit)="
-          onSubmitGovtIdDetails(govtIdForm); onSubmitpercentage(govtIdForm)
+          onSubmitGovtIdDetails(); onSubmitpercentage(govtIdForm)
         "
       >
         <input type="hidden" id="id" name="id" [(ngModel)]="User[0].id" />
@@ -2617,7 +2676,7 @@
           id="idType"
           [(ngModel)]="User[0].idType"
         />
-        <button type="submit" class="d-none" #idbutton>Submit</button>
+        <button type="submit" #idbutton class="d-none">Submit</button>
         <div class="row">
           <div class="col-3">
             <div>
@@ -2700,7 +2759,7 @@
                     class="d-none"
                     id="attachfile"
                     name="attachfile"
-                    (change)="onFileSelected($event)"
+                    (change)="onFileNameSelected($event); onFileSelected($event);"
                     required
                   />
                   <div
@@ -3526,7 +3585,7 @@
                     id="expiryDate"
                     #expiryDate="ngModel"
                     minlength="1"
-                    maxlength="8"
+                    maxlength="7"
                     name="expiryDate"
                     [(ngModel)]="bankData.expiryDate"
                     required

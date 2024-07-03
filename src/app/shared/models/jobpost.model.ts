@@ -5,7 +5,7 @@ export interface jobpost {
   lastModifiedBy: string;
   dateLastModified: string;
   jobUniqueId : string;
-  userId: string;
+  usersId: string;
   jobTitle: string;
   status : string;
   description: string;

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserauthenticateService } from '../../shared/services/userauthenticate.service';
 import { NgClass } from '@angular/common';
-import { NotificationService } from '../../shared';
+import { NotificationService, notification } from '../../shared';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-freelancernav',
@@ -14,6 +15,10 @@ export class FreelancernavComponent implements OnInit {
   User : any;
   showNotifications=false;
   notifications:any;
+  userNotifications: notification[] = [];
+  showDotIcon: boolean;
+  previousNotificationCount: number = 0;
+  private subscription: Subscription;
   imageUrl: string = 'https://localhost:7172';
   constructor(public userauthservice:UserauthenticateService,
     public notificationService: NotificationService,
@@ -21,6 +26,21 @@ export class FreelancernavComponent implements OnInit {
 
   ngOnInit(): void {
    this.getUserData();
+   this.subscription = this.notificationService.getNotificationsPeriodically().subscribe(
+    (notifications: notification[]) => {
+        if (notifications.length > this.previousNotificationCount) {
+          this.showDotIcon = true;
+        } else {
+          this.showDotIcon = false;
+        }
+        this.notifications = notifications;
+        this.previousNotificationCount = notifications.length;
+        this.userNotifications = this.notifications.filter((notification: { userId: any; }) => notification.userId === this.User[0].id);
+      },
+    (error) => {
+      console.error('Error fetching notifications:', error);
+    }
+  );
   }
   
   //get the Current User Details
@@ -63,16 +83,14 @@ export class FreelancernavComponent implements OnInit {
 
      showNotification() {
          this.showNotifications = !this.showNotifications;
+         if (this.showNotifications) {
+          this.showDotIcon = false;
+        }
     }
 
-    getNotification() {
-
-      
-
-      this.notificationService.getNotificaions().subscribe((data: any[]) => {
-        this.notifications = data;
-      });
-    }
-
-
-}
+    // getNotification() {
+    //   this.notificationService.getNotificaions().subscribe((data: any[]) => {
+    //     this.notifications = data;
+    //   });
+    // }
+  }

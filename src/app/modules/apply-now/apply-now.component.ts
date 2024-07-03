@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
-import { AppliedUserService, CommentsService, JobpostService, NotificationService, UserauthenticateService, applied_user } from '../../shared';
+import { AppliedUserService, CommentsService, JobpostService, NotificationService, SignalrService, UserauthenticateService, applied_user } from '../../shared';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class ApplyNowComponent {
   jobpostData: applied_user = {} as applied_user;
   filesdetails: any;
   constructor(public datePipe: DatePipe, private route: ActivatedRoute, public notificationsService : NotificationService,
-  public userservice: UserauthenticateService, public commentservice: CommentsService,
+  public userservice: UserauthenticateService, public commentservice: CommentsService, private singlarService:SignalrService,
     public appliedservice: AppliedUserService, public jobservice: JobpostService,public router: Router) { this.calculateCharactersLeft(); }
 
   ngOnInit(): void {
@@ -40,49 +40,67 @@ export class ApplyNowComponent {
   }
 
 
-  onSubmitApply(form: NgForm) {
-    if (this.appliedservice.applyData) {
-      this.appliedservice.postApply(form.value).subscribe();
-    }
-  }
+  // onSubmitApply(form: NgForm) {
+  //   if (this.appliedservice.applyData) {
+  //     this.appliedservice.postApply(form.value).subscribe();
+  //   }
+  // }
 
 
-
-  submitForm() {
-    const formData = new FormData();
-    formData.append('dateCreated', this.jobpostData.dateCreated);
-    formData.append('userId', this.jobpostData.userId);
-    formData.append('jobId', this.jobpostData.jobId);
-    formData.append('skillSet', this.jobpostData.skillSet);
-    formData.append('applyCoverLetter', this.jobpostData.applyCoverLetter);
-    formData.append('biddingRate', this.jobpostData.biddingRate.toString());
-    formData.append('userEmail', this.jobpostData.userEmail);
-    formData.append('status', this.jobpostData.status);
-    formData.append('id', this.jobpostData.id);
-    formData.append('jobTitle', this.jobpostData.jobTitle);
-    formData.append('jobDescription', this.jobpostData.jobDescription);
-    formData.append('rate', this.jobpostData.rate);
-    formData.append('postBy', this.jobpostData.postBy);
-    formData.append('fileUrl', this.jobpostData.fileUrl);
-    if (this.jobpostData.AttachFile) {
-      formData.append('AttachFile', this.jobpostData.AttachFile);
-    }
-
-    this.appliedservice.postApply(formData).subscribe(
-      response => {
-        console.log('Comment added successfully:', response);
-        this.jobpostData = {} as applied_user;
-      }
-    );
-  }
   
+  selectedFile: File | null = null;
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
+               
+         
+    submitApplied(): void {
+  
+      const formData: FormData = new FormData();
+      formData.append('Id', "08dc6ff1-4047-46ad-8146-6d5fa5960654");
+      formData.append('DateLastModified', "0001-01-01 00:00:00");
+      formData.append('LastModifiedBy', this.appliedservice.applyData.lastModifiedBy);
+      formData.append('DateCreated', "0001-01-01 00:00:00");
+      formData.append('CreatedBy', this.appliedservice.applyData.createdBy);
+      formData.append('UserId', this.appliedservice.applyData.userId);
+      formData.append('JobId', this.appliedservice.applyData.jobId);
+      formData.append('SkillSet', this.appliedservice.applyData.skillSet);
+      formData.append('JobTitle', this.appliedservice.applyData.jobTitle);
+      formData.append('ApplyCoverLetter', this.appliedservice.applyData.applyCoverLetter);   
+      formData.append('SkillSet', this.appliedservice.applyData.skillSet);
+      formData.append('BiddingRate', this.appliedservice.applyData.biddingRate.toString());
+      formData.append('UserEmail', this.appliedservice.applyData.userEmail);
+      formData.append('Status', this.appliedservice.applyData.status);
+      formData.append('JobDescription', this.appliedservice.applyData.jobDescription);
+      formData.append('Rate', this.appliedservice.applyData.rate);
+      formData.append('PostBy', this.appliedservice.applyData.postBy);
+      formData.append('FileUrl', this.appliedservice.applyData.fileUrl);
+      formData.append('JobUniqueId', this.appliedservice.applyData.jobUniqueId);
+      formData.append('applideUserProfile', this.appliedservice.applyData.applideUserProfile);
+      formData.append('ApplyDate', this.appliedservice.applyData.applyDate);
+      if (this.selectedFile) {
+      formData.append('file', this.selectedFile, this.selectedFile.name);
+      formData.append('File', this.selectedFile, this.selectedFile.name);
+      }
+      this.appliedservice.postApply(formData).subscribe(
+        response => {
+          this.SuccessModal();
+        },
+        error => {
+          console.error('Upload failed', error);
+        }
+    
+      );
+  }
+
+
   uploadedFileName: string = '';
   selectedFiles: string[] = [];
   
-  onFileSelected(event: any) {
-    const selectedFile = event.target.files[0];
-    this.selectedFiles.push(selectedFile.name);
-    this.jobpostData.AttachFile = selectedFile;
+  UploadFileName(event: any) {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
     this.uploadedFileName = file ? file.name : '';
@@ -135,7 +153,7 @@ export class ApplyNowComponent {
     this.appliedservice.applyData.postBy = this.JobPost.createdBy;
     this.appliedservice.applyData.applideUserProfile=this.UserData[0].profileUrl;
     this.appliedservice.applyData.jobUniqueId=this.JobPost.jobUniqueId;
-    this.notificationsService.notificationData.userId = this.JobPost.userId;
+    this.notificationsService.notificationData.userId = this.JobPost.usersId;
     this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
     this.notificationsService.notificationData.notificationDate = this.dateFormatted;
     this.notificationsService.notificationData.notification = "Your job applied by " + this.UserData[0].firstName + " (" +this.JobPost.jobUniqueId+")" ;
@@ -214,8 +232,9 @@ export class ApplyNowComponent {
   }
 
   //Notification 
-   onSubmitNotification(form: NgForm, userId:string) {
+   onSubmitNotification(form: NgForm) {
     if (form.valid && this.notificationsService.notificationData) {
+      const userId = this.notificationsService.notificationData.userId; 
       this.notificationsService.postNotification(userId, form.value).subscribe();    }
   }
 
@@ -224,6 +243,27 @@ export class ApplyNowComponent {
   
   notifyNow() {
     this.notificationButton.nativeElement.click();
+  }
+
+  
+  userId =sessionStorage.getItem('authorId')?.toString() || '';
+ 
+  sendNotification() {
+    const notificationData = { 
+     notification: 'Your job applied by " + this.UserData[0].firstName + " (" +this.JobPost.jobUniqueId+")',
+     userId :  this.JobPost.usersId };
+    this.notificationsService.postNotification(this.userId, notificationData)
+      .subscribe(response => {
+        console.log('Notification posted successfully:', response);
+      }, error => {
+        console.error('Error posting notification:', error);
+      });
+  }
+ 
+ 
+   sendNotifications() {
+    const message = 'Your notification message here';
+    this.singlarService.sendNotification(message);
   }
 
 }

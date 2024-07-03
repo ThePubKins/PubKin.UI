@@ -17,7 +17,7 @@ export class AuthorsComponent implements OnInit {
   UserData: any;
   searchTerm: string;
   isFilterApplied: boolean = false;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 3;
   currentPage: number = 1;
   jobUniqueId:any;
   filteredJobPosts: any[] = [];

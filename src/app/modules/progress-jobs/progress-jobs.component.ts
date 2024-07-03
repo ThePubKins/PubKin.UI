@@ -1,21 +1,26 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppliedUserService, JobpostService, UserauthenticateService, NotificationService } from '../../shared';
-import { NgForm } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  AppliedUserService,
+  JobpostService,
+  UserauthenticateService,
+  NotificationService,
+  SignalrService,
+} from "../../shared";
+import { NgForm } from "@angular/forms";
+import { DatePipe } from "@angular/common";
 
 @Component({
-  selector: 'app-progress-jobs',
-  templateUrl: './progress-jobs.component.html',
-  styleUrls: ['./progress-jobs.component.scss']
+  selector: "app-progress-jobs",
+  templateUrl: "./progress-jobs.component.html",
+  styleUrls: ["./progress-jobs.component.scss"],
 })
 export class ProgressJobsComponent {
-
   Applies: any;
   showSkillMatchButton = true;
   selectedFreelancer: any;
-  FreelancerSkillSet: string = '';
-  userSkillSet: string = '';
+  FreelancerSkillSet: string = "";
+  userSkillSet: string = "";
   currentUser: any;
   selectedhire: any;
   jobPosts: any;
@@ -27,20 +32,20 @@ export class ProgressJobsComponent {
     public router: Router,
     public datePipe: DatePipe,
     public jobService: JobpostService,
+    private singlarService: SignalrService,
     public notificationsService: NotificationService,
-    public appliedService: AppliedUserService,
-  ) { }
-
+    public appliedService: AppliedUserService
+  ) {}
 
   ngOnInit() {
-    this.getUserData(); this.getApplyPosts();
+    this.getUserData();
+    this.getApplyPosts();
     this.getJobPosts();
   }
 
-
-  @ViewChild('updateForm') updateForm: NgForm;
-  @ViewChild('jobUpdateForm') jobUpdateForm: NgForm;
-  @ViewChild('notificationButton') notificationButton: ElementRef;
+  @ViewChild("updateForm") updateForm: NgForm;
+  @ViewChild("jobUpdateForm") jobUpdateForm: NgForm;
+  @ViewChild("notificationButton") notificationButton: ElementRef;
 
   // submitNow() {
   //   this.notificationButton.nativeElement.click();
@@ -51,15 +56,17 @@ export class ProgressJobsComponent {
     this.onSubmitJobStatus(this.jobUpdateForm);
   }
 
-
   getUserData() {
-    const Email = this.userService.getUserEmail() ?? sessionStorage.getItem('email');
+    const Email =
+      this.userService.getUserEmail() ?? sessionStorage.getItem("email");
     if (Email) {
       this.userService.getUserData().subscribe({
         next: (data) => {
-          this.currentUser = data?.filter((currentUser: any) => currentUser.email === Email);
-          console.log(this.currentUser)
-        }
+          this.currentUser = data?.filter(
+            (currentUser: any) => currentUser.email === Email
+          );
+          console.log(this.currentUser);
+        },
       });
     } else {
     }
@@ -68,9 +75,9 @@ export class ProgressJobsComponent {
   formData = {
     actualValue: null as number | null,
     subtractValue: 0,
-    displaySubtractValue: '0%',
+    displaySubtractValue: "0%",
     platformFee: 0,
-    paymentAfterTax: 0
+    paymentAfterTax: 0,
   };
 
   calculateResult(): void {
@@ -81,17 +88,15 @@ export class ProgressJobsComponent {
       const paymentAfterTax = afterTaxRate - platformFee;
       this.formData.actualValue = biddingRate;
       this.formData.subtractValue = afterTaxRate;
-      this.formData.displaySubtractValue = '4%';
+      this.formData.displaySubtractValue = "4%";
       this.formData.platformFee = platformFee;
       this.formData.paymentAfterTax = paymentAfterTax;
     }
   }
 
-
   ApplyModal(Apply: any) {
     this.selectedhire = Apply;
   }
-
 
   onSubmitStatus(form: NgForm) {
     if (form.valid && this.appliedService.applyData) {
@@ -99,16 +104,17 @@ export class ProgressJobsComponent {
     }
   }
 
-
   onSubmitJobStatus(form: NgForm) {
     if (form.valid && this.jobService.jobData) {
       this.jobService.JobStatus(form.value).subscribe();
     }
   }
 
-  onSubmitNotification(form: NgForm, userId:string) {
+  onSubmitNotification(form: NgForm, userId: string) {
     if (form.valid && this.notificationsService.notificationData) {
-      this.notificationsService.postNotification(userId, form.value).subscribe();
+      this.notificationsService
+        .postNotification(userId, form.value)
+        .subscribe();
     }
   }
 
@@ -117,8 +123,8 @@ export class ProgressJobsComponent {
       this.jobPosts = data;
     });
   }
-  
-  ChangeStatusRevert() { 
+
+  ChangeStatusRevert() {
     this.selectedhire.status = "offers";
   }
 
@@ -126,15 +132,21 @@ export class ProgressJobsComponent {
     this.selectedhire.status = "accepted";
     this.jobPosts[0].status = "Ongoing";
     this.notificationsService.notificationData.userId = this.jobPosts[0].userId;
-    this.dateFormatted = this.datePipe.transform(this.currentDate, 'dd MMM');
-    this.notificationsService.notificationData.notificationDate = this.dateFormatted;
-    this.notificationsService.notificationData.notification = "Yours " + this.selectedhire.jobUniqueId  + " offer accepeted by " + this.selectedhire.userEmail ;
+    this.dateFormatted = this.datePipe.transform(this.currentDate, "dd MMM");
+    this.notificationsService.notificationData.notificationDate =
+      this.dateFormatted;
+    this.notificationsService.notificationData.notification =
+      "Yours " +
+      this.selectedhire.jobUniqueId +
+      " offer accepeted by " +
+      this.selectedhire.userEmail;
   }
 
-
-
   getCurrentUserOpenJobs(): any[] {
-    const userOpenJobs = this.Applies.some((Apply: { status: string; userId: string; }) => Apply.status === 'offers' && Apply.userId === this.currentUser[0].id);
+    const userOpenJobs = this.Applies.some(
+      (Apply: { status: string; userId: string }) =>
+        Apply.status === "offers" && Apply.userId === this.currentUser[0].id
+    );
     return userOpenJobs ? userOpenJobs : [];
   }
 
@@ -148,11 +160,37 @@ export class ProgressJobsComponent {
     });
   }
 
-  logout(): void { }
-
+  logout(): void {}
 
   showJobDetails(jobUniqueId: string): void {
-    this.router.navigate(['/freelancers/job-details', jobUniqueId]);
+    this.router.navigate(["/freelancers/job-details", jobUniqueId]);
   }
 
+  userId = sessionStorage.getItem("authorId")?.toString() || "";
+
+  sendNotification() {
+    const notificationData = {
+      notification:
+        "Yours " +
+        this.selectedhire.jobUniqueId +
+        " offer accepeted by " +
+        this.selectedhire.userEmail,
+      userId: this.jobPosts[0].usersId,
+    };
+    this.notificationsService
+      .postNotification(this.userId, notificationData)
+      .subscribe(
+        (response) => {
+          console.log("Notification posted successfully:", response);
+        },
+        (error) => {
+          console.error("Error posting notification:", error);
+        }
+      );
+  }
+
+  sendNotifications() {
+    const message = "Your notification message here";
+    this.singlarService.sendNotification(message);
+  }
 }

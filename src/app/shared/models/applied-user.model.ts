@@ -8,7 +8,7 @@ export interface applied_user {
     jobId: string;
     skillSet: string;
     applyCoverLetter: string;
-    biddingRate: number;
+    biddingRate: number | string;
     userEmail: string;
     status: string;
     jobTitle: string;

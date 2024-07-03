@@ -1,11 +1,9 @@
-
-<!-- <form novalidate autocomplete="off" (submit)="submitForm()" (submit)="onSubmitJob(jobPostfrom)"> -->
-    <form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="submitPostJob(jobPostfrom)">
+    <form novalidate autocomplete="off" #jobPostfrom="ngForm" (submit)="onSubmitJob()">
     <input type="hidden" id="id" name="id" [(ngModel)]="jobservice.jobData.id">
     <input type="hidden" id="dateCreated" name="dateCreated" [(ngModel)]="jobservice.jobData.dateCreated">
     <input type="hidden" id="postDate" name="postDate" [(ngModel)]="jobservice.jobData.postDate">
     <input type="hidden" id="createdBy" name="createdBy" [(ngModel)]="jobservice.jobData.createdBy">
-    <input type="hidden" id="userId" name="userId" [(ngModel)]="jobservice.jobData.userId">
+    <input type="hidden" id="usersId" name="usersId" [(ngModel)]="jobservice.jobData.usersId">
     <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="jobservice.jobData.jobUniqueId">
     <input type="hidden" id="userEmail" name="userEmail" [(ngModel)]="jobservice.jobData.userEmail">
     <input type="hidden" [value]="selectedCardTitles.join(', ')" ngModel name="service" #service="ngModel"
@@ -18,7 +16,7 @@
         [(ngModel)]="jobservice.jobData.projectStartDate">
     <input type="hidden" ngModel [value]="jobservice.jobData.projectEndDate" name="projectEndDate"
         #projectEndDate="ngModel" [(ngModel)]="jobservice.jobData.projectEndDate">
-    <input type="hidden" [(ngModel)]="skillset" [value]="skillset" name="experience" #experience="ngModel"
+    <input type="text" [(ngModel)]="skillset" [value]="skillset" name="experience" #experience="ngModel"
         [(ngModel)]="jobservice.jobData.experience">
     <input type="hidden" name="durationOfProject" [value]="jobservice.jobData.durationOfProject"
         #durationOfProject="ngModel" [(ngModel)]="jobservice.jobData.durationOfProject">
@@ -41,7 +39,7 @@
     <button class="d-none" #firstButton type="submit">Submit</button>
 </form>
 
-
+<div *ngIf="success">
 <div *ngIf="GoNext === 'button1'">
     <div class="container mt-3">
         <div class="row">
@@ -175,11 +173,8 @@
             <div class="col-3">
                  <img src="./assets/logo.png" class="rrlogoimg">
             </div>
-            <div class="col-9">
-
-            </div>
+            <div class="col-9"></div>
         </div>
-
     </div>
 
     <div class="container">
@@ -371,7 +366,7 @@
         <label class="up">
             <!-- <input  class="d-none" type="file" (change)="onFileSelected($event)"/> -->
             <input #fileInput type="file" class="d-none" id="attachfile" name="attachfile"
-                (change)="onFileSelected($event)" required>
+                (change)="onFileSelected($event);UploadFileName($event)" required>
             <span *ngIf="!uploadedFileName"></span> <span class="up1">{{ uploadedFileName ?
                 uploadedFileName : 'upload' }}</span> <span *ngIf="!uploadedFileName">&nbsp;here</span>
         </label>
@@ -599,10 +594,28 @@
                 <button class="back" (click)="GoNextBtn('button5')">Back</button>
             </div>
             <div class="col-5">
-                <button class="next" (click)="goodbye();" routerLink="/authors">Post a Job</button>
+                <button class="next" (click)="goodbye();" >Post a Job</button>
             </div>
             <div class="col-1">
             </div>
         </div>
     </div>
 </div>
+
+</div>
+
+
+<div class="all-success" *ngIf="!success">
+    <div class="successmsg">
+      <p class="successhead">Success! Your job is sent now</p>
+      <img class="whopee" src="../assets/Success.gif" alt="Success" />
+      <p class="redirecte">Redirecting now...</p>
+      <img
+        class="successtick"
+        src="../assets/Lottie gif.gif"
+        alt="Pubkin-success"
+      />
+    </div>
+  </div>
+
+

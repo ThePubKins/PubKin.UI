@@ -18,8 +18,8 @@ export class JobpostService {
     return this.apiService.get(`JobPost`);
   }
 
-  postJobPost(jobData: any) {
-    return this.apiService.post(`JobPost`, jobData);
+  postJobPost(formData: FormData): Observable<any> {
+    return this.apiService.post(`JobPost`, formData);
   }
   
   getJobPostById(jobId: string): Observable<any> {

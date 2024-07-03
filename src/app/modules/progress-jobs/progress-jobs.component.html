@@ -12,6 +12,7 @@
             *ngIf="JobPost.status === 'offers' && currentUser[0].id == JobPost.userId && !anyJobInProgress()">
             <div class="col-8">
               <p class="jobtitle">{{JobPost.jobTitle}}</p>
+              <p class="jobtitle">{{JobPost.usersId}}</p>
               <p class="jobDesc">{{JobPost.jobDescription | slice:0:220 }}</p>
             </div>
             <div class="col-4">
@@ -35,12 +36,10 @@
   </div>
 </div>
 
-
 <div class="modal fade " id="acceptoffer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
   style="    --bs-modal-width: 1020px">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content " *ngIf="selectedhire" style="padding-bottom: 27px;">
-
       <div class="modal-header " style="border-bottom: none;     padding: 20px 25px 12px 25px">
         <p class="rejecttxt">{{selectedhire.jobTitle}}</p>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="ChangeStatusRevert()"></button>
@@ -82,27 +81,19 @@
         </div>
         <div style="margin-top: 26px;">
           <form #updateForm="ngForm" (ngSubmit)="onSubmitStatus(updateForm)">
-            <input type="text" id="id" name="id" [(ngModel)]="selectedhire.id">
-            <input type="text" id="status" name="status" [(ngModel)]="selectedhire.status">
-            <input type="text" id="postBy" name="postBy" [(ngModel)]="selectedhire.postBy">
-            <input type="text" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
-            <input type="text" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
-            <button type="submit" class="">Accept Offer</button>
+            <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.id">
+            <input type="hidden" id="status" name="status" [(ngModel)]="selectedhire.status">
+            <input type="hidden" id="postBy" name="postBy" [(ngModel)]="selectedhire.postBy">
+            <input type="hidden" id="jobId" name="jobId" [(ngModel)]="selectedhire.jobId">
+            <input type="hidden" id="jobUniqueId" name="jobUniqueId" [(ngModel)]="selectedhire.jobUniqueId">
+            <button type="submit" class="d-none">Accept Offer</button>
           </form>
-          <button  (click)="submitBothForms();"  class="btn rejectconfirm1">Accept Offer</button>
+          <button  (click)="sendNotification();sendNotifications();submitBothForms();"   data-bs-dismiss="modal" aria-label="Close" class="btn rejectconfirm1">Accept Offer</button>
           <form #jobUpdateForm="ngForm" (ngSubmit)="onSubmitJobStatus(jobUpdateForm)">
-            <input type="text" id="id" name="id" [(ngModel)]="selectedhire.jobId">
-            <input type="text" id="status" name="status" [(ngModel)]="jobPosts[0].status">
-            <button type="submit" class="">Accept Offer</button>
-          </form>
-          <!-- <form #notificationForm="ngForm" (ngSubmit)="onSubmitNotification(notificationForm)">
-            <input type="hidden" id="id" name="id" [(ngModel)]="notificationsService.notificationData.id">
-            <input type="hidden" id="userId" name="userId" [(ngModel)]="notificationsService.notificationData.userId">
-            <input type="hidden" id="notification" name="notification" [(ngModel)]="notificationsService.notificationData.notification">
-            <input type="hidden" id="notificationDate" name="notificationDate" [(ngModel)]="notificationsService.notificationData.notificationDate">
-            <button type="submit" class="d-none" #notificationButton>Save</button>
-           </form> -->
-    
+            <input type="hidden" id="id" name="id" [(ngModel)]="selectedhire.jobId">
+            <input type="hidden" id="status" name="status" [(ngModel)]="jobPosts[0].status">
+            <button type="submit" class="d-none">Accept Offer</button>
+          </form>    
         </div>
       </div>
     </div>

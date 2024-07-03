@@ -1,97 +1,175 @@
 <app-freelancernav></app-freelancernav>
 <div class="all-success" *ngIf="!success">
   <div class="successmsg">
-      <p class="successhead">Job saved</p>
-      <p class="redirecte">Redirecting now...</p>
-      <img class="successtick" src="../assets/Lottie gif.gif" alt="Pubkin-success">
+    <p class="successhead">Job saved</p>
+    <p class="redirecte">Redirecting now...</p>
+    <img
+      class="successtick"
+      src="../assets/Lottie gif.gif"
+      alt="Pubkin-success"
+    />
   </div>
 </div>
 
-<div class="modal fade" id="savejob1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="savejob1"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" >
-      <button type="button" class="btn-close e1" data-bs-dismiss="modal" aria-label="Close"></button>
-      <div class="pad1" >
+    <div class="modal-content">
+      <button
+        type="button"
+        class="btn-close e1"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+      <div class="pad1">
         <div class="modal-hed">
-
-          <p class="c22" id="exampleModalLabel5"><b>Do you want save this job ?</b></p>
+          <p class="c22" id="exampleModalLabel5">
+            <b>Do you want save this job ?</b>
+          </p>
         </div>
         <div class="kksubbtn">
-          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">Back</button>
-          <button type="button" class="btn kkkbtncn" data-bs-dismiss="modal"(click)="savejob()">Confirm</button>
+          <button type="button" class="btn kkkbtnbk" data-bs-dismiss="modal">
+            Back
+          </button>
+          <button
+            type="button"
+            class="btn kkkbtncn"
+            data-bs-dismiss="modal"
+            (click)="savejob()"
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
+<div style="height: auto" *ngIf="success">
+  <div class="container kkjbcon1">
+    <div class="row" style="padding-bottom: 36px">
+      <p class="kkjbdls">Jobs Details</p>
+      <div class="col-8 kkjbdetli1">
+        <div>
+          <p class="kkjbtxtb1">
+            {{ jobPost.jobUniqueId }} - {{ jobPost.jobTitle }} <br />
+          </p>
+          <p class="kkjbtxtb11">
+            Posted at {{ getPostStatus(jobPost.postDate) }}
+          </p>
+          <hr class="kkline1" />
+        </div>
+        <div class="kkjbdiv2">
+          <p class="kktxtjbdt1">{{ jobPost.description }}</p>
+        </div>
 
-  <div style="height: auto;" *ngIf="success">              
-    <div class="container kkjbcon1">
-      <div class="row" style="padding-bottom: 36px;">
-        <p class="kkjbdls">Jobs Details</p>
-        <div class="col-8 kkjbdetli1" >
-          <div>
-            <p class="kkjbtxtb1">{{jobPost.jobUniqueId}} - {{jobPost.jobTitle}} <br></p>
-            <p class="kkjbtxtb11">Posted at {{ getPostStatus(jobPost.postDate)}}</p>
-            <hr class="kkline1">
+        <hr class="kkline1" />
+        <div class="container">
+          <div class="row kkjbdiv3">
+            <div class="col-4">
+              <p class="kktag">
+                <img src="../assets/clock.png" />&nbsp;&nbsp;
+                {{ jobPost.projectStartDate }}-{{ jobPost.projectEndDate }}
+                {{ jobPost.durationOfProject }}
+              </p>
+            </div>
+            <div class="col-4">
+              <p class="kktag">
+                <img src="../assets/chart.png" />&nbsp; {{ jobPost.experience }}
+              </p>
+            </div>
+            <div class="col-4">
+              <p class="kktag">
+                <img src="../assets/money.png" />&nbsp;
+                <span *ngIf="jobPost.currency === 'INR'">₹</span>
+                <span *ngIf="jobPost.currency === 'USD'">$</span>
+                <span *ngIf="jobPost.currency === 'AED'">د.إ</span>
+                <span *ngIf="jobPost.currency === 'ANG'">ƒ</span>
+                <span *ngIf="jobPost.currency === 'AOA'">Kz</span>
+                <span *ngIf="jobPost.currency === 'ARS  '">$</span>
+                <span *ngIf="jobPost.currency === 'OMR'">ر.ع.</span>
+                <span *ngIf="jobPost.currency === 'SAR'">.س</span>
+                {{ jobPost.fromBudget }}-{{ jobPost.toBudget }} /
+                {{ jobPost.rateBasis }}
+              </p>
+            </div>
           </div>
-          <div class="kkjbdiv2">
-            <p class="kktxtjbdt1">{{jobPost.description}}</p>
+        </div>
+        <br />
+        <hr class="kkline1" />
+        <div class="kkjbdiv4">
+          <p class="kkskilltxt">Skills Needed</p>
+          <div class="container kksilltagcn">
+            <div class="kksilltag">{{ jobPost.skillSet }}</div>
           </div>
-
-          <hr class="kkline1">
-          <div class="container ">
-            <div class="row kkjbdiv3">
-              <div class="col-4">
-                <p class="kktag"><img src="../assets/clock.png">&nbsp;&nbsp; {{jobPost.projectStartDate}}-{{jobPost.projectEndDate}}
-                  {{jobPost.durationOfProject}}</p>
+        </div>
+        <br />
+      </div>
+      <div class="col-4 kkjbdetlis1 text-center">
+        <button
+          class="btn kkjbdtbtn2"
+          data-bs-toggle="modal"
+          data-bs-target="#savejob1"
+          (click)="ApplyModal(jobPost)"
+        >
+          Save Job
+        </button>
+        <button
+          class="btn kkjbdtbtn1"
+          [disabled]="calculateTotal() < 85"
+          (click)="showApplyNow(jobPost.jobUniqueId)"
+        >
+          Apply Now
+        </button>
+        <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
+        <hr class="kkline2" />
+        <div class="container kkdivjbr2">
+          <p class="kkabtclt">About client</p>
+          <!-- <p class="rate"><img class="fivestar" src="../assets/5star.png">&nbsp;&nbsp;4.9/5(124 Ratings)</p> -->
+          <p class="pver">
+            <img
+              src="../assets/startick.png"
+              style="width: 20px; margin-top: -4px"
+            />&nbsp;Profile verified
+          </p>
+          <p class="pver pver1">
+            <img
+              src="../assets/startick.png"
+              style="width: 20px; margin-top: -4px"
+            />&nbsp;Payment verified
+          </p>
+          <!-- <p class="tver">200+ verified Payments</p> -->
+        </div>
+        <hr class="kkline3" />
+        <p class="samplefilehead">View sample file</p>
+        <div class="d-flex justify-content-center align-content-center">
+          <div class="downloadbox container">
+            <div class="row">
+              <div class="col-2 d-flex justify-content-center">
+                <img
+                  src="../assets/erdownload_.png"
+                  class="sampledownloadicon"
+                  alt="pubkin_sample file"
+                />
               </div>
-              <div class="col-4">
-                <p class="kktag"><img src="../assets/chart.png">&nbsp; {{jobPost.experience}}</p>
-              </div>
-              <div class="col-4">
-                <p class="kktag"><img src="../assets/money.png">&nbsp; <span *ngIf="jobPost.currency === 'INR'" >₹</span>
-                  <span *ngIf="jobPost.currency === 'USD'" >$</span>
-                  <span *ngIf="jobPost.currency === 'AED'" >د.إ</span>
-                  <span *ngIf="jobPost.currency === 'ANG'" >ƒ</span>
-                  <span *ngIf="jobPost.currency === 'AOA'" >Kz</span>
-                  <span *ngIf="jobPost.currency === 'ARS  '" >$</span>
-                  <span *ngIf="jobPost.currency === 'OMR'" >ر.ع.</span>
-                  <span *ngIf="jobPost.currency === 'SAR'" >.س</span> {{jobPost.fromBudget}}-{{jobPost.toBudget}} / {{jobPost.rateBasis}}</p>
+              <div class="col-10 text-start d-flex align-content-center align-items-center">
+                <a
+                [href]="jobPost.attachUrl"
+                target="_blank"
+                download
+                class="text-decoration-none sampledownloadname"
+              >
+                <p >{{ jobPost.fileName }}</p></a>
               </div>
             </div>
           </div>
-          <br>
-          <hr class="kkline1">
-          <div class="kkjbdiv4">
-            <p class="kkskilltxt">Skills Needed</p>
-            <div class="container kksilltagcn" >
-              <div class="kksilltag">{{jobPost.skillSet}}</div>
-              </div>
-          </div>
-          <br>
-
-
         </div>
-        <div class="col-4 kkjbdetlis1 text-center" >
-         <button class="btn kkjbdtbtn2"  data-bs-toggle="modal" data-bs-target="#savejob1" (click)="ApplyModal(jobPost)">Save Job</button>
-         <button class="btn kkjbdtbtn1"  [disabled]="calculateTotal() < 85" (click)="showApplyNow(jobPost.jobUniqueId)">Apply Now</button>
-          <!-- <p class="kkremprtxt">Remaining proposal: 5</p> -->
-          <hr class="kkline2">
-          <div class="container kkdivjbr2">
-            <p class="kkabtclt">About client</p>
-            <!-- <p class="rate"><img class="fivestar" src="../assets/5star.png">&nbsp;&nbsp;4.9/5(124 Ratings)</p> -->
-            <p class="pver"><img src="../assets/startick.png" style="width: 20px;margin-top: -4px;">&nbsp;Profile verified</p>
-            <p class="pver pver1"><img src="../assets/startick.png" style="width: 20px;margin-top: -4px;">&nbsp;Payment verified</p>
-            <!-- <p class="tver">200+ verified Payments</p> -->
-
-          </div>
-          <hr class="kkline3">
-
-        </div>
-
       </div>
     </div>
   </div>
-
+</div>

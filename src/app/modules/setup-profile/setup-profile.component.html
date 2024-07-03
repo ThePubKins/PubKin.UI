@@ -364,13 +364,13 @@
               </div>
               <div class="col-4">
                 <br><br>
-                <span><button class="btn kkidverbtn1">Add Document</button></span>
+                <span ><button class="btn kkidverbtn1" *ngIf="UserData[0].fileName === null" routerLink="/profile/govtId-details">Add Document</button></span>
+                <span ><button class="btn kkidverbtn1" *ngIf="UserData[0].fileName != null" routerLink="/profile/govtId-details">{{UserData[0].fileName}}</button></span>
               </div>
             </div>
           </div>
-
           <br>
-          <div class="container">
+          <!-- <div class="container">
             <div class="row">
               <div class="col-8">
                 <p class="kkidvertg1">2.&nbsp;Visual Verification</p>
@@ -378,10 +378,10 @@
                   be shared</p>
               </div>
               <div class="col-4">
-                <span><button class="btn kkidverbtn1">Add image</button></span>
+                <span><button class="btn kkidverbtn1" routerLink="/profile/govtId-details">Add image</button></span>
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -403,7 +403,7 @@
             <p class="kkhdptag1">phone</p>
             <p class="kkhdptag2">+91 {{UserData[0].phoneNumber}}</p>
             <p class="kkhdptag1">Address</p>
-            <p class="kkhdptag2">{{UserData[0].country}}</p>
+            <p class="kkhdptag2">{{UserData[0].nationality}}</p>
           </div>
           <p class="kkclsacnt">Close Pubkin Account</p>
         </div>
@@ -466,7 +466,7 @@
                 </div>
                 <div class="mb-3 modalinputpersonal">
                   <label class="form-label projtitlevv">Address</label>
-                  <input class="form-control" type="text" id="country" name="country" [(ngModel)]="UserData[0].country">
+                  <input class="form-control" type="text" id="nationality" name="nationality" [(ngModel)]="UserData[0].nationality">
                 </div>
                 <!-- <div class="mb-3">
                   <label class="form-label projtitlevv">Description</label> -->
@@ -486,7 +486,7 @@
       <div class="card kkpwbx">
         <div class="card-body">
           <div class="container kkpwdiv">
-            <p class="kkpwtg1">Change Password<span class="kkpwtg2"><br><br>Choose a unique password with at least 8
+            <p class="kkpwtg1"  routerLink="/forget-password">Change Password<span class="kkpwtg2"><br><br>Choose a unique password with at least 8
                 characters long </span></p><img style="    width: 30px;
                 height: 36px;" src="../assets/writeic.png">
           </div>
@@ -685,5 +685,5 @@
 </div>
 
 <div class="mobileview d-flex justify-content-center">
-  <img src="../assets/mbview.png" class="img-fluid" alt="">
+  <img src="../assets/mbview .png" class="img-fluid" alt="">
 </div>

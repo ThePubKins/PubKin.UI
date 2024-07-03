@@ -81,6 +81,9 @@
       <a class="kkfrnavse" style="text-decoration: none;">Reports</a>
     </div>
     <div class="col-1">
+      <div class="notification-icon">
+        <span class="notification-dot" *ngIf="showDotIcon"></span>
+      </div>
       <img class="bell" src="../assets/bell.png" (click)="showNotification();">
     </div>
     <div class="col-1">
@@ -94,10 +97,12 @@
   <div class="prset " *ngIf="hide" (click)="hidden()">
     <div class="kkcrd12">
       <div class="kkcrd text-center" (click)="$event.stopPropagation()">
-        <div class="kkprimg" *ngIf="User[0].profileUrl">
+        <div class="kkprimg" >
           <div style="position: relative; display: inline-block;">
             <img src="{{ User[0].profileUrl }}" class="rounded-circle kkprimg img-responsive">
-            <span class="material-symbols-outlined" routerLink="/profile/choose-your-picutre-now"  style="position: absolute;
+            <img *ngIf="!User[0].profileUrl" src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
+
+          <span class="material-symbols-outlined" routerLink="/profile/choose-your-picutre-now"  style="position: absolute;
             margin-top: 58px;
             right: -7px;
             font-size: 20px;
@@ -106,9 +111,6 @@
            ">
               edit
             </span>
-        </div>
-        <div class="kkprimg" *ngIf="!User[0].profileUrl">
-          <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
         </div>
         <div class="kkpname">
           <p class="kkprname">{{User[0].firstName}} <img *ngIf="calculateTotal() === 100"
@@ -140,15 +142,32 @@
   <div class="container position-relative">
   <div class="notification-card notification-position" (click)="$event.stopPropagation()" >
         <div >
-              <div  *ngFor="let notification of notifications">
+          <div>
+      
+            <div *ngFor="let notification of userNotifications">
+              <div class="notification-head">
+                <p class="notification-message">{{notification.notification}}</p>
+                <svg class="notification-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 12 8" fill="none">
+                  <path d="M11.3536 4.35355C11.5488 4.15829 11.5488 3.84171 11.3536 3.64645L8.17157 0.464466C7.97631 0.269204 7.65973 0.269204 7.46447 0.464466C7.2692 0.659728 7.2692 0.976311 7.46447 1.17157L10.2929 4L7.46447 6.82843C7.2692 7.02369 7.2692 7.34027 7.46447 7.53553C7.65973 7.7308 7.97631 7.7308 8.17157 7.53553L11.3536 4.35355ZM0 4.5H11V3.5H0V4.5Z" fill="#A426D1"/>
+                </svg>
+              </div>
+              
+            </div>
+          </div>
+          <div class="notification-head">
+            <p class="notification-message">Welcome to our's pubkin family</p>
+            </div>
+              <!-- <div  *ngFor="let notification of notifications">
+        
                   <div class="notification-head" *ngIf="notification.userId == User[0].id">
+         
                       <p class="notification-message">  {{notification.notification}}</p>
                   
                       <svg class="notification-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 12 8" fill="none">
                         <path d="M11.3536 4.35355C11.5488 4.15829 11.5488 3.84171 11.3536 3.64645L8.17157 0.464466C7.97631 0.269204 7.65973 0.269204 7.46447 0.464466C7.2692 0.659728 7.2692 0.976311 7.46447 1.17157L10.2929 4L7.46447 6.82843C7.2692 7.02369 7.2692 7.34027 7.46447 7.53553C7.65973 7.7308 7.97631 7.7308 8.17157 7.53553L11.3536 4.35355ZM0 4.5H11V3.5H0V4.5Z" fill="#A426D1"/>
                       </svg>
                   </div>      
-              </div>
+              </div> -->
         </div>
   </div>
   </div>

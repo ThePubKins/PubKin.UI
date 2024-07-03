@@ -14,7 +14,7 @@
     </div>
     
     <div class="container" *ngFor="let Post of Posts">
-        <div class="borderboxv11" *ngIf="Post.userId === UserData[0].id && Post.status === 'Ongoing'">
+        <div class="borderboxv11" *ngIf="Post.usersId === UserData[0].id && Post.status === 'Ongoing'">
             <div class="row" >
                 <div class="col-10">
                     <p class="recenvv111">{{Post.jobTitle}}</p>

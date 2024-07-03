@@ -6,6 +6,10 @@ export interface Users  {
    dateLastModified: string;
    userName : string;
    firstName : string;
+   fileName : string;
+   fileUrl: string;
+   resumeFileName: string;
+   resumeFileUrl : string;
    lastName:string; 
    email : string;
    password:  string;

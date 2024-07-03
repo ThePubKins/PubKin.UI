@@ -37,8 +37,6 @@ export class FreelancerComponent implements OnInit {
     public singlarService: SignalrService,
     private router: Router,
   ) {
-    this.singlarService.startConnection();
-    this.singlarService.addNotificationListener(this.userId);  
   }
 
     //Notification

@@ -28,11 +28,11 @@
        .bell  { 
            float: right;
            position: relative;
-           top: 10px;
        }
        
        .ddis {
            /* color: #0F0F0F; */
+           cursor: pointer;
            font-family: League Spartan;
            font-size: 16px;
            font-style: normal;
@@ -244,12 +244,12 @@
        .bell  { 
            float: right;
            position: relative;
-           top: 10px;
        }
        
        .ddis {
            /* color: #0F0F0F; */
            font-family: League Spartan;
+           cursor: pointer;
            font-size: 16px;
            font-style: normal;
            font-weight: 500;
@@ -553,34 +553,43 @@
 
 
 
-            
+  
 //Notifications
 .notification-card {
     display: flex;
-      width: 226px;
-      padding: 21px 20px 20px 20px;
-      gap: 10px;
-      border-radius: 10px;
-      height: 244px;
-      scrollbar-width: thin;
-      scrollbar-color: #a426d1 transparent;
-      overflow-y: auto;
-      border: 1px solid #e9adff;
-      background: #fff;
-      color: #000;
-      font-family: "League Spartan";
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      cursor: pointer;
+    width: 251px;
+    padding: 9px 5px 7px 11px;
+    gap: 10px;
+    border-radius: 10px;
+    height: 200px;
+    scrollbar-width: thin;
+    scrollbar-color: #a426d1 transparent;
+    overflow-y: auto;
+    border: 1px solid #e9adff;
+    background: #fff;
+    color: #000;
+    font-family: "League Spartan";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
   }
   
   .notification-message:hover {
     color: #a426d1;
     cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 15px;
+  }
+  
+  .notification-message {
+    color: #000000;
+    cursor: pointer;
+    font-weight: 400;
+    padding-right: 30px;
+    margin-bottom: 0px;
+    font-size: 13px;
   }
   
   .notification-head {
@@ -598,7 +607,10 @@
   
   .notification-arrow {
     margin-left: 11px;
+    position: absolute;
     margin-top: 10px;
+    right: 10px;
+    float: right;
   }
   
   .notification-position{
@@ -606,6 +618,7 @@
     right:0px;
     top:100px;
   }
+  
   
   .bksdfh{
     position: fixed;
@@ -615,4 +628,20 @@
     height: 100%;
     background-color: transparent;
     z-index: 111;
+  }
+
+  .notification-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notification-dot {
+    position: absolute;
+    top: -18px;
+    right: -85px;
+    height: 10px;
+    width: 10px;
+    z-index: 999;
+    background-color: red;
+    border-radius: 50%
   }

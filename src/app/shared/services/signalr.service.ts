@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import * as signalR from "@microsoft/signalr";
-import { notification } from "../models";
 import { NgToastService } from "ng-angular-popup";
 import { AppliedUserNotification } from "../models/AppliedUserNotification.model";
 
@@ -24,13 +23,12 @@ export class SignalrService {
       .catch((err) => console.log("Error while starting connection: " + err));
   };
 
- 
-
   showNotification(notification: AppliedUserNotification) {
     this.toast.success({
       detail: notification.message,
       sticky: false,
-      position: "topRight",
+      position: "bottomRight",
+      duration: 6000,
     });
   }
 
@@ -41,8 +39,6 @@ export class SignalrService {
       }   
     });
   };
-
-
 
   public sendNotification(message: string) {
     this.hubConnection.invoke('SendNotification', message)

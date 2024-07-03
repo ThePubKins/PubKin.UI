@@ -13,7 +13,7 @@ export class UserService {
   userData: Users = {} as Users;
   list: Users[] = [];
 
-  putGovtDetails(userData: any): Observable<any> {
+  putGovtDetails(userData: FormData): Observable<any> {
     return this.apiService.put(`User/govt-id-details`, userData);
   }
 
@@ -28,6 +28,12 @@ export class UserService {
   putProfile(userData: any): Observable<any> {
     return this.apiService.put(`User/profilepicture`, userData);
   }
+
+
+  UpdatePassword(userData: any): Observable<any> {
+    return this.apiService.put(`User/updatepassword`, userData);
+  }
+
 
   putProfilePercentage(formData: any): Observable<any> {
     return this.apiService.put(`User/profilepercentage`, formData);
