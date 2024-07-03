@@ -90,10 +90,17 @@ export class ProfiledetailsComponent implements OnInit {
   }
 
   @ViewChild("submitbutton") submitbutton: ElementRef;
+  @ViewChild("bankidbutton") bankidbutton: ElementRef;
   @ViewChild("idbutton") idbutton: ElementRef;
   @ViewChild("increasebutton") increasebutton: ElementRef;
   @ViewChild("percentagebutton") percentagebutton: ElementRef;
 
+
+    
+  bankIdsubmit() {
+    this.bankidbutton.nativeElement.click();
+  }
+  
   profilesubmit() {
     this.submitbutton.nativeElement.click();
   }

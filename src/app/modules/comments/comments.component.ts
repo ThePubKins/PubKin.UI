@@ -150,7 +150,11 @@ export class CommentsComponent implements OnInit {
 
   onSubmitJobStatus(form: NgForm) {
     if (form.valid && this.jobservice.jobData) {
-      this.jobservice.JobStatus(form.value).subscribe();
+      this.jobservice.JobStatus(form.value).subscribe(
+        response => {
+          this.router.navigate(['/authors/completed-jobs']);
+        },
+      );
     }
   }
 
@@ -380,8 +384,8 @@ export class CommentsComponent implements OnInit {
   sendNotification() {
     const notificationData = {
       notification:
-        "Received a new comment from " ,
-      userId: this.jobPost.usersId,
+        "Your job is mark as completed by " + this.selectedStatus.postBy ,
+      userId: this.selectedStatus.userId,
     };
     this.notificationsService
       .postNotification(this.userId, notificationData)
@@ -404,7 +408,7 @@ export class CommentsComponent implements OnInit {
    sendSubmitNotification() {
     const notificationData = {
       notification:
-        "New Work file received from this" + this.jobPost.jobUniqueId ,
+        "New Work file received from this " + this.jobPost.jobUniqueId ,
       userId: this.jobPost.usersId,
     };
     this.notificationsService

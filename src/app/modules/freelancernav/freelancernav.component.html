@@ -97,10 +97,12 @@
   <div class="prset " *ngIf="hide" (click)="hidden()">
     <div class="kkcrd12">
       <div class="kkcrd text-center" (click)="$event.stopPropagation()">
-        <div class="kkprimg" *ngIf="User[0].profileUrl">
+        <div class="kkprimg" >
           <div style="position: relative; display: inline-block;">
             <img src="{{ User[0].profileUrl }}" class="rounded-circle kkprimg img-responsive">
-            <span class="material-symbols-outlined" routerLink="/profile/choose-your-picutre-now"  style="position: absolute;
+            <img *ngIf="!User[0].profileUrl" src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
+
+          <span class="material-symbols-outlined" routerLink="/profile/choose-your-picutre-now"  style="position: absolute;
             margin-top: 58px;
             right: -7px;
             font-size: 20px;
@@ -109,9 +111,6 @@
            ">
               edit
             </span>
-        </div>
-        <div class="kkprimg" *ngIf="!User[0].profileUrl">
-          <img src="../assets/Frame 82.png" class="rounded-circle kkprimg img-responsive">
         </div>
         <div class="kkpname">
           <p class="kkprname">{{User[0].firstName}} <img *ngIf="calculateTotal() === 100"

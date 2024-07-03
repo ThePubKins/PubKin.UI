@@ -325,7 +325,7 @@
             <div
               class="d-flex justify-content-center"
               style="padding-bottom: 31px">
-              <button type="submit" class="btn subbut">Submit Work</button>
+              <button type="submit" class="btn subbut" (click)="sendSubmitNotification();sendSubmitNotifications();">Submit Work</button>
             </div>
           </div>
         </div>
@@ -491,7 +491,7 @@
            
             <button
               type="button"
-              class="btn "
+              class="btn d-none"
               type="submit"
             >
               Confirm
@@ -501,7 +501,10 @@
           <button
           type="button"
           class="kkkbtncn"
-          (click)="submitBothForms();"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="submitBothForms();sendNotification();sendNotifications();"
+    
         >
           Confirm
         </button>
@@ -630,7 +633,3 @@
   </div>
 </div>
 
-
-
-<button (click)="sendNotification();sendNotifications();">Trigger the Notification</button>
-<button (click)="sendSubmitNotification();sendSubmitNotifications();">Work File  Notification</button>

@@ -12,7 +12,7 @@
           <p class="rrpubkintxt1"  (click)="navigateToProfile('freelancer')">
             Find work
           </p>
-          <p class="rrpubkintxt1" routerLink="/WhatisPubKin?">Why us?</p>
+          <p class="rrpubkintxt1"  (click)="scrollToTop(); navigateToPubkin('whatispubkin')" routerLink="/WhatisPubKin?">Why us?</p>
           <p
             class="rrpubkintxt1"
             style="color: #a426d1"
@@ -63,7 +63,7 @@
     </div>
   </div>
 
-  <div class="container">
+  <div class="container-fluid">
     <img src="./assets/Frame5.png" class="rrlineimg3" />
   </div>
 
@@ -165,10 +165,11 @@
     <p *ngIf="!hide" (click)="hide1()" class="kkbrtx">See all</p>
     <p *ngIf="hide" (click)="hide1()" class="kkbrtx">Collapse</p>
   </div>
-
-  <div class="container">
+ 
+   <div class="container">
     <div class="row">
       <div class="col-3">
+      
         <div class="rrpubkincenteralign2 rrftcatalign1">
           <p class="rrcattxt1">
             Compositor <img src="./assets/cardtbtn.png" class="rrcatimg1" />
@@ -330,18 +331,51 @@
       <div class="rrpubkincenteralign1">
         <p class="kktesttxt">Testimonials</p>
       </div>
+      
+
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <p class="kktesttxt1">
+              "Pubkin has been instrumental in connecting us
+               with top-tier freelancers who consistently deliver quality work. Their platform is easy to use, and the range of talent available is impressive.
+                Highly recommend for any business looking to hire skilled professionals." <br />-Karthikeyan, Graphic designer
+            </p>      </div>
+          <div class="carousel-item">
+            <p class="kktesttxt1">
+              Pubkin has transformed the way we handle projects by providing access to a vast pool of qualified freelancers.
+               The process of hiring, managing, and paying freelancers is seamless, making it our go-to platform for freelance work." <br />-RahulRaja, Compositor
+            </p>      </div>
+          <div class="carousel-item">
+            <p class="kktesttxt1">
+              "Pubkin is an excellent platform for finding talented freelancers across various industries. 
+               We've been able to complete numerous projects efficiently and cost-effectively thanks to the skilled professionals we've hired through Pubkin."
+     <br />-Dinesh, Author
+            </p>      </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
       <div class="rrpubkincenteralign1">
-        <p class="kktesttxt1">
-          “ Lorem ipsum dolor sit amet consectetur. Sit scelerisque sit <br />
-          risus molestie nisl neque. Eulibero tristique quam <br />aliquam
-          lectus eget nulla nibh.” <br />-Name, Designation
-        </p>
+        <!-- <p class="kktesttxt1">
+          "Pubkin has been instrumental in connecting us
+           with top-tier freelancers who consistently deliver quality work. Their platform is easy to use, and the range of talent available is impressive.
+            Highly recommend for any business looking to hire skilled professionals." <br />-Karthikeyan, Graphic designer
+        </p> -->
       </div>
     </div>
     <img src="./assets/line.png" class="rrextradesimg1" />
     <img src="./assets/line1.png" class="rrextradesimg2" />
   </div>
 
+
+<!-- 
   <div class="container">
     <p class="rrkkwktltxt">Works from our talents</p>
   </div>
@@ -470,7 +504,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="container rrfooteralign1">
     <div class="row">
@@ -505,7 +539,7 @@
             <p class="rrforclientsheadtxt1">Resources</p>
             <p class="rrforclientstxt2">Help & Support</p>
             <p class="rrforclientstxt2">Resources</p>
-            <p class="rrforclientstxt2">Upwork reviews</p>
+            <p class="rrforclientstxt2">Pubkin reviews</p>
             <p class="rrforclientstxt2">Blog</p>
           </div>
         </div>
