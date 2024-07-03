@@ -2274,7 +2274,7 @@
                 [(ngModel)]="User[0].idType"
               >
                 <option selected value="Passport">Passport</option>
-                <option value="PAN card">PAN card</option>
+                <!-- <option value="PAN card">PAN card</option> -->
                 <option value="Driver's license">Driver's license</option>
                 <option value="National ID Card">National ID Card</option>
               </select>
@@ -2328,8 +2328,9 @@
                   </div>
                   <div class="rrpubcomcenalign1">
                     <p class="uplocont">
-                      Upload in png, jpeg and pdf files<br />Max size 1mb
+                      Upload in png, jpeg and pdf files - Max size 1mb
                     </p>
+                    <p class="uplocont" style="color:red; font-size: 14px;font-weight: 500;line-height: 20px;">*The uploaded files cannot be edited or modified<br> once they are uploaded</p>
                   </div>
                 </div>
                 <div *ngIf="!uploadedFileName && User[0].fileName != null"  class="d-flex justify-content-center align-items-center flex-column">
@@ -2762,9 +2763,8 @@
                     (change)="onFileNameSelected($event); onFileSelected($event);"
                     required
                   />
-                  <div
-                    *ngIf="isFileUploaded"
-                    class="d-flex justify-content-center align-items-center flex-column"
+                  <div *ngIf="!uploadedFileName && User[0].fileName === null">
+                  <div class="d-flex justify-content-center align-items-center flex-column"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -2782,7 +2782,9 @@
                     <br />
                     <span class="uplohead mt-1">{{ uploadedFileName }}</span>
                   </div>
-                  <div *ngIf="!uploadedFileName">
+                </div>
+                <div *ngIf="!uploadedFileName && User[0].fileName !== null">
+                  <div >
                     <div class="rrpubcomcenalign1 d-flex justify-content-center">
                       <img
                         class="govtimg"
@@ -2796,9 +2798,12 @@
                     </div>
                     <div class="rrpubcomcenalign1">
                       <p class="uplocont">
-                        Upload in png, jpeg and pdf files<br />Max size 1mb
+                        Upload in png, jpeg and pdf files - Max size 1mb
                       </p>
+                      <p class="uplocont" style="color:red; font-size: 14px;font-weight: 500;line-height: 20px;">*The uploaded files cannot be edited or modified<br> once they are uploaded</p>
+
                     </div>
+                  </div>
                   </div>
                 </label>
               </div>

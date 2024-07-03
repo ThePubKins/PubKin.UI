@@ -255,6 +255,7 @@ export class CommentsComponent implements OnInit {
 
     this.workfileservice.postFile(formData).subscribe(response => {
       console.log('Upload response:', response);
+      this.router.navigate(["/authors/accept-a-request"])
     }, error => {
       console.error('Upload error:', error);
     });
