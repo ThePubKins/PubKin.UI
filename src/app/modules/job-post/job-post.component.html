@@ -16,7 +16,7 @@
         [(ngModel)]="jobservice.jobData.projectStartDate">
     <input type="hidden" ngModel [value]="jobservice.jobData.projectEndDate" name="projectEndDate"
         #projectEndDate="ngModel" [(ngModel)]="jobservice.jobData.projectEndDate">
-    <input type="text" [(ngModel)]="skillset" [value]="skillset" name="experience" #experience="ngModel"
+    <input type="hidden" [(ngModel)]="skillset" [value]="skillset" name="experience" #experience="ngModel"
         [(ngModel)]="jobservice.jobData.experience">
     <input type="hidden" name="durationOfProject" [value]="jobservice.jobData.durationOfProject"
         #durationOfProject="ngModel" [(ngModel)]="jobservice.jobData.durationOfProject">

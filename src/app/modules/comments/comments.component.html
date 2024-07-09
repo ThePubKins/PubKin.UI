@@ -155,7 +155,7 @@
                         class="no-underline"
                       >
                         <p class="imageShows" >
-                          {{ i + 1 }}. {{ comment.fileName }}
+                          {{ comment.fileName }}
                         </p>
                       </a>
                       <hr />
@@ -315,7 +315,7 @@
                     <p class="paytex">Payment Details</p>
                   </div>
                   <div class="col-3">
-                    <p class="paytex2">$5</p>
+                    <p class="paytex2">$25</p>
                   </div>
                 </div>
               </div>
@@ -620,9 +620,7 @@
                > 
               Mark as completed
             </button>
-            <button *ngIf="jobPost.status === 'completed'"
-              class="btn subbut"
-               > 
+            <button *ngIf="jobPost.status === 'completed'" class="btn subbut"> 
               This job is completed
             </button>
           </div>
